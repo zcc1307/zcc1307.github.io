@@ -8,7 +8,7 @@ Tentative schedule:
 |:---:|:------------:|:---:|:---:|:---:|
 |Aug 27 | Introduction, motivation, course mechanics | | | [HW0 (Calibration)](hw0/hw0.pdf) [tex file](hw0/hw0.tex) |
 |Aug 29 | Basics: concentration of measure | | | |
-|Sep 3  | The PAC learning framework | | | |
+|Sep 3  | The PAC learning framework | | | HW0 due in class |
 |Sep 5  | VC Theory (1) | | | |
 |Sep 10 | VC Theory (2) | | | |
 |Sep 12 | Rademacher complexity (1) | | | |
@@ -19,6 +19,7 @@ Tentative schedule:
 |Oct 1  | Boosting (1) | | | |
 |Oct 3  | Boosting (2) | | | |
 |Oct 8  | Backgrounds on convex functions | | | |
+|Oct 10 | Midterm exam | | | |
 |Oct 15 | Regularization and stability (1) | | | |
 |Oct 17 | Regularization and stability (2) | | | |
 |Oct 22 | Online classification | | | |
