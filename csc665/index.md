@@ -26,6 +26,8 @@ to algorithms](https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/) b
 #### Machine learning courses at UA
 [CSC 535 Probabilistic Graphical Models](http://kobus.ca/teaching/cs535/spring18/index.html) by Kobus Barnard
 
+[ISTA 457/INFO 557 Neural Networks] by [Steven Bethard](https://bethard.faculty.arizona.edu/)
+
 CSC 665 Topics in Online Learning and Bandits by [Kwang-Sung Jun](https://kwangsungjun.github.io/) (Spring 2020)
 
 [INFO 521 Introduction to Machine Learning](http://w3.sista.arizona.edu/~clayton/courses/ml/index.html) by Clayton Morrison

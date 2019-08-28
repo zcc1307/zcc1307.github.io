@@ -85,7 +85,7 @@ function} (CDF) of the sample $S$, that is,
 \[ F_n(t) = \frac{1}{n} \sum_{i=1}^n \one(x_i \leq t), t \in \RR, \]
 where
 \[ \one(A) = \begin{cases} 1 & A \text{ is true } \\ 0 & A \text{ is false } \end{cases} \]
-is the indicator function. You may use any programming languages you like (I recommend using Python and Jupyter
+is the indicator function. You may use any programming languages you like (e.g. Python and Jupyter
 notebook).
 
 Draw two sets of samples $S_1$ and $S_2$ of size $n = 5$. Plot $F_n^1$,
@@ -110,7 +110,7 @@ standard normal distribution $\N(0,1)$, what function does $F_n$ converge to?
 \item Define function
 \[ h(x) \defeq x \ln x + (1-x) \ln (1-x), x \in (0,1). \]
 Show that for any $p$ and $q$ in $(0,1)$,
-\[ h(q) - h(p) - h'(p)(q - p)
+\[ h(p) - h(q) - h'(q)(p - q)
    = p \ln \frac{p}{q} + (1-p) \ln \frac{1-p}{1-q}. \]
 (Remark: the expression on the right hand side is often called the {\em binary relative
 entropy}, denoted as $\kl(p,q)$; the $h$ function is often called the {\em negative
@@ -130,7 +130,7 @@ define the negative entropy of $p$ as:
 and the relative entropy between $p$ and $q$ as:
 \[ \KL(p, q) \defeq \sum_{i=1}^m p_i \ln \frac{p_i}{q_i}. \]
 Verify that
-\[ \nent(q) - \nent(p) - \inner{\nabla \nent(p)}{q - p} = \KL(p, q). \]
+\[ \nent(p) - \nent(q) - \inner{\nabla \nent(q)}{p - q} = \KL(p, q). \]
 
 \item Using Taylor's Theorem, show that for any $p$, $q$ in $\Delta^{m-1}$,
 $\KL(p,q) \geq 0$.
