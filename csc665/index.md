@@ -23,6 +23,11 @@ There is no designated textbook for this course. However, much of the course
 materials will be based on the book [Understanding machine learning: from theory
 to algorithms](https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/) by Shai Shalev-Shwartz and Shai Ben-David (SSBD14).
 
+#### Review for prerequisites
+
+Here are some excellent notes for [probability review](http://cs229.stanford.edu/section/cs229-prob.pdf) and [linear algebra review](http://cs229.stanford.edu/section/cs229-linalg.pdf).
+
+
 #### Machine learning courses at UA
 [CSC 535 Probabilistic Graphical Models](http://kobus.ca/teaching/cs535/spring18/index.html) by Kobus Barnard
 

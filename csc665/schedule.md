@@ -6,7 +6,7 @@ Tentative schedule:
 
 |Date  | Topics | Notes | Additional Readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|
-|Aug 27 | Introduction, motivation, course mechanics | | | [HW0 (Calibration)](hw0/hw0.pdf) [tex file](hw0/hw0.tex) |
+|Aug 27 | Introduction, motivation, course mechanics | [slides](notes/slides.pdf) [probability review](notes/prob_review.pdf) | | [HW0 (Calibration)](hw0/hw0.pdf) [tex file](hw0/hw0.tex) |
 |Aug 29 | Basics: concentration of measure | | | |
 |Sep 3  | The PAC learning framework | | | HW0 due in class |
 |Sep 5  | VC Theory (1) | | | |
