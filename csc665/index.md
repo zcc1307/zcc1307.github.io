@@ -7,6 +7,10 @@ TuTh 12:30-1:45pm
 
 Gould-Simpson 856
 
+[Piazza link](piazza.com/arizona/fall2019/csc665) access code: CSC665-2
+
+[//]: # ([Gradescope](https://www.gradescope.com/courses/60240) entry code: 95D244)
+
 #### Instructor
 
 [Chicheng Zhang](https://zcc1307.github.io/)
