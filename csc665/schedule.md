@@ -6,8 +6,8 @@ Tentative schedule:
 
 |Date  | Topics | Notes | Additional Readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|
-|Aug 27 | Introduction, motivation, course mechanics | [slides](notes/slides.pdf) [probability review](notes/prob_review.pdf) | | [HW0 (Calibration)](hw0/hw0.pdf) [tex file](hw0/hw0.tex) |
-|Aug 29 | Basics: concentration of measure | | | |
+|Aug 27 | Introduction, motivation, course mechanics | [slides](notes/slides.pdf) [probability review](notes/prob_review.pdf) | SSBD Appendix B.1 and B.2 | [HW0 (Calibration)](hw0/hw0.pdf) [tex file](hw0/hw0.tex) |
+|Aug 29 | Basics: concentration of measure | [concentration of measure note 1](notes/conc_1.pdf) | SSBD Appendix B.4 | |
 |Sep 3  | The PAC learning framework | | | HW0 due in class |
 |Sep 5  | VC Theory (1) | | | |
 |Sep 10 | VC Theory (2) | | | |
