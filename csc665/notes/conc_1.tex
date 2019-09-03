@@ -1,0 +1,260 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\EE}{\mathbb{E}} % Real numbers
+\newcommand{\PP}{\mathbb{P}} % Real numbers
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+
+\title{CSC 665: Concentration of measure (1)}
+\author{Chicheng Zhang}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Concentration of measure}
+
+Concentration of measure, (narrowly speaking) states the following:
+\begin{quote}
+Given a set of independently and identically distributed (iid) random variables,
+their empirical mean concentrates around the true mean with overwhelming probability.
+\end{quote}
+
+One important example is Hoeffding's Inequality, where the distribution of each random variable is supported on an bounded interval:
+\begin{theorem}[Hoeffding's Inequality]
+Suppose that $Z_1, \ldots, Z_n$'s are iid random variables such that $a \leq Z_i \leq b$ for all $i$. Denote by $\bar{Z} := \frac 1 n \sum_{i=1}^n Z_i$, and $\mu = \EE X$. Then, for any $\epsilon > 0$,
+\begin{equation}
+ \PP( |\bar{Z} - \mu| > \epsilon ) \leq 2 e^{-\frac{2n\epsilon^2}{(b-a)^2}}.
+\label{eqn:hoef}
+\end{equation}
+In other words, with probability $1-\delta$,
+\begin{equation}
+ |\bar{Z} - \mu| \leq (b-a) \cdot \sqrt{\frac{\ln\frac{2}{\delta}}{2n}}.
+\label{eqn:hoef-conc}
+\end{equation}
+\label{thm:hoef}
+\end{theorem}
+
+Why is Hoeffding's Inequality relevant in machine learning theory? Consider the binary classification setup: suppose examples $(x,y)$'s are drawn from a distribution $D$. In addition, we are (magically) given a classifier
+$h: \Xcal \to \cbr{-1,+1}$. We would like to know the performance of $h$, measured by
+its {\em generalization error}, i.e.
+\[ \err(h, D) \defeq \PP(h(x) \neq y). \]
+
+But we only have access to the training examples $S = {(x_i, y_i)}_{i=1}^m$ drawn iid from $D$.\footnote{It is important that $h$ should be independent of $S$ here, otherwise $h$ might well ``overfit'' to $S$.} How can we measure the performance of $h$? We can use the {\em training error} of $h$ as a proxy, denoted as
+\[ \err(h, S) \defeq \frac{1}{m} \sum_{i=1}^m \one(h(x_i) \neq y_i). \]
+
+Now, applying Hoeffding's inequality with $Z_i = \one(h(x_i) \neq y_i)$, $a = 0$, $b = 1$, we get that with probability $1-\delta$,
+\[ |\err(h, S) - \err(h, D)| \leq \sqrt{\frac{\ln\frac{2}{\delta}}{2m}}. \]
+
+This show that with high probability, the generalization error of $h$ will be
+concentrated around the empirical error of $h$.
+%\begin{theorem}
+%\end{theorem}
+\subsection{Chernoff bound}
+Note that apart from Hoeffding's Inequality, we can alternatively apply Chebyshev's Inequality to get a bound on
+$\PP(| \bar{Z} - \mu|  \geq \epsilon)$. Indeed, taking $X = \bar{Z}$,
+$\mu = \EE \bar{Z}$, since $\Var(\bar{Z}) = \frac{1}{n} \Var(Z_1) \leq \frac{(b-a)^2}{n}$,
+we have
+\[ \PP(| \bar{Z} - \mu| > \epsilon) \leq \frac{(b-a)^2}{n \epsilon^2}. \]
+If we set $\epsilon$ such that right hand side to be $\delta$, then we get
+$\epsilon = (b-a) \sqrt{\frac{\frac{1}{\delta}}{n}}$; that is,
+\[ \PP \del{ | \bar{Z} - \mu| > (b-a) \sqrt{\frac{\frac{1}{\delta}}{n}} } \leq \delta. \]
+In other words, with probability $1-\delta$,
+\begin{equation}
+  | \bar{Z} - \mu| \leq (b-a) \sqrt{\frac{\frac{1}{\delta}}{n}}.
+  \label{eqn:cheb-conc}
+\end{equation}
+Now compare Equation~\eqref{eqn:hoef-conc} with Equation~\eqref{eqn:cheb-conc}, with
+constants ignored. We can immediately see that, when $\delta$ is small, Hoeffding's
+Inequality implies stonger concentration of the empirical mean to the true mean -
+indeed, the dependency of $\delta$ is $\ln\frac{1}{\delta}$ in Hoeffding's
+Inequality, which is much smaller than $\frac{1}{\delta}$ for small $\delta$.
+
+How can Hoeffding's Inequality obtain a stronger result? Note that applying Chebyshev's
+Inequality only uses the second moment of $\bar{Z}$. In contrast, the proof of Hoeffding's Inequality utilizes
+a new tool called the {\em moment generating function}, which (implicitly)
+uses all moments of $\bar{Z}$; in addition, it takes advantage of the independence
+structure of all $Z_i$'s in a clever way, as we will set next.
+
+\begin{definition}
+$\phi_X$, the moment generating function of a random variable $X$, is defined as
+$\phi_X(t) \defeq \EE[e^{t X}]$.
+$\psi_X$, the cumulant generating function of $X$, is defined as
+$\psi_X(t) \defeq \ln \phi_X(t) = \ln \EE[e^{t X}]$. \footnote{If we write
+$\psi_X(t)$ as a infinite series $\sum_{n=0}^\infty a_n t^n$, then $n! a_n$ is called the $n$-th cumulant of $X$; specifically, it can be checked that the first cumulant is the mean of $X$ and
+the second cumulant is the variance of $X$.}
+\end{definition}
+
+\begin{lemma}[Chernoff Bound]
+Suppose $Z_1,\ldots,Z_n$ are iid, and have a common cumulant generating function $\psi_Z$. Then for any $\epsilon > 0$,
+\begin{equation}
+  \PP(\bar{Z} - \mu \geq \epsilon) \leq \exp{-n \del{\sup_{t \geq 0} t (\mu+\epsilon) - \psi_Z(t)} } = \exp{-n \del{\sup_{t \in \RR} t (\mu+\epsilon) - \psi_Z(t)} },
+  \footnote{The term $\sup_{t \in \RR} t (\mu+\epsilon) - \psi_Z(t)$ is often written
+  as $\psi_Z^\star(\mu + \epsilon)$; here for a function $f$, we denote by its Fenchel conjugate $f^\star(y) = \sup_{x \in \RR} (xy - f(x))$. We will formally introduce this definition in future lectures.}
+  \label{eqn:ub}
+\end{equation}
+
+
+\begin{equation}
+ \PP(\bar{Z} - \mu \leq -\epsilon) \leq \exp{-n \del{\sup_{t \leq 0} t (\mu-\epsilon) - \psi_Z(t)} } = \exp{-n \del{\sup_{t \in \RR} t (\mu-\epsilon) - \psi_Z(t)} }.
+ \label{eqn:lb}
+\end{equation}
+\label{lem:ld}
+\end{lemma}
+\begin{proof}
+First, observe that for any $t \geq 0$, event $\cbr{\bar{Z} - \mu \geq \epsilon}$ is the same as $\cbr{\sum_{i=1}^n Z_i \geq n (\mu + \epsilon)}$, which is contained in
+$\cbr{\sum_{i=1}^n t Z_i \geq t n (\mu + \epsilon)}$. Exponentiating both sides, the above event is $\cbr{e^{\sum_{i=1}^n t Z_i} \geq e^{t n (\mu + \epsilon)} }$.
+
+Applying Markov's Inequality on the random variable $e^{\sum_{i=1}^n t Z_i}$, we get:
+\[ \PP(\bar{Z} - \mu \geq \epsilon) \leq e^{-n t (\mu+\epsilon)} \EE e^{\sum_{i=1}^n t Z_i}. \]
+Observe that the expectation of $e^{\sum_{i=1}^n t Z_i}$ has the following simple form:
+\[ \EE e^{\sum_{i=1}^n t Z_i} = \EE \prod_{i=1}^n e^{t Z_i} = \prod_{i=1}^n \EE e^{t Z_i} = (\phi_Z(t))^n = e^{n\psi_Z(t)}. \]
+where the first equality is simple algebraic manipulation, the second equality follows from the independence of $Z_i$'s (this shows the power of exponentiation!), the third equality uses the definition of $\phi_Z$, and the last equality uses the fact that $\psi_Z = \ln \phi_Z$.
+
+Therefore,
+\[ \PP(\bar{Z} - \mu \geq \epsilon) \leq e^{- n t (\mu+\epsilon) + n \psi_Z(t)}
+ = e^{-n( t (\mu+\epsilon) - \psi_Z(t))}. \]
+As the above inequality holds for any $t \geq 0$, the inequality of Equation~\eqref{eqn:ub} is concluded
+by observing that
+\[ \min_{t \geq 0} \exp{-n( t (\mu+\epsilon) - \psi_Z(t))} = \exp{-n \del{\max_{t \geq 0} t (\mu+\epsilon) - \psi_Z(t)} }. \]
+For the equality of~\eqref{eqn:ub}, we first note that by Jensen's Inequality,
+\[ \phi_Z(t) = \EE[e^{tZ}] \geq e^{t \EE Z} = e^{t \mu}. \]
+This implies that for all $t < 0$, $t (\mu+\epsilon) - \psi_Z(t) \leq t \epsilon \leq 0 = 0 (\mu+\epsilon) - \psi(0)$. Therefore,
+\[ \max_{t \geq 0} t (\mu+\epsilon) - \psi_Z(t) = \max_{t \in \RR} t (\mu+\epsilon) - \psi_Z(t). \]
+
+The proof of Equation~\eqref{eqn:lb} follows from the exact same reasoning, and is left as an exercise.
+%: for any $t \leq 0$, event $\cbr{\bar{Z} - \mu \leq -\epsilon}$ is contained in $\cbr{\sum_{i=1}^n t Z_i \geq t n (\mu - \epsilon)}$. Therefore,
+%\[ \PP(\bar{Z} - \mu \geq \epsilon) \leq e^{- n t (\mu-\epsilon) + n \psi(t)}
+% = e^{-n( t (\mu-\epsilon) - \psi(t))}. \]
+%Taking a minimum over all $t \leq 0$ concludes the second half.
+\end{proof}
+
+\section{Proof of Hoeffding's Inequality}
+Chernoff bound (Lemma~\ref{lem:ld}) offers an generic tool to bound the tail probability of the mean of
+a set of iid random variables $Z_i$'s: it reduces the problem to establishing properties
+on the moment generating function of each $Z_i$.
+In the condition of Hoeffding's Inequality, the only information we have about $Z_i$
+is that it has range $[a,b]$ and has mean $\mu$. What can we say about $\phi_Z$
+and $\psi_Z$? It turns out that we can say something quite nontrivial, as shown in the next lemma.
+
+\begin{lemma}
+For a random variable $Z$ such that $Z \in [a,b]$ and $\EE Z = \mu$, we have
+\[ \phi_Z(t) \leq e^{\mu t + \frac{(b-a)^2}{8} t^2}, \]
+consequently,
+$\psi_Z(t) \leq \mu t + \frac{(b-a)^2}{8} t^2$.
+\label{lem:cgf-hoef}
+\end{lemma}
+\begin{proof}
+First, suppose $b-a = 0$. In this case, $Z = \mu$ with probability 1, therefore
+the lemma statement trivially holds.
+
+Now suppose $b-a = 1$. (We will defer the case with general settings of $b-a$ to the end of the proof.)
+%We consider the case when $a < b$ (if $a = b$, then the lemma is trivial as $Z$ will take value $0$ with probability $1$.)
+
+The trick is to write $Z$ as a convex combination of $a$ and $b$: specifically,
+$Z = (Z-a) \cdot b + (b-Z) \cdot a$. Note that the coefficients $(Z-a)$ and $(b-Z)$
+are both nonnegative and sum to 1.
+%$s = Z-a$, we have $t \in [0,1]$ and
+%\[ Z = t b + (1 - t) a. \]
+Now let's look at $\phi_Z$.
+\begin{eqnarray*}
+  \phi_Z(t)
+  &=& \EE [\exp{ (Z-a) \cdot t b + (b-Z) \cdot t a}] \\
+  &\leq& \EE[ (Z-a) \cdot e^{tb} + (b-Z) e^{ta}] \\
+  &=& (\mu-a) e^{tb} + (b-\mu) e^{ta} \\
+\end{eqnarray*}
+Taking log on both sides, and subtracting $\mu t$ on both sides, we get,
+\[ \psi_Z(t) - \mu t \leq \ln((\mu-a) e^{tb} + (b-\mu) e^{ta}). \]
+Hence,
+\begin{equation}
+  \psi_Z(t) - \mu_t \leq \ln((\mu-a) e^{t(b-\mu)} + (b-\mu) e^{t(a-\mu)}).
+  \label{eqn:jensen-cgf}
+\end{equation}
+Now, let $p = \mu-a$, therefore, $1-p = b-\mu$. This implies that the right hand
+side of Equation~\ref{eqn:jensen-cgf} equals $\ln( p e^{t-tp} + (1-p) e^{-tp} ) =: f(t)$. Using Lemma~\ref{lem:cgf-bern} (given below), we conclude that
+\begin{equation}
+  \psi_Z(t) - \mu t \leq \frac{1}{8} t^2,
+  \label{eqn:range-1}
+\end{equation}
+which gives the lemma statement.
+
+Now consider the case of general $b-a$. For random variable $Z$ that takes value
+between $a$ and $b$, $\frac{Z}{b - a}$ takes values between range $a' = \frac{a}{b-a}$ and $b' = \frac{b}{b-a}$, and has mean $\mu' = \frac{\mu}{b-a}$.
+Note that $b' - a' = 1$. Using Equation~\ref{eqn:range-1}, we have that for any $s$,
+\[ \EE e^{s \frac{Z}{b - a}} \leq \exp{\mu' s + \frac{1}{8} s^2 }, \]
+For any $t$, consider $s = (b-a)t$ in the above inequality, we get
+\[ \EE e^{t Z} \leq \exp{\mu t + \frac{(b-a)^2}{8} t^2 }. \]
+The lemma follows.
+\end{proof}
+
+\begin{lemma}
+Suppose $f(t) = \ln( p e^{t} + 1-p ) - tp$ for some $p \in [0,1]$.
+Then $f(t) \leq \frac{1}{8} t^2$ for all $t \in \RR$.
+\label{lem:cgf-bern}
+\end{lemma}
+\begin{proof}
+  We have the following properties of $f$:
+\begin{enumerate}
+\item $f(0) = 0$,
+\item $f'(t) = \frac{p e^t}{p e^{t} + 1-p} - p$, and $f'(0) = 0$,
+\item $f''(t) = \frac{p e^t \cdot (1-p)}{(p e^{t} + 1-p)^2}$, and by Arithmetic Mean-Geometric Mean inequality on the numerator, $f''(t) \leq \frac 1 4$ for all $t$ in $\RR$.
+\label{item:2nd}
+\end{enumerate}
+Therefore, by Taylor's Theorem, for all $t \in \RR$, there exists $\xi$ between
+$0$ and $t$, such that
+\[ f(t) = f(0) + f'(0) \cdot t + \frac{f''(\xi)}{2} t^2 = \frac{f''(\xi)}{2} t^2. \]
+By Property~\ref{item:2nd} above, $f''(\xi) \leq \frac 1 4$, we get the lemma.
+\end{proof}
+
+The cumulant generating function bound on bounded random variable (Lemma~\ref{lem:cgf-hoef}) and Chernoff bound (Lemma~\ref{lem:ld}) together allow us to conclude Hoeffding's Inequality.
+\begin{proof}[Proof of Theorem~\ref{thm:hoef}]
+We first show that
+\begin{equation}
+  \PP( \bar{Z} - \mu > \epsilon ) \leq e^{-\frac{2n\epsilon^2}{(b-a)^2}}.
+  \label{eqn:hoef-ub}
+\end{equation}
+%Recall that by Chernoff bound, we have that
+%\[ \PP( \bar{Z} - \mu > \epsilon ) \leq \exp{-n \del{\sup_{t \in \RR} t (\mu+\epsilon) - \psi_Z(t)} }. \]
+Now, applying Lemma~\ref{lem:cgf-hoef},
+\begin{eqnarray*}
+  \sup_{t \in \RR} \del{t (\mu+\epsilon) - \psi_Z(t)}
+  &\geq& \sup_{t \in \RR}  \del{(\mu+\epsilon) t - (\mu t + \frac{(b-a)^2}{8} t^2)} \\
+  &\geq& \sup_{t \in \RR} \del{\epsilon t - \frac{(b-a)^2}{8} t^2} \\
+  &=& \frac{2 \epsilon^2}{(b-a)^2}.
+\end{eqnarray*}
+Plugging into Equation~\eqref{eqn:ub} of Chernoff bound, we get Equation~\eqref{eqn:hoef-ub}.
+Symmetrically, we have
+\begin{equation}
+  \PP( \bar{Z} - \mu < -\epsilon ) \leq e^{-\frac{2n\epsilon^2}{(b-a)^2}}.
+  \label{eqn:hoef-lb}
+\end{equation}
+Equation~\eqref{eqn:hoef} follows from Equations~\ref{eqn:hoef-ub} and~\eqref{eqn:hoef-lb}, along with union bound ( event
+$\cbr{|\bar{Z} - \mu| > \epsilon}$ is the union of events $\cbr{\bar{Z} - \mu > \epsilon}$
+and $\cbr{\bar{Z} - \mu < \epsilon}$).
+
+Equation~\eqref{eqn:hoef-conc} follows directly from Equation~\eqref{eqn:hoef},
+with the setting of $\epsilon = \sqrt{\frac{\ln\frac{2}{\delta}}{2n}}$.
+\end{proof}
+
+\end{document}

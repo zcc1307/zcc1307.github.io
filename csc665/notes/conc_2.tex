@@ -1,0 +1,218 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{claim}{Claim}
+
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\EE}{\mathbb{E}} % Real numbers
+\newcommand{\PP}{\mathbb{P}} % Real numbers
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+
+\title{CSC 665: Concentration of measure (2)}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+\section{Chernoff bound for Bernoulli distributions}
+In the binary classification setup, recall that the $Z_i = I(h(X_i) \neq Y_i)$'s are drawn iid from the Bernoulli distribution of mean $p = \err(h, D)$. As seen in the last lecture, applying Hoeffding's inequality
+ already gives us strong concentration results of $\bar{Z}$ to $p$ (with tail bound exponentially decreasing with sample size). But in fact we can say more for this special Bernoulli case. Formally we have the following.
+
+\begin{theorem}[Binomial Chernoff bound]
+Suppose $Z_1,\ldots,Z_m$ are drawn iid from the Bernoulli distribution with mean $p$.
+Then,
+\[ \PP(\bar{Z} - \mu \geq \epsilon) \leq \exp{-n \kl(p+\epsilon, p)}, \]
+\[ \PP(\bar{Z} - \mu \leq -\epsilon) \leq \exp{-n \kl(p-\epsilon, p)}, \]
+where $\kl(p,q) = p \ln \frac p q + (1-p) \ln \frac {1-p} {1-q}$ is the binary
+relative entropy.
+\end{theorem}
+
+Before going into the proof of the theorem, let us see several important consequences
+of the theorem.
+\begin{enumerate}
+  \item As we have already seen in the calibration homework, for any $q in [0,1]$,
+  \[ \kl(q, p) \geq 2(q-p)^2. \]
+  This implies that both $\PP(\bar{Z} - \mu \geq \epsilon)$ and $\PP(\bar{Z} - \mu \geq \epsilon)$ are at most $e^{-2n\epsilon^2}$. Notice that this is exactly what Hoeffding's Inequality implies for Bernoulli random variables.
+
+  \item Another fact we proved in the calibration homework is that $\kl(q, p) \geq \frac{(q-p)^2}{2 \max(p,q)}$.
+  Fix $\mu \in [0,1)$, and let $\epsilon = \mu p$. We get that
+  \[ \kl(p(1+\mu), p) \geq \frac{\mu^2 p^2}{2(1+\mu) p} \geq \frac{\mu p^2}{4}, \]
+  \[ \kl(p(1-\mu), p) \geq \frac{\mu^2 p^2}{2(1-\mu) p} \geq \frac{\mu p^2}{4}.  \]
+  This implies that both
+  $\PP(\bar{Z} \geq p(1+\mu) )$ and $\PP(\bar{Z} \leq p(1-\mu))$ are at most $e^{-\frac{n p \mu^2}{4}}$. \footnote{The constants in the exponents are by no means tight; in fact bounds with better constants ($1/3$ for the upper tail and $1/2$ for the lower tail) can be found in the literature. However, in learning theory the constants are of secondary importance; the {\em asymptotic orders} of the convergence rates are often quantities of interest.} This is oftentimes called a relative (or multiplicative) Chernoff bound for
+  Bernoulli random variables (as it considers the ratio between empirical frequency and true mean), and is much tighter than Hoeffding's Inequality
+  when $p$ is small.
+\end{enumerate}
+
+
+\begin{proof}
+Using the Chernoff bound for general random variables (see Lemma 1 from our last note), it suffices to show that for any $q$ in $[0,1]$, $\sup_{t \in \RR} \del{t q - \psi_Z(t)} = \kl(q,p)$, where $\psi_Z$ is the common cumulant generating function of all $Z_i$'s.
+
+First, let us compute $\psi_Z$.
+As $Z_i$'s take value 1 with probability $p$ and take value 0 with probability $1-p$,
+$\psi_Z$ has a closed form:
+\[ \psi_Z(t) = \ln \EE e^{tZ} = \ln(p e^t + (1-p)), \]
+
+Now let $F(t) = t q - \psi_Z(t)$. Our goal is to show that
+$\sup_{t \in \RR} F(t) = \kl(q,p)$.
+Taking derivative of $F$ with respect to $t$, we get
+that
+\[ F'(t) = q - \frac{p e^t}{(1-p) + p e^t}. \]
+
+Setting $F'(t) = 0$, we get that $t^\star = \ln\frac{q(1-p)}{p(1-q)}$ is the only
+critical point of $F$.
+It can be readily checked that
+$F'(t) > 0$ if $t < t^\star$, and $F'(t) \geq 0$ if $t > t^\star$. Hence,
+$t^\star$ is the unique maximum of $F$, and
+\[ \sup_{t \in \RR} F(t) = F(t^\star) = q t^\star - \ln(p e^{t^\star} + (1-p)) = \kl(q,p). \qedhere \]
+\end{proof}
+
+\section{McDiarmid's Inequality}
+
+So far, we have seen concentration inequalities for averages of iid random variables.
+In this section, we go one step further: we consider general functions of iid random variables. Denote by $f$ the function of interest, which takes into input $x_1, \ldots, x_n$ and outputs a real number $f(x_1,\ldots,x_n)$. As long as $f$ is not too sensitive on all its inputs (formally defined below), a random evaluation on $f$, i.e. $f(X_1, \ldots, X_n)$, will be close to its expectation $\EE f(X_1, \ldots, X_n)$.
+
+\begin{definition}[Sensitivity]
+Suppose $f$ is a function from $V^n$ to $\RR$. $f$ is called $c$-sensitive, if for every $i$ in $\cbr{1,\ldots,n}$, every $x_1, \ldots, x_n, x_i$ in $V$,
+\[ |f(x_1, \ldots, x_{i-1}, x_i, x_{i+1}, \ldots, x_n) - f(x_1, \ldots, x_{i-1}, x_i', x_{i+1}, \ldots, x_n)| \leq c. \]
+\end{definition}
+This property is also called {\em bounded difference}: suppose $f$ have an input $x_1, \ldots, x_n$, and we replace the $i$-th input with an arbitrary value $x_i'$,
+then the output of $f$ only changes by $c$. Intuitively, if $c$ is smaller, then $f$ is more well-behaved.
+
+\begin{theorem}[McDiarmid's Inequality]
+Suppose $f$ is a function from $V^n$ to $\RR$ that is $c$-sensitive. In addition, suppose $X_1, \ldots, X_n$ are iid random variables that take values in $V$. Then,
+\[ \PP( | f(X_1, \ldots, X_n) - \EE f(X_1, \ldots, X_n) | \geq \epsilon)
+  \leq 2 e^{-\frac{2 \epsilon^2}{n c^2}} \]
+\end{theorem}
+
+Observe that Hoeffding's Inequality is a special case of McDiarmid's Inequality:
+Suppose $\cbr{X_i}_{i=1}^n$ are iid random variables that take values in $V = [a,b]$, with mean $\mu$. We let $f(x_1, \ldots, x_n) = \frac{\sum_{i=1}^n x_i}{n}$
+be the empirical mean function. Note that
+$f$ is $\frac{b-a}{n}$-sensitive, moreover, $\EE f(x_1,\ldots,x_n) = \mu$.
+
+This implies that
+\[
+\PP(|\bar{X} - \mu| \geq \epsilon) \leq 2 \exp{-\frac{2 \epsilon^2}{n \cdot \frac{(b-a)^2}{n^2}}} = 2 e^{-\frac{2 n \epsilon^2}{(b-a)^2}}.
+\]
+
+\begin{proof}
+We will still consider the moment generating function of $f(X_1,\ldots,X_n)$.
+However, we cannot directly apply Chernoff bound this time, as Chernoff bound only applies to the mean of a set of iid random variables.
+
+We have the following key claim.
+\begin{claim}
+For all $t$ in $\RR$,
+\[ \EE \exp{t(f(X_1,\ldots,X_n) - \EE f(X_1,\ldots,X_n))} \leq \exp{n \frac{c^2 t^2}{8}}. \]
+\label{claim:mgf}
+\end{claim}
+
+To see how the claim concludes the proof, we note that for all $t > 0$,
+\begin{eqnarray*}
+\PP(f(X_1,\ldots,X_n) - \EE f(X_1,\ldots,X_n) \geq \epsilon)
+&=& \PP(\exp{t(f(X_1,\ldots,X_n) - \EE f(X_1,\ldots,X_n))} \geq \exp{t \epsilon}) \\
+&\leq& \EE \exp{t(f(X_1,\ldots,X_n) - \EE f(X_1,\ldots,X_n))} \exp{-t \epsilon} \\
+&\leq& \exp{n \frac{c^2 t^2}{8} - t \epsilon}
+\end{eqnarray*}
+where the first inequality is Markov's Inequality, the second inequality is
+from Claim~\ref{claim:mgf}. Now, pick $t = \frac{4 \epsilon}{n c^2} > 0$, we get that
+$\PP(f(X_1,\ldots,X_n) - \EE f(X_1,\ldots,X_n) \geq \epsilon) \leq e^{-\frac{2 n \epsilon^2}{c^2}}$. The theorem follows from establishing the lower tail bound similarly, along with union bound.
+\end{proof}
+
+\begin{proof}[Proof of Claim~\ref{claim:mgf}]
+We first setup some useful notation. We denote by
+$f_n$ the original function $f$ of $n$ variables, and denote by $f_0$ the constant
+$\EE f(X_1,\ldots,X_n)$.
+
+In addition, denote by $f_{n-1}$ the function of $(n-1)$ variables,
+such that
+\[ f_{n-1}(x_1,\ldots,x_{n-1}) = \EE[f_n(X_1, \ldots, X_n)|X_1 = x_1,\ldots, X_n = x_n]. \]
+In other words, $f_{n-1}(x_1, \ldots, x_{n-1})$ is the expectation of the output of $f$, given that the first $(n-1)$-th inputs observed are $x_1, \ldots, x_{n-1}$.
+Suppose that every $x_i$ has a probability density function $p$, $f_{n-1}$ has the following explicit form:
+\[ f_{n-1}(x_1, \ldots, x_{n-1}) = \int_V f_n(x_1, \ldots, x_{n-1}, x_n) p(x_n) d x_n. \]
+
+We have the following important properties of $f_{n-1}$:
+\begin{enumerate}
+  \item $\EE f_{n-1}(X_1, \ldots, X_{n-1}) = \int_{V^n} f_n(x_1, \ldots, x_{n-1}, x_n) p(x_1) \ldots p(x_n) dx_1 \ldots d x_n = f_0$.
+  \item It can be checked that $f_{n-1}$ is also $c$-sensitive. For example, consider changing the first coordinate from $x_1$ to $x_1'$:
+  \begin{eqnarray*}
+    && |f_{n-1}(x_1, x_2, \ldots,x_{n-1}) - f_{n-1}(x_1', x_2, \ldots,x_{n-1})| \\
+    &=& \int_V (f_n(x_1, \ldots, x_{n-1}, x_n) - f_n(x_1', \ldots, x_{n-1}, x_n) ) p(x_n) d x_n \\
+    &\leq& \int_V |f_n(x_1, \ldots, x_{n-1}, x_n) - f_n(x_1', \ldots, x_{n-1}, x_n) | p(x_n) d x_n \\
+    &\leq& \int_V c p(x_n) d x_n = c.
+  \end{eqnarray*}
+\end{enumerate}
+
+%As $f_n(x_1,\ldots,x_n) - f_0 = \del{f_n(x_1,\ldots,x_n) - f_{n-1}(x_1,\ldots,x_{n-1})} + \del{f_{n-1}(x_1,\ldots,x_{n-1}) - f_0}$,
+%this implies that
+We will show that for all $t$ in $\RR$,
+\begin{equation}
+  \EE \exp{t (f_n(X_1,\ldots,X_n) - f_0)} \leq \EE \exp{t (f_{n-1}(X_1, \ldots, X_{n-1}) - f_0)} \cdot \exp{\frac{c^2 t^2}{8}}.
+  \label{eqn:mgf-rec}
+\end{equation}
+To see why this implies the claim, we note that we can apply the same inequality again on $f_{n-1}(X_1, \ldots, X_{n-1}))$ and define function $f_{n-2}$ similarly as before, getting
+\[ \EE \exp{t (f_{n-1}(X_1, \ldots, X_{n-1}))} \leq \EE \exp{t (f_{n-2}(X_1, \ldots, X_{n-2}))} \exp{\frac{c^2 t^2}{8}}, \]
+Repeatedly applying Equation~\eqref{eqn:mgf-rec} (with appropriate definitions of functions $f_{n-i}$'s), we get
+\begin{eqnarray*}
+  \EE \exp{t (f_n(X_1,\ldots,X_n) - f_0)}
+  &\leq& \EE \exp{t (f_{n-1}(X_1, \ldots, X_{n-1}) - f_0)} \cdot \exp{1 \cdot \frac{c^2 t^2}{8}} \\
+  &\leq& \EE \exp{t (f_{n-2}(X_1, \ldots, X_{n-2}) - f_0)} \cdot \exp{2 \cdot \frac{c^2 t^2}{8}} \\
+  &\leq& \ldots \\
+  &\leq& \EE \exp{t (f_1(X_1) - f_0)} \cdot \exp{(n-1) \cdot \frac{c^2 t^2}{8}} \\
+  &\leq& \EE \exp{t (f_0 - f_0)} \cdot \exp{n \cdot \frac{c^2 t^2}{8}} = \exp{n  \frac{c^2 t^2}{8}},
+\end{eqnarray*}
+where the $i$-th inequality is by Equation~\eqref{eqn:mgf-rec} on $f_{n-i+1}$ and the fact that $f_{n-i+1}$ is $c$-sensitive.
+
+Back to the proof of Equation~\eqref{eqn:mgf-rec}. We first write down the left hand side explicitly:
+\begin{eqnarray}
+  && \EE \exp{t (f_n(X_1,\ldots,X_n) - f_0)} \nonumber \\
+  &=& \EE \exp{ t\del{f_n(X_1,\ldots,X_n) - f_{n-1}(X_1,\ldots,X_{n-1})} + t\del{f_{n-1}(X_1,\ldots,X_{n-1}) - f_0}} \nonumber\\
+  &=& \int_V \ldots \int_V \exp{ t\del{f_n(x_1,\ldots,x_n) - f_{n-1}(x_1,\ldots,x_{n-1})} + t\del{f_{n-1}(x_1,\ldots,x_{n-1}) - f_0}} p(x_1) \ldots p(x_n) d x_1 \ldots d x_n \nonumber \\
+  &=& \int_V \ldots \int_V p(x_1) \ldots p(x_{n-1}) d x_1 \ldots d x_{n-1} \exp{t\del{f_{n-1}(x_1,\ldots,x_{n-1}) - f_0}} g(x_1, \ldots, x_{n-1}), \label{eqn:expand-int}
+\end{eqnarray}
+where $g(x_1, \ldots, x_{n-1}) \defeq \int_V \exp{ t\del{f_n(x_1,\ldots,x_n) - f_{n-1}(x_1,\ldots,x_{n-1})}} p(x_n) d x_n$, and the last equality is by reducing the multiple integral to an iterated integral.
+
+Suppose for the moment that $x_1, \ldots, x_{n-1}$ are fixed numbers, and only $X_n$ is random. Consider a random variable $Z = f_n(x_1, \ldots, x_{n-1}, X_n)$. Note that
+$Z$ takes values from interval $[a,b]$, where $a = \min_{x_n \in V} f_n(x_1, \ldots, x_{n-1}, x_n)$ and $b = \max_{x_n \in V} f_n(x_1, \ldots, x_{n-1}, x_n)$. Observe that $b - a \leq c$ as $f_n$ is $c$-sensitive. By Lemma 2 in the last note (mgf bound for Hoeffding's Inequality),
+\[ \EE e^{t(Z - \EE Z)} \leq e^{\frac{(b-a)^2t^2}{8}}. \]
+Written in integral form, the above is
+\[ \int_V \exp{ t\del{f_n(x_1,\ldots,x_n) - f_{n-1}(x_1,\ldots,x_{n-1})}} p(x_n) d x_n \leq e^{\frac{(b-a)^2t^2}{8}}, \]
+i.e. $g(x_1, \ldots, x_{n-1}) \leq e^{\frac{(b-a)^2t^2}{8}}$. Plugging this inequality into Equation~\eqref{eqn:expand-int}, we get
+\begin{eqnarray*}
+  && \EE \exp{t (f_n(X_1,\ldots,X_n) - f_0)} \\
+  &\leq& \int_V \ldots \int_V p(x_1) \ldots p(x_{n-1}) d x_1 \ldots d x_{n-1} \exp{t\del{f_{n-1}(x_1,\ldots,x_{n-1}) - f_0}} \cdot e^{\frac{(b-a)^2t^2}{8}} \\
+  &=& \EE \exp{t\del{f_{n-1}(X_1,\ldots,X_{n-1}) - f_0}} \cdot e^{\frac{(b-a)^2t^2}{8}}.
+\end{eqnarray*}
+This concludes the proof of Equation~\eqref{eqn:mgf-rec}, and the proof of the claim.
+\end{proof}
+
+\paragraph{Remark.} For readers that are familiar with conditional expectation notation, the notation in the proof of Equation~\eqref{eqn:mgf-rec} can be simplified a bit. Specifically,
+\begin{eqnarray*}
+&& \EE \exp{t (f_n(X_1,\ldots,X_n) - f_0)} \\
+&=& \EE \exp{ t\del{f_n(X_1,\ldots,X_n) - f_{n-1}(X_1,\ldots,X_{n-1})} + t\del{f_{n-1}(X_1,\ldots,X_{n-1}) - f_0}} \nonumber\\
+&=& \EE \sbr{ \exp{t\del{f_{n-1}(X_1,\ldots,X_{n-1}) - f_0}} \cdot
+\EE\sbr{\exp{ t\del{f_n(X_1,\ldots,X_n) - f_{n-1}(X_1,\ldots,X_{n-1})}} \vert X_1,\ldots,X_{n-1}} } \\
+&\leq& \EE \sbr{ \exp{t\del{f_{n-1}(X_1,\ldots,X_{n-1}) - f_0}} \cdot
+e^{\frac{(b-a)^2t^2}{8}} } \\
+&=& \EE \sbr{ \exp{t\del{f_{n-1}(X_1,\ldots,X_{n-1}) - f_0}}} \cdot
+e^{\frac{(b-a)^2t^2}{8}}.
+\end{eqnarray*}
+
+\end{document}
