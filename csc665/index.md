@@ -7,7 +7,7 @@ TuTh 12:30-1:45pm
 
 Gould-Simpson 856
 
-[Piazza link](piazza.com/arizona/fall2019/csc665) access code: CSC665-2
+[Piazza link](https://piazza.com/arizona/fall2019/csc665) access code: CSC665-2
 
 [Gradescope](https://www.gradescope.com/courses/60240) entry code: 95D244 (Note: for the calibration homework, please still submit a physical copy in class; we will be using gradescope from HW 1 onwards.)
 
