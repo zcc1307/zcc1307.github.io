@@ -9,10 +9,10 @@ Tentative schedule:
 |Aug 27 | Introduction, motivation, course mechanics | [slides](notes/slides.pdf) [probability review](notes/prob_review.pdf) | SSBD Appendix B.1 and B.2 | [HW0 (Calibration)](hw0/hw0.pdf) [tex file](hw0/hw0.tex) |
 |Aug 29 | Basics: concentration of measure | [concentration of measure note 1](notes/conc_1.pdf) | SSBD Appendix B.4 | |
 |Sep 3  | Chernoff bound for Bernoulli random variables, McDiarmid's Inequality | [concentration of measure note 2](notes/conc_2.pdf) | SSBD Appendix B.3, Lemma 26.4 | HW0 due in class |
-|Sep 5  | The PAC learning framework | | | |
-|Sep 10 | VC Theory | | | |
-|Sep 12 | Rademacher complexity (1) | | | |
-|Sep 17 | Rademacher complexity (2) | | | |
+|Sep 5  | The PAC learning framework, finite classes | | SSBD Chapter 2, Sections 3.1, 3.2 | |
+|Sep 10 | Agnostic PAC learning, infinite classes | | | |
+|Sep 12 | VC Theory | | | |
+|Sep 17 | Rademacher complexity | | | |
 |Sep 19 | Support Vector Machine (1) | | | |
 |Sep 24 | Support Vector Machine (2); Margin bounds | | | |
 |Sep 26 | Structural risk minimization | | | |
