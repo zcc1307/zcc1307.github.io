@@ -21,7 +21,7 @@ Gould-Simpson 720
 
 chichengz@cs.arizona.edu
 
-Office Hour: TBD
+Office Hour: Mondays 1-2pm or by email appointment
 
 #### Textbook
 
