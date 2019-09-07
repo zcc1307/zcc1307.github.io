@@ -40,16 +40,16 @@
 
 \section{The PAC learning model}
 
-PAC stands for ``Probably Approximately Correct''~\cite{valiant1984theory}, which is a celebrated theoretical model for studying binary classification.
+PAC stands for ``Probably Approximately Correct''~\cite{valiant1984theory}, which is a celebrated theoretical model for studying statisical machine learning (e.g. binary classification).
 
-Setup: binary classification. Example: image classification - build a classifier
+Let us consider the specific setup of binary classification. Example: image classification - build a classifier
 that can classify images as cats or dogs.
 
 Basic terminologies:
 \begin{enumerate}
 \item Instance domain $\Xcal$ - the space where the images lie in. For example,
 each image is grayscale, of resolution $640 \times 480$, and is represented by its pixel intensity.
-then can take $\Xcal = \RR^{640 \times 480}$.
+Then we can take $\Xcal = \RR^{640 \times 480}$.
 
 \item Label space $\Ycal = \cbr{-1, +1}$ - the space where labels lie in.
 For example, we can use $+1$ to denote class 'cat', and $-1$ to denote class 'dog'.
@@ -59,20 +59,19 @@ For example, we can use $+1$ to denote class 'cat', and $-1$ to denote class 'do
 \item Training set: a set $S$ drawn iid from $D$.
 
 \item Classifier $h$ (hypothesis): a mapping from $\Xcal$ to $\Ycal$ - given a image as input, the
-classifier will tell whether the image is a cat or a dog.
+classifier outputs a label in $\cbr{-1,+1}$, indicating whether the image is a cat or a dog.
 
 \item Hypothesis class $\Hcal$: a (structured) collection of classifiers. For example,
-$\Hcal = $ the set of all neural networks with ResNet-18 architecture.
-\footnote{With an additional linear threshold function at the output.}
-(each different weighting combination corresponds to a different classifier in $\Hcal$)
+$\Hcal = $ the set of all neural networks with ResNet-18 architecture
+\footnote{With an additional linear threshold layer for the output.}, each different combination of weightings corresponds to a different classifier in $\Hcal$.
 
 \item Error: given a classifier $h$, define its generalization error as
 $\err(h, D) = \PP_{(x,y) \sim D}(h(x) \neq y)$. This is the performance
-measure of a classifier. Define its training error with respect
+measure of a classifier. Define $h$'s training error with respect
 to the training set $S$ of size $n$ as $\err(h, S) = \frac{1}{n} \sum_{(x,y) \in S} \one(h(x) \neq y)$,
 also abbreviated as $\PP_{(x,y) \sim S}(h(x) \neq y)$.
 
-\item Realizable: there exists a classifier $h^\star$ in $\Hcal$, such that
+\item Realizable: we are given the promise that there exists a classifier $h^\star$ in $\Hcal$, such that
  $\err(h^\star, D) = 0$. Agnostic: there may or may not exists a classifier in $\Hcal$
  that has zero generalization error.
 \end{enumerate}
@@ -80,26 +79,27 @@ also abbreviated as $\PP_{(x,y) \sim S}(h(x) \neq y)$.
 \begin{definition}
 We call an algorithm $\Acal$ PAC learns hypothesis class $\Hcal$ with sample complexity
 function $m: (0,1) \times (0,1) \to \NN$, if for any distribution $D$ realizable with respect to $\Hcal$, $\epsilon > 0$, $\delta > 0$,
-when $\Acal$ receives $m(\epsilon, \delta)$ iid training examples from $D$ as input,
- and outputs
-a classifier $h$, such that with probability $1-\delta$,
-\[ \err(h, D) \leq \epsilon. \]
+when $\Acal$ receives $m \geq m(\epsilon, \delta)$ iid training examples from $D$ as input,
+ it outputs
+a classifier $\hat{h}$, such that with probability $1-\delta$,
+\[ \err(\hat{h}, D) \leq \epsilon. \]
 \end{definition}
 
 Remarks:
 \begin{enumerate}
-\item $\epsilon$ is called the {\em target error rate}, and $\delta$ is called the {\em confidence parameter}~\footnote{This may remind you the notion of $(1-\alpha)$-confidence interval in statistics, where the goal is to construct an interval such that it contains the underlying parameter with probability $1-\alpha$. Here $\alpha$ is essentially $\delta$, the failure probability}. ``Probably'' means that the algorithm succeed with high probability ($1-\delta$),
-and ``Approximately correct'' means that the classifier returned has small error rate ($\epsilon$).
+\item $\epsilon$ is called the {\em target error rate}, and $\delta$ is called the {\em confidence parameter}~\footnote{This may remind you the notion of $(1-\alpha)$-confidence interval in statistics, where the goal is to construct an interval such that it contains the underlying parameter with probability $1-\alpha$. Here $\alpha$ is essentially $\delta$, the failure probability.}. ``Probably'' means that the algorithm succeed with high probability ($1-\delta$),
+and ``Approximately Correct'' means that the classifier returned has small error rate ($\epsilon$).
 \item The original definition in~\cite{valiant1984theory} requires that the learning algorithm runs in polynomial time. Here we relax the original definition and do not require computational efficiency.
-\item The sample complexity is {\em distribution independent}. In practice, one might want a sample complexity definition that ``exploits the easiness of the data'', i.e. if distribution $D$ is easy to learn, then the learning algorithm may draw less samples from $D$ to learn a good classifier. We will return to this point when we study model selection.
+\item The sample complexity is hypothesis-class dependent but {\em distribution independent}. In practice, one might want a sample complexity definition that ``exploits the easiness of the data'', i.e. if distribution $D$ is easy to learn, then the learning algorithm may draw less samples from $D$ to learn a good classifier. We will return to this point when we study model selection.
+\item If $\Acal$ always return a $h$ in $\Hcal$, then it is called a {\em proper} learning algorithm. Otherwise, it is called an improper learning algorithm. Interestingly, improper learning can sometimes provide more power in achieving learnability and saving sample complexity.
 %The definition does notFor a hypothesis class, there may exist multiple algorithms with different sample complexities.
 \end{enumerate}
 
 \subsection{Sample complexity of finite hypothesis classes}
 Let us consider the setting where the hypothesis class $\Hcal$ is of finite size. In fact,
-it can be argued that all hypothesis classes considered in computer-based applications are finite! To see this, consider for example the set of all ResNet-18 networks. As each weight can only take values in 64-bit floating-point numbers, any such network can be represented using (64 $\times$ \#weights) bits.
+it can be argued that all hypothesis classes considered in computer-based applications are finite! To see this, consider for example the set of all ResNet-18 networks, with each weight taking values in 64-bit floating-point numbers. Any such network can be represented using (64 $\times$ \#weights) bits.
 
-Here we show a fundational result: any finite hypothesis class $\Hcal$ will have a sample
+Here we show a fundational result: any finite hypothesis class $\Hcal$ will have a PAC sample
 complexity of order $m(\epsilon, \delta) = \frac{1}{\epsilon}(\ln|\Hcal| + \ln\frac{1}{\delta})$.
 To see this, let us consider the following simple learning algorithm.
 
@@ -107,7 +107,7 @@ To see this, let us consider the following simple learning algorithm.
 \caption{The consistency algorithm}
 \begin{algorithmic}[1]
   \REQUIRE{Training samples $S$ of size $m$ iid from $D$, hypothesis class $\Hcal$}
-  \STATE{Find $\hat{h}$ such that $\hat{h}$ agrees with all examples in $S$, that is,
+  \STATE{Find $\hat{h}$ in $\Hcal$ such that $\hat{h}$ agrees with all examples in $S$, that is,
   for all $(x,y)$ in $S$, $\hat{h}(x) = y$.}
   \label{step:cons}
   \RETURN{$\hat{h}$.}
@@ -129,54 +129,76 @@ To see this, let us consider the following simple learning algorithm.
 \end{theorem}
 
 We make the following obervations on the error upper bound (Equation~\eqref{eqn:eb}). First, the dependence on sample size
-is of order $\frac{1}{m}$. This is reasonable, as it is polynomially decreasing. Second, the dependency on the size of the hypothesis class is only logarithmic. This is somewhat desirable, as $|\Hcal|$ is usually exponential in the number
-of parameters in $\Hcal$, and taking a logarithm will bring the dependency on the number of parameters from exponential to linear \footnote{In modern applications such as learning overparameterized neural networks, this bound is not desirable - the number of parameters can be much greater than the training sample size, which makes this bound vacuous ($\geq 1$).}. Third, the dependency on $\delta$ is only $\ln\frac{1}{\delta}$ - this means that the failure probability $\delta$ can be taken as a small number (such as $m^{-5}$) without hurting much on error bound.
+is of order $\frac{1}{m}$, which is ``polynomially decreasing'' in $m$. Second, the dependency on the size of the hypothesis class is only logarithmic. This is somewhat desirable, as $|\Hcal|$ is usually exponential in the number
+of parameters in $\Hcal$, and taking a logarithm will bring the dependency on the number of parameters from exponential to linear\footnote{In modern applications such as learning overparameterized neural networks, this bound is not desirable - the number of parameters can be much greater than the training sample size, which makes this bound vacuous ($\geq 1$).}. Third, the dependency on $\delta$ is only $\ln\frac{1}{\delta}$ - this means that the failure probability $\delta$ can be taken as a small number (such as $m^{-5}$) without hurting much on error bound.
 
 \begin{proof}[Proof of Theorem~\ref{thm:sc}]
 
   First, under realizable assumption, $h^\star$ has zero error with respect to $D$. Therefore, (with probability 1) $h^\star$ will also agree with all examples in $S$.
-  This implies that Step~\ref{step:cons} will successfully find a classifier $\hat{h}$ that agrees with all exmaples in $S$.
+  This implies that Step~\ref{step:cons} will successfully find a classifier $\hat{h}$ in
+  $\Hcal$ that agrees with all exmaples in $S$.
 
   Second, let $\mu:= \epsilon_R(m,\delta,|\Hcal|)$. Let us consider all classifiers in $\Hcal$ that has error $> \mu$ - define such subset as $\Hcal_\mu$. We argue that with probability $1-\delta$, all members of $\Hcal_\mu$ has nonzero error in $S$.
 
   Fix $h$ in $\Hcal_\mu$. Denote by the event $E_h$ that $h$ has zero error in $S$. Then
-  \[ \PP(E_h) = \PP(h(x) = y)^m = (1 - \err(h, D))^m < (1 - \mu)^m
+  \[ \PP(E_h) = \prod_{i=1}^m \PP(h(x_i) = y_i) = \PP(h(x) = y)^m = (1 - \err(h, D))^m < (1 - \mu)^m
   \leq e^{-\mu m}. \]
 
   Define $E := \cup_{h \in \Hcal_\mu} E_h$.
   By union bound over all $h$ in $\Hcal_\mu$, we have
   \[ \PP(E) \leq \sum_{h \in \Hcal_\mu} \PP(E_h) \leq |\mathcal{H}_{\mu}| e^{-\mu m} \leq |\Hcal| e^{-\mu m}. \]
 
-  Plugging in the value of $\mu = \frac{\ln|\Hcal| + \ln\frac{1}{\delta}}{m}$, we get that $\PP(E)$ is at most the right hand side, which is at most $\delta$.
+  Plugging in the value of $\mu = \frac{\ln|\Hcal| + \ln\frac{1}{\delta}}{m}$, we get that $\PP(E)$ is at most $|\Hcal| e^{-(\ln|\Hcal| + \ln\frac{1}{\delta})} = \delta$.
 
-  Event $E$ states that there exists $h$ in $\Hcal_\mu$ that agrees with $S$. Its complement $\bar{E}$ states that for all $h$ in $\Hcal_\mu$, $h$ does not agrees with $S$.
+  Event $E$ states that there exists $h$ in $\Hcal_\mu$ that agrees with $S$. Its complement $\bar{E}$ states that for all $h$ in $\Hcal_\mu$, $h$ does not agree with $S$. Formally,
+  \[ \text{for all } h \text{ in } \Hcal: \err(h, D) > \mu \Rightarrow \err(h,S) > 0. \]
+  Taking the contrapositive of the statement, we have:
+  \begin{equation}
+  \text{for all } h \text{ in } \Hcal: \err(h, S) = 0 \Rightarrow \err(h,D) \leq \mu.
+  \label{eqn:rep-r}
+  \end{equation}
+  Event $\bar{E}$ happens with probability at least $1-\delta$.
 
-  Suppose event $\bar{E}$ happens. In this case, as the output $\hat{h}$ agrees with $S$, $\hat{h}$ must be outside of $\Hcal_\mu$, that is, it has error at most $\mu$. The first part of the theorem is concluded by observing that $\bar{E}$ happens with probability at least $1-\delta$.
+  Suppose event $\bar{E}$ happens. In this case, as the output $\hat{h}$ agrees with $S$, from Equation~\eqref{eqn:rep-r}, $\hat{h}$ must have error at most $\mu$. This concludes the first part of the theorem.
 
-  The sample complexity bound directly follows by plugging into the choice of $m$ into
-  the excess error bound $\epsilon_R$, which becomes $\epsilon$.
-
+  The sample complexity bound directly follows by observing that as long as $m \geq \frac{1}{\epsilon}(\ln|\Hcal| + \ln\frac{1}{\delta})$,
+  the $(1-\delta)$-probability error bound $\epsilon_R(m, \delta, \ln|\Hcal|)$ is at most $\epsilon$.
 \end{proof}
 
 \section{The Agnostic PAC learning model}
 
+One clear limitation of the PAC learning model is that it assumes that the data is perfectly
+separable by some classifier in a given hypothesis class.
+Therefore, it cannot handle realistic settings
+where the data is noisy, or settings when no classifier in the given hypothesis class is able to fully capture the patterns in the data. The agnostic PAC model generalizes the PAC
+model by allowing the optimal classifer in $\Hcal$ to have nonzero error.
+
 \begin{definition}
 We call an algorithm $\Acal$ agnostic PAC learns hypothesis class $\Hcal$ with sample complexity
 function $m: (0,1) \times (0,1) \to \NN$, if for any distribution $D$, $\epsilon > 0$, $\delta > 0$,
-when $\Acal$ receives $m(\epsilon, \delta)$ iid training examples from $D$ as input,
+when $\Acal$ receives $m \geq m(\epsilon, \delta)$ iid training examples from $D$ as input,
  and outputs
-a classifier $h$, such that with probability $1-\delta$,
-\[ \err(h, D) \leq \min_{h' \in \Hcal} \err(h',D) + \epsilon. \]
+a classifier $\hat{h}$, such that with probability $1-\delta$,
+\[ \err(\hat{h}, D) \leq \min_{h' \in \Hcal} \err(h',D) + \epsilon. \]
 \end{definition}
 
+The goal of Agnostic PAC model is less ambitious: it declares the success of the learner so long as it outputs a classifier whose {\em excess error} is at most $\epsilon$; here the excess error of $h$ is defined as $\err(h, D) - \min_{h' \in \Hcal} \err(h',D)$, that is, the difference between the error of the output classifer and the optimal error in $\Hcal$. On the other hand, it generalizes the PAC learning model: if the data distribution $D$ is realizable wrt $\Hcal$, the optimal error is zero, and the algorithm will return an classifier with at most $\epsilon$ error with probability $1-\delta$.
+
 \subsection{Agnostic sample complexity of finite hypothesis classes}
+
+For the agnostic case, we consider the following generalization of the
+consistency algorithm, namely, empirical risk minimization. The name comes
+from the fact that instead of looking for a classifier that perfect fits the
+data, the algorithm simply finds a classifier in $\Hcal$ that minimizes the
+training error (empirical risk).
+
 \begin{algorithm}
 \caption{Empirical risk minimzation}
 \begin{algorithmic}[1]
   \REQUIRE{Training samples $S$ of size $m$ iid from $D$, hypothesis class $\Hcal$}
   \STATE{Find $\hat{h}$ such that $\hat{h}$ has the lowest training error among $\Hcal$:
   $\hat{h} \in \argmin_{h \in \Hcal} \err(h,S)$.}
-  \label{step:cons}
+  \label{step:erm}
   \RETURN{$\hat{h}$.}
 \end{algorithmic}
 \label{alg:erm}
@@ -200,7 +222,7 @@ Let $\mu = \frac{1}{2}\epsilon_A(m,\delta,\ln|\Hcal|) = \sqrt{\frac{\ln|\Hcal| +
 
 For all classifiers $h$ in $\Hcal$, define $E_h$ as the event that
 \[ |\err(h, S) - \err(h, D)| > \mu. \]
-In addition, define $E = \cup_h \in \Hcal E_h$.
+In addition, define $E = \cup_{h \in \Hcal} E_h$.
 
 By Hoeffding's Inequality,
 \[ \PP(E_h) \leq 2 e^{-2 m \mu^2}. \]
@@ -208,22 +230,28 @@ By Hoeffding's Inequality,
 Therefore, by union bound and expanding the definition of $\mu$, we get that
 \[ \PP(E) \leq \sum_{h \in \Hcal} \PP(E_h) \leq |\Hcal| \cdot 2 e^{-2 m \mu^2} \leq \delta. \]
 
-For the rest of the proof, suppose event $\bar{E}$ happens. We note that $\bar{E}$ happens with probability at least $1-\delta$.
+Hence, the complement event, $\bar{E}$, happens with probability at least $1-\delta$. For the rest of the proof, suppose event $\bar{E}$ happens.
 
-we have that for all $h$,
-\[ |\err(h, S) - \err(h, D)| \leq \mu \]
-Specifically,
-\begin{eqnarray*}
+In $\bar{E}$, we have that for all $h$ in $\Hcal$,
+\begin{equation}
+  |\err(h, S) - \err(h, D)| \leq \mu.
+  \label{eqn:uc}
+\end{equation}
+Denote by $h^\star$ one of the classifier in $\Hcal$ that has the smallest generalization error. From Equation~\ref{eqn:uc} applied to the output classifier $\hat{h}$ and the optimal classifier $h^\star$, we have
+$|\err(\hat{h}, S) - \err(\hat{h}, D)| \leq \mu$ and $|\err(h^\star, S) - \err(h^\star, D)| \leq \mu$.
+In addition, as $\hat{h}$ minimizes the training error, $\err(\hat{h}, S) \leq \err(h^\star, S)$.
+
+Therefore,
+\begin{align*}
   \err(\hat{h}, D)
-  &\leq& \err(\hat{h}, S) + \mu \\
-  &=& \min_{h \in \Hcal} err(h, S) + \mu \\
-  &\leq& \min_{h \in \Hcal} err(h, D) + 2 \mu \\
-  &\leq& \min_{h \in \Hcal} err(h, D) + \epsilon_A(m,\delta,\ln|\Hcal|).
-\end{eqnarray*}
+  &\leq \err(\hat{h}, S) + \mu && \text{Equation~\eqref{eqn:uc} on $\hat{h}$} \\
+  &\leq err(h^\star, S) + \mu && \text{Optimality of $\hat{h}$}\\
+  &\leq err(h^\star, D) + 2 \mu && \text{Equation~\eqref{eqn:uc} on $h^\star$}\\
+  &\leq \min_{h \in \Hcal} err(h, D) + \epsilon_A(m,\delta,\ln|\Hcal|). && \text{Optimality of $h^\star$ and definition of $\mu$}
+\end{align*}
 
-The sample complexity bound directly follows by plugging into the choice of $m$ into
-the excess error bound $\epsilon_A$, which becomes $\epsilon$.
-
+The sample complexity bound directly follows by observing that as long as $m \geq \frac{2}{\epsilon^2}(\ln|\Hcal| + \ln\frac{2}{\delta})$,
+the $(1-\delta)$-probability error bound $\epsilon_A(m, \delta, \ln|\Hcal|)$ is at most $\epsilon$.
 \end{proof}
 
 
