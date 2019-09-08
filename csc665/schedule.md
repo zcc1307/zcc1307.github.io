@@ -23,7 +23,7 @@ Tentative schedule:
 |Oct 15 | Regularization and stability (1) | | SSBD Chap 13 | |
 |Oct 17 | Regularization and stability (2) | | SSBD Chap 13 | |
 |Oct 22 | Online classification | | SSBD Sec 21.1 | |
-|Oct 24 | Online convex optimization (OCO): online to batch conversion | SSBD Sec 21.3, Sections 14.1-14.3 | | |
+|Oct 24 | Online convex optimization (OCO): online to batch conversion | | SSBD Sec 21.3, Sections 14.1-14.3  | |
 |Oct 29 | Follow the regularized leader (FTRL) | | H Sec 5.3 | |
 |Oct 31 | Online mirror descent (OMD) | | H Sec 5.2 | |
 |Nov 5 | Online convex optimization for strongly-convex / exp-concave functions | | H Sec 3.3, Chap 4  | |
