@@ -25,9 +25,23 @@ Office Hour: Mondays 1-2pm or by email appointment
 
 #### Textbook
 
-There is no designated textbook for this course. However, much of the course
-materials will be based on the book [Understanding machine learning: from theory
-to algorithms](https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/) by Shai Shalev-Shwartz and Shai Ben-David (SSBD14).
+There is no designated textbook for this course. Much of the course
+materials will be based on the following books (in the order of appearance
+  in class schedule):
+
+[Understanding machine learning: from theory to algorithms](https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/) by Shai Shalev-Shwartz and Shai Ben-David (SSBD)
+
+[Introduction to online optimization](https://ocobook.cs.princeton.edu/OCObook.pdf) by Elad Hazan (H)
+
+[Bandit algorithms](https://tor-lattimore.com/downloads/book/book.pdf) by Tor Lattimore and Csaba Szepesvari (LS)
+
+The following set of surveys and books also provide a good coverage of relevant materials:
+
+[Online learning and online convex optimization](https://www.cs.huji.ac.il/~shais/papers/OLsurvey.pdf) by Shai Shalev-Shwartz
+
+[Regret analysis of stochastic and nonstochastic multi-armed bandit problems](http://sbubeck.com/SurveyBCB12.pdf) by Sebastien Bubeck and Nicolo Cesa-Bianchi
+
+[Introduction to Multi-Armed Bandits](https://arxiv.org/pdf/1904.07272.pdf) by Alex Slivkins
 
 #### Review for prerequisites
 

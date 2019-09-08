@@ -29,11 +29,11 @@ Tentative schedule:
 |Nov 5 | Online convex optimization for strongly-convex / exp-concave functions | | [H] Section 3.3, Chapter 4  | |
 |Nov 7 | Prediction with expert advice (1) | | SSBD Section 21.2 | |
 |Nov 12 | Prediction with expert advice (2) | | | |
-|Nov 14 | Stochastic multi-armed bandits (1) | | | |
-|Nov 19 | Stochastic multi-armed bandits (2) | | | |
-|Nov 21 | Adversarial multi-armed bandits | | | |
-|Nov 26 | Stochastic linear bandits (1) | | | |
+|Nov 14 | Stochastic multi-armed bandits (1) | | LS Chaps 6, 7 | |
+|Nov 19 | Stochastic multi-armed bandits (2) | |  | |
+|Nov 21 | Adversarial multi-armed bandits | | LS Chap 11 | |
+|Nov 26 | Stochastic linear bandits (1) | | LS Chap 19 | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
-|Dec 3 | Stochastic linear bandits (2) | | | |
+|Dec 3 | Stochastic linear bandits (2) | | LS Chap 20 | |
 |Dec 5 | Final presentation (1) | | | |
 |Dec 10 | Final presentation (2) | | | |
