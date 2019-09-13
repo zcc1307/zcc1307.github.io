@@ -207,8 +207,8 @@ training error (empirical risk).
 \end{algorithm}
 
 \begin{theorem}
-  Suppose $\Hcal$ is finite. If the consistency algorithm (Algorithm~\ref{alg:erm}) is given $m$ iid
-  examples from $D$ realizable with respect to $\Hcal$, then with probability $1-\delta$,
+  Suppose $\Hcal$ is finite. If the empirical risk minimization algorithm (Algorithm~\ref{alg:erm}) is given $m$ iid
+  examples from $D$, then with probability $1-\delta$,
   its output $\hat{h}$ is such that
   \begin{equation}
     \err(\hat{h}, D) \leq \min_{h \in \Hcal} \err(h, D) + \epsilon_A(m,\delta,\ln|\Hcal|) \defeq \sqrt{\frac{2(\ln|\Hcal| + \ln\frac{2}{\delta})}{m}}.
