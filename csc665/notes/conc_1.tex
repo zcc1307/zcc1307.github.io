@@ -43,7 +43,7 @@ their empirical mean concentrates around the true mean with overwhelming probabi
 
 One important example is Hoeffding's Inequality, where the distribution of each random variable is supported on an bounded interval:
 \begin{theorem}[Hoeffding's Inequality]
-Suppose that $Z_1, \ldots, Z_n$'s are iid random variables such that $a \leq Z_i \leq b$ for all $i$. Denote by $\bar{Z} := \frac 1 n \sum_{i=1}^n Z_i$, and $\mu = \EE X$. Then, for any $\epsilon > 0$,
+Suppose that $Z_1, \ldots, Z_n$'s are iid random variables such that $a \leq Z_i \leq b$ for all $i$. Denote by $\bar{Z} := \frac 1 n \sum_{i=1}^n Z_i$, and $\mu = \EE Z_i$. Then, for any $\epsilon > 0$,
 \begin{equation}
  \PP( |\bar{Z} - \mu| > \epsilon ) \leq 2 e^{-\frac{2n\epsilon^2}{(b-a)^2}}.
 \label{eqn:hoef}

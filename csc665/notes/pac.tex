@@ -182,7 +182,9 @@ a classifier $\hat{h}$, such that with probability $1-\delta$,
 \[ \err(\hat{h}, D) \leq \min_{h' \in \Hcal} \err(h',D) + \epsilon. \]
 \end{definition}
 
-The goal of Agnostic PAC model is less ambitious: it declares the success of the learner so long as it outputs a classifier whose {\em excess error} is at most $\epsilon$; here the excess error of $h$ is defined as $\err(h, D) - \min_{h' \in \Hcal} \err(h',D)$, that is, the difference between the error of the output classifer and the optimal error in $\Hcal$. On the other hand, it generalizes the PAC learning model: if the data distribution $D$ is realizable wrt $\Hcal$, the optimal error is zero, and the algorithm will return an classifier with at most $\epsilon$ error with probability $1-\delta$.
+The goal of Agnostic PAC model is less ambitious: it declares the success of the learner so long as it outputs a classifier whose {\em excess error} is at most $\epsilon$; here the excess error of $h$ is defined as $\err(h, D) - \min_{h' \in \Hcal} \err(h',D)$, that is, the difference between the error of the output classifer and the optimal error in $\Hcal$.
+
+On the other hand, it generalizes the PAC learning model: if a hypothesis class $\Hcal$ is agnostic PAC learnable with sample complexity function $m$, then it is also PAC learnable with the same sample complexity $m$. Indeed, if the data distribution $D$ is realizable wrt $\Hcal$, then the optimal error is zero. Therefore, any agnostic PAC learning algorithm will return an classifier with at most $\epsilon$ error with probability $1-\delta$.
 
 \subsection{Agnostic sample complexity of finite hypothesis classes}
 
@@ -245,9 +247,9 @@ Therefore,
 \begin{align*}
   \err(\hat{h}, D)
   &\leq \err(\hat{h}, S) + \mu && \text{Equation~\eqref{eqn:uc} on $\hat{h}$} \\
-  &\leq err(h^\star, S) + \mu && \text{Optimality of $\hat{h}$}\\
-  &\leq err(h^\star, D) + 2 \mu && \text{Equation~\eqref{eqn:uc} on $h^\star$}\\
-  &\leq \min_{h \in \Hcal} err(h, D) + \epsilon_A(m,\delta,\ln|\Hcal|). && \text{Optimality of $h^\star$ and definition of $\mu$}
+  &\leq \err(h^\star, S) + \mu && \text{Optimality of $\hat{h}$}\\
+  &\leq \err(h^\star, D) + 2 \mu && \text{Equation~\eqref{eqn:uc} on $h^\star$}\\
+  &\leq \min_{h \in \Hcal} \err(h, D) + \epsilon_A(m,\delta,\ln|\Hcal|). && \text{Optimality of $h^\star$ and definition of $\mu$}
 \end{align*}
 
 The sample complexity bound directly follows by observing that as long as $m \geq \frac{2}{\epsilon^2}(\ln|\Hcal| + \ln\frac{2}{\delta})$,

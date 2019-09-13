@@ -11,7 +11,7 @@ Tentative schedule:
 |Sep 3  | Chernoff bound for Bernoulli random variables, McDiarmid's Inequality | [concentration of measure note 2](notes/conc_2.pdf) | SSBD App B.3, Lemma 26.4 | HW0 due in class [HW0 Solutions](hw/hw0/hw0sol.pdf) |
 |Sep 5  | The PAC learning framework, finite classes | [PAC learning note](notes/pac.pdf) | SSBD Chap 2, Sec 3.1 | |
 |Sep 10 | Agnostic PAC learning, infinite classes | | SSBD Sec 3.2-3.3, Chap 4, Sec 6.1 | |
-|Sep 12 | VC Theory | | SSBD Sec 6.2 - 6.5.1 | |
+|Sep 12 | VC Theory, Sauer's Lemma | | SSBD Sec 6.2 - 6.5.1 | [VC Theory note](notes/vc.pdf) |
 |Sep 17 | Rademacher complexity | | SSBD Sec 6.5.2, 26.1, 28.1 | |
 |Sep 19 | Support Vector Machine (1) | | SSBD Chap 15 | |
 |Sep 24 | Support Vector Machine (2); Margin bounds | | SSBD Secs 26.2, 26.3  | |
