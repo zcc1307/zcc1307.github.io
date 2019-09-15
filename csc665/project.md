@@ -6,6 +6,7 @@
 
 ##### Active learning
 * M.F. Balcan, A. Beygelzimer, J. Langford. Agnostic active learning. ICML 2006.
+* Sanjoy Dasgupta, Daniel J. Hsu, Claire Monteleoni. A general agnostic active learning algorithm. NIPS 2007.
 * S. Hanneke. Theory of Disagreement-Based Active Learning. Foundations and Trends in Machine Learning. 2014.
 * M.F. Balcan and P. Long. Active and Passive Learning of Linear Separators under Log-concave Distributions. COLT 2013.
 * Chicheng Zhang and Kamalika Chaudhuri. Beyond Disagreement-Based Agnostic Active Learning.
@@ -22,7 +23,7 @@
 * Alekh Agarwal, Daniel Hsu, Satyen Kale, John Langford, Lihong Li, Robert E. Schapire. Taming the Monster: A Fast and Simple Algorithm for Contextual Bandits. ICML 2014.
 * Dylan J. Foster, Alekh Agarwal, Miroslav Dudík, Haipeng Luo, Robert E. Schapire. Practical Contextual Bandits with Regression Oracles. ICML 2018.
 * Dylan J. Foster, Akshay Krishnamurthy. Contextual bandits with surrogate losses: Margin bounds and efficient algorithms. NeurIPS 2018.
-* Akshay Krishnamurthy, John Langford, Aleksandrs Slivkins, Chicheng Zhang. Contextual Bandits with Continuous Actions: Smoothing, Zooming, and Adapting.
+* Akshay Krishnamurthy, John Langford, Aleksandrs Slivkins, Chicheng Zhang. Contextual Bandits with Continuous Actions: Smoothing, Zooming, and Adapting. COLT 2019.
 
 ##### Continuum-armed Bandits
 
@@ -42,6 +43,7 @@
 
 
 ##### Interactive Imitation Learning
+
 * Hal Daumé III, John Langford, Daniel Marcu. Search-based Structured Prediction. Machine Learning Journal 2009.
 * Stephane Ross, Geoffrey J. Gordon, J. Andrew Bagnell. A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning. AISTATS 2011.
 * Stephane Ross, J. Andrew Bagnell. Reinforcement and Imitation Learning via Interactive No-Regret Learning. NIPS 2014.
@@ -51,6 +53,7 @@
 
 
 ##### Apprenticeship Learning and Inverse Reinforcement Learning
+
 * Pieter Abbeel and Andrew Y. Ng. Apprenticeship Learning via Inverse Reinforcement Learning. ICML 2004.
 * Brian D. Ziebart, Andrew Maas, J.Andrew Bagnell, Anind K. Dey. Maximum Entropy Inverse Reinforcement Learning. AAAI 2008.
 * Brian D. Ziebart, J.Andrew Bagnell, Anind K. Dey. Modeling Interaction via the Principle of Maximum Causal Entropy. ICML 2010.
@@ -59,11 +62,54 @@
 * Jonathan Ho, Stefano Ermon. Generative Adversarial Imitation Learning. NIPS 2016.
 * Kareem Amin, Nan Jiang, Satinder Singh. Repeated Inverse Reinforcement Learning. NIPS 2017.
 
-##### PAC Learning of Markov Decision Processes
+##### PAC Reinforcement Learning
 * Michael Kearns and Satinder Singh. Near-Optimal Reinforcement Learning in Polynomial Time. Machine Learning, 2002.
 * Ronen I. Brafman and Moshe Tennenholtz. R-max – A General Polynomial Time Algorithm forNear-Optimal Reinforcement Learning. JMLR 2002.
 * Sham Kakade. On the sample complexity of reinforcement learning. University of College London, 2003.
 * Lihong Li, Michael L. Littman, Thomas J. Walsh, Alexander L. Strehl. Knows what it knows: a framework for self-aware learning. Machine Learning, 2011.
 * Nan Jiang. [Notes on Rmax exploration.](http://nanjiang.cs.illinois.edu/files/cs598/note7.pdf)
 * Christoph Dann, Tor Lattimore, Emma Brunskill. Unifying PAC and Regret: Uniform PAC Bounds for Episodic Reinforcement Learning. NIPS 2017.
+* Chi Jin, Zeyuan Allen-Zhu, Sebastien Bubeck, Michael I. Jordan. Is Q-learning Provably Efficient? NeurIPS 2018.
 * Andrea Zanette, Emma Brunskill. Tighter Problem-Dependent Regret Bounds in Reinforcement Learning without Domain Knowledge using Value Function Bounds. ICML 2019.
+
+##### Overparameterization / neural network learning
+* Roi Livni, Shai Shalev-Shwartz, Ohad Shamir. On the Computational Efficiency of Training Neural Networks. NIPS 2014.
+* Shai Shalev-Shwartz, Ohad Shamir, Shaked Shammah. Failures of gradient-based deep learning. ICML 2017.
+* Mikhail Belkin, Daniel Hsu, Partha Mitra. Overfitting or perfect fitting? Risk bounds for classification and regression rules that interpolate. NeurIPS 2018.
+* Yuanzhi Li and Yingyu Liang. Learning Overparameterized Neural Networks via Stochastic Gradient Descent on Structured Data. NeurIPS 2018.
+* Zeyuan Allen-Zhu, Yuanzhi Li, Zhao Song. A Convergence Theory for Deep Learning via Over-Parameterization. ICML 2019.
+* Simon S. Du, Xiyu Zhai, Barnabas Poczos, Aarti Singh. Gradient Descent Provably Optimizes Over-parameterized Neural Networks. ICLR 2019.
+* Sanjeev Arora, Simon S. Du, Wei Hu, Zhiyuan Li, Ruosong Wang. Fine-Grained Analysis of Optimization and Generalization for Overparameterized Two-Layer Neural Networks. ICML 2019.
+
+##### Adversarial robustness
+
+* Robustness of classifiers: from adversarial to random noise. Alhussein Fawzi, Seyed-Mohsen Moosavi-Dezfooli, Pascal Frossard. NIPS 2016.
+* Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, Adrian Vladu. ICLR 2018.
+* Aditi Raghunathan, Jacob Steinhardt, Percy Liang. Certified Defenses against Adversarial Examples. ICLR 2018.
+* Yizhen Wang, Somesh Jha, Kamalika Chaudhuri. Analyzing the Robustness of Nearest Neighbors to Adversarial Examples. ICML 2018.
+* Sébastien Bubeck, Eric Price, Ilya Razenshteyn. Adversarial examples from computational constraints. NeurIPS 2018.
+* Daniel Cullina, Arjun Nitin Bhagoji, Prateek Mittal. PAC-learning in the presence of evasion adversaries. NeurIPS 2018.
+* Saeed Mahloujifa and Mohammad Mahmoody. Can Adversarially Robust Learning Leverage Computational Hardness? ALT 2019.
+* Omar Montasser, Steve Hanneke, Nathan Srebro. VC Classes are Adversarially Robustly Learnable, but Only Improperly. COLT 2019.
+
+##### Machine teaching / data poisoning
+
+* Jacob Steinhardt, Pang Wei Koh and Percy Liang. Certified Defenses for Data Poisoning Attacks. NIPS 2017.
+* Adversarial Attacks on Stochastic Bandits. Kwang-Sung Jun, Lihong Li, Yuzhe Ma, Xiaojin Zhu. NeurIPS 2018.
+* Sanjoy Dasgupta, Daniel Hsu, Stefanos Poulis, Xiaojin Zhu. Teaching a black-box learner. ICML 2019.
+* Xuezhou Zhang, Xiaojin Zhu, Laurent Lessard. Online Data Poisoning Attack. 2019.
+* Yizhen Wang, Kamalika Chaudhuri. An Investigation of Data Poisoning Defenses for Online Learning. 2019.
+
+##### Implicit regularization
+
+* Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, Nathan Srebro.
+The Implicit Bias of Gradient Descent on Separable Data. JMLR 2018.
+* Ziwei Ji, Matus Telgarsky. The implicit bias of gradient descent on nonseparable data. COLT 2019.
+* Yuanzhi Li, Tengyu Ma, and Hongyang Zhang. Algorithmic Regularization in Over-parameterized Matrix Sensingand Neural Networks with Quadratic Activations. COLT 2018.
+
+
+##### Theory of generative modeling
+
+* Sanjeev Arora, Rong Ge, Yingyu Liang, Tengyu Ma, Yi Zhang. Generalization and Equilibrium in Generative Adversarial Nets (GANs). ICML 2017.
+* Approximation and Convergence Properties of Generative Adversarial Learning. Shuang Liu, Olivier Bousquet, Kamalika Chaudhuri. NIPS 2017.
+* Sanjeev Arora, Andrej Risteski, Yi Zhang. Do GANs learn the distribution? Some Theory and Empirics. ICLR 2018.
