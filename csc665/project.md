@@ -42,27 +42,28 @@
 
 
 ##### Interactive Imitation Learning
-Hal Daumé III, John Langford, Daniel Marcu. Search-based Structured Prediction. Machine Learning Journal 2009.
-Stephane Ross, Geoffrey J. Gordon, J. Andrew Bagnell. A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning. AISTATS 2011.
-Stephane Ross, J. Andrew Bagnell. Reinforcement and Imitation Learning via Interactive No-Regret Learning. NIPS 2014.
-Wen Sun, Arun Venkatraman, Geoffrey J. Gordon, Byron Boots, J. Andrew Bagnell. Deeply AggreVaTeD: differentiable imitation learning for sequential prediction. ICML 2017.
-Convergence of Value Aggregation for Imitation Learning. Ching-An Cheng and Byron Boots. NIPS 2017.
-Wen Sun, Anirudh Vemula, Byron Boots, J. Andrew Bagnell. Provably Efficient Imitation Learning from Observation Alone. ICML 2019.
+* Hal Daumé III, John Langford, Daniel Marcu. Search-based Structured Prediction. Machine Learning Journal 2009.
+* Stephane Ross, Geoffrey J. Gordon, J. Andrew Bagnell. A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning. AISTATS 2011.
+* Stephane Ross, J. Andrew Bagnell. Reinforcement and Imitation Learning via Interactive No-Regret Learning. NIPS 2014.
+* Wen Sun, Arun Venkatraman, Geoffrey J. Gordon, Byron Boots, J. Andrew Bagnell. Deeply * * AggreVaTeD: differentiable imitation learning for sequential prediction. ICML 2017.
+* Convergence of Value Aggregation for Imitation Learning. Ching-An Cheng and Byron Boots. NIPS 2017.
+* Wen Sun, Anirudh Vemula, Byron Boots, J. Andrew Bagnell. Provably Efficient Imitation Learning from Observation Alone. ICML 2019.
 
 
-##### Imitation Learning and Inverse Reinforcement Learning
-Pieter Abbeel and AndrewY. Ng. Apprenticeship Learning via Inverse Reinforcement Learning. ICML 2004.
-Brian D. Ziebart, Andrew Maas, J.Andrew Bagnell, Anind K. Dey. Maximum Entropy Inverse Reinforcement Learning. AAAI 2008.
-Brian D. Ziebart, J.Andrew Bagnell, Anind K. Dey. Modeling Interaction via the Principle of Maximum Causal Entropy. ICML 2010.
-Umar Syed and Robert E. Schapire. A Game-Theoretic Approach to ApprenticeshipLearning. NIPS 2007.
-Jonathan Ho, Stefano Ermon. Generative Adversarial Imitation Learning. NIPS 2016.
-Kareem Amin, Nan Jiang, Satinder Singh. Repeated Inverse Reinforcement Learning. NIPS 2017.
+##### Apprenticeship Learning and Inverse Reinforcement Learning
+* Pieter Abbeel and Andrew Y. Ng. Apprenticeship Learning via Inverse Reinforcement Learning. ICML 2004.
+* Brian D. Ziebart, Andrew Maas, J.Andrew Bagnell, Anind K. Dey. Maximum Entropy Inverse Reinforcement Learning. AAAI 2008.
+* Brian D. Ziebart, J.Andrew Bagnell, Anind K. Dey. Modeling Interaction via the Principle of Maximum Causal Entropy. ICML 2010.
+* Umar Syed and Robert E. Schapire. A Game-Theoretic Approach to Apprenticeship Learning. NIPS 2007.
+* Alekh Agarwal, Ashwinkumar Badanidiyuru, Miroslav Dudik, Robert Schapire, Aleksandrs Slivkins, Miro Dudík. Robust Multi-objective Learning with Mentor Feedback. COLT 2014.
+* Jonathan Ho, Stefano Ermon. Generative Adversarial Imitation Learning. NIPS 2016.
+* Kareem Amin, Nan Jiang, Satinder Singh. Repeated Inverse Reinforcement Learning. NIPS 2017.
 
 ##### PAC Learning of Markov Decision Processes
-Michael Kearns and Satinder Singh. Near-Optimal Reinforcement Learning in Polynomial Time. Machine Learning, 2002.
-Ronen I. Brafman and Moshe Tennenholtz. R-max – A General Polynomial Time Algorithm forNear-Optimal Reinforcement Learning. JMLR 2002.
-Sham Kakade. On the sample complexity of reinforcement learning. University of College London, 2003.
-Lihong Li, Michael L. Littman, Thomas J. Walsh, Alexander L. Strehl. Knows what it knows: a framework for self-aware learning. Machine Learning, 2011.
-Nan Jiang. [Notes on Rmax exploration.](http://nanjiang.cs.illinois.edu/files/cs598/note7.pdf)
-Christoph Dann, Tor Lattimore, Emma Brunskill. Unifying PAC and Regret: Uniform PAC Bounds for Episodic Reinforcement Learning. NIPS 2017.
-Andrea Zanette, Emma Brunskill. Tighter Problem-Dependent Regret Bounds in Reinforcement Learning without Domain Knowledge using Value Function Bounds. ICML 2019.
+* Michael Kearns and Satinder Singh. Near-Optimal Reinforcement Learning in Polynomial Time. Machine Learning, 2002.
+* Ronen I. Brafman and Moshe Tennenholtz. R-max – A General Polynomial Time Algorithm forNear-Optimal Reinforcement Learning. JMLR 2002.
+* Sham Kakade. On the sample complexity of reinforcement learning. University of College London, 2003.
+* Lihong Li, Michael L. Littman, Thomas J. Walsh, Alexander L. Strehl. Knows what it knows: a framework for self-aware learning. Machine Learning, 2011.
+* Nan Jiang. [Notes on Rmax exploration.](http://nanjiang.cs.illinois.edu/files/cs598/note7.pdf)
+* Christoph Dann, Tor Lattimore, Emma Brunskill. Unifying PAC and Regret: Uniform PAC Bounds for Episodic Reinforcement Learning. NIPS 2017.
+* Andrea Zanette, Emma Brunskill. Tighter Problem-Dependent Regret Bounds in Reinforcement Learning without Domain Knowledge using Value Function Bounds. ICML 2019.
