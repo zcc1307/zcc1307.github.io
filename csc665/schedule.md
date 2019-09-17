@@ -12,7 +12,7 @@ Tentative schedule:
 |Sep 5  | The PAC learning framework, finite classes | [PAC learning note](notes/pac.pdf) | SSBD Chap 2, Sec 3.1 | |
 |Sep 10 | Agnostic PAC learning, infinite classes | | SSBD Sec 3.2-3.3, Chap 4, Sec 6.1 | |
 |Sep 12 | VC Theory, Sauer's Lemma | [VC Theory note](notes/vc.pdf) | SSBD Sec 6.2 - 6.5.1 |  |
-|Sep 17 | Rademacher complexity | | SSBD Sec 6.5.2, 26.1, 28.1 | |
+|Sep 17 | Rademacher complexity | | SSBD Sec 6.5.2, 26.1, 28.1 | [HW1](hw/hw1/hw1.pdf) [tex file](hw1/hw1.tex) |
 |Sep 19 | Support Vector Machine (1) | | SSBD Chap 15 | |
 |Sep 24 | Support Vector Machine (2); Margin bounds | | SSBD Secs 26.2, 26.3  | |
 |Sep 26 | Structural risk minimization | | SSBD Chap 7 | |

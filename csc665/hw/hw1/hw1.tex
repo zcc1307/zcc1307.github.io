@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+
+\newtheorem{theorem}{Theorem}
+
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator*{\Ber}{{\rm Bernoulli}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\EE}{\mathbb{E}} % Real numbers
+\newcommand{\PP}{\mathbb{P}} % Real numbers
+\newcommand{\Xcal}{\mathcal{X}} % Real numbers
+\newcommand{\Hcal}{\mathcal{H}} % Real numbers
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+
+\title{CSC 665: Calibration Homework}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+Please complete the following set of exercises \textbf{on your own}.
+The homework is due \textbf{on Sep 26, 12:30pm, on Gradescope}. You are free to
+cite existing theorems from the textbook and course notes.
+
+\section*{Problem 1}
+For a random variable $Z$ with mean $\EE Z = 0$, we call $Z$ is $v$-subgaussian, if
+\[ \psi_Z(t) = \ln \EE e^{t Z} \leq \frac{v t^2}{2}. \]
+Show the following:
+\begin{enumerate}
+\item If $Z$ has Gaussian distribution $\N(0,\sigma^2)$, then $Z$ is
+$\sigma^2$-subgausssian.
+\item If $Z$ take values within interval $[a,b]$, then $Z$ is
+$\frac{(b-a)^2}{4}$-subgaussian.
+\item If $Z_1,\ldots,Z_n$ are independent, and each $Z_i$ is $v_i$ subgaussian, then
+$\sum_{i=1}^n Z_i$ is $\sum_{i=1}^n v_i$-subgaussian.
+\item If $Z$ is $v$-subgaussian, then
+\[ \PP(|Z| \geq t) \leq 2 \exp{-\frac{t^2}{2v}}. \]
+\end{enumerate}
+
+\section*{Problem 2}
+In this exercise we give an alternative proof of the Chernoff bound for Bernoulli random
+variables: suppose $X_1,\ldots,X_n$ are iid and from $\Ber(p)$, define
+$\bar{X} = \sum_{i=1}^n X_i$, then,
+\begin{equation}
+  \PP( \bar{X} \geq q ) \leq \exp{-n \kl(q,p)}, q \geq p
+  \label{eqn:ut}
+\end{equation}
+\begin{equation}
+  \PP( \bar{X} \leq q ) \leq \exp{-n \kl(q,p)}, q \leq p
+  \label{eqn:lt}
+\end{equation}
+\begin{enumerate}
+\item Show that
+\[ \PP( \bar{X} \geq q ) = \sum_{m: m \geq nq} {n \choose m} p^m (1-p)^m. \]
+\label{item:2-1}
+\item Use the elementary inequality that ${n \choose m} q^m (1-q)^m \leq 1$, show that for $m \geq nq$,
+\[ {n \choose m} p^m (1-p)^m \leq \del{\frac{p}{q}}^{nq} \del{\frac{1-p}{1-q}}^{n(1-q)}. \]
+\label{item:2-2}
+\item Use the above two items to conclude that $\PP( \bar{X} \geq q ) \leq n \exp{-n \kl(q,p)}$.
+\item Note that compared to Equation~\ref{eqn:ut}, the above bound is has an additional factor of $n$ on the right hand side.
+Use the elementary inequality
+ $\sum_{m \geq nq} {n \choose m} q^m (1-q)^m \leq 1$ as a starting point, along with insights you gained from
+ items~\ref{item:2-1} and~\ref{item:2-2} to show Equation~\eqref{eqn:ut}.
+\item Repeat the proof for the lower tail bound (Equation~\eqref{eqn:lt}).
+\end{enumerate}
+
+\section*{Problem 3}
+In this exercise we will use basic concentration inequalities to show that,
+we can find exponentially many points on the unit sphere of $\RR^d$ that are far away from each other.
+Specifically, consider $n$ random vectors $X_1$, $X_2$, \ldots, $X_n$ in $\RR^d$,
+where for each $i$, $X_i = \frac{1}{\sqrt{d}}(Z_{i,1}, \ldots, Z_{i,d})$. Here
+$\cbr{Z_{i,j}}_{i \in \cbr{1,\ldots,n},j \in \cbr{1,\ldots,d}}$'s
+are all independent and identically distributed, and $Z_{i,j}$ takes value $1$ with probability $1/2$, and takes value $-1$ with probabilty $1/2$.
+
+\begin{enumerate}
+\item Check that all $X_i$'s has unit length, i.e. $\| X_i \|_2 = 1$.
+\item Use Hoeffding's Inequality to show that for any fixed pair $i,j \in \cbr{1,\ldots,n}$, $i \neq j$,
+\[ \PP(|\inner{X_i}{X_j}| \geq \frac{1}{2}) \leq \exp{-\frac{d}{8}}. \]
+\item Suppose $n = \exp{\frac{d}{32}}$. Show that with nonzero probability,
+for all pairs $i, j \in \cbr{1,\ldots,n}$, $i \neq j$,
+the angle between $X_i$ and $X_j$ is in $[\frac{\pi}{3}, \frac{2\pi}{3}]$.
+\end{enumerate}
+
+\section*{Problem 4}
+Suppose $D$ is a distribution over $[0,1] \times \cbr{-1,+1}$ such that $D_X$, the marginal
+of $D$ over $\Xcal = [0,1]$, is uniform. In addition,
+\[ P(Y=+1|x) = \begin{cases} 0 & x \leq \frac 1 2, \\ 1 & x > \frac 1 2 \end{cases}, \]
+i.e. the distribution is separable by a threshold classifier with threshold $\frac 1 2$.
+Suppose training examples $(X_1,Y_1), \ldots, (X_n, Y_n)$ are drawn iid from $D$.
+Now consider the following classifier $\hat{h}$:
+\[
+\hat{h}(x) =
+\begin{cases}
+Y_i & x = X_i \text{ for some } i \in \cbr{1,\ldots,n}, \\
+-1  & \text{otherwise.}
+\end{cases}
+\]
+(For simplicity, assume that all $X_i$'s are distinct, which also happens with probability $1$.)
+
+\begin{enumerate}
+\item Calculate $\err(\hat{h}, S)$.
+\item Calculate $\err(\hat{h}, D)$. What is the value of $\err(\hat{h}, S) - \err(\hat{h}, D)$?
+\label{item:4-2}
+\item It may be tempting to use following argument to argue the concentration of
+$\err(\hat{h}, S)$ to $\err(\hat{h}, D)$. Define random variables
+$Z_i = \one(\hat{h}(X_i) \neq Y_i)$ for all $i$ in $\cbr{1,\ldots,n}$, therefore, Hoeffding's inequality, with probability $1-\delta$,
+\[ |\err(\hat{h}, S) - \err(\hat{h}, D)| \leq \sqrt{\frac{\ln\frac{1}{\delta}}{2n}}. \]
+Does this contradict the results we got from item~\ref{item:4-2}? Why?
+\end{enumerate}
+
+\section*{Problem 5}
+In this exercise, we will unify the analysis of $O(\frac{1}{\epsilon})$-style sample
+complexity for the realizable case and the $O(\frac{1}{\epsilon^2})$-style sample complexity
+for the agnostic case, by revisiting the empirical risk minimization algorithm. Suppose $\Hcal$ is a finite hypothesis class, $D$ is a distribution over labeled examples, and $S$ is a training set of size $m$ drawn iid from $D$. Denote by  $\nu^\star = \min_{h \in \Hcal} \err(h,D)$ as the optimal generalization error, and $\hat{h}$ the output of the empirical risk minimzation algorithm.
+
+\begin{enumerate}
+\item Use Chernoff bound for Bernoulli random variables, show that for a fixed classifier
+$h$, with probability $1-\delta$,
+\[ \kl(\err(h,S), \err(h,D)) \leq \frac{\ln\frac{2}{\delta}}{m}. \]
+\item Use the above reasoning to conclude that with probability $1-\delta$, for all classifiers $h$ in $\Hcal$,
+\[ |\err(h,S) - \err(h,D)| \leq \sqrt{2 \max(\err(h,S), \err(h,D)) \frac{\ln\frac{2|\Hcal|}{\delta}}{m}}. \]
+(Hint: you can use the fact that $\kl(q,p) \geq \frac{(q-p)^2}{2\max(p,q)}$.)
+\item Show that with probability $1-\delta$, for all classifiers $h$ in $\Hcal$,
+\[ \err(h,S) \leq \err(h,D) + \sqrt{\err(h,D) \frac{2\ln\frac{2|\Hcal|}{\delta}}{m}} + \frac{2\ln\frac{2|\Hcal|}{\delta}}{m}. \]
+(Hint: you can use the elementary fact that for $A, B, C > 0$, $A \leq B + C \sqrt{A}$ implies $A \leq B + C^2 + C\sqrt{B}$.)
+\item Show that with probability $1-\delta$, $\hat{h}$, the training error minimizer over $\Hcal$, satisfies that
+\[ \err(\hat{h}, D) \leq \nu^\star + 6\sqrt{\frac{2\ln\frac{2|\Hcal|}{\delta}}{m} \nu^\star} + 8\frac{\ln\frac{2|\Hcal|}{\delta}}{m}. \]
+(Hint: you may find the following elementary facts useful: for $A, B > 0$, $\sqrt{AB} \leq A +B$, $\sqrt{A + B} \leq \sqrt{A} + \sqrt{B}$. If you get other constants on the right hand side, no worries - you will still get full credit.)
+\item Conclude that:
+\begin{enumerate}
+  \item There exists a function $m_A$ such that $m_A(\epsilon,\delta) = O(\frac{\ln|\Hcal| + \ln\frac1\delta}{\epsilon^2})$, when $m \geq m_A(\epsilon,\delta)$, for all distributions $D$, $\err(\hat{h}, D) \leq \nu^\star + \epsilon$ with probability $1-\delta$.
+  \item There exists a function $m_R$ such that $m_R(\epsilon,\delta) = O(\frac{\ln|\Hcal| + \ln\frac1\delta}{\epsilon})$, when $m \geq m_R(\epsilon,\delta)$, for all distributions $D$ such that $\nu^\star = 0$, $\err(\hat{h}, D) \leq \epsilon$ with probability $1-\delta$.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
