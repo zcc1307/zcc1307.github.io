@@ -68,7 +68,7 @@ $\bar{X} = \sum_{i=1}^n X_i$, then,
 \item Use the elementary inequality that ${n \choose m} q^m (1-q)^m \leq 1$, show that for $m \geq nq$,
 \[ {n \choose m} p^m (1-p)^m \leq \del{\frac{p}{q}}^{nq} \del{\frac{1-p}{1-q}}^{n(1-q)}. \]
 \label{item:2-2}
-\item Use the above two items to conclude that $\PP( \bar{X} \geq q ) \leq n \exp{-n \kl(q,p)}$.
+\item Use the above two items to conclude that $\PP( \bar{X} \geq q ) \leq (n+1)\exp{-n \kl(q,p)}$.
 \item Note that compared to Equation~\ref{eqn:ut}, the above bound is has an additional factor of $n$ on the right hand side.
 Use the elementary inequality
  $\sum_{m \geq nq} {n \choose m} q^m (1-q)^m \leq 1$ as a starting point, along with insights you gained from
@@ -78,7 +78,7 @@ Use the elementary inequality
 
 \section*{Problem 3}
 In this exercise we will use basic concentration inequalities to show that,
-we can find exponentially many points on the unit sphere of $\RR^d$ that are far away from each other.
+we can find exponentially many points on the unit sphere in $\RR^d$ that are far away from each other.
 Specifically, consider $n$ random vectors $X_1$, $X_2$, \ldots, $X_n$ in $\RR^d$,
 where for each $i$, $X_i = \frac{1}{\sqrt{d}}(Z_{i,1}, \ldots, Z_{i,d})$. Here
 $\cbr{Z_{i,j}}_{i \in \cbr{1,\ldots,n},j \in \cbr{1,\ldots,d}}$'s
