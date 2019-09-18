@@ -1,0 +1,376 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+\usepackage{algorithm, algorithmic}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{claim}{Claim}
+
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator{\Rad}{{\mathrm{Rad}}}
+\DeclareMathOperator*{\R}{{\rm R}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+%\DeclareMathOperator*{\Hcal}{{\cal H}}
+\DeclareMathOperator*{\Ycal}{{\cal Y}}
+\DeclareMathOperator*{\Acal}{{\cal A}}
+\DeclareMathOperator*{\Zcal}{{\cal Z}}
+%\DeclareMathOperator*{\Fcal}{{\cal F}}
+\DeclareMathOperator*{\Scal}{{\cal S}}
+\DeclareMathOperator*{\argmin}{{\rm argmin}}
+\DeclareMathOperator*{\VC}{{\rm VC}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+
+\title{CSC 665: Rademacher complexity}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+\section{Uniform convergence of empirical error to generalization error, revisited}
+
+In previous lectures, we have already established PAC learning guarantees for empirical
+risk minimization (ERM), when the hypothesis class $\Hcal$ is finite. The strategy is the show
+that for all classifiers in $\Hcal$, its empirical error concentrates around its
+generalization error with high probability, in other words, with probability $1-\delta$ over the choice of $S$, i.e. $n$ iid samples from $D$,
+\begin{equation}
+  \sup_{h \in \Hcal} |\err(h, S) - \err(h, D)| = O\del{\sqrt{\frac{\ln|\Hcal| + \ln\frac{1}{\delta}}{n}}}.
+  \label{eqn:uc}
+\end{equation}
+This type of concentration is often called ``uniform convergence'' in learning theory literature, as long as the right hand side converges to $0$ as $m$ goes to infinity. Under uniform convergence,
+we can easily argue that with probability $1-\delta$, the ERM, $\hat{h}$, satisfies that
+\begin{equation}
+  \err(\hat{h}, D) - \min_{h' \in \Hcal} \err(h', D) = O\del{\sqrt{\frac{\ln|\Hcal| + \ln\frac{1}{\delta}}{n}}}.
+  \label{eqn:apac}
+\end{equation}
+which is sufficient to ensure $\Hcal$'s PAC learnability.
+
+Now, turning back to the case when $\Hcal$ is infinite. Under what conditions on
+$\Hcal$ can we establish an analog of Equation~\eqref{eqn:uc} (hence establishing an analog of Equation~\eqref{eqn:apac})? In this note, we show that $\Hcal$ having a finite VC dimension is sufficient to ensure uniform convergence.
+
+\begin{theorem}
+There exists a numerical constant $c_1 > 0$ such that the following holds.
+Suppose hypothesis class $\Hcal$ has VC dimension $d$. Then, given a set of $n$ iid examples $(X_1,Y_1),\ldots,(X_n, Y_n)$ from distribution $D$, with probabilty $1-\delta$,
+\begin{equation}
+  \sup_{h \in \Hcal} |\err(h, S) - \err(h, D)| \leq c_1 \sqrt{\frac{d\ln\frac{n}{d} + \ln\frac{2}{\delta}}{n}}.
+  \label{eqn:uc-vc}
+\end{equation}
+Consequently, ERM on $\Hcal$ has an agnostic PAC sample complexity of
+\[ m(\epsilon, \delta) = O\del{\frac{1}{\epsilon^2}\del{d \ln \frac1\epsilon + \ln\frac1\delta}}. \]
+\label{thm:uc-vc-bin}
+\end{theorem}
+
+To show Theorem~\ref{thm:uc-vc-bin}, let us set up some useful notation, summarized
+in the following table.
+
+%Suppose we would like to achieve PAC learning guarantees for ,
+%If we can show that with high probability,
+%$\sup_{f \in \Fcal} |\EE_{Z \sim S} f(Z) - \EE_{Z \sim D} f(Z)| = o(1)$, which is equivalent to
+%$\sup_{h \in \Hcal} |\EE_{(X,Y) \sim S} \ell_h(X,Y) - \EE_{(X,Y) \sim D} \ell_h(X,Y)| = $, which implies that empirical risk minimzation is a PAC learning algorithm for $\Hcal$.
+%Let us consider a slight generalization of the binary classification model:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+Original notation & Shorthand notation & Explanation\\
+\hline
+$\Xcal \times \Ycal$ & $\Zcal$ & instance space\\
+$\cbr{(X_i, Y_i)}_{i=1}^n$ & $\cbr{Z_i}_{i=1}^n$ & training examples \\
+$\one(h(x) \neq y)$ & $\ell_h$ & 0-1 loss associated with $h$\\
+$\cbr{\one(h(x) \neq y): h \in \Hcal}$ & $\Fcal = \cbr{\ell_h: h \in \Hcal}$ & loss class associated with $\Hcal$\\
+$\err(h,D)$ & $\EE_{Z \sim D} f(Z)$ (abbrev. $\EE_D f(Z)$) & generalization error of $h$\\
+$\err(h,S)$ & $\frac{1}{n} \sum_{i=1}^n f(Z_i) = \EE_{Z \sim S} f(Z)$ (abbrev. $\EE_S f(Z)$) & training error of $h$ \\
+\hline
+\end{tabular}
+\label{table:notation}
+\end{table}
+
+Note that $\Fcal$ is a mapping from $\Xcal \times \Ycal$ to $\cbr{0,1}$. Similar to the growth function of the original hypothesis class $\Hcal$, we can also define the growth function of $\Fcal$ to be
+\[ \Scal(\Fcal, n) = \max_{z_1,\ldots,z_n} |\cbr{(f(z_1), \ldots, f(x_n)): f \in \Fcal}|. \]
+We first have the following simple lemma that links the growth function of $\Fcal$ and that of $\Hcal$.
+\begin{lemma}
+$\Scal(\Fcal, n) = \Scal(\Hcal, n)$.
+\label{lem:growth}
+\end{lemma}
+\begin{proof}
+We first observe that for any set of labeled examples
+$S = \cbr{(x_1,y_1), \ldots, (x_n,y_n)}$,
+\begin{eqnarray*}
+  && |\cbr{(f(x_1, y_1), \ldots, f(x_n, y_n)): f \in \Fcal}| \\
+  &=& |\cbr{(\one(h(x_1) \neq y_1), \ldots, \one(h(x_n) \neq y_n)): f \in \Fcal}| \\
+  &=& |\cbr{(h(x_1), \ldots, h(x_n)): h \in \Hcal}|
+\end{eqnarray*}
+where the first equality is by the definition of $\Fcal$, and the second
+equality is by observing that every labeling of $h$ on $(x_1,\ldots,x_n)$
+induces an unique pattern of misclassification on these $n$ examples.
+
+This implies that
+\[ \Scal(\Fcal, n)
+= \max_{(x_1,y_1),\ldots,(x_n,y_n)} |\cbr{(f(x_1, y_1), \ldots, f(x_n, y_n)): f \in \Fcal}|
+= \max_{x_1,\ldots,x_n}|\cbr{(h(x_1), \ldots, h(x_n)): h \in \Hcal}|
+= \Scal(\Hcal, n). \]
+%\[ |\Pi_\Fcal(S)| = |\Pi_\Hcal(S_X)|, \]
+%where $S_X = \cbr{x_1, \ldots, x_n}$ is the set of unlabeled examples in $S$.
+%\begin{eqnarray*}
+%  |\Pi_\Fcal(S)|
+%  &=& |\cbr{(\one(h(x_i) \neq y_i), \ldots, (\one(h(x_i) \neq y_n)): h \in \Hcal}| \\
+%  &=& |\cbr{(h(x_1), \ldots, h(x_n)): h \in \Hcal}| \\
+%  &=& |\Pi_\Hcal(S_X)|.
+%\end{eqnarray*}
+\end{proof}
+
+The following theorem is central to the proof of Theorem~\ref{thm:uc-vc-bin}, which establishes uniform convergence of empirical loss to generalization loss for loss classes
+of small growth function. Its proof requires several important insights; we will defer it to the next section.
+
+\begin{theorem}
+Suppose $Z_1,\ldots,Z_n$ is a set of iid examples, and $\Fcal \subseteq (Z \to \cbr{0,1})$ is the loss function class.
+Then, with probability $1-\delta$,
+\[ \sup_{f \in \Fcal} |\EE_S f(Z) - \EE_D f(Z)| \leq \sqrt{\frac{32\del{\ln\frac{2}{\delta} + \ln(2\Scal(\Fcal, n))}}{n}}. \]
+\label{thm:uc-vc}
+\end{theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:uc-vc-bin}]
+Applying the notation of Table~\ref{table:notation}, and using Lemma~\ref{lem:growth},
+we immediately get that with probability $1-\delta$,
+\[ \sup_{h \in \Hcal} |\err(h,S) - \err(h,D)| \leq \sqrt{\frac{32\del{\ln\frac{2}{\delta} + \ln(2\Scal(\Hcal, n))}}{n}}. \]
+By Sauer's Lemma, $\Scal(\Hcal, n) \leq (\frac{en}{d})^d$, this implies that the right hand side is upper bounded by $c_1 \sqrt{\frac{d\ln\frac{n}{d} + \ln\frac{2}{\delta}}{n}}$ for some large constant $c_1$.
+
+The sample complexity bound follows from the following observation: when Equation~\ref{eqn:uc-vc} holds, the ERM has excess error
+$2c_1 \sqrt{\frac{d\ln\frac{n}{d} + \ln\frac{2}{\delta}}{n}}$. Define
+$m(\epsilon,\delta) = \min\cbr{m: 2c_1 \sqrt{\frac{d\ln\frac{n}{d} + \ln\frac{2}{\delta}}{n}} \leq \epsilon}$. It can be checked that
+$m(\epsilon,\delta) = O\del{\frac{1}{\epsilon^2}\del{d \ln \frac1\epsilon + \ln\frac1\delta}}$.
+
+This implies that when $n \geq m(\epsilon,\delta)$, with probability $1-\delta$, ERM has excess error at most $\epsilon$.
+\end{proof}
+
+
+\section{Proof of Theorem~\ref{thm:uc-vc}}
+
+Before the actual proof, let us collect a few elementary but useful facts about supremum in the following lemma.
+\begin{lemma}
+The following inequalities hold:
+\begin{enumerate}
+  \item
+  \[ \sup_{f \in \Fcal} \del{A(f) + B(f)} \leq \sup_{f \in \Fcal} A(f) + \sup_{f \in \Fcal} B(f). \]
+  Equvalently,
+  \[ \sup_{f \in \Fcal} C(f) \leq \sup_{f \in \Fcal} D(f) + \sup_{f \in \Fcal} \del{C(f) - D(f)}. \]
+  \label{item:sup-sub}
+  \item \[ \sup_{f \in \Fcal} \EE \sbr{A(f)} \leq \EE \sbr{\sup_{f \in \Fcal} A(f)}. \]
+  \label{item:sup-exp}
+\end{enumerate}
+\label{lem:sup}
+\end{lemma}
+If the $\sup$'s were $\max$'s, you should be able to prove these using basic algebra.\footnote{In fact, throughout this course, it is OK to think about the $\sup$ and $\inf$'s as $\max$ and $\min$'s under all circumstances.} For completeness, we include a proof of this lemma in Appendix~\ref{app:pf}.
+
+\paragraph{Step 1: concentration.} Let us first view $\sup_{f \in \Fcal} \abs{\EE_S f(Z) - \EE_D f(Z)}$ as a function of $Z_1,\ldots,Z_n$, specifically, $g(Z_1,\ldots,Z_n)$ where
+\[ g(z_1,\ldots,z_n) = \sup_{f \in \Fcal} \abs{ \frac{1}{n} \sum_{i=1}^n f(z_i)- \EE_D f(Z) }. \]
+We claim $g$ is $\frac1n$-sensitive.
+Indeed, for every coordinate $i$, consider an alternative input $z^{(i)} = (z_1,\ldots,z_{i-1},z_i,z_{i+1}, z_n)$,
+Denote by $M(f, z) \defeq \abs{\frac{1}{n} \sum_{i=1}^n f(z_i)- \EE_D f(Z)}$.
+\[ M(f, z) - M(f, z^{(i)}) \leq \abs{\frac{1}{n}(f(z_i) - f(z_i'))} \leq \frac{1}{n}. \]
+Hence,
+\[ \sup_{f \in \Fcal} M(f, z)
+   \leq \sup_{f \in \Fcal} M(f, z^{(i)}) + \sup_{f \in \Fcal} \del{M(f,z) - M(f,z^{(i)})}
+   \leq \sup_{f \in \Fcal} M(f, z^{(i)}) + \frac1n, \]
+where the first inequality is from item~\ref{item:sup-sub} of Lemma~\ref{lem:sup}.
+
+Applying McDiarmid's Inequality, with probability $1-\delta$,
+\[\sup_{f \in \Fcal} \abs{\EE_S f(Z) - \EE_D f(Z)} \leq \EE \sup_{f \in \Fcal} \abs{\frac{1}{n} \sum_{i=1}^n f(Z_i) - \EE_D f(Z)} + \sqrt{\frac{\ln\frac{2}{\delta}}{2n}}. \]
+
+Therefore, the proof reduces to upper bounding the first term (expected maximum deviation), i.e.
+\begin{equation}
+  \EE \sup_{f \in \Fcal} \abs{\frac{1}{n} \sum_{i=1}^n f(Z_i) - \EE_D f(Z)}.
+  \label{eqn:exp-max-dev}
+\end{equation}
+The expectation is over a supremum of
+an infinite collection of random variables (each one is associated with a function $f$ in
+$\Fcal$), which is a bit difficult to deal with. Our high-level strategy for the remaining steps, is to reduce the problem to bounding the expectation over a supremum of a finite collection of random variables.
+
+\paragraph{Step 2: double sampling trick (transduction).} For the moment, let us fix a set of training examples $S = {z_1, \ldots, z_n}$. Suppose that we obtained a fresh set of iid samples $S' = \cbr{Z_1', \ldots, Z_n'}$ independent of $S$ (we can think of $S'$ as a set of validation example - the goal is to ensure for all classifiers, its training loss is close to its validation loss). Observe that $\EE_D f(Z) = \EE \frac{1}{n} \sum_{i=1}^n f(Z_i')$. %Now, fixed sample $S$, consider the function $f_0$ that achieves the maximum of $\sup_{f \in \Fcal} |\frac{1}{n} \sum_{i=1}^n f(Z_i) - \EE_D f(Z)|$. We have
+
+Now, the term within the expectation of Equation~\eqref{eqn:exp-max-dev} can be upper bounded as:
+\begin{eqnarray*}
+  && \sup_{f \in \Fcal} \abs{\frac{1}{n} \sum_{i=1}^n f(z_i) - \EE_D f(Z)} \\
+  &=& \sup_{f \in \Fcal} \abs{\EE \sbr{\frac{1}{n} \sum_{i=1}^n f(z_i) - \frac{1}{n} \sum_{i=1}^n f(Z_i')}} \\
+  %&=& | \frac{1}{n} \sum_{i=1}^n f_0(Z_i) - \EE_D f_0(Z) | \\
+  %&=& |\frac{1}{n} \sum_{i=1}^n f_0(Z_i) - \EE \frac{1}{n} \sum_{i=1}^n f_0(Z_i')| \\
+  &\leq& \sup_{f \in \Fcal} \EE \abs{\frac{1}{n} \sum_{i=1}^n f_0(z_i) - \frac{1}{n} \sum_{i=1}^n f_0(Z_i')} \\
+  &\leq& \EE \sup_{f \in \Fcal} \abs{\frac{1}{n} \sum_{i=1}^n f(z_i) - \frac{1}{n} \sum_{i=1}^n f(Z_i')}
+\end{eqnarray*}
+where in the last three lines, the expectation is over the random draw of $S'$. The first inequality uses Jensen's Inequality and the convexity of $|x|$, and the second inequality uses item~\ref{item:sup-exp} of Lemma~\ref{lem:sup}.
+
+Now, we consider the randomness in training sample $S$. The above implies that,
+\begin{eqnarray}
+  && \EE_{S \sim D^n} \sup_{f \in \Fcal} \abs{\frac{1}{n} \sum_{i=1}^n f(Z_i) - \EE_D f(Z)} \nonumber \\
+  &\leq& \EE_{S \sim D^n, S' \sim D^n} \sup_{f \in \Fcal} \abs{\frac{1}{n} \sum_{i=1}^n f(Z_i) - \frac{1}{n} \sum_{i=1}^n f(Z_i')} \nonumber \\
+  &=& \frac{1}{n} \EE_{S \sim D^n, S' \sim D^n} \sup_{f \in \Fcal} \abs{\sum_{i=1}^n (f(Z_i) - f(Z_i'))} \label{eqn:to-be-sym},
+\end{eqnarray}
+%where the expectation is over random draws of both $S$ and $S'$.
+Here, note that for different realizations of $S$ and $S'$, the $f$ that achieves the supremum can still be drastically different - therefore, we are still dealing with an infinite collection of random variables.
+
+\paragraph{Symmetrization.} Now here comes the crucial observation: define function
+\[ h(z_1, z_1',\ldots,z_n,z_n') = \frac{1}{n} \EE \sup_{f \in \Fcal} |\sum_{i=1}^n \sigma_i (f(z_i) - f(z_i'))|. \]
+As the $2n$ random variables
+$(Z_1,Z_1',Z_2,Z_2',\ldots,Z_n,Z_n')$ has exactly the same distribution law as, say, $(Z_1',Z_1,Z_2,Z_2',\ldots,Z_n,Z_n')$ (switching the order of the first two samples), this implies that
+\[ \EE h(Z_1,Z_1',Z_2,Z_2',\ldots,Z_n,Z_n') = \EE h(Z_1',Z_1,Z_2,Z_2',\ldots,Z_n,Z_n'). \]
+Hence,
+\[
+  \frac{1}{n} \EE \sup_{f \in \Fcal} \abs{\sum_{i=1}^n (f(Z_i) - f(Z_i'))}
+   = \frac{1}{n} \EE \sup_{f \in \Fcal} \abs{(f(Z_1') - f(Z_1)) + \sum_{i=2}^n (f(Z_i) - f(Z_i'))}.
+\]
+More generally, for any fixed $(\sigma_1, \ldots, \sigma_n)$ in $\cbr{-1,+1}^n$,
+\begin{equation}
+  \frac{1}{n} \EE \sup_{f \in \Fcal} \abs{\sum_{i=1}^n (f(Z_i) - f(Z_i'))}
+  = \frac{1}{n} \EE \sup_{f \in \Fcal} \abs{\sum_{i=2}^n \sigma_i (f(Z_i) - f(Z_i'))}.
+  \label{eqn:sym-perm}
+\end{equation}
+
+
+%\frac{1}{n} \EE \sup_{f \in \Fcal} |\sum_{i=1}^n \sigma_i (f(Z_i) - f(Z_i'))|
+
+%This implies that the right hand side of Equation~\eqref{eqn:to-be-sym} is also equal to
+%\[ , \]
+% (for instance, $(-1,+1,\ldots,-1)$).
+
+Suppose $\sigma_i$'s are random variables drawn iid from $\R$, i.e. $\U(\cbr{-1,+1})$~\footnote{Here $\U(A)$ stands for the uniform distribution over set $A$.} (which is called the Rademacher distribution), by taking expectations over $\sigma_i$'s on both sides of Equation~\eqref{eqn:sym-perm}, we have that
+%\[ \frac{1}{n} \EE_{S,S' \sim D^n, \sigma \sim \R^n} \sup_{f \in \Fcal} |\sum_{i=1}^n \sigma_i(f(Z_i) - f(Z_i'))|, \]
+%which can be bounded as:
+\begin{eqnarray}
+&& \frac{1}{n} \EE_{S, S' \sim D^n} \sup_{f \in \Fcal} \abs{\sum_{i=1}^n (f(Z_i) - f(Z_i'))} \nonumber \\
+&=&
+\frac{1}{n} \EE_{S, S' \sim D^n, \sigma \sim \R^n} \sup_{f \in \Fcal} \abs{\sum_{i=1}^n \sigma_i(f(Z_i) - f(Z_i'))} \nonumber \\
+&\leq&
+\frac{1}{n} \EE_{S \sim D^n, \sigma \sim \R^n} \sup_{f \in \Fcal} \abs{\sum_{i=1}^n \sigma_i f(Z_i)} + \frac{1}{n} \EE_{S' \sim D^n, \sigma \sim \R^n} \sup_{f \in \Fcal} \abs{\sum_{i=1}^n \sigma_i f(Z_i')} \nonumber \\
+&=& \frac{2}{n} \EE_{S \sim D^n, \sigma \sim \R^n} \sup_{f \in \Fcal} \abs{\sum_{i=1}^n \sigma_i f(Z_i)} \label{eqn:sym}
+\end{eqnarray}
+where the first inequality uses the fact that $|A+B| \leq |A| + |B|$, and item~\ref{item:sup-sub} of Lemma~\ref{lem:sup}, and the second equality uses the fact that
+$S$ and $S'$ come from the same distribution.
+
+\begin{definition}
+The empirical Rademacher complexity of $\Fcal$ with respect to sample $S$ of size $n$, $\Rad_S(\Fcal)$, is defined as
+\[ \Rad_S(\Fcal) \defeq \frac{1}{n} \EE \sup_{f \in \Fcal} \abs{\sum_{i=1}^n \sigma_i f(Z_i)}, \]
+where the expectation is over $\sigma \sim \R^n$.
+The Rademacher complexity of $\Fcal$ with respect to distribution $D$ with sample size $n$, denoted as $\Rad_n(\Fcal)$, is defined as
+\[ \Rad_n(\Fcal) = \EE \Rad_S(\Fcal), \]
+where the expectation is over $S \sim D^n$.
+\end{definition}
+
+Using the above notation, the right hand side of Equation~\eqref{eqn:sym} can be written as $2\Rad_n(\Fcal)$.
+
+%For a fixed sample $S$, we call the quantity
+%$\frac{1}{n}\EE_\sigma \sup_{f \in \Fcal} |\sum_{i=1}^n \sigma_i f(Z_i)|$ the {\em Rademacher complexity} of $\Fcal$ on $S$, abbrev, $R_S(\Fcal)$. Therefore, the above can be written as $2\EE R_S(\Fcal)$.
+%More generally, define pair $P_i = (Z_i, Z_i')$, then
+\paragraph{Controlling the empirical Rademacher complexity.}
+To upper bound $\Rad_n(\Fcal)$, it suffices to give an uniform upper bound of $\Rad_S(\Fcal)$ for every fixed sample $S$ of size $n$.
+Note that when $S$ is fixed, there are at most $\Scal(\Fcal, n)$ realizations of
+$(f(Z_1), \ldots, f(Z_n))$, where are elements of $\Pi_\Fcal(S)$. Therefore,
+\[ \Rad_S(\Fcal) = \frac{1}{n} \EE \max_{(a_1,\ldots,a_n) \in \Pi_\Fcal(S)} \abs{\sum_{i=1}^n \sigma_i a_i} \]
+Observe that we have successfully ``tamed'' an infinite collection of random variables to only a finite collection! It turns out that there is a classical lemma that can bound the expectation of the maximum of a finite collection of random variables, stated as follows:
+
+%the expectation of a supremum of infinite number of random variables to that of a finite collection.
+\begin{lemma}[Massart's Lemma]
+Suppose $A$ is a finite subset of $\RR^n$, and for all $a$ in $A$, $\|a\|_2 \leq R$. Then,
+\[ \EE \sbr{\max_{a \in A} \sum_{i=1}^n \sigma_i a_i} \leq 2 R \sqrt{\ln|A|}. \]
+\label{lem:massart}
+\end{lemma}
+
+We now apply Massart's Lemma to our setting. Consider
+\[ A = \cbr{(a_1,\ldots,a_n): a \in \Pi_\Fcal(S)} \cup \cbr{(-a_1,\ldots,-a_n): a \in \Pi_\Fcal(S)}, \]
+we know that $|A| \leq 2 \Scal(\Fcal, n)$. In addition, for all $a \in A$, $\|a\|_2 = \sqrt{\sum_{i=1}^n a_i^2} \leq \sqrt{n}$.
+
+Therefore,
+\begin{eqnarray*}
+  \EE \max_{(a_1,\ldots,a_n) \in \Pi_\Fcal(S)} \abs{\sum_{i=1}^n \sigma_i a_i}
+  \leq \EE \max_{a \in A} \abs{\sum_{i=1}^n \sigma_i a_i}
+  \leq 2 \sqrt{n \ln(2\Scal(\Fcal, n))}
+\end{eqnarray*}
+This implies that $\Rad_S(\Fcal) \leq 2 \sqrt{\frac{\ln(2\Scal(\Fcal, n))}{n}}$,
+and consequently, $\Rad_n(\Fcal) = \EE \Rad_S(\Fcal) \leq 2 \sqrt{\frac{\ln(2\Scal(\Fcal, n))}{n}}$.
+
+In summary, we have shown that with probability $1-\delta$,
+\begin{align*}
+& \sup_{f \in \Fcal} \abs{\frac{1}{n} \sum_{i=1}^n f(Z_i) - \EE_D f(Z)} \\
+& \leq \EE \sup_{f \in \Fcal} \abs{\frac{1}{n} \sum_{i=1}^n f(Z_i) - \EE_D f(Z)} + \sqrt{\frac{\ln\frac{2}{\delta}}{2n}} \\
+& \leq 2\Rad_n(\Fcal) + \sqrt{\frac{\ln\frac{2}{\delta}}{2n}} \\
+& \leq 4 \sqrt{\frac{\ln(2\Scal(\Fcal, n))}{n}} + \sqrt{\frac{\ln\frac{2}{\delta}}{2n}} \\
+& \leq \sqrt{\frac{32(\ln(2\Scal(\Fcal, n) + \ln\frac{2}{\delta})}{n}},
+\end{align*}
+where the last inequality uses the elementary fact that $\sqrt{A} + \sqrt{B} \leq \sqrt{2(A+B)}$.
+
+%(the only randomness now lies in the Rademacher random variables $\sigma_i$'s), there are effectively only $\Scal(\Fcal, n)$ functions in $\Fcal$ that needs to be considered!
+
+
+\begin{proof}[Proof of Lemma~\ref{lem:massart}]
+We use the machinery of moment generating functions developed in the lectures on concentration inequalities.
+First, observe that for any $t > 0$,
+
+\begin{eqnarray*}
+\max_{a \in A} \sum_{i=1}^n \sigma_i a_i
+&=& \frac{\max_{a \in A} \sum_{i=1}^n t \sigma_i a_i}{t} \\
+&=& \frac{\ln\del{\exp{\max_{a \in A} \sum_{i=1}^n t \sigma_i a_i}}}{t} \\
+&\leq& \frac{\ln\del{\sum_{a \in A} \exp{\sum_{i=1}^n t \sigma_i a_i}}}{t} \\
+\end{eqnarray*}
+
+Now, taking expectation on both sides, and note that $\ln(x)$ is a concave function,
+applying Jensen's inequality, we get that for any $t > 0$,
+\begin{equation}
+  \EE \sbr{\max_{a \in A} \sum_{i=1}^n \sigma_i a_i}
+   \leq \frac{\ln\del{\sum_{a \in A} \EE \exp{\sum_{i=1}^n t \sigma_i a_i}}}{t}
+   \label{eqn:ln-sum-exp}
+\end{equation}
+
+For each $a$ in $A$, let's look at the term $\EE \exp{\sum_{i=1}^n t \sigma_i a_i}$. Observe
+that the exponent is a sequence of independent random variables, therefore, we can decompose them to $\prod_{i=1}^n \EE \exp{t \sigma_i a_i}$. But we know how to bound each factor: by the key lemma in proving Hoeffding's Inequality, we know that for a zero-mean random variable $X$ with range $c$, its moment generating function $\EE e^{t X}$ is at most $\exp{ \frac{c^2 t^2}{8}}$. This implies that for all $a$ in $A$, as random variable $\sigma_i a_i$ has mean zero and range $2a_i$,
+\[ \EE \exp{\sum_{i=1}^n t \sigma_i a_i}
+    = \prod_{i=1}^n \EE \exp{t \sigma_i a_i}
+    \leq \exp{\frac{t^2}{2} \cdot \sum_{i=1}^n a_i^2} \leq \exp{\frac{t^2 R^2}{2}}. \]
+
+Coming back to Equation~\eqref{eqn:ln-sum-exp}, we have that the right hand side is at most
+\[ \frac{\ln|A| + t^2 R^2/2}{t} = \frac{\ln|A|}{t} + \frac{t R^2}{2}. \]
+As Equation~\eqref{eqn:ln-sum-exp} holds for any $t > 0$, we choose
+$t = \sqrt{\frac{2\ln|A|}{R}}$ to minimze the right hand side, which is $2 R \sqrt{\ln|A|}$.
+\end{proof}
+
+\appendix
+
+\section{Proof of Lemma~\ref{lem:sup}}
+\label{app:pf}
+We show the two items respectively.
+  \begin{enumerate}
+    \item For every $\epsilon>0$, there exists an $f_0$ in $\Fcal$ such that
+    \[ A(f_0) + B(f_0) \geq \sup_{f \in \Fcal}\del{A(f) + B(f)} - \epsilon. \]
+    As $f_0$ is in $\Fcal$, it can be easily seen that,
+    \[ A(f_0) + B(f_0) \leq \sup_{f \in \Fcal} A(f) + \sup_{f \in \Fcal} B(f). \]
+    Combining the above two inequalities, this implies that for any $\epsilon>0$,
+    \[ \sup_{f \in \Fcal}\del{A(f) + B(f)} \leq \sup_{f \in \Fcal} A(f) + \sup_{f \in \Fcal} B(f) + \epsilon. \]
+    Taking $\epsilon \to 0$ on both sides of the above inequality, we get the first inequality. The second inequality follows by setting $A(f) = C(f)$ and $B(f) = C(f) - D(f)$.
+
+    \item For every $\epsilon>0$, there exists an $f_0$ in $\Fcal$ such that
+    \[ \EE \sbr{A(f_0)} \geq \sup_{f \in \Fcal} \EE \sbr{A(f)} - \epsilon. \]
+    As $f_0$ is in $\Fcal$, it can be easily seen that,
+    \[ \EE \sbr{A(f_0)} \leq \EE \sbr{\sup_{f \in \Fcal} A(f)}. \]
+    Combining the above two inequalities, this implies that for any $\epsilon>0$,
+    \[ \sup_{f \in \Fcal} \EE \sbr{A(f)} \leq \EE \sbr{\sup_{f \in \Fcal} A(f)} + \epsilon. \]
+    Taking $\epsilon \to 0$ on both sides of the above inequality, we get the item.
+  \end{enumerate}
+
+\end{document}
