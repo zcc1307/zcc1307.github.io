@@ -1,8 +1,32 @@
 ### CSC 665 Section 2: Machine Learning Theory: Project
 
 #### General information
+(This is adapted from [project guidelines of Kamalika Chaudhuri's Machine Learning Theory course](https://cseweb.ucsd.edu/classes/fa12/cse291-b/projectinfo.html))
+
+You can choose to do one of the following types of projects:
+
+* __Literature survey.__ You need to choose a topic (see below for some ideas) and read more than 6 papers on this topic. Be sure to select papers judiciously, so that you can capture both classical ideas and state-of-the-art approaches. Sometimes the *Introduction* and *Related Work* sections of recent papers will help you find most relevant papers.
+When you are in doubt whether a paper is worth reading, come to my office hour and we can figure this out. It is important to make sure you read the papers *critically*, and form your opinions on the papers you read: What are the pros and cons of existing approaches? (This is best summarized by a table, for example.) What are the major open problems in this area?
+
+* __Implementation.__ You are asked to conduct experiments on deploying theoretically principled learning algorithms onto synthetic or real data. If you choose to implement an algorithm from a paper that does not have theorem statements (or 'trivial' theorems with straightforward proofs), this may not be a good fit for this course.
+In addition, we ask that your experiment must be used to support theoretical results obtained in the paper. You are expected to conduct critical analyses on your experimental results, by answering questions such as: how well do the experimental results agree with the proposed theory? If the results do not agree well with the theory, which assumption in the theory are violated? You should also provide a list of dataset you are going to use.
+
+* __Research.__ Research project can have two styles: first, attack an existing open problem in the literature; second, formulate a new (theoretically interesting and practically relevant) problem and proposes a feasible solution. Completing a research project naturally requires a thorough literature survey in the first place - you need to ensure that your approach or model has never been proposed in prior works. *Note that a research project may require substantially larger amount of time compared to the first two project types, so I suggest you be careful with this choice if you already have a heavy workload this semester.* The upside of a research project is that your work may result in publications.
+
+#### Project timelines
+* __Project Proposal.__ Due Oct 24.
+* __Midterm Progress Report.__ Due Nov 14.
+* __Final Presentation.__ On Dec 5 and Dec 10.
+* __Final Report.__ Due Dec 10.
 
 #### Suggested topics
+
+Below is a far-from-complete list of research topics in machine learning theory. Please also refer to [ICML](http://proceedings.mlr.press/v97/), [COLT](http://proceedings.mlr.press/v99/), [NeurIPS](https://papers.nips.cc/) proceedings page for more ideas.
+There are similar courses that also offer relevant project ideas that may inspire you:
+* [Bandits and RL by Alekh Agarwal and Alex Slivkins](http://alekhagarwal.net/bandits_and_rl/#view3)
+* [Foundations of Machine Learning and Data Science by Nina Balcan and Avrim Blum](http://www.cs.cmu.edu/~avrim/ML07/projects.html)
+* [Statistical Reinforcement Learning by Nan Jiang](https://nanjiang.cs.illinois.edu/cs598project/)
+* [Introduction to Online Learning by Haipeng Luo](https://haipeng-luo.net/courses/CSCI699/project.html)
 
 ##### Active learning
 
