@@ -5,7 +5,7 @@ Designed mainly as a more theoretically-oriented version of [CSC 580 Principles 
 #### Logistics info
 TuTh 12:30-1:45pm
 
-Gould-Simpson 856
+PAS 414
 
 [Piazza link](https://piazza.com/arizona/fall2019/csc665) access code: CSC665-2
 
