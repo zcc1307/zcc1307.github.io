@@ -101,6 +101,7 @@ $\err(h,D)$ & $\EE_{Z \sim D} f(Z)$ (abbrev. $\EE_D f(Z)$) & generalization erro
 $\err(h,S)$ & $\frac{1}{n} \sum_{i=1}^n f(Z_i) = \EE_{Z \sim S} f(Z)$ (abbrev. $\EE_S f(Z)$) & training error of $h$ \\
 \hline
 \end{tabular}
+\caption{Shorthand notation for PAC learning for binary classification.}
 \label{table:notation}
 \end{table}
 
@@ -152,9 +153,13 @@ Then, with probability $1-\delta$,
 Applying the notation of Table~\ref{table:notation}, and using Lemma~\ref{lem:growth},
 we immediately get that with probability $1-\delta$,
 \[ \sup_{h \in \Hcal} |\err(h,S) - \err(h,D)| \leq \sqrt{\frac{32\del{\ln\frac{2}{\delta} + \ln(2\Scal(\Hcal, n))}}{n}}. \]
-By Sauer's Lemma, $\Scal(\Hcal, n) \leq (\frac{en}{d})^d$, this implies that the right hand side is upper bounded by $c_1 \sqrt{\frac{d\ln\frac{n}{d} + \ln\frac{2}{\delta}}{n}}$ for some large constant $c_1$.
+By Sauer's Lemma, $\Scal(\Hcal, n) \leq (\frac{en}{d})^d$, this implies that we can select large enough constant $c_1 > 0$, such that with probability $1-\delta$,
+\begin{equation}
+  \sup_{h \in \Hcal} |\err(h,S) - \err(h,D)| \leq c_1 \sqrt{\frac{d\ln\frac{n}{d} + \ln\frac{2}{\delta}}{n}}.
+  \label{eqn:uc-vc-explicit}
+\end{equation}
 
-The sample complexity bound follows from the following observation: when Equation~\ref{eqn:uc-vc} holds, the ERM has excess error
+The sample complexity bound follows from the following observation: when Equation~\eqref{eqn:uc-vc-explicit} holds, the ERM has excess error
 $2c_1 \sqrt{\frac{d\ln\frac{n}{d} + \ln\frac{2}{\delta}}{n}}$. Define
 $m(\epsilon,\delta) = \min\cbr{m: 2c_1 \sqrt{\frac{d\ln\frac{n}{d} + \ln\frac{2}{\delta}}{n}} \leq \epsilon}$. It can be checked that
 $m(\epsilon,\delta) = O\del{\frac{1}{\epsilon^2}\del{d \ln \frac1\epsilon + \ln\frac1\delta}}$.
