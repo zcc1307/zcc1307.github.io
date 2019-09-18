@@ -133,7 +133,7 @@ $h$, with probability $1-\delta$,
 \[ |\err(h,S) - \err(h,D)| \leq \sqrt{2 \max(\err(h,S), \err(h,D)) \frac{\ln\frac{2|\Hcal|}{\delta}}{m}}. \]
 (Hint: you can use the fact that $\kl(q,p) \geq \frac{(q-p)^2}{2\max(p,q)}$.)
 \item Show that with probability $1-\delta$, for all classifiers $h$ in $\Hcal$,
-\[ \err(h,S) \leq \err(h,D) + \sqrt{\err(h,D) \frac{2\ln\frac{2|\Hcal|}{\delta}}{m}} + \frac{2\ln\frac{2|\Hcal|}{\delta}}{m}. \]
+\[ \err(h,S) \leq \err(h,D) + \sqrt{\err(h,D) \frac{2\ln\frac{2|\Hcal|}{\delta}}{m}} + \frac{2\ln\frac{2|\Hcal|}{\delta}}{m}, \]
 \[ \err(h,D) \leq \err(h,S) + \sqrt{\err(h,S) \frac{2\ln\frac{2|\Hcal|}{\delta}}{m}} + \frac{2\ln\frac{2|\Hcal|}{\delta}}{m}. \]
 (Hint: you can use the elementary fact that for $A, B, C > 0$, $A \leq B + C \sqrt{A}$ implies $A \leq B + C^2 + C\sqrt{B}$.)
 \item Show that with probability $1-\delta$, $\hat{h}$, the training error minimizer over $\Hcal$, satisfies that
