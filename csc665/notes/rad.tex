@@ -227,7 +227,7 @@ Now, we consider the randomness in training sample $S$. The above implies that,
 %where the expectation is over random draws of both $S$ and $S'$.
 Here, note that for different realizations of $S$ and $S'$, the $f$ that achieves the supremum can still be drastically different - therefore, we are still dealing with an infinite collection of random variables.
 
-\paragraph{Symmetrization.} Now here comes the crucial observation: define function
+\paragraph{Step 3: symmetrization.} Now here comes the crucial observation: define function
 \[ h(z_1, z_1',\ldots,z_n,z_n') = \frac{1}{n} \EE \sup_{f \in \Fcal} |\sum_{i=1}^n \sigma_i (f(z_i) - f(z_i'))|. \]
 As the $2n$ random variables
 $(Z_1,Z_1',Z_2,Z_2',\ldots,Z_n,Z_n')$ has exactly the same distribution law as, say, $(Z_1',Z_1,Z_2,Z_2',\ldots,Z_n,Z_n')$ (switching the order of the first two samples), this implies that
@@ -279,7 +279,7 @@ Using the above notation, the right hand side of Equation~\eqref{eqn:sym} can be
 %For a fixed sample $S$, we call the quantity
 %$\frac{1}{n}\EE_\sigma \sup_{f \in \Fcal} |\sum_{i=1}^n \sigma_i f(Z_i)|$ the {\em Rademacher complexity} of $\Fcal$ on $S$, abbrev, $R_S(\Fcal)$. Therefore, the above can be written as $2\EE R_S(\Fcal)$.
 %More generally, define pair $P_i = (Z_i, Z_i')$, then
-\paragraph{Controlling the empirical Rademacher complexity.}
+\paragraph{Step 4: controlling empirical Rademacher complexities.}
 To upper bound $\Rad_n(\Fcal)$, it suffices to give an uniform upper bound of $\Rad_S(\Fcal)$ for every fixed sample $S$ of size $n$.
 Note that when $S$ is fixed, there are at most $\Scal(\Fcal, n)$ realizations of
 $(f(Z_1), \ldots, f(Z_n))$, where are elements of $\Pi_\Fcal(S)$. Therefore,
@@ -314,7 +314,7 @@ In summary, we have shown that with probability $1-\delta$,
 & \leq 4 \sqrt{\frac{\ln(2\Scal(\Fcal, n))}{n}} + \sqrt{\frac{\ln\frac{2}{\delta}}{2n}} \\
 & \leq \sqrt{\frac{32(\ln(2\Scal(\Fcal, n) + \ln\frac{2}{\delta})}{n}},
 \end{align*}
-where the last inequality uses the elementary fact that $\sqrt{A} + \sqrt{B} \leq \sqrt{2(A+B)}$.
+where the last inequality uses the elementary fact that $\sqrt{A} + \sqrt{B} \leq \sqrt{2(A+B)}$. \qed
 
 %(the only randomness now lies in the Rademacher random variables $\sigma_i$'s), there are effectively only $\Scal(\Fcal, n)$ functions in $\Fcal$ that needs to be considered!
 
