@@ -54,24 +54,24 @@ In this exercise we give an alternative proof of the Chernoff bound for Bernoull
 variables: suppose $X_1,\ldots,X_n$ are iid and from $\Ber(p)$, define
 $\bar{X} = \sum_{i=1}^n X_i$, then,
 \begin{equation}
-  \PP( \bar{X} \geq q ) \leq \exp{-n \kl(q,p)}, q \geq p
+  \PP( \bar{X} \geq q ) \leq \exp{-n \kl(q,p)}, q \geq p,
   \label{eqn:ut}
 \end{equation}
 \begin{equation}
-  \PP( \bar{X} \leq q ) \leq \exp{-n \kl(q,p)}, q \leq p
+  \PP( \bar{X} \leq q ) \leq \exp{-n \kl(q,p)}, q \leq p.
   \label{eqn:lt}
 \end{equation}
 \begin{enumerate}
 \item Show that
-\[ \PP( \bar{X} \geq q ) = \sum_{m: m \geq nq} {n \choose m} p^m (1-p)^m. \]
+\[ \PP( \bar{X} \geq q ) = \sum_{m: m \geq nq} {n \choose m} p^m (1-p)^{n-m}. \]
 \label{item:2-1}
-\item Use the elementary inequality that ${n \choose m} q^m (1-q)^m \leq 1$, show that for $m \geq nq$,
-\[ {n \choose m} p^m (1-p)^m \leq \del{\frac{p}{q}}^{nq} \del{\frac{1-p}{1-q}}^{n(1-q)}. \]
+\item Use the elementary inequality that ${n \choose m} q^m (1-q)^{n-m} \leq 1$, show that for $m \geq nq$,
+\[ {n \choose m} p^m (1-p)^{n-m} \leq \del{\frac{p}{q}}^{nq} \del{\frac{1-p}{1-q}}^{n(1-q)}. \]
 \label{item:2-2}
 \item Use the above two items to conclude that $\PP( \bar{X} \geq q ) \leq (n+1)\exp{-n \kl(q,p)}$.
 \item Note that compared to Equation~\ref{eqn:ut}, the above bound is has an additional factor of $n$ on the right hand side.
 Use the elementary inequality
- $\sum_{m \geq nq} {n \choose m} q^m (1-q)^m \leq 1$ as a starting point, along with insights you gained from
+ $\sum_{m \geq nq} {n \choose m} q^m (1-q)^{n-m} \leq 1$ as a starting point, along with insights you gained from
  items~\ref{item:2-1} and~\ref{item:2-2} to show Equation~\eqref{eqn:ut}.
 \item Repeat the proof for the lower tail bound (Equation~\eqref{eqn:lt}).
 \end{enumerate}
