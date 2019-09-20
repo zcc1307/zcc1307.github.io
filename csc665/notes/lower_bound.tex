@@ -1,0 +1,268 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+\usepackage{algorithm, algorithmic}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{claim}{Claim}
+\newtheorem{fact}{Fact}
+
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator{\Rad}{{\mathrm{Rad}}}
+\DeclareMathOperator*{\R}{{\rm R}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+%\DeclareMathOperator*{\Hcal}{{\cal H}}
+\DeclareMathOperator*{\Ycal}{{\cal Y}}
+\DeclareMathOperator*{\Acal}{{\cal A}}
+\DeclareMathOperator*{\Zcal}{{\cal Z}}
+%\DeclareMathOperator*{\Fcal}{{\cal F}}
+\DeclareMathOperator*{\Scal}{{\cal S}}
+\DeclareMathOperator*{\argmin}{{\rm argmin}}
+\DeclareMathOperator*{\VC}{{\rm VC}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Ocal}{\mathcal{O}}
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\DeclareMathOperator*{\Ber}{{\rm Bernoulli}}
+
+\title{CSC 665: Information-theoretic lower bounds of PAC sample complexity}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+In the last lecture, we show that finite VC dimension is
+sufficient for distribution-free agnostic PAC learnability.
+For a hypothesis class $\Hcal$
+of VC dimension $d$, for all data distributions,
+ERM has an agnostic PAC sample complexity
+$O\del{\frac{1}{\epsilon^2}(d \ln\frac1\epsilon + \ln\frac1\delta)}$.
+\footnote{In fact, the sample complexity can be sharpened to
+$O\del{\frac{1}{\epsilon^2}(d + \ln\frac1\delta)}$ by an
+advanced technique called chaining (see Section 27.2
+of~\cite{shalev2014understanding}).}
+
+In this lecture, to complement the learnability result, given $\Hcal$
+of VC dimension $d$,
+we show that {\em any learning algorithm} must consume at least
+$\Omega\del{\frac{1}{\epsilon^2}(d + \ln\frac1\delta)}$ samples to achieve agnostic
+PAC learning guarantee. Moreover, if $\Hcal$ has infinite VC dimension,
+any learning algorithm is unable to achieve distribution-free PAC learning.
+The latter fact implies that finite VC dimension is {\em necessary} for
+distribution-free PAC learnability.
+
+\begin{theorem}
+For any hypothesis class $\Hcal$ such that $\VC(\Hcal)\geq d$,
+and any learning algorithm $\Acal$, and any $\epsilon,\delta \in (0,\frac14)$,
+there exists a distribution $D$ over $\Xcal \times \cbr{-1,+1}$, such that
+when a set $S$ of $m = \frac{1}{16\epsilon^2}(\frac{d}{27} + \ln\frac1{16\delta})$ examples is drawn iid from
+$D$, with probability at least $\delta$,
+\[ \err(\hat{h}, D) - \min_{h \in \Hcal} \err(h, D) > \epsilon, \]
+where $\hat{h} = \Acal(S)$ is the output of learning algorithm.
+\label{thm:lb}
+\end{theorem}
+
+We show the theorem in the following two lemmas.
+
+\begin{lemma}
+Suppose the setting is the same as that of Theorem~\ref{thm:lb}. There exists
+a distribution $D$ such that, if $m$,
+the size of $S$ is at most $\frac{1}{8\epsilon^2}\ln\frac1{16\delta}$,
+then with probability at least $\delta$,
+\[ \err(\hat{h}, D) - \min_{h \in \Hcal} \err(h, D) > \epsilon. \]
+\label{lem:delta}
+\end{lemma}
+
+\begin{lemma}
+Suppose the setting is the same as that of Theorem~\ref{thm:lb}. There exists
+a distribution $D$ such that, if $m$,
+the size of $S$ is at most $\frac{d}{216\epsilon^2}$, then with probability at least
+$1/4$,
+\[ \err(\hat{h}, D) - \min_{h \in \Hcal} \err(h, D) > \epsilon. \]
+\label{lem:d}
+\end{lemma}
+
+To see why the two lemmas together imply the theorem, consider two cases. When
+$\frac{d}{27} \geq \ln\frac1{16\delta}$, by Lemma~\ref{lem:d}, $\Acal$ will fail to satisfy
+agnostic PAC guarantee with
+$m = \frac{1}{16\epsilon^2}(\frac{d}{27} + \ln\frac1{16\delta}) \leq \frac{d}{216\epsilon^2}$ training examples. Similarly, when $\frac{d}{27} < \ln\frac1{16\delta}$, by Lemma~\ref{lem:delta}, $\Acal$ will fail to satisfy
+agnostic guarantee with $m = \frac{1}{16\epsilon^2}(\frac{d}{27} + \ln\frac1{16\delta}) \leq \frac{1}{8\epsilon^2}\ln\frac1{16\delta}$ training examples.
+
+\section{Proof of Lemma~\ref{lem:delta}: an introduction to Le Cam's method}
+Le Cam's method~\cite{yu1997assouad} is a systematic way to prove information theoretic
+lower bounds. It is based on the following thought experiment. Suppose we are given two possible distributions $P_i, i \in \cbr{\pm 1}$ over the observation space $\Ocal$ (where each draw from the distribution results in an observation $O$ in $\Ocal$).
+Our task is to guess the identity of $i$ given $O$, i.e. output a $\hat{i}$ based on $O$ (we can think of $\hat{i} = f(O)$, where $f$ encodes our thought process). If $P_{+1}$ and $P_{-1}$ are close, then there exists at least one distribution $P_i$, under which our guess $\hat{i}$ would be wrong with decent probability.
+%there exists at least one distribution $P_i$, under which we are making our guesses wrongly
+
+(It may be helpful to think of $P_{+1}$ and $P_{-1}$ as two possible ``scientific hypotheses'', and $O$ is an scientific experiment we conduct. Our task is to tell which hypothesis is the ground truth.) If you are familar with hypothesis testing in statistics, this is exactly the same setting: we would like to show that no matter what test we use, the sum of type I and type II errors would be large so long as the two hypotheses are close to each other.
+%whether we are in $P_{+1}$ or $P_{-1}$ based on $O$
+%If $P_{+1}$ and $P_{-1}$ are close, then our guesses cannot be very accurate.
+
+%If $P_{+1}$ and $P_{-1}$ are sufficiently close, then based solely on $O$,
+%we cannot tell which distribution we are in (which world we are in).
+
+We will use the shorthand that $\PP_i$ (resp. $\EE_i$) denotes $\PP_{O \sim P_i}$ (resp. $\EE_{O \sim P_i}$).
+
+%\begin{definition}
+%  For two distributions $Q$ and $Q'$ over finite set $\Ocal$, denote by their $\ell_1$ distance
+%  \[ \| Q - Q' \|_1 \defeq \sum_{o \in \Ocal} |Q(o) - Q'(o)|. \]
+%\end{definition}
+
+\begin{lemma}[Le Cam's method]
+Suppose $f$ is a mapping from $\Ocal$ to $\cbr{-1,+1}$. Then for at least one of
+$i$ in $\cbr{-1,+1}$,
+\[ \PP_i(f(O) \neq i) = \EE_i \one(f(O) \neq i) \geq \frac12\sum_{o \in \Ocal} \min(P_{-1}(o), P_{+1}(o)). \]
+\label{lem:lecam}
+\end{lemma}
+
+%\frac12\del{1 - \frac12 \| P_{-1} - P_{+1} \|_1}
+
+Suppose $I$ is chosen uniformly at random from $\cbr{\pm 1}$.
+What is the function $f^\star$ that minimizes $\PP(f(O) \neq I)$? Think of the problem
+as a binary classification problem, where (feature,label) pair $(O,I)$ comes from a joint distribution we have full knowledge about. Given $O$, we would like to classify $O$ as either $+1$ or $-1$ to minimize the error.
+
+If you have studied probabilistic machine learning, you now can see that $f^\star$ is the Bayes classifier:
+\[ f^\star(o) = \begin{cases} +1 & \PP(I = +1|O=o) \geq \frac12 \\ -1 & \text{otherwise} \end{cases} \]
+Why does this function minimize the error rate? Observe that
+\[ \PP(f(O) \neq I)
+  = \EE[ \PP(i=-1|O) \one(f(O) = +1) + \PP(i=-1|O) \one(f(O) = -1)], \]
+so at every $o$, predicting $f^\star(o)$ has the a smaller expected error.
+
+This means that we can calculate $\PP(f(O) \neq I)$ explicitly. In addition,
+\begin{equation}
+  \PP(f(O) \neq I) = \frac12 \del{\PP_{+1}(f(O) \neq +1) + \PP_{-1}(f(O) \neq -1)}
+\leq \max_i \PP_{i}(f(O) \neq i),
+\label{eqn:avg-worst}
+\end{equation}
+so a lower bound of $\PP(f(O) \neq I)$ implies a lower bound of $\max_i \PP_{i}(f(O) \neq i)$.
+
+Let us now formalize the ideas above.
+
+\begin{proof}
+Suppose $I$ is chosen uniformly from $\cbr{\pm 1}$, and given $I$, $O$ is drawn from
+$\PP_I$. Then for any function $f$,
+\begin{eqnarray*}
+  \PP(f(O) \neq I) &\geq& \PP(f^\star(O) \neq I) \\
+   &=& \frac12 \del{\PP_{-1}(f^\star(O) = +1) + \PP_{+1}(f^\star(O) = -1)} \\
+   &=& \frac12 \del{\sum_{o: P_{+1}(o) \geq P_{-1}(o)} P_{-1}(o) + \sum_{o: P_{-1}(o) > P_{+1}(o)} P_{+1}(o)} \\
+   &=& \frac12 \sum_{o \in \Ocal} \min\del{P_{-1}(o), P_{+1}(o)}
+   \qedhere
+\end{eqnarray*}
+%Now, as $\min(a,b) = \frac{(a+b)}{2} - \frac{|a-b|}{2}$,
+%the right hand side can be written as
+%\[ \frac12 \sum_{o \in \Ocal} \frac{P_{-1}(o) + P_{+1}(o)}{2} - \frac{|P_{-1}(o) - P_{+1}(o)|}{2} = \frac12 (1 - \frac12\| P_{+1} - P_{-1} \|_1). \]
+
+%In combination with Equation~\eqref{eqn:avg-worst}, this implies that there exists
+%a $i$ in $\cbr{\pm 1}$, such that $\PP_{i}(f(O) \neq i)$ is at least $\frac12 (1 - \frac12\| P_{+1} - P_{-1} \|_1)$.
+\end{proof}
+
+Le Cam's method is a statement about hypothesis testing.
+How can Le Cam's method be useful in sample complexity lower bounds? It turns out
+that we can construct a pair of learning problems, such that in order to ensure PAC
+learning on both problems, solving a variant of hypothesis testing is {\em necessary}.
+
+\paragraph{The construction.} Suppose that $x_0$ is an unlabeled example, $\Hcal$ contains two classifiers $h_{+1}$ and $h_{-1}$, such that $h_i(z_0) = i$ for both $i \in \cbr{-1,+1}$. Define an unlabeled distribution $D_X$ such that $\PP_{D_X}(x=z_0) = 1$. For $i \in \cbr{\pm 1}$, define
+\[ D_i(y|z_0) = \begin{cases} \frac12 + i\epsilon & y = +1 \\ \frac12 - i\epsilon & y = -1 \end{cases}. \]
+In addition, $D_{+1}$ (resp. $D_{-1}$) are specified by the marginal $D_X$ and the $D_{+1}(y|x)$ (resp. $D_{-1}(y|x)$) described above.
+
+Here, we can think of the observations $O$ are the training examples $S$, where given $i$, $S$ is drawn from $D_i^m$ ($m$ iid draws from distribution $D_i$).
+
+
+%Then for any algorithm $\Acal$ that produces classifier $\hat{h}$ given sample of size ,
+
+\begin{lemma}
+Suppose training sample size $m \leq \frac{1}{8\epsilon^2}\ln\frac1{16\delta}$.
+Then, there exists $i \in \cbr{-1,+1}$ such that
+\[ \PP_i(\err(\hat{h}, D_i) - \min_{h \in \Hcal} \err(h, D_i) ) > \delta. \]
+\end{lemma}
+
+\begin{proof}
+We show the lemma in two steps.
+
+\paragraph{Step 1: reducing learning to hypothesis testing.}
+$\hat{h}$ induces a ``guess'' on the hypothesis index $i$, that is,
+%let us write down the following hypothesis testing function:
+\[ \hat{i} = \hat{h}(x_0). \]
+Note that as $\hat{h} = \Acal(S)$ is a function of training examples $S$, $\hat{i}$
+can also be written as a function of $S$ - we use symbol $f$ to denote that function.
+
+We know that if $\hat{i} \neq i$, then the excess error of $\hat{h}$ is large:
+\[ \err(\hat{h}, D_i) - \min_{h \in \Hcal} \err(h, D_i) \geq 2\epsilon > \epsilon. \]
+So proving the lemma reduces to showing $\PP_i(f(S) \neq i) > \delta$
+for at least one $i$ in $\cbr{\pm 1}$.
+
+%Note that $\hat{I}$ can also be written as a function of observation $S$, so the above is a statement about hypothesis testing error.
+
+\paragraph{Step 2: applying Le Cam's method.}
+Invoking Lemma~\ref{lem:lecam},
+we have that there exists $i$,
+\begin{eqnarray}
+  \PP_i(\hat{I} \neq i)
+  &=& \frac12\sum_{o \in \Ocal} \min(P_{-1}(o), P_{+1}(o)) \nonumber \\
+  &=& \frac12\sum_{S \in (\cbr{z_0} \times \cbr{\pm 1})^n} \min\del{P_{-1}(S), P_{+1}(S)}
+  \label{eqn:explicit-tv}
+\end{eqnarray}
+%(z_0, y_1), \ldots, (z_0, y_n)
+How shall we reason about these probabilities
+$P_{-1}((z_0, y_1), \ldots, (z_0, y_m))$? Denote by $m_+(S)$ the number of
+$+1$'s in $y$. Then,
+\[ P_{-1}(S) = \del{\frac12 - \epsilon}^{m_+(S)}\del{\frac12 + \epsilon}^{m-m_+(S)}. \]
+Symmetrically,
+\[ P_{+1}(S) = \del{\frac12 + \epsilon}^{m_+(S)}\del{\frac12 - \epsilon}^{m-m_+(S)}. \]
+Therefore, $P_{+1}(S) \geq P_{-1}(S)$ iff $n_+(S) \geq \frac n 2$. Therefore,
+the right hand side of Equation~\eqref{eqn:explicit-tv} can be written as:
+\begin{eqnarray}
+  && \frac12
+  \del{\sum_{S: m_+(S) \geq \frac m 2} P_{-1}(S)+\sum_{S: m_+(S) < \frac m 2} P_{+1}(S)} \nonumber \\
+  &=& \frac 12 \del{\PP_{-1}(m_+(S) \geq \frac m 2) + \PP_{+1}(m_+(S) < \frac m 2)} \nonumber \\
+  &\geq& \frac 12 \PP_{-1}(m_+(S) \geq \frac m 2).
+  \label{eqn:bin-tail}
+\end{eqnarray}
+
+Now, let us look closely at the probability that
+$\PP_{-1}(m_+(S) \geq \frac m 2)$. It can be seen that under $P_{-1}$,
+$m_+(S)$ is the sum of $m$ iid $\Ber(\frac12-\epsilon)$ random variables (i.e.  binomial distribution with $m$ trials and success probability $\frac12-\epsilon$).
+Our task is to lower bound its right tail probability, that is, the probability the empirical mean exceeds $\frac12$.
+
+We invoke Slud's Inequality from probability theory:
+\begin{fact}
+Suppose $X \sim \Bin(n,\frac12-\epsilon)$. Then,
+\[ \PP(X \geq \frac n 2) \geq \frac12 (1 - \sqrt{1 - \exp{-\frac{4 n \epsilon^2}{1 - 4\epsilon^2}}}). \]
+\end{fact}
+
+Continuing Equation~\eqref{eqn:bin-tail}, with the choice of $m \leq \frac{1}{8\epsilon^2} \ln\frac1{16\delta}$, we have that $\exp{-\frac{4 m \epsilon^2}{1 - 4\epsilon^2}}$ is at least $16\delta$, therefore, Slud's Inequality implies that the right hand side of Equation~\eqref{eqn:bin-tail} is lower bounded by
+\begin{eqnarray*}
+  \frac14 (1 - \sqrt{1 - \exp{-\frac{4 m \epsilon^2}{1 - 4\epsilon^2}}})
+  &\geq& \frac14 (1 - \sqrt{1 - 16\delta}) \\
+  &\geq& \frac14 (1 - \sqrt{(1 - 8\delta)^2}) \\
+  &\geq& \frac 1 4 \cdot 8\delta > \delta.
+\end{eqnarray*}
+This concludes the proof of the lemma.
+%There are $n \choose m$ $(y_1,\ldots,y_n)$
+\end{proof}
+
+\bibliographystyle{plain}
+\bibliography{learning}
+%\section{}
+
+
+\end{document}
