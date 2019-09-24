@@ -79,19 +79,45 @@
 <p>(This is adapted from <a href="https://cseweb.ucsd.edu/classes/fa12/cse291-b/projectinfo.html">project guidelines of Kamalika Chaudhuri’s Machine Learning Theory course</a>)</p>
 <p>You can choose to do one of the following types of projects:</p>
 <ul>
-<li><p><strong>Literature survey.</strong> You need to choose a topic (see below for some ideas) and read more than 6 papers on this topic. Be sure to select papers judiciously, so that you can capture both classical ideas and state-of-the-art approaches. Sometimes the <em>Introduction</em> and <em>Related Work</em> sections of recent papers will help you find most relevant papers. When you are in doubt whether a paper is worth reading, come to my office hour and we can figure this out. It is important to make sure you read the papers <em>critically</em>, and form your opinions on the papers you read: What are the pros and cons of existing approaches? (This is best summarized by a table, for example.) What are the major open problems in this area?</p></li>
-<li><p><strong>Implementation.</strong> You are asked to conduct experiments on deploying theoretically principled learning algorithms onto synthetic or real data. If you choose to implement an algorithm from a paper that does not have theorem statements (or ‘trivial’ theorems with straightforward proofs), this may not be a good fit for this course. In addition, we ask that your experiment must be used to support theoretical results obtained in the paper. You are expected to conduct critical analyses on your experimental results, by answering questions such as: how well do the experimental results agree with the proposed theory? If the results do not agree well with the theory, which assumption in the theory are violated? You should also provide a list of dataset you are going to use.</p></li>
-<li><p><strong>Research.</strong> Research project can have two styles: first, attack an existing open problem in the literature; second, formulate a new (theoretically interesting and practically relevant) problem and proposes a feasible solution. Completing a research project naturally requires a thorough literature survey in the first place - you need to ensure that your approach or model has never been proposed in prior works. <em>Note that a research project may require substantially larger amount of time compared to the first two project types, so I suggest you be careful with this choice if you already have a heavy workload this semester.</em> The upside of a research project is that your work may result in publications.</p></li>
+<li><p><strong>Literature survey.</strong> You need to choose a topic (see below for some ideas) and read more than 6 papers on this topic. Be sure to select papers judiciously, so that you can capture both classical ideas and state-of-the-art approaches. Sometimes the <em>Introduction</em> and <em>Related Work</em> sections of recent papers will help you find most relevant papers. When you are in doubt whether a paper is relevant, come to my office hour and we can figure this out. It is important to make sure you read the papers <em>critically</em>, and form your opinions on the papers you read: What are the major open problems in this area? What are the pros and cons of existing approaches? (The latter can be summarized with a table for example.)</p></li>
+<li><p><strong>Implementation.</strong> You are asked to conduct experiments on deploying theoretically principled learning algorithms onto synthetic or real data. If you choose to implement an algorithm from a paper that does not have theorem statements (or ‘trivial’ theorems with straightforward proofs), this may not be a good fit for this course. In addition, we ask that your experiment must be used to support theoretical results obtained in the paper. <em>You are expected to conduct critical analyses on your experimental results</em>, by answering questions such as: how well do the experimental results agree with the proposed theory? If the results do not agree well with the theory, which assumption in the theory are violated? You should also provide a list of dataset you are going to use.</p></li>
+<li><p><strong>Research.</strong> Research project can have two styles: first, attacking an existing open problem in the literature; second, formulating a new (theoretically interesting and practically relevant) problem and proposing a feasible solution. Completing a research project naturally requires a thorough literature survey in the first place - you need to ensure that your approach or model has never been proposed in prior works. <em>Note that a research project may require substantially larger amount of time compared to the first two project types, so I suggest you be careful with this choice if you already have a heavy workload this semester.</em> The upside of a research project is that your work may result in publications.</p></li>
 </ul>
 <h4 id="project-timelines">Project timelines</h4>
 <ul>
-<li><strong>Project Proposal.</strong> Due Oct 24.</li>
-<li><strong>Midterm Progress Report.</strong> Due Nov 14.</li>
-<li><strong>Final Presentation.</strong> On Dec 5 and Dec 10.</li>
-<li><strong>Final Report.</strong> Due Dec 10.</li>
+<li><p><strong>Project Proposal.</strong> A 1-page project proposal is due <strong>Oct 24</strong>. The project proposal should consist of the following parts:</p>
+<ul>
+<li>a list of team members,</li>
+<li>a brief description of the project topic,</li>
+<li>a justification why this is relevant in learning theory,</li>
+<li>for literature survey, have a planned reading list; for implementation, have a list of algorithms to implement and a set of driving questions to answer with the experiments; for research, have a list of research questions to attack (It would be good to have one concrete question, and list a few important sub-questions toward solving it.)</li>
+</ul></li>
+</ul>
+<p>If you need help with choosing a project, please schedule an appointment with me and I will help you brainstorm one.</p>
+<ul>
+<li><p><strong>Midterm Progress Report.</strong> A 1-page report on your progress is due <strong>Nov 14</strong>.</p>
+<ul>
+<li>For literature survey, give a list of papers you have already read, and how they are related.</li>
+<li>For implementation projects, give a list of algorithms that you have already implemented, and provide experimental results (if you have some). How do the results answer the questions you asked in the proposal?</li>
+<li>For research projects, provide a list of trials you have made to attack your research problem, regardless of whether they are successful.</li>
+</ul></li>
+<li><p><strong>Final Presentation.</strong> The presentation will be on <strong>Dec 5</strong> and <strong>Dec 10</strong>, in class. Each group will have about 20 mins for presentation. The actual lengths of the presentations will depend on the number of groups in the class. Please send me a copy of your slides after your presentation.</p></li>
+<li><p><strong>Final Report.</strong> A 4-page summary of the project is due <strong>Dec 10</strong>, by email. The report will be judged on both clarity and quality. The report needs to be typeset by LaTeX.</p>
+<ul>
+<li>For literature survey, provide a critical summary of the papers you have read; discuss the connections among these papers, and their impacts to broader field.</li>
+<li>For implementation projects, present your experimental results, and check whether the experiments agree with theory.</li>
+<li>For research projects, your report should have a <em>Related work</em> section discuss why your result is novel compared to existing work. You should also describe your approach (if you have a new algorithm, provide its pseudocode; if you propose a new learning model, define new key concepts in your model; if you show your proposed algorithm has good performance guarantee, write down a theorem statement on it.)</li>
+</ul></li>
 </ul>
 <h4 id="suggested-topics">Suggested topics</h4>
-<p>Below is a far-from-complete list of research topics in machine learning theory. Please also refer to <a href="http://proceedings.mlr.press/v97/">ICML</a>, <a href="http://proceedings.mlr.press/v99/">COLT</a>, <a href="https://papers.nips.cc/">NeurIPS</a> proceedings page for more ideas. There are similar courses that also offer relevant project ideas that may inspire you: * <a href="http://alekhagarwal.net/bandits_and_rl/#view3">Bandits and RL by Alekh Agarwal and Alex Slivkins</a> * <a href="http://www.cs.cmu.edu/~avrim/ML07/projects.html">Foundations of Machine Learning and Data Science by Nina Balcan and Avrim Blum</a> * <a href="https://nanjiang.cs.illinois.edu/cs598project/">Statistical Reinforcement Learning by Nan Jiang</a> * <a href="https://haipeng-luo.net/courses/CSCI699/project.html">Introduction to Online Learning by Haipeng Luo</a></p>
+<p>Below is a far-from-complete list of research topics in machine learning theory. Please also refer to <a href="http://proceedings.mlr.press/v97/">ICML</a>, <a href="http://proceedings.mlr.press/v99/">COLT</a>, <a href="https://papers.nips.cc/">NeurIPS</a> proceedings page for more ideas.</p>
+<p>There are similar courses that offer interesting project ideas, which may also inspire you:</p>
+<ul>
+<li><a href="http://alekhagarwal.net/bandits_and_rl/#view3">Bandits and RL by Alekh Agarwal and Alex Slivkins</a></li>
+<li><a href="http://www.cs.cmu.edu/~avrim/ML07/projects.html">Foundations of Machine Learning and Data Science by Nina Balcan and Avrim Blum</a></li>
+<li><a href="https://nanjiang.cs.illinois.edu/cs598project/">Statistical Reinforcement Learning by Nan Jiang</a></li>
+<li><a href="https://haipeng-luo.net/courses/CSCI699/project.html">Introduction to Online Learning by Haipeng Luo</a></li>
+</ul>
 <h5 id="active-learning">Active learning</h5>
 <ul>
 <li>M.F. Balcan, A. Beygelzimer, J. Langford. Agnostic active learning. ICML 2006.</li>

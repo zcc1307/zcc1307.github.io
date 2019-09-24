@@ -6,26 +6,42 @@
 You can choose to do one of the following types of projects:
 
 * __Literature survey.__ You need to choose a topic (see below for some ideas) and read more than 6 papers on this topic. Be sure to select papers judiciously, so that you can capture both classical ideas and state-of-the-art approaches. Sometimes the *Introduction* and *Related Work* sections of recent papers will help you find most relevant papers.
-When you are in doubt whether a paper is worth reading, come to my office hour and we can figure this out. It is important to make sure you read the papers *critically*, and form your opinions on the papers you read: What are the pros and cons of existing approaches? (This is best summarized by a table, for example.) What are the major open problems in this area?
+When you are in doubt whether a paper is relevant, come to my office hour and we can figure this out. It is important to make sure you read the papers *critically*, and form your opinions on the papers you read: What are the major open problems in this area? What are the pros and cons of existing approaches? (The latter can be summarized with a table for example.)
 
 * __Implementation.__ You are asked to conduct experiments on deploying theoretically principled learning algorithms onto synthetic or real data. If you choose to implement an algorithm from a paper that does not have theorem statements (or 'trivial' theorems with straightforward proofs), this may not be a good fit for this course.
-In addition, we ask that your experiment must be used to support theoretical results obtained in the paper. You are expected to conduct critical analyses on your experimental results, by answering questions such as: how well do the experimental results agree with the proposed theory? If the results do not agree well with the theory, which assumption in the theory are violated? You should also provide a list of dataset you are going to use.
+In addition, we ask that your experiment must be used to support theoretical results obtained in the paper. *You are expected to conduct critical analyses on your experimental results*, by answering questions such as: how well do the experimental results agree with the proposed theory? If the results do not agree well with the theory, which assumption in the theory are violated? You should also provide a list of dataset you are going to use.
 
-* __Research.__ Research project can have two styles: first, attack an existing open problem in the literature; second, formulate a new (theoretically interesting and practically relevant) problem and proposes a feasible solution. Completing a research project naturally requires a thorough literature survey in the first place - you need to ensure that your approach or model has never been proposed in prior works. *Note that a research project may require substantially larger amount of time compared to the first two project types, so I suggest you be careful with this choice if you already have a heavy workload this semester.* The upside of a research project is that your work may result in publications.
+* __Research.__ Research project can have two styles: first, attacking an existing open problem in the literature; second, formulating a new (theoretically interesting and practically relevant) problem and proposing a feasible solution. Completing a research project naturally requires a thorough literature survey in the first place - you need to ensure that your approach or model has never been proposed in prior works. *Note that a research project may require substantially larger amount of time compared to the first two project types, so I suggest you be careful with this choice if you already have a heavy workload this semester.* The upside of a research project is that your work may result in publications.
 
 #### Project timelines
-* __Project Proposal.__ An initial project proposal, consisting of a list of team members, a brief description of the project topic, and the planned reading list / algorithms to implement, is due Oct 24. You need to justify why the 
+* __Project Proposal.__ A 1-page project proposal is due __Oct 24__. The project proposal should consist of the following parts:
 
+  * a list of team members,
+  * a brief description of the project topic,
+  * a justification why this is relevant in learning theory,
+  * for literature survey, have a planned reading list; for implementation, have a list of algorithms to implement and a set of driving questions to answer with the experiments; for research, have a list of research questions to attack (It would be good to have one concrete question, and list a few important sub-questions toward solving it.)
 
-If you need help with choosing a project, please schedule an appointment with me and I will help you brainstorm a topic.
-* __Midterm Progress Report.__ An brief report on  Due Nov 14.
-* __Final Presentation.__ The presentation will be on __Dec 5__ and __Dec 10__, in class. Each group will have about 20 mins for presentation. The actual lengths of the presentations will depend on the number of groups in the class. Please send me a copy of your slides after your presentation. (if you have them)
-* __Final Report.__ A 4-page summary of the project is due __Dec 10__, by email.
+If you need help with choosing a project, please schedule an appointment with me and I will help you brainstorm one.
+
+* __Midterm Progress Report.__ A 1-page report on your progress is due __Nov 14__.
+
+  * For literature survey, give a list of papers you have already read, and how they are related.
+  * For implementation projects, give a list of algorithms that you have already implemented, and provide experimental results (if you have some). How do the results answer the questions you asked in the proposal?
+  * For research projects, provide a list of trials you have made to attack your research problem, regardless of whether they are successful.
+
+* __Final Presentation.__ The presentation will be on __Dec 5__ and __Dec 10__, in class. Each group will have about 20 mins for presentation. The actual lengths of the presentations will depend on the number of groups in the class. Please send me a copy of your slides after your presentation.
+
+* __Final Report.__ A 4-page summary of the project is due __Dec 10__, by email. The report will be judged on both clarity and quality. The report needs to be typeset by LaTeX.
+
+  * For literature survey, provide a critical summary of the papers you have read; discuss the connections among these papers, and their impacts to broader field.
+  * For implementation projects, present your experimental results, and check whether the experiments agree with theory.
+  * For research projects, your report should have a *Related work* section discuss why your result is novel compared to existing work. You should also describe your approach (if you have a new algorithm, provide its pseudocode; if you propose a new learning model, define new key concepts in your model; if you show your proposed algorithm has good performance guarantee, write down a theorem statement on it.)
 
 #### Suggested topics
 
 Below is a far-from-complete list of research topics in machine learning theory. Please also refer to [ICML](http://proceedings.mlr.press/v97/), [COLT](http://proceedings.mlr.press/v99/), [NeurIPS](https://papers.nips.cc/) proceedings page for more ideas.
-There are similar courses that also offer relevant project ideas that may inspire you:
+
+There are similar courses that offer interesting project ideas, which may also inspire you:
 
 * [Bandits and RL by Alekh Agarwal and Alex Slivkins](http://alekhagarwal.net/bandits_and_rl/#view3)
 * [Foundations of Machine Learning and Data Science by Nina Balcan and Avrim Blum](http://www.cs.cmu.edu/~avrim/ML07/projects.html)
