@@ -29,7 +29,7 @@ If you need help with choosing a project, please schedule an appointment with me
   * For implementation projects, give a list of algorithms that you have already implemented, and provide experimental results (if you have some). How do the results answer the questions you asked in the proposal?
   * For research projects, provide a list of trials you have made to attack your research problem, regardless of whether they are successful.
 
-* __Final Presentation.__ The presentation will be on __Dec 5__ and __Dec 10__, in class. Each group will have about 20 mins for presentation. The actual lengths of the presentations will depend on the number of groups in the class. Please send me a copy of your slides after your presentation.
+* __Final Presentation.__ The presentation will be on __Dec 5__ and __Dec 10__, in class. Each group will have at least 20 mins for presentation. The actual lengths of the presentations will depend on the number of groups in the class. Please send me a copy of your slides after your presentation.
 
 * __Final Report.__ A 4-page summary of the project is due __Dec 10__, by email. The report will be judged on both clarity and quality. The report needs to be typeset by LaTeX.
 
