@@ -13,11 +13,11 @@ Tentative schedule:
 |Sep 10 | Agnostic PAC learning, infinite classes | | SSBD Sec 3.2-3.3, Chap 4, Sec 6.1 | |
 |Sep 12 | VC Theory, Sauer's Lemma | [VC Theory note](notes/vc.pdf) | SSBD Sec 6.2 - 6.5.1 |  |
 |Sep 17 | Rademacher complexity | [Uniform convergence / Rademacher complexity note](notes/rad.pdf) | SSBD Sec 6.5.2, 26.1, 28.1 | [HW1](hw/hw1/hw1.pdf) [tex file](hw1/hw1.tex) |
-|Sep 19 | Information theoretic lower bounds of PAC learning | [Lower bound draft note](notes/lower_bound.pdf) | SSBD Sec 28.2  | |
-|Sep 24 | Support Vector Machine; Margin bounds | | SSBD Chap 15, Secs 26.2, 26.3  | |
-|Sep 26 | Structural risk minimization | | SSBD Chap 7 | |
-|Oct 1  | Boosting (1) | | SSBD Chap 10 | |
-|Oct 3  | Boosting (2) | | SSBD Sec 26.2, 26.4 | |
+|Sep 19 | Information-theoretic lower bounds of PAC learning |  | SSBD 28.2.1  | |
+|Sep 24 | Le Cam's method |  | SSBD 28.2.1 | |
+|Sep 26 | Assouad's method | [Lower bound note](notes/lower_bound.pdf) | SSBD Sec 28.2.2, Sec 5.1  | |
+|Oct 1  | Support Vector Machine; Margin bounds  | | SSBD Chap 10, Chap 15, Secs 26.2, 26.3 | |
+|Oct 3  | Boosting | | SSBD Sec 26.2, 26.4 | |
 |Oct 8  | Backgrounds on convex functions | | SSBD Chap 12 | |
 |Oct 10 | Midterm exam | | | |
 |Oct 15 | Regularization and stability (1) | | SSBD Chap 13 | |
@@ -37,3 +37,5 @@ Tentative schedule:
 |Dec 3 | Stochastic linear bandits (2) | | LS Chap 20 | |
 |Dec 5 | Final presentation (1) | | | |
 |Dec 10 | Final presentation (2) | | | |
+
+[//]: # (|Sep 26 | Structural risk minimization | | SSBD Chap 7 | |)
