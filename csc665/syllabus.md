@@ -79,37 +79,29 @@ We will use D2L for communications and discussion. Make sure your D2L account is
 The required textbook is “Understanding Machine Learning: From Theory to Algorithms” by Shai Shalev-Shwartz and Shai Ben-David, available at <https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning> for personal use.
 
 #### Assignments and Examinations: Schedule/Due Dates
-There will be a midterm exam on 10/10 (Thu) in the class time. For the final exam and the project, see the next section.
+There will be a take-home midterm exam given out on 10/10 (Thu). For the final exam and the project, see the next section.
 
-There will be a total of 12 programming/written assignments paced at around one assignment per week, skipping weeks for the midterm and final. Each assignment will be due at least one week after it is posted. The final project report is due on the last day of class.
+There will be a total of 7 programming/written assignments paced at around one assignment per week, skipping weeks for the midterm and final. Each assignment will be due at least one week after it is posted. The final project report is due on the last day of class.
 
-* A1:    Concentration of measure
+* A0:    Calibration homework
 
-* A2:    The PAC learning framework
+* A1:    Concentration of measure; the PAC learning framework
 
-* A3:    VC theory
+* A2:    VC theory; Rademacher complexity
 
-* A4:    Rademacher complexity
+* A3:    Support vector machine; boosting
 
-* A5:    Support vector machine
+* A4:    Regularization and stability
 
-* A6:    Boosting
+* A5:    Project proposal
+  *    The students submit a project proposal with 2-3 team members. The project is a maximum 4-page summary and comparison of 2-3 papers on a topic of interest, possibly including numerical experiments. The project progress is checked on Week 12.
 
-* A7:    Regularization and stability
+* A6:    Online Convex Optimization
 
-* A8:    Project proposal
-  *    The students submits a project proposal with 2-3 team members. The project is a maximum 4-page summary and comparison of 2-3 papers on a topic of interest, possibly including numerical experiments. The project progress is checked at Week 12.
-
-* A9:    Follow the regularized leader and online mirror descent
-
-* A10:    Online Convex Optimization for exp-concave functions
-
-* A11:    Multi-armed bandits
-
-* A12:     Stochastic linear bandits
+* A7:    Multi-armed bandits and linear bandits
 
 #### Final Examination or Project
-This course will have a comprehensive written final examination. Information on the final exam
+This course will have a comprehensive written open-book final examination. Information on the final exam
 regulations and schedule:
 <https://www.registrar.arizona.edu/courses/final-examination-regulations-and-information>
 <http://www.registrar.arizona.edu/schedules/finals.htm>
