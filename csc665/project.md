@@ -14,15 +14,19 @@ In addition, we ask that your experiment must be used to support theoretical res
 * __Research.__ Research project can have two styles: first, attack an existing open problem in the literature; second, formulate a new (theoretically interesting and practically relevant) problem and proposes a feasible solution. Completing a research project naturally requires a thorough literature survey in the first place - you need to ensure that your approach or model has never been proposed in prior works. *Note that a research project may require substantially larger amount of time compared to the first two project types, so I suggest you be careful with this choice if you already have a heavy workload this semester.* The upside of a research project is that your work may result in publications.
 
 #### Project timelines
-* __Project Proposal.__ Due Oct 24.
-* __Midterm Progress Report.__ Due Nov 14.
-* __Final Presentation.__ On Dec 5 and Dec 10.
-* __Final Report.__ Due Dec 10.
+* __Project Proposal.__ An initial project proposal, consisting of a list of team members, a brief description of the project topic, and the planned reading list / algorithms to implement, is due Oct 24. You need to justify why the 
+
+
+If you need help with choosing a project, please schedule an appointment with me and I will help you brainstorm a topic.
+* __Midterm Progress Report.__ An brief report on  Due Nov 14.
+* __Final Presentation.__ The presentation will be on __Dec 5__ and __Dec 10__, in class. Each group will have about 20 mins for presentation. The actual lengths of the presentations will depend on the number of groups in the class. Please send me a copy of your slides after your presentation. (if you have them)
+* __Final Report.__ A 4-page summary of the project is due __Dec 10__, by email.
 
 #### Suggested topics
 
 Below is a far-from-complete list of research topics in machine learning theory. Please also refer to [ICML](http://proceedings.mlr.press/v97/), [COLT](http://proceedings.mlr.press/v99/), [NeurIPS](https://papers.nips.cc/) proceedings page for more ideas.
 There are similar courses that also offer relevant project ideas that may inspire you:
+
 * [Bandits and RL by Alekh Agarwal and Alex Slivkins](http://alekhagarwal.net/bandits_and_rl/#view3)
 * [Foundations of Machine Learning and Data Science by Nina Balcan and Avrim Blum](http://www.cs.cmu.edu/~avrim/ML07/projects.html)
 * [Statistical Reinforcement Learning by Nan Jiang](https://nanjiang.cs.illinois.edu/cs598project/)

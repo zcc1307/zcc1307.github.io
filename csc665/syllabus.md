@@ -55,7 +55,8 @@ For a more granular description of the learning objectives, see the week-by-week
 This course is far from a complete survey of the concurrent topics on machine learning theory due to the sheer volume of recent developments and the fact that those topics require a deep understanding of concepts and fluency in mathematical techniques. That said, this course covers key topics that not only serve as building blocks of advanced machine learning theory but is also relevant in modern research so that the students can directly adapt learned topics to their own research. Students are expected to dedicate a significant amount of time on understanding mathematical concepts and skills outside the classroom.
 
 #### Expected Learning Outcomes
-The expected learning outcomes of the course is:
+The expected learning outcomes of the course are:
+
 * To be able to identify the factors that affect the performance of learning algorithms, including label noise, approximation error, optimization error, generalization error
 * To be able to establish concentration between training and test losses by uniform convergence theory
 * To be able to explain how the complexity/size of the hypothesis class can affect an algorithm’s generalization performance.
