@@ -31,6 +31,7 @@
 %\DeclareMathOperator*{\Fcal}{{\cal F}}
 \DeclareMathOperator*{\Scal}{{\cal S}}
 \DeclareMathOperator*{\argmin}{{\rm argmin}}
+\DeclareMathOperator*{\argmax}{{\rm argmax}}
 \DeclareMathOperator*{\VC}{{\rm VC}}
 \newcommand{\RR}{\mathbb{R}} % Real numbers
 \newcommand{\EE}{\mathbb{E}}
@@ -72,7 +73,7 @@ distribution-free PAC learnability.
 
 \begin{theorem}
 For any hypothesis class $\Hcal$ such that $\VC(\Hcal)\geq d$,
-and any learning algorithm $\Acal$, and any $\epsilon,\delta \in (0,\frac14)$,
+and any learning algorithm $\Acal$, and any $\epsilon,\delta \in (0,\frac18)$,
 there exists a distribution $D$ over $\Xcal \times \cbr{-1,+1}$, such that
 when a set $S$ of $m = \frac{1}{16\epsilon^2}(\frac{d}{200} + \ln\frac1{16\delta})$ examples is drawn iid from
 $D$, with probability at least $\delta$,
@@ -80,6 +81,9 @@ $D$, with probability at least $\delta$,
 where $\hat{h} = \Acal(S)$ is the output of learning algorithm.
 \label{thm:lb}
 \end{theorem}
+
+\paragraph{Remark.} Note well the order of quantifiers on algorithm $\Acal$ and distribution $D$. It may be tempting to show a theorem that says ``for every $\Hcal$, $\epsilon$ and $\delta$, there is a distribution $D$ such that for any algorithm $\Acal$, $\Acal$ fail to satisfy $(\epsilon,\delta)$-agnostic PAC learning guarantee.'' Unfortunately this is impossible. Suppose the distribution $D$ is chosen, then there is a trivial algorithm $\Acal$ that satisfies the agnostic PAC learning guarantee - outputting $h^\star = \argmin_{h \in \Hcal} \err(h,D)$.
+
 
 We show the theorem in the following two lemmas.
 
@@ -135,7 +139,7 @@ $i$ in $\cbr{-1,+1}$,
 \end{lemma}
 
 \paragraph{Remark.} The right hand side is often written as
-$\| P_{-1} \wedge P_{+1} \|_1$. Generally, if we have two distributions $Q_1$ and $Q_2$,
+$\| P_{-1} \wedge P_{+1} \|_1$, measuring the similarity between two distributions. Generally, if we have two distributions $Q_1$ and $Q_2$,
 we have:
 \begin{eqnarray*}
   \| Q_1 \wedge Q_2 \|_1 &=& \sum_{o \in \Ocal} \min\del{Q_1(o), Q_2(o)} \\
@@ -154,10 +158,12 @@ as a binary classification problem, where (feature,label) pair $(O,I)$ comes fro
 
 If you have studied probabilistic machine learning, you now can see that $f^\star$ is the Bayes classifier:
 \[ f^\star(o) = \begin{cases} +1 & \PP(I = +1|O=o) \geq \frac12 \\ -1 & \text{otherwise} \end{cases} \]
-Why does this function minimize the error rate? Observe that
+Why does this function minimize the error rate? Observe that for any function $f$,
 \[ \PP(f(O) \neq I)
-  = \EE[ \PP(i=-1|O) \one(f(O) = +1) + \PP(i=-1|O) \one(f(O) = -1)], \]
-so at every $o$, predicting $f^\star(o)$ has the a smaller expected error.
+  = \sum_{o \in \Ocal} \PP(O = o) \del{\PP(I=-1|O=o) \one(f(o) = +1) + \PP(I=-1|O=o) \one(f(o) = -1)]}, \]
+if we would like to choose $f$ that minimize $\PP(f(O) \neq I)$, it suffices for us to decide for each $o$, whether $f(o)$ should take value $-1$ or $+1$. Therefore, the $f$ that minimizes the error will choose to predict $\argmax_{i \in \cbr{\pm 1}} \PP(I=i|O=o)$, which is equivalent to $f^\star(o)$.
+
+%so at every $o$, predicting $f^\star(o)$ has the a smaller expected error.
 
 This means that we can calculate $\PP(f(O) \neq I)$ explicitly. In addition,
 \begin{equation}
@@ -193,7 +199,10 @@ that we can construct a pair of learning problems, such that in order to ensure 
 learning on both problems, solving a variant of hypothesis testing is {\em necessary}.
 
 \paragraph{The construction.} Suppose that $x_0$ is an unlabeled example, $\Hcal$ contains two classifiers $h_{+1}$ and $h_{-1}$, such that $h_i(z_0) = i$ for both $i \in \cbr{-1,+1}$. Define an unlabeled distribution $D_X$ such that $\PP_{D_X}(x=z_0) = 1$. For $i \in \cbr{\pm 1}$, define
-\[ D_i(y|z_0) = \begin{cases} \frac12 + i\epsilon & y = +1 \\ \frac12 - i\epsilon & y = -1 \end{cases}. \]
+\[ D_i(y|z_0) = \begin{cases} \frac12 + i\epsilon, & y = +1, \\ \frac12 - i\epsilon, & y = -1. \end{cases} \]
+In other words,
+\[ D_i(y|z_0) = \begin{cases} \frac12 + \epsilon, & y = i, \\ \frac12 - \epsilon, & y = -i.
+\end{cases}\]
 In addition, $D_{+1}$ (resp. $D_{-1}$) are specified by the marginal $D_X$ and the $D_{+1}(y|x)$ (resp. $D_{-1}(y|x)$) described above.
 
 Here, we can think of the observations $O$ are the training examples $S$, where given $i$, $S$ is drawn from $D_i^m$ ($m$ iid draws from distribution $D_i$).
@@ -204,38 +213,44 @@ Here, we can think of the observations $O$ are the training examples $S$, where 
 \begin{lemma}
 Suppose training sample size $m \leq \frac{1}{8\epsilon^2}\ln\frac1{16\delta}$.
 Then, there exists $i \in \cbr{-1,+1}$ such that
-\[ \PP_i(\err(\hat{h}, D_i) - \min_{h \in \Hcal} \err(h, D_i) ) > \delta. \]
+\[ \PP_i\del{\err(\hat{h}, D_i) - \min_{h \in \Hcal} \err(h, D_i) } > \delta. \]
 \end{lemma}
 
 \begin{proof}
 We show the lemma in two steps.
 
-\paragraph{Step 1: reducing learning to hypothesis testing.}
+\paragraph{Step 1: reducing PAC learning to hypothesis testing.}
 $\hat{h}$ induces a ``guess'' on the hypothesis index $i$, that is,
 %let us write down the following hypothesis testing function:
-\[ \hat{i} = \hat{h}(x_0). \]
+\[ \hat{i} = \hat{h}(z_0). \]
 Note that as $\hat{h} = \Acal(S)$ is a function of training examples $S$, $\hat{i}$
-can also be written as a function of $S$ - we use symbol $f$ to denote that function.
+can also be written as a function of $S$ - we use $f$ to denote that function.
 
-We know that if $\hat{i} \neq i$, then the excess error of $\hat{h}$ is large:
-\[ \err(\hat{h}, D_i) - \min_{h \in \Hcal} \err(h, D_i) \geq 2\epsilon > \epsilon. \]
-So proving the lemma reduces to showing $\PP_i(f(S) \neq i) > \delta$
-for at least one $i$ in $\cbr{\pm 1}$.
+For a classifier $h$, it is easy to see its error rate on $D_i$ is:
+$\err(h, D_i) = \frac12 - \epsilon + 2\epsilon \one(h(z_0) \neq i)$. In addition,
+under $D_i$, $\min_{h \in \Hcal} \err(h, D_i) = \frac12 - \epsilon$, attained by a classifier
+$h \in \Hcal$ such that $h(z_0) = i$. This implies the following relationship on the events:
+\[ \cbr{f(S) \neq i} = \cbr{\hat{h}(z_0) \neq i} \subseteq \cbr{\err(\hat{h}, D_i) - \min_{h \in \Hcal} \err(h, D_i) > \epsilon} \]
+
+%\[ \err(\hat{h}, D_i) - \min_{h \in \Hcal} \err(h, D_i) = 2\epsilon \one(h(z_0) \neq i). \]
+
+%We know that if $\hat{i} \neq i$, then the excess error of $\hat{h}$ is large:
+%\[ \err(\hat{h}, D_i) - \min_{h \in \Hcal} \err(h, D_i) \geq 2\epsilon > \epsilon. \]
+So proving the lemma reduces to showing that for at least one $i$ in $\cbr{\pm 1}$, $\PP_i(f(S) \neq i) > \delta$, as this would immediately imply $\PP_i(\err(\hat{h}, D_i) - \min_{h \in \Hcal} \err(h, D_i) > \epsilon) \geq \PP_i(f(S) \neq i) > \delta$.
 
 %Note that $\hat{I}$ can also be written as a function of observation $S$, so the above is a statement about hypothesis testing error.
 
 \paragraph{Step 2: applying Le Cam's method.}
-Invoking Lemma~\ref{lem:lecam},
-we have that there exists $i$,
+Invoking Lemma~\ref{lem:lecam}, we have that there exists $i$, $\PP_i(\hat{I} \neq i) \geq \frac12 \|P_{-1} \wedge P_{+1}\|_1$. We shall show a lower bound on the right hand side.
 \begin{eqnarray}
-  \PP_i(\hat{I} \neq i)
+ \|P_{-1} \wedge P_{+1}\|_1
   &=& \frac12\sum_{o \in \Ocal} \min(P_{-1}(o), P_{+1}(o)) \nonumber \\
   &=& \frac12\sum_{S \in (\cbr{z_0} \times \cbr{\pm 1})^n} \min\del{P_{-1}(S), P_{+1}(S)}
   \label{eqn:explicit-tv}
 \end{eqnarray}
 %(z_0, y_1), \ldots, (z_0, y_n)
-How shall we reason about these probabilities
-$P_{-1}((z_0, y_1), \ldots, (z_0, y_m))$? Denote by $m_+(S)$ the number of
+\paragraph{Step 3: reducing distribution similarity to binomial tail lower bound.} Given a set $S = (z_0, y_1), \ldots, (z_0, y_m)$, how shall we reason about
+$P_{-1}(S)$, the probability of seeing dataset $S$ when examples from $S$ are drawn iid from $D_{-1}$? Denote by $m_+(S)$ the number of
 $+1$'s in $y$. Then,
 \[ P_{-1}(S) = \del{\frac12 - \epsilon}^{m_+(S)}\del{\frac12 + \epsilon}^{m-m_+(S)}. \]
 Symmetrically,
@@ -252,8 +267,8 @@ the right hand side of Equation~\eqref{eqn:explicit-tv} can be written as:
 
 Now, let us look closely at the probability that
 $\PP_{-1}(m_+(S) \geq \frac m 2)$. It can be seen that under $P_{-1}$,
-$m_+(S)$ is the sum of $m$ iid $\Ber(\frac12-\epsilon)$ random variables (i.e.  binomial distribution with $m$ trials and success probability $\frac12-\epsilon$).
-Our task is to lower bound its right tail probability, that is, the probability the empirical mean exceeds $\frac12$.
+$m_+(S)$ is the sum of $m$ iid $\Ber(\frac12-\epsilon)$ random variables (i.e. binomial distribution with $m$ trials and success probability $\frac12-\epsilon$).
+Our task is to lower bound its right tail probability, that is, the probability the empirical mean exceeds $\frac12$.~\footnote{This is an anti-concentration result, in contrast to the concentration inequalities we have shown in the first few lectures.}
 
 We invoke Slud's Inequality from probability theory:
 \begin{fact}
@@ -274,7 +289,7 @@ This concludes the proof of the lemma.
 
 \section{Proof of Lemma~\ref{lem:d}: Assouad's method}
 Assouad's method is a generalization of Le Cam's method, showing
-information-theoretic lower bounds on testing multiple hypotheses.
+information-theoretic lower bounds on testing more than two hypotheses.
 Suppose we are given $2^d$ possible distributions $P_\tau, \tau \in \cbr{\pm 1}^d$
 over the observation space $\Ocal$ (where each draw from the distribution results in an observation $O$ in $\Ocal$).
 Our task is to guess the identity of $\tau$ given $O$. Different from
@@ -282,6 +297,9 @@ the last section where we are concerned with the probability that our
 guess $\hat{\tau}$ does not agree with the true $\tau$, here we assign a
 {\em loss function} measuring the difference between $\hat{\tau}$ and $\tau$:
 \[ \ell(\hat{\tau}, \tau) = \sum_{j=1}^d \one(\hat{\tau}_j \neq \tau_j). \]
+Here we use the Hamming loss, which counts the number of coordinates the two
+vectors differ.
+
 We would like to show that if the $P_\tau$'s are close to each other (in certain sense),
 then for any tester $f$ there exists at least one $\tau$ such that under $P_\tau$,
 the expectation of $\ell(\hat{\tau}, \tau)$ will be large.
@@ -290,78 +308,110 @@ We call $\tau\stackrel{j}{\sim}\tau'$ if $\tau$ and $\tau'$ only differ
 in their $j$-th coordinate, and call $\tau \sim \tau'$ if $\tau$ and $\tau'$
 only differ in one coordinate.
 
+Similar to Le Cam's method, we will use the shorthand that $\PP_\tau$ (resp. $\EE_\tau$) denotes $\PP_{O \sim P_\tau}$ (resp. $\EE_{O \sim P_\tau}$).
+
 \begin{lemma}[Assouad's method]
-For any functions $f_1, \ldots, f_d: \Ocal \to \cbr{\pm 1}$, there exists at least one
+For any collection of functions $f = (f_1, \ldots, f_d)$, $f_i: \Ocal \to \cbr{\pm 1}$, there exists at least one
 $\tau$ in $\cbr{\pm 1}^d$, such that
 \[ \EE_{\tau} \ell(f(O), \tau) \geq \frac{d}{2} \cdot \min_{\tau, \tau': \tau \sim \tau'} \| P_\tau \wedge P_\tau' \|_1.  \]
 \label{lem:assouad}
 \end{lemma}
 
-We defer the proof to the end of this subsection. We now discuss the implication of this lemma to agnostic PAC learning.
+We defer the proof to the end of this section. We now discuss the implication of this lemma to agnostic PAC learning.
 
 \paragraph{The construction.} As $\VC(\Hcal) = d$, we can find $d$ examples
- that $z_1,\ldots,z_d$ that are shattered by $\Hcal$. That is, for any $\tau \in \cbr{\pm 1}^d$, there exists a $h$ in $\Hcal$ such that $(h(z_1), \ldots, h(z_d)) = \tau$.
+ that $z_1,\ldots,z_d$ that are shattered by $\Hcal$. That is, for any $\tau \in \cbr{\pm 1}^d$, there exists a $h_\tau$ in $\Hcal$ such that $(h(z_1), \ldots, h(z_d)) = \tau$.
 
 Define an unlabeled distribution $D_X$ as uniform over $\cbr{z_1,\ldots,z_d}$. For $\tau \in \cbr{\pm 1}^d$, define
-\[ D_\tau(y|z_i) = \begin{cases} \frac12 + 2 \tau_i \epsilon & y = +1 \\ \frac12 - 2 \tau_i \epsilon & y = -1 \end{cases}. \]
-In addition, $D_\tau$ is specified by the marginal $D_X$ and the $D_\tau(y|x)$ described above.
+\[ D_\tau(y|z_i) = \begin{cases} \frac12 + 2 \tau_i \epsilon, & y = +1, \\ \frac12 - 2 \tau_i \epsilon, & y = -1. \end{cases} \]
+In other words,
+\[ D_\tau(y|z_i) = \begin{cases} \frac12 + 2\epsilon, & y = \tau_i, \\ \frac12 - 2\epsilon, & y = \tau_i. \end{cases} \]
+For every $\tau \in \cbr{\pm 1}^d$, $D_\tau$ is specified by the marginal $D_X$ and the $D_\tau(y|x)$ described above.
 
-\paragraph{PAC learning implies low-error hypothesis testing.} Suppose the learner outputs a classifier $h$, then we can convert it to a tester $\hat{\tau} = (h(x_1), \ldots, h(x_d))$.
+\begin{lemma}
+Suppose training sample size $m \leq \frac{d}{1600\epsilon^2}$.
+Then, there exists $\tau \in \cbr{-1,+1}^d$ such that
+\[ \PP_\tau\del{\err(\hat{h}, D_\tau) - \min_{h \in \Hcal} \err(h, D_\tau) } > \frac14. \]
+\end{lemma}
+
+\begin{proof} We prove the lemma in multiple steps.
+\paragraph{Step 1: reducing PAC learning to hypothesis testing.} Suppose the learner outputs a classifier $\hat{h} = \Acal(S)$. We can convert $\hat{h}$ to a hypothesis tester $\hat{\tau} = (h(z_1), \ldots, h(z_d))$. Note that $\hat{\tau}$ can be written as $f(S)$ for some function $f$.
 %it also induces a hypothesis tester $f_h: S \to \cbr{\pm 1}^d$. Specifically,
-We observe that under $P_\tau$,
-\[ \err(h) - \err(h^\star) = \frac{4\epsilon}{d} \ell(\hat{\tau}, \tau). \]
+We observe that under distribution $D_\tau$, the error of a classifier $h$ is
+\begin{eqnarray*}
+\err(h, D_\tau)
+&=& \sum_{j=1}^d D_\tau(z_j) \del{D_\tau(\tau_j|z_j) \one(h(z_j) \neq \tau_j) +
+D_\tau(-\tau_j|z_j) \one(h(z_j) = \tau_j)} \\
+&=& (\frac12 - 2\epsilon) + \frac{4\epsilon}{d} \cdot \sum_{j=1}^d \one(h(z_j) \neq \tau_j).
+\end{eqnarray*}
+Therefore, the optimal classifier $h$ in $\Hcal$ under $D_\tau$ is $h_\tau$, which has an
+error rate of $\frac12 - 2\epsilon$. Moreover, for general classifier $h$, we have the following relationship between its excess error and the Hamming loss of its corresponding hypothesis tester:
 
-By Lemma~\ref{lem:assouad}, there exists a $\tau$ such that
-\[ \EE_\tau[\err(h) - \err(h^\star)] \geq 2 \epsilon \min_{\tau, \tau': \tau \sim \tau'} \| P_\tau \wedge P_\tau' \|_1. \]
+\begin{equation}
+  \err(h, D_\tau) - \min_{h \in \Hcal} \err(h, D_\tau) = \frac{4\epsilon}{d} \ell(\hat{\tau}, \tau).
+  \label{eqn:excess-hamming}
+\end{equation}
+
+\paragraph{Step 2: Applying Assouad's method.} By Lemma~\ref{lem:assouad} (recall that $\hat{\tau}$ can be written as $f(S)$ for some function $f$), along with Equation~\eqref{eqn:excess-hamming}, there exists a $\tau$ in $\cbr{\pm 1}^d$, such that
+\begin{equation}
+  \EE_\tau[\err(\hat{h}, D_\tau) - \min_{h \in \Hcal} \err(h, D_\tau)] \geq 2 \epsilon \min_{\tau, \tau': \tau \sim \tau'} \| P_\tau \wedge P_\tau' \|_1.
+  \label{eqn:excess-sim}
+\end{equation}
 
 Now the task comes down to lower bounding $\| P_\tau \wedge P_\tau' \|_1$ for all neighboring
 pairs $\tau$ and $\tau'$.
 
-\paragraph{Bounding the $\ell_1$ distance using KL divergence.}
+\paragraph{Step 3: Bounding the $\ell_1$ distance using KL divergence.}
 For a neighboring pair $\tau$ and $\tau'$, suppose they differ at coordinate $j$.
 What can we say about $\| P_\tau \wedge P_\tau' \|_1$? We first recall that
 \[ \| P_\tau \wedge P_\tau' \|_1 = 1 - \frac12 \| P_{\tau} - P_{\tau'} \|_1. \]
 Now, recall that in the calibration exercise, we have shown that
 \[ \| P_{\tau} - P_{\tau'} \|_1 \leq \sqrt{2 \KL(P_{\tau}, P_{\tau'})}. \]
-Now, by Lemma~\ref{lem:kl-tau},
+Now, by Lemma~\ref{lem:kl-tau} (as we will see shortly),
 \[ \KL(P_{\tau}, P_{\tau'}) \leq \frac{48 m \epsilon^2}{d}. \]
 With the choice of $m \leq \frac{d}{1600\epsilon^2}$, we have that
 \[ \KL(P_{\tau}, P_{\tau'}) < \frac{1}{32}, \]
 which implies that
 \[ \| P_\tau \wedge P_\tau' \|_1 > 1 - \frac12 \cdot \frac14 = \frac 78. \]
 
-Therefore,
-\[ \EE_\tau[\err(h) - \err(h^\star)] > \frac 74 \epsilon. \]
+THe above inequality, in conjunction with Equation~\eqref{eqn:excess-sim}, implies that
+\begin{equation}
+  \EE_\tau[\err(\hat{h}, D_\tau) - \min_{h \in \Hcal} \err(h, D_\tau)] > \frac 74 \epsilon.
+  \label{eqn:exp-err-ub}
+\end{equation}
 
-Now, observe that $W = \err(h) - \err(h^\star)$ is a random variable that takes value
-in $[0, 4\epsilon]$. If $\PP_\tau(W > \epsilon) \leq \frac 1 4$,
+\paragraph{Step 4: High expected error implies high error with decent probability.} Now, define random variable $W \defeq \err(\hat{h}, D_\tau) - \min_{h \in \Hcal} \err(h, D_\tau)$. By Equation~\eqref{eqn:excess-hamming}, $W$ lies in $[0, 4\epsilon]$. Suppose for the sake of contradiction that $\PP_\tau(W > \epsilon) \leq \frac 1 4$,
 then
 \begin{eqnarray*}
   \EE_\tau[W]
-  \leq \EE_\tau[W \one(W > \epsilon) + W \one(W \leq \epsilon)]
-  \leq 4 \epsilon \PP_\tau(W > \epsilon) + \epsilon \cdot (1-\PP_\tau(W > \epsilon))
-  \leq \frac 7 4 \epsilon,
+  &\leq& \EE_\tau[W \one(W > \epsilon) + W \one(W \leq \epsilon)] \\
+  &\leq& 4 \epsilon \PP_\tau(W > \epsilon) + \epsilon \cdot (1-\PP_\tau(W > \epsilon)) \\
+  &\leq& \epsilon + 3 \epsilon \PP_\tau(W > \epsilon) \leq \frac 7 4 \epsilon,
 \end{eqnarray*}
 contradition. Therefore, under $P_\tau$, with probability $> \frac 1 4$,
-the excess error of $\hat{h}$ is at least $\epsilon$. \qed
+the excess error of $\hat{h}$ is at least $\epsilon$.
+\end{proof}
 
-We now come back to the proof of Lemma~\ref{lem:kl-tau}.
+%We now come back to the proof of Lemma~\ref{lem:kl-tau}.
 \begin{lemma}
-\[ \KL(P_{\tau}, P_{\tau'}) \leq \frac{48\epsilon^2}{d}. \]
+For $\tau$ and $\tau'$ in $\cbr{\pm 1}^d$ such that $\tau \sim \tau'$,
+\[ \KL(P_{\tau}, P_{\tau'}) \leq \frac{48 m \epsilon^2}{d}. \]
 \label{lem:kl-tau}
 \end{lemma}
 \begin{proof}
 Let us expand $\KL(P_{\tau}, P_{\tau'})$:
 \begin{eqnarray*}
   \KL(P_{\tau}, P_{\tau'})
-  &=& \sum_{(x_1,y_1), \ldots, (x_m, y_m)} P_{\tau}((x_1,y_1), \ldots,(x_m, y_m))
+  &=& \sum_{(x_1,y_1), \ldots, (x_m, y_m) \in (\cbr{z_1,\ldots,z_d} \times \cbr{\pm 1})^m} P_{\tau}((x_1,y_1), \ldots,(x_m, y_m))
   \ln\frac{P_{\tau}((x_1,y_1), \ldots,(x_m, y_m))}{P_{\tau'}((x_1,y_1), \ldots,(x_m, y_m))} \\
-  &=& \sum_{(x_1,y_1), \ldots, (x_m, y_m)} P_{\tau}((x_1,y_1), \ldots,(x_m, y_m))
+  &=& \sum_{(x_1,y_1), \ldots, (x_m, y_m) \in (\cbr{z_1,\ldots,z_d} \times \cbr{\pm 1})^m} P_{\tau}((x_1,y_1), \ldots,(x_m, y_m))
   \sum_{i=1}^m \ln\frac{D_\tau(x_i,y_i)}{D_{\tau'}(x_i, y_i)} \\
   &=& \EE_{S \sim D_\tau^m}[ \sum_{i=1}^m \ln\frac{D_\tau(X_i,Y_i)}{D_{\tau'}(X_i, Y_i)} ] \\
   &=& m \EE_{(X, Y) \sim D_\tau} \ln\frac{D_\tau(X,Y)}{D_{\tau'}(X, Y)} \\
-  &=& m \KL(D_\tau, D_{\tau'}).
+  &=& m \KL(D_\tau, D_{\tau'}),
 \end{eqnarray*}
+where the first equality is from the definition of the KL divergence between two distributions; the second equality uses the fact that as the examples of $S$ are independent,
+$P_{\tau}((x_1,y_1), \ldots,(x_m, y_m)) = \prod_{i=1}^m D_\tau(x_i, y_i)$; the third equality follows from viewing $\sum_{i=1}^m \ln\frac{D_\tau(x_i,y_i)}{D_{\tau'}(x_i, y_i)}$ as a function of $(x_1,y_1), \ldots,(x_m, y_m)$ and using the definition of expectation; the fourth equality is from linearity of expecation, and the fact that all $(X_i, Y_i)$'s come from the same distribution $D_\tau$; the last inequality is again from the definition of KL divergence.
 
 Note that $D_\tau(x,y)$ and $D_{\tau'}(x,y)$ only differs when $x = z_j$, specifically:
 
@@ -378,13 +428,13 @@ Therefore,
 \begin{eqnarray*}
   \KL(D_\tau, D_{\tau'})
   = \sum_{(x,y)} D_\tau(x,y) \ln\frac{D_\tau(x,y)}{D_{\tau'}(x,y)}
-  = \frac{1}{d} (\frac12+2\epsilon) \ln\frac{1/2+2\epsilon}{1/2-2\epsilon} +
-                (\frac12-2\epsilon) \ln\frac{1/2-2\epsilon}{1/2+2\epsilon}
-  = \frac{1}{d} \kl(\frac12+2\epsilon, \frac12-2\epsilon).
+  = \frac{1}{d} \del{\frac12+2\epsilon} \ln\frac{1/2+2\epsilon}{1/2-2\epsilon} +
+                \del{\frac12-2\epsilon} \ln\frac{1/2-2\epsilon}{1/2+2\epsilon}
+  = \frac{1}{d} \kl\del{\frac12+2\epsilon, \frac12-2\epsilon}.
   %= \frac{2\epsilon}{d} (\ln(1+2\epsilon) - \ln(1-2\epsilon))
 \end{eqnarray*}
 The lemma is concluded in light of Lemma~\ref{lem:centr-kl}:
-\[ \KL(P_{\tau}, P_{\tau'}) = m \KL(D_\tau, D_{\tau'}) \leq \frac{48 m \epsilon^2}{d}. \]
+\[ \KL(P_{\tau}, P_{\tau'}) = m \KL(D_\tau, D_{\tau'}) \leq \frac{48 m \epsilon^2}{d}. \qedhere \]
 \end{proof}
 
 
@@ -398,18 +448,18 @@ The lemma is concluded in light of Lemma~\ref{lem:centr-kl}:
 
 \begin{lemma}
 For $\epsilon \in (0,\frac18)$, we have
-\[ \kl(\frac12+2\epsilon, \frac12-2\epsilon) \leq 48\epsilon^2. \]
+\[ \kl\del{\frac12+2\epsilon, \frac12-2\epsilon} \leq 48\epsilon^2. \]
 \label{lem:centr-kl}
 \end{lemma}
 \begin{proof}
 First, observe that
-\[ \kl(\frac12+2\epsilon, \frac12-2\epsilon) =
-(\frac12+2\epsilon) \ln\frac{1/2+2\epsilon}{1/2-2\epsilon} +
-(\frac12-2\epsilon) \ln\frac{1/2-2\epsilon}{1/2+2\epsilon}
+\[ \kl\del{\frac12+2\epsilon, \frac12-2\epsilon} =
+\del{\frac12+2\epsilon} \ln\frac{1/2+2\epsilon}{1/2-2\epsilon} +
+\del{\frac12-2\epsilon} \ln\frac{1/2-2\epsilon}{1/2+2\epsilon}
 = 4\epsilon(\ln(1+4\epsilon) - \ln(1-4\epsilon).
 \]
 Now, $\ln(1+4\epsilon) \leq 4\epsilon$. In addition,
-\[ -\ln(1-4\epsilon) \leq \frac{4\epsilon}{1-4\epsilon} \leq 8\epsilon. \]
+\[ -\ln(1-4\epsilon) = \sum_{i=1}^\infty \frac{(4\epsilon)^i}{i} \leq \sum_{i=1}^\infty (4\epsilon)^i = \frac{4\epsilon}{1-4\epsilon} \leq 8\epsilon. \]
 The lemma follows by algebra.
 \end{proof}
 
@@ -419,11 +469,11 @@ For $j$ in $\cbr{1,\ldots,d}$, define $P_{j,+}$ to be the uniform mixture of all
 \[ P_{j,+}(o) = \frac{1}{2^{d-1}} \sum_{\tau: \tau_j = +1} P_\tau(o). \]
 Similarly, define $P_{j,-}$ as the uniform mixture of all $P_\tau$'s such that $\tau_j = -1$.
 
-In addition, define
 We first show the following simple lemma.
 \begin{lemma}
-%For every $j in \cbr{1,\ldots, d}$
+For every $j in \cbr{1,\ldots, d}$,
 \[ \| P_{j,+} \wedge P_{j,-} \|_1 \geq \min_{\tau, \tau': \tau \sim \tau'} \| P_\tau \wedge P_\tau' \|. \]
+\label{lem:coord-neigh}
 \end{lemma}
 \begin{proof}
 Recall that $\| P_{j,+} \wedge P_{j,-} \|_1$ can be written in the following more intuitive form:
@@ -431,11 +481,13 @@ Recall that $\| P_{j,+} \wedge P_{j,-} \|_1$ can be written in the following mor
 Now, denote by $\tau^j$ the vector that differs with $\tau$ at coordinate $j$, we have
 \begin{eqnarray*}
   \| P_{j,+} - P_{j,-} \|_1
-   &=& \| \frac{1}{2^{\tau-1}} (\sum_{\tau: \tau_j = +1} P_{\tau} - \sum_{\tau: \tau_j = -1} P_{\tau'}) \|_1 \\
-   &=& \| \frac{1}{2^{\tau-1}} (\sum_{\tau: \tau_j = +1} P_{\tau} - P_{\tau^j}) \|_1 \\
-   &\leq& \frac{1}{2^{\tau-1}} \sum_{\tau: \tau_j = +1} \| P_{\tau} - P_{\tau^j} \| \\
-   &\leq& \max_{\tau, \tau': \tau \sim \tau'} \| P_{\tau} - P_{\tau'} \|_1
+   &=& \| \frac{1}{2^{d-1}} (\sum_{\tau: \tau_j = +1} P_{\tau} - \sum_{\tau: \tau_j = -1} P_{\tau'}) \|_1 \\
+   &=& \| \frac{1}{2^{d-1}} (\sum_{\tau: \tau_j = +1} P_{\tau} - P_{\tau^j}) \|_1 \\
+   &\leq& \frac{1}{2^{d-1}} \sum_{\tau: \tau_j = +1} \| P_{\tau} - P_{\tau^j} \|_1 \\
+   &\leq& \max_{\tau: \tau_j = +1} \| P_{\tau} - P_{\tau^j} \|_1 \\
+   &\leq& \max_{\tau, \tau': \tau \sim \tau'} \| P_{\tau} - P_{\tau'} \|_1,
 \end{eqnarray*}
+where the first inequality is from triangle inequality; the second inequality is by replacing each term with the max; the third inequality is from that $\tau \sim \tau^j$.
 Therefore,
 \begin{eqnarray*}
   \| P_{j,+} \wedge P_{j,-} \|_1
@@ -445,16 +497,20 @@ Therefore,
 \end{eqnarray*}
 \end{proof}
 
-Lemma~\ref{lem:assouad} now follows straightforwardly:
+Lemma~\ref{lem:assouad} now follows straightforwardly. Consider a random index $T$ drawn uniformly at random from $\cbr{\pm 1}^d$. We will show that $f$ has a large expected loss.
+Specifically:
 \begin{eqnarray*}
   \EE_{T \sim U(\cbr{\pm 1}^d), O \sim P_T} \ell(f(O), T)
   &=& \EE \sum_{j=1}^d \one(f_j(O) \neq T_j) \\
   &=& \sum_{j=1}^d \PP_{I \sim \U(\cbr{\pm 1}), O \sim P_{j,I}}(f_j(O) \neq I) \\
-  &=& \sum_{j=1}^d \frac12 \| P_{j,+} \wedge P_{j,-} \| \\
-  &\geq& \frac{d}{2} \cdot \min_{\tau, \tau': \tau \sim \tau'} \| P_\tau \wedge P_\tau' \| \\
+  &\geq& \sum_{j=1}^d \frac12 \| P_{j,+} \wedge P_{j,-} \| \\
+  &\geq& \frac{d}{2} \cdot \min_{\tau, \tau': \tau \sim \tau'} \| P_\tau \wedge P_\tau' \|,
 \end{eqnarray*}
+where the first equality is from the definition of $\ell$; the second equality is from linearity of expectation, and the fact that we can alternatively view $O$ as generated by the follwing process: first draw an $I \sim \U(\cbr{\pm 1})$, then draw $O$ from $P_{j,I}$;
+the first inequality is from Le Cam's Lemma (Lemma~\ref{lem:lecam}); the second inequality is from Lemma~\ref{lem:coord-neigh}.
+
 Therefore, there exists at least one $\tau$ in $\cbr{\pm 1}^d$, such that
-\[ \EE_{\tau} \ell(f(O), \tau) \geq \frac{d}{2} \cdot \min_{\tau, \tau': \tau \sim \tau'} \| P_\tau \wedge P_\tau' \|_1. \]
+\[ \EE_{\tau} \ell(f(O), \tau) \geq \frac{d}{2} \cdot \min_{\tau, \tau': \tau \sim \tau'} \| P_\tau \wedge P_\tau' \|_1. \qed \]
 
 %\begin{definition}
 %  For two distributions $Q$ and $Q'$ over finite set $\Ocal$, denote by their $\ell_1$ distance
