@@ -217,7 +217,7 @@ Then, there exists $i \in \cbr{-1,+1}$ such that
 \end{lemma}
 
 \begin{proof}
-We show the lemma in two steps.
+We show the lemma in three steps.
 
 \paragraph{Step 1: reducing PAC learning to hypothesis testing.}
 $\hat{h}$ induces a ``guess'' on the hypothesis index $i$, that is,
@@ -334,7 +334,7 @@ Then, there exists $\tau \in \cbr{-1,+1}^d$ such that
 \[ \PP_\tau\del{\err(\hat{h}, D_\tau) - \min_{h \in \Hcal} \err(h, D_\tau) } > \frac14. \]
 \end{lemma}
 
-\begin{proof} We prove the lemma in multiple steps.
+\begin{proof} We prove the lemma in four steps.
 \paragraph{Step 1: reducing PAC learning to hypothesis testing.} Suppose the learner outputs a classifier $\hat{h} = \Acal(S)$. We can convert $\hat{h}$ to a hypothesis tester $\hat{\tau} = (h(z_1), \ldots, h(z_d))$. Note that $\hat{\tau}$ can be written as $f(S)$ for some function $f$.
 %it also induces a hypothesis tester $f_h: S \to \cbr{\pm 1}^d$. Specifically,
 We observe that under distribution $D_\tau$, the error of a classifier $h$ is
