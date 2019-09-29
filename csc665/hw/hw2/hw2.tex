@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+
+\newtheorem{theorem}{Theorem}
+
+\DeclareMathOperator*{\sign}{{\rm sign}}
+\DeclareMathOperator*{\VC}{{\rm VC}}
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator*{\Ber}{{\rm Bernoulli}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\R}{{\rm R}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\EE}{\mathbb{E}} % Real numbers
+\newcommand{\PP}{\mathbb{P}} % Real numbers
+\newcommand{\Acal}{\mathcal{A}} % Real numbers
+\newcommand{\Xcal}{\mathcal{X}} % Real numbers
+\newcommand{\Hcal}{\mathcal{H}} % Real numbers
+\newcommand{\Bcal}{\mathcal{B}} % Real numbers
+\newcommand{\Fcal}{\mathcal{F}} % Real numbers
+\newcommand{\Scal}{\mathcal{S}} % Real numbers
+\newcommand{\Ical}{\mathcal{I}} % Real numbers
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+
+\title{CSC 665: Homework 2}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+Please complete the following set of exercises. You must write down your solutions \textbf{on your own}. If you have discussed with your classmates on any of the questions, please indicate so in your solutions.
+The homework is due \textbf{on Oct 10, 12:30pm, on Gradescope}. You are free to
+cite existing theorems from the textbook and course notes.
+
+\section*{Problem 1}
+Do Exercise 2.3 in (Shalev-Shwartz and Ben-David, 2014). For item 2, you can assume that the joint distribution of $(X_1, X_2)$ is continuous over $\RR^2$.
+
+
+\section*{Problem 2}
+%Show VC dimension upper and lower bounds of the following hypothesis classes:
+\begin{enumerate}
+  \item Show the following inequality: for positive $a$, $b$ and $x$,
+  if $x > 2a \ln(2a) + 2b$, then $x > a \ln x + b$.
+  \label{item:1-1}
+
+  \item Show the following basic inequality: for $n$, $d$ such that $n \geq 2$ and
+  $n \geq d$, ${n \choose {\leq d}} \leq n^{d+1}$.
+
+  \item Consider $l$ hypothesis classes $\Hcal_1, \Hcal_2, \Hcal_l$, where
+  $\VC(\Hcal_i) = v \geq 1$. Define $\Hcal \defeq \cup_{i=1}^l \Hcal_i$. Show
+  that there exists some constant $c > 0$ such that
+  \[ \VC(\Hcal) \leq c\cdot \del{v \ln(v) + \ln(l)}. \]
+  \label{item:1-3}
+
+  \item Let
+  $\Hcal = \cbr{\sign(\inner{w}{x}): w \in \RR^d, |\cbr{i: w_i \neq 0}| = k}$ be
+  the set of $k$-sparse homogenenous linear classifiers in $\RR^d$, where $k \leq d$.
+  Show that there exists some constant $c > 0$ such that
+  \[ \VC(\Hcal) \leq c \cdot \del{k \ln d}. \]
+
+  \item Consider $l$ hypothesis classes $\Hcal_1, \ldots, \Hcal_l$, where
+  $\VC(\Hcal_i) = d_i \geq 1$. Suppose $f$ is a function from $\cbr{\pm 1}^l$
+  to $\cbr{\pm 1}$ (for example, the majority function
+  $f(z_1,\ldots,z_l) = \sign(\sum_{i=1}^l z_i)$ or the parity function
+  $f(z_1,\ldots,z_l) = \prod_{i=1}^l z_i)$.
+  Define $\Hcal \defeq \cbr{ f(h_1(x), \ldots, h_l(x)): h_1 \in \Hcal_1, \ldots, h_l \in \Hcal_l}$. Show that
+  there exists some constant $c > 0$ such that
+  \[ \VC(\Hcal) \leq c \del{\sum_{i=1}^l d_i} \ln(\sum_{i=1}^l d_i). \]
+\end{enumerate}
+
+
+\section*{Problem 3}
+In this exercise, we will show that, under the {\em realizable setting}, with hypothesis class $\Hcal$ having VC dimension $d$, ERM (in fact, the consistency algorithm) will have a PAC sample complexity of $O\del{\frac1\epsilon(d \ln\frac1\epsilon + \ln\frac1\delta)}$. Suppose $S = \cbr{Z_1,\ldots,Z_m}$ a set of $m$ training examples drawn iid from distribution $D$,
+where each $Z_i = (X_i, Y_i)$ is a labeled example. In addition, $\Fcal = \cbr{\one(h(x) \neq y): h \in \Hcal}$ is the zero-one loss function class. Our proof will mostly follow the steps for showing agnostic PAC sample complexity given in the lecture.
+
+\begin{enumerate}
+\item \textbf{Double Sampling Trick.} Fix a training set $S$. Suppose $\EE_S f(Z) = 0$ and $\EE_D f(Z) \geq \epsilon$. Show that for a fresh set of random examples $S'$ of size $m$ ($m \geq \frac{16}{\epsilon}$) sampled iid from $D$:
+\[ \PP_{S' \sim D^m}\del{ \EE_{S'} f(Z) \geq \frac \epsilon 2} \geq \frac 1 2. \]
+
+\item \textbf{Conditioning.} Denote by events
+\[ E' \defeq \cbr{\text{there exists } f \in \Fcal, \EE_S f(Z) = 0, \EE_{S'} f(Z) \geq \frac \epsilon 2}, \]
+\[ E \defeq \cbr{\text{there exists } f \in \Fcal, \EE_S f(Z) = 0, \EE_D f(Z) \geq \epsilon}. \]
+Show $\PP_{S, S' \sim D^m}(E'|E) \geq \frac 12$, and conclude that $\PP_{S \sim D^m}(E) \leq 2\PP_{S, S' \sim D^m}(E')$.
+
+\item \textbf{Symmetrization.} Introduce $\sigma = (\sigma_1,\ldots,\sigma_m)$ where each $\sigma_i \in \cbr{\pm 1}$. Denote by
+\[
+  (W_i, W_i') = \begin{cases} (Z_i, Z_i') & \sigma_i = +1, \\ (Z_i', Z_i) & \sigma_i = -1. \end{cases}
+\]
+Show that
+\[ \PP_{S, S' \sim D^m}(E') = \PP_{S, S' \sim D^m, \sigma \sim \R^n}\del{\text{exists } f \in \Fcal, \sum_{i=1}^m f(W_i) = 0, \sum_{i=1}^m f(W_i') \geq \frac{m\epsilon}{2}}, \]
+where $\R$ is the Rademacher distribution, i.e. uniform in $\cbr{\pm 1}$.
+%Show that for every fixed $\sigma$, $(W_1,\ldots,W_n,$
+
+\item \textbf{The randomness in Rademacher random variables.} Fix two size $m$ training sets $S$ and $S'$. Show that for a fixed classifier
+$f$ in $\Fcal$,
+\[ \PP_{\sigma \sim \R^n} \del{ \sum_{i=1}^m f(W_i) = 0, \sum_{i=1}^m f(W_i') \geq \frac{m\epsilon}{2} } \leq \exp(-\frac{m\epsilon}{4}).  \]
+
+\item Use the above items to conclude that for $m \geq \frac{16}{\epsilon}$,
+\[ \PP_{S \sim D^m}(\text{there exists } f \in \Fcal, \EE_S f(Z) = 0, \EE_D f(Z) \geq \epsilon) \leq 2 \Scal(\Fcal, 2n) \exp{-\frac{m\epsilon}{4}}. \]
+In addition, show that ERM has a PAC sample complexity of $O\del{\frac1\epsilon(d \ln\frac1\epsilon + \ln\frac1\delta)}$.
+\end{enumerate}
+
+
+\section*{Problem 4}
+In this exercise, we develop sample complexity lower bounds for {\em realizable} PAC learning using Le Cam's method and Assouad's method. Suppose hypothesis class $\Hcal$ has VC dimension $d \geq 2$, and it shatters examples $z_0, z_1, \ldots, z_{d-1}$. In additon, suppose $\epsilon, \delta \in (0,\frac18)$ are target error and target failure probability.
+A learning algorithm $\Acal$ is a mapping from training set $S$ to $\cbr{\pm 1}$.
+In the following, you can use the elementary fact that for $x \in (0,\frac12)$, $e^{-x} \geq 1-x \geq e^{-2x}$.
+
+
+\begin{enumerate}
+\item Consider $D_{-1}$ and $D_{+1}$ as follows: for every $i$ in $\cbr{\pm 1}$,
+\[ D_{i}(x,y) = \begin{cases} 1-2\epsilon, & (x,y) = (z_0, -1), \\
+                                2\epsilon, & (x,y) = (z_1, i), \\
+                                0 & \text{otherwise.} \end{cases}  \]
+Note that $\min_{h \in \Hcal} \err(h', D_i) = 0$ for both $i \in \cbr{\pm 1}$.
+                                 %\quad
+ %D_{+1}(x,y) = \begin{cases} 1-2\epsilon, & (x,y) = (z_0, -1), \\
+  %                              2\epsilon, & (x,y) = (z_1, +1), \\
+  %                              0 & \text{otherwise.} \end{cases}
+For every $j$, denote by $P_{j}((x_i,y_i)_{i=1}^m) = \prod_{i=1}^m D_{j}(x_i, y_i)$ the distribution over training sets (observations).
+%Suppose index $I$
+%is drawn uniformly at random from $\cbr{\pm 1}$.
+%_{I \sim \U(\cbr{\pm 1})}
+Use Le Cam's method to show that for any hypothesis tester $f$, there exists an $i$
+in $\cbr{\pm 1}$, such that
+\[ \PP_i( f(S) \neq I ) > \frac12 (1-4\epsilon)^m. \]
+
+
+%(Hint: Define $A = \cbr{S = (x_i,y_i)_{i=1}^m: x_i = z_0 \text{ for all } i }$. Show that
+% $\PP_{-1}(S) = \PP_{+1}(S)$ for all $S$ in $A$. In addition, for
+% $i \in \cbr{\pm 1}$, $\PP_i(S \in A) \geq 2\delta$. Intuitively,
+%seeing only example $z_0$ does not help figuring out the label of $z_1$.)
+
+\item Conclude that for any learning algorithm $\Acal$, if sample size $m \leq \frac{1}{4\epsilon}\ln\frac1{4\delta}$, then there exists an $i$ in $\cbr{\pm 1}$,
+\[ \PP_i( \err(\hat{h}, D_i) > \epsilon) > \delta. \]
+
+%(which is important for ensuring an error rate at most $\epsilon$.)
+
+\item For every $\tau \in \cbr{\pm 1}^{d-1}$, consider $D_{\tau}$ as follows:
+\[ D_{\tau}(x,y) = \begin{cases} 1-4\epsilon, & (x,y) = (z_0, -1), \\
+                                \frac{4\epsilon}{d-1}, & (x,y) = (z_i, \tau_i) \text{ for some} i \in \cbr{1,\ldots,d-1}, \\
+                                0 & \text{otherwise.} \end{cases} \]
+Note that $\min_{h \in \Hcal} \err(h', D_\tau) = 0$ for all $\tau \in \cbr{\pm 1}^{d-1}$.
+For every $\tau$, denote by $P_\tau((x_i,y_i)_{i=1}^m) = \prod_{i=1}^m D_\tau(x_i, y_i)$ the distribution over training sets (observations).
+
+%For any $\tau \in \cbr{-1,+1}^d$, let $P_\tau$ be:
+
+Use Assouad's method to show that for any hypothesis tester $f_1, \ldots, f_{d-1}$, there exists $\tau \in \cbr{\pm 1}^{d-1}$,
+
+%\EE_{\tau \sim \U(\cbr{\pm 1}^d)}
+
+\[ \EE_\tau \sbr{\sum_{j=1}^{d-1} \one(f_j(S) \neq \tau_j)} > \frac {d-1} 2 \del{1-\frac{4\epsilon}{d-1}}^m. \]
+
+
+\item Conclude that for any learning algorithm $\Acal$, suppose that sample size $m \leq \frac{d-1}{128\epsilon}$, then there exists a $\tau \in \cbr{\pm 1}^d$, such that
+\[  \PP_\tau( \err(\hat{h}, D_\tau) > \epsilon) > \frac14. \]
+
+\end{enumerate}
+
+\section*{Hints}
+\begin{enumerate}
+  \item[2.1] Use the elementary fact that $\ln(z) \leq z - 1$ for $z = \frac{x}{2a}$.
+  \item[2.2] Use the elementary fact that ${n \choose i} \leq n^i$.
+  \item[2.3] (1) consider $S$ of size $n$ shattered by $\Hcal$. We know that
+  $|\Pi_\Hcal(S)| = 2^n$.
+  Use Sauer's Lemma to obtain an upper bound on $|\Pi_\Hcal(S)|$ in terms of $v$. (2)
+  consider using the contrapositive of item~\ref{item:1-1}.
+  \item[2.4] Write $\Hcal$ as a union of $d \choose k$ hypothesis classes, each of which has VC dimension $k$, then apply item~\ref{item:1-3}.)
+  \item[3.1] Use Chernoff bound for Bernoulli distributions (the version with exponent $-\frac{m p\mu^2}{4})$.
+  \item[3.4] Consider three cases: (1) there exists some $i$, $(f(Z_i), f(Z_i')) = (1,1)$; (2) $\sum_{i=1}^m f(Z_i) + f(Z_i') < \frac{m\epsilon}{2}$; (3) both (1) and (2) are not satisfied. Observe that in the first two cases, the probability is identically zero.
+
+  \item[4.1] Consider observation $S = ((z_0,-1), \ldots, (z_0,-1))$. Show that $\PP_{-1}(S) = \PP_{+1}(S)$.
+  \item[4.2] Define an appropriate hypothesis tester $f$ that depends on $\Acal$.
+  \item[4.3] Define $A_j = \cbr{S = (x_i, y_i)_{i=1}^m: x_i \neq z_j \text{ for all } i}$. Show that for every $\tau \stackrel{j}{\sim} \tau'$, $\PP_{\tau}(S) = \PP_{\tau'}(S)$ for all $S$ in $A_j$. In addition, for
+   $\sigma \in \cbr{\tau, \tau'}$, $\PP_\sigma(S \in A_j) > \frac78$. Intuitively,
+  seeing only examples other than $z_j$ does not help determining the optimal classifier's labeling on $z_j$.
+  \item[4.4] First show that $\sum_{j=1}^{d-1} \one(f_j(S) \neq \tau_j) > \frac{d-1}{2}$ with probability $> \frac14$. Then define an appropriate hypothesis tester $f = (f_1,\ldots,f_{d-1})$ that depends on $\Acal$.
+\end{enumerate}
+
+
+\section*{Problem 5 (No need to submit)}
+In this problem, we develop an alternative proof of Sauer's Lemma: any hypotheis class $\Hcal$ with VC dimension $d$ can have at most ${n \choose {\leq d}}$ labelings
+on any dataset $S = \cbr{z_1,\ldots,z_n}$. Throughout, we will be using the notation that
+\[ {\cbr{1,\ldots,n} \choose d+1} \defeq \cbr{(i_1, \ldots, i_{d+1}): 1 \leq i_1 < \ldots < i_{d+1} \leq n} \]
+to denote the set of $(d+1)$-tuples whose entries are distinct.
+Note that $\abs{{\cbr{1,\ldots,n} \choose {d+1}}} = {n \choose {d+1}}$.
+%which denotes all $d+1$-tuples of indices of size
+
+\begin{enumerate}
+\item Show that for any indices $I = (i_1, \ldots, i_{d+1}) \in {\cbr{1,\ldots,n} \choose {d+1}}$, there exists a string $s_I \in \cbr{\pm 1}^{d+1}$, such that none of the labelings in
+\[ L_I = \cbr{ b \in \cbr{\pm 1}^n: (b_{i_1}, \ldots, b_{i_{d+1}}) = s_I } \]
+are achievable by classifiers in $\Hcal$.
+
+\item Show the following basic facts:
+\begin{enumerate}
+\item For a finite set $A$ and a function $f$, denote by $f(A) = \cbr{f(a): a \in A}$. Then $|f(A)| \leq |A|$, where $|B|$ denotes the cardinality of set $B$.
+\item Suppose $\Ical$ is a set of indices. Given a collection of sets $\cbr{L_I}_{I \in \Ical}$ and a function $f$,
+\begin{equation}
+  \abs{ \bigcup_{I \in \Ical} f(L_I)} \leq \abs{\bigcup_{I \in \Ical} L_I }.
+  \label{eqn:map-card}
+\end{equation}
+\end{enumerate}
+
+\item Use the above two facts to conclude that
+\[ \abs{ \bigcup_{I \in {\cbr{1,\ldots,n} \choose {d+1}}} L_I } \geq \sum_{i=d+1}^n {n \choose i}. \]
+(Hint: consider functions $f_1, \ldots, f_n$, where $f_i(s_1, \ldots, s_n) = (s_1, \ldots, s_{i-1}, -1, s_{i+1}, \ldots, s_n)$ is the function that sets a length $n$ string's $i$-th entry to $-1$. Iteratively applying Equation~\eqref{eqn:map-card} for $f_1,\ldots,f_n$, what do you get?)
+\label{item:5-3}
+
+\item Use item~\ref{item:5-3} to conclude that $|\Pi_\Hcal(S)| \leq {n \choose \leq d}$.
+\end{enumerate}
+
+\end{document}
