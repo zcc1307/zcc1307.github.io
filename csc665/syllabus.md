@@ -101,7 +101,7 @@ There will be a total of 7 programming/written assignments paced at around one a
 * A7:    Multi-armed bandits and linear bandits
 
 #### Final Examination or Project
-This course will have a comprehensive written open-book final examination. Information on the final exam
+This course will have a comprehensive written open-book final examination, on 12/18 from 1pm-3pm at PAS 414. Information on the final exam
 regulations and schedule:
 <https://www.registrar.arizona.edu/courses/final-examination-regulations-and-information>
 <http://www.registrar.arizona.edu/schedules/finals.htm>

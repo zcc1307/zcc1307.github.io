@@ -1,0 +1,244 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+\usepackage{algorithm, algorithmic}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{claim}{Claim}
+\newtheorem{fact}{Fact}
+
+\DeclareMathOperator*{\hinge}{{\rm hinge}}
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator{\Rad}{{\mathrm{Rad}}}
+\DeclareMathOperator*{\R}{{\rm R}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+%\DeclareMathOperator*{\Hcal}{{\cal H}}
+\DeclareMathOperator*{\Ycal}{{\cal Y}}
+\DeclareMathOperator*{\Acal}{{\cal A}}
+\DeclareMathOperator*{\Zcal}{{\cal Z}}
+%\DeclareMathOperator*{\Fcal}{{\cal F}}
+\DeclareMathOperator*{\Scal}{{\cal S}}
+\DeclareMathOperator*{\Ical}{{\cal I}}
+\DeclareMathOperator*{\argmin}{{\rm argmin}}
+\DeclareMathOperator*{\argmax}{{\rm argmax}}
+\DeclareMathOperator*{\maximize}{{\rm maximize}}
+\DeclareMathOperator*{\minimize}{{\rm minimize}}
+\DeclareMathOperator*{\st}{{\rm s.t.}}
+\DeclareMathOperator*{\VC}{{\rm VC}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Ocal}{\mathcal{O}}
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\DeclareMathOperator*{\Ber}{{\rm Bernoulli}}
+
+\title{CSC 665: Support Vector Machines}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+\section{Support vector machines - the maximum margin hyperplane problem}
+We consider linear classification, where examples $(x_i,y_i)_{i=1}^m$ are such that
+$x_i \in \RR^d$ are features, and $y_i \in \cbr{\pm 1}$ are binary labels.
+
+Suppose that the training set $S = (x_i,y_i)_{i=1}^m$ is linearly separable, i.e.
+there exists a linear classifier $(w,b) \in \RR^{d+1}$, such that for all $i$,
+\begin{equation}
+  \begin{cases} \inner{w}{x_i} + b > 0 & y_i = +1, \\ \inner{w}{x_i} + b < 0 & y_i = -1. \end{cases}
+    \label{eqn:ls}
+  \end{equation}
+
+One way to train a linear classifier would be to use the consistency algorithm, i.e.
+solving a linear program, that finds a $(w,b)$ such that Equation~\eqref{eqn:ls} holds.
+However, note that not all consistent linear classifiers are created equal: some of them are closer to training examples than others. Formally, the distance of a point $x$ in $\RR^d$ to a hyperplane $H_{w,b} = \cbr{x_0: w \cdot x_0 + b = 0}$ is defined as the shortest distance of $x$ to any of the points in $H_{w,b}$:
+\begin{equation}
+  d(x, H_{w,b}) = \min\cbr{\|x - x_0\|: w \cdot x + b = 0}.
+\end{equation}
+Can we calculate this distance analytically? First, let us assume without loss of generality that $\| w \| = 1$, as any hyperplane $H_{w',b'}$ can be written as $H_{w,b}$ for $\| w \| = 1$ by letting $w = \frac{w'}{\|w'\|}$ and $b = \frac{b'}{\|w'\|}$. Now, consider a point $x_0 \in H_{w,b}$ such that $x_0 = x + \alpha w$ for some $\alpha$. What is the value of $\alpha$? Note that
+\[ \inner{w}{x + \alpha w} + b = 0, \]
+which implies that $\alpha = -(\inner{w}{x} + b)$.
+\begin{claim}
+For all $x_1$ in $H_{w,b}$,
+\begin{equation}
+  \| x_1 - x \| \geq \| x_0 - x\|.
+  \label{eqn:proj}
+\end{equation}
+Consequenty, $d(x, H_{w,b}) = |\inner{w}{x} + b|$.
+\end{claim}
+\begin{proof}
+Note that $x_0$ and $x_1$ are both in $H_{w,b}$, $\inner{w}{x_0} + b = \inner{w}{x_1} + b = 0$. Therefore,
+$\inner{x_1 - x_0}{w} = 0$. In other words,
+\[ \inner{x_1 - x_0}{x_0 - x} = 0. \]
+Now, by Pythagorean theorem,
+\[ \| x - x_1 \|^2 = \| x - x_0 \|^2 + \| x_0 - x_1 \|^2 \geq \| x - x_0 \|^2,  \]
+whch proves Equation~\eqref{eqn:proj}. This implies that
+\[ d(x, H_{w,b}) = \| x - x_0 \| = |\inner{w}{x} + b|. \]
+\end{proof}
+
+Here is a proposal:
+\begin{quote}
+  Find the linear classifier $(w,b)$ that not only separates the examples but also maximizes the minimum distances to all examples.
+\end{quote}
+Why is the proposal sensible? One observation is that this classifier is the most ``robust''. For example, if test examples happen to be just a little distance away from training examples (with the same labels), then this classifier would still classify such examples correctly.
+
+Formally, we can describe the proposal as an optimization problem:
+\begin{align}
+  \maximize_{w,b,A} \quad & A & \label{eqn:orig} \\
+    \st \quad & A > 0, \quad \| w \| = 1, & \nonumber \\
+    &  y_i(\inner{w}{x_i} + b) > 0, &\forall i \in \cbr{1,\ldots,n},\nonumber \\
+    & |\inner{w}{x_i} + b| \geq A, & \forall i \in \cbr{1,\ldots,n}. \nonumber
+\end{align}
+
+The above program is not a convex program, and is difficult to optimize directly.
+Let's make a few transformations to make it a convex program - i.e. finding a convex optimization problem whose solution is related to that of the above optimization problem.
+
+Let's consider the following optimization problem:
+\begin{align}
+  \maximize_{w,b,A} \quad & A & \label{eqn:pos} \\
+    \st \quad & A > 0, \quad \| w \| = 1, & \nonumber \\
+    &  y_i(\inner{w}{x_i} + b) \geq A, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+    %& |\inner{w}{x_i} + b| \geq A, & \forall i \in \cbr{1,\ldots,n}.
+\end{align}
+Our claim is that the above two optimization problems have the same solutions. Why?
+Because under $A > 0$, constraints $y_i(\inner{w}{x_i} + b) > 0$ and $|\inner{w}{x_i} + b| \geq A$, together, are equivalent to $y_i(\inner{w}{x_i} + b) \geq A$, as $y_i \in \cbr{\pm 1}$. For every $i$, the quantity $y_i(\inner{w}{x_i} + b)$ is the {\em margin} of halfspace $H_{w,b}$ on example $(x_i, y_i)$.
+Therefore the above is also called the ``maximum margin hyperplane'' problem.
+
+Now let $w' = \frac{w}{A}$, $b' = \frac{b}{A}$. Note that the above optimization
+problem is equivalent to
+\begin{align}
+  \maximize_{w',b',A} \quad & A & \nonumber \\
+    \st \quad & A > 0, \quad \| w' \| = \frac{1}{A}, & \nonumber \\
+    &  y_i(\inner{w'}{x_i} + b') \geq 1, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+    %& |\inner{w}{x_i} + b| \geq A, & \forall i \in \cbr{1,\ldots,n}.
+\end{align}
+Furthermore, this is equivalent to
+\begin{align}
+  \minimize_{w',b'} \quad & \| w' \| & \nonumber \\
+    \st \quad &  y_i(\inner{w'}{x_i} + b') \geq 1, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+    %& |\inner{w}{x_i} + b| \geq A, & \forall i \in \cbr{1,\ldots,n}.
+\end{align}
+As the function $x \mapsto \frac12 x^2$ is monotonically increasing for $x > 0$, we get that the above is
+equivalent to
+\begin{align}
+  \minimize_{w',b'} \quad & \frac12 \| w' \|^2 & \label{eqn:svm} \\
+    \st \quad &  y_i(\inner{w'}{x_i} + b') \geq 1, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+    %& |\inner{w}{x_i} + b| \geq A, & \forall i \in \cbr{1,\ldots,n}.
+\end{align}
+
+Optimization problem~\eqref{eqn:orig} is called the {\em support vector machine} (SVM). Note that its constraints are all linear inequalities, which defines a convex constraint set. In addition, its optimization objective is a quadratic function over optimization variables, which is a convex function. This implies that it is a {\em convex optimization} problem.
+
+\paragraph{Recovering the optimal solution of~\eqref{eqn:orig}.} Suppose we have a solution of~\eqref{eqn:svm}, written as $(w'^\star, b'^\star)$. Note that the optimal $A$ in~\eqref{eqn:pos} (thus, in~\eqref{eqn:orig}) is $1/\| w'^\star \|$, which is the value of the minimum margin.
+This implies that in~\eqref{eqn:pos} (thus, in~\eqref{eqn:orig}), $w^\star = A^\star w'^\star = \frac{w'^\star}{\|w'^\star\|}$,
+$b^\star = A^\star b'^\star = \frac{b'^\star}{\|w'^\star\|}$.
+The optimal hyperplane is simply $H_{w^\star,b^\star} = H_{w'^\star, b'^\star}$.
+
+
+\paragraph{Optimality condition.} To avoid notation clutter, let us drop the apostrophes in optimization problem~\eqref{eqn:svm}:
+\begin{align}
+  \minimize_{w,b} \quad & \frac12 \| w \|^2 & \label{eqn:svm-d} \\
+    \st \quad &  y_i(\inner{w}{x_i} + b) \geq 1, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+\end{align}
+What property does the optimal solution $(w^\star, b^\star)$ have? We invoke a fundamental result from optimization.
+\begin{lemma}[Fritz John optimiality condition]
+Let $x^\star$ be the solution of
+\begin{align}
+  \minimize_{x} \quad & f(x) & \nonumber \\
+    \st \quad & g_i(x) \leq 0, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+\end{align}
+Then there exists $\alpha_1, \ldots, \alpha_m \geq 0$, such that
+\[ \nabla f(x^\star) + \sum_{i \in \Ical} \alpha_i \nabla g_i(w) = 0, \]
+where $\Ical = \cbr{i \in \cbr{1,\ldots,n}: g_i(x^\star) = 0}$.
+\end{lemma}
+Applying the lemma to~\eqref{eqn:svm-d}, we get that there exists $\alpha_1, \ldots, \alpha_m \geq 0$, such that
+\[ w^\star + \sum_{i \in \Ical} \alpha_i y_i x_i = 0, \]
+where $\Ical = \cbr{i \in \cbr{1,\ldots,n}: y_i (\inner{w}{x_i} + b) = 1}$. We call the set $\cbr{(x_i, y_i): i \in \Ical}$ the {\em support vectors}, as the optimal solution can be written as a linear combination of them, and these points has the lowest margin (all equal to 1).
+
+\subsection{The soft-margin SVM}
+Can we still train SVM if the data is not linearly separable? Note that optimization problem~\eqref{eqn:svm} will not find a solution, as now the constraint set become infeasible.
+
+We introduce slack variables $\xi_i \geq 0$ for every example $i$, to allow some example to be misclassified. In addition, we introduce a regularization parameter
+$\lambda > 0$ that trades off misclassification and margin on correct examples:
+\begin{align}
+  \minimize_{w,b,\xi} \quad & \frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i & \label{eqn:svm-sm} \\
+    \st \quad &  y_i(\inner{w}{x_i} + b) \geq 1 - \xi_i, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+    &  \xi_i \geq 0, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+    %& |\inner{w}{x_i} + b| \geq A, & \forall i \in \cbr{1,\ldots,n}.
+\end{align}
+Intuitively, when $\lambda$ is larger, it focuses more on enforcing large margin on correct examples; when $\lambda$ is smaller, it forces more on reducing misclassification.
+Notice that the last two lines can be summarized by: $\forall i \in \cbr{1,\ldots,n}$, $\xi_i \geq \max(0, 1-y_i(\inner{w}{x_i} + b))$. Therefore, the optimal choice of $\xi_i$ equals $\max(0, 1-y_i(\inner{w}{x_i} + b))$.
+Let $\phi(z) = \max(0,1-z)$ and $R(w) = \frac{\lambda}{2}\| w \|^2$. We thus can rewrite optimization problem \eqref{eqn:svm-sm} as:
+\begin{equation}
+    \minimize_{w,b} \quad \lambda R(w)  + \sum_{i=1}^n \phi(y_i(\inner{w}{x_i} + b)).
+\end{equation}
+As a convention, we call $\phi(y(\inner{w}{x} + b))$ the {\em hinge loss} of linear classifier $(w,b)$ on example $(x,y)$, written as $\ell_{\hinge}((w,b), (x,y))$. When the margin $y(\inner{w}{x} + b)$ is larger, the hinge loss is smaller. The above form is also called a {\em regularized loss minimzation} formulation, which captures a wide range of optimization problems in machine learning (by changing loss function $\phi$ and regularizer $R$), such as logistic regression, ridge regression, lasso, etc.
+
+\section{The dual of SVM; kernel trick}
+Every constrained convex optimization problem has a dual optimization problem, which has exactly the same optimal value. Sometimes looking at the dual problem will yield unexpected insights about the original (primal) problem! Indeed, SVM is a canonical example for this claim.
+
+We consider the soft-margin SVM formulation \eqref{eqn:svm-sm}. To derive its dual problem, we introduce dual variables (aka Lagrange multipliers) to incorporate all constraints to the objective function:
+\[
+\min_{w,b,\xi \geq 0} \max_{\alpha \geq 0, \beta \geq 0} \del{\frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i + \sum_{i=1}^n \alpha_i \cdot (1 - \xi_i - y_i(\inner{w}{x_i} + b)) - \sum_{i=1}^n \beta_i \xi_i}
+\]
+
+It can be shown~\footnote{by checking the Slater condition, that is, there exists $w,b,\xi$ such that all inequalities in \ref{eqn:svm-sm} are stict} that the above is equivalent to
+\[
+\max_{\alpha \geq 0, \beta \geq 0} \min_{w,b,\xi \geq 0} \del{\frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i + \sum_{i=1}^n \alpha_i \cdot (1 - \xi_i - y_i(\inner{w}{x_i} + b)) - \sum_{i=1}^n \beta_i \xi_i}
+\]
+Note that the inner minimization can be written as follows:
+\[ \sum_{i=1}^n \alpha_i + \min_{w} \del{ \frac \lambda 2 \| w \|^2 - \inner{w}{\sum_{i=1}^n \alpha_i y_i x_i}} + \min_{b} (-b \cdot \sum_{i=1}^n y_i \alpha_i) + \sum_{i=1}^n \min_{\xi_i \geq 0} \xi_i(1-\alpha_i-\beta_i) \]
+
+Let us denote by $h(z) = \begin{cases} -\infty & z < 0 \\ 0 & z \geq 0 \end{cases}$
+and $g(z) = \begin{cases} -\infty & z = 0 \\ 0 & z \neq 0 \end{cases}$. The optimal value of the inner optimization problem is
+\[ \sum_{i=1}^n \alpha_i - \frac{1}{2\lambda} \|\sum_{i=1}^n \alpha_i y_i x_i\|^2 + g(\sum_{i=1}^n y_i \alpha_i) + \sum_{i=1}^n h(1-\alpha_i-\beta_i). \]
+
+Therefore, the dual problem is equivalent to:
+\begin{align}
+  \maximize_{\alpha, \beta} \quad & \sum_{i=1}^n \alpha_i - \frac{1}{2\lambda} \|\sum_{i=1}^n \alpha_i y_i x_i\|^2 & \label{eqn:svm-dual} \\
+    \st \quad &  \alpha_i + \beta_i \leq 1, &\forall i \in \cbr{1,\ldots,n}, \nonumber \\
+    &  \sum_{i=1}^n y_i \alpha_i = 0, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+    %& |\inner{w}{x_i} + b| \geq A, & \forall i \in \cbr{1,\ldots,n}.
+\end{align}
+%Moreover, the solutions of the s
+
+
+%\begin{theorem}[Sion's minimax theorem]
+%Suppose $f(x,y)$ is a convex-concave function, i.e. for any fixed $y_0$, $f(x,y_0)$ is a convex function in $x$, and for any fixed $x_0$, $f(x_0, y)$ is a concave function in $y$. In addition suppose
+%\end{theorem}
+
+%Suppose $(w^\star, b^\star, A^\star)$ is optimal for~\eqref{eqn:orig}. By linear separability, $A^\star > 0$, which implies that $y_i(\inner{w^\star}{x_i} + b^\star) = |\inner{w^\star}{x_i} + b^\star| \geq A^\star$. This implies that
+
+
+ %The optimal solutions in both optimization problems must satisfy that $A > 0$, which implies that
+
+
+%that is, find the hyperplane that maximize the minimum distance to all training examples
+
+%if the supports of positive and negative examples are in two clusters far away from each other, then the classifier we find would
+%
+
+
+\bibliographystyle{plain}
+\bibliography{learning}
+%\section{}
+
+
+\end{document}

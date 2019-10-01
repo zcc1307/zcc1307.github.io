@@ -16,7 +16,7 @@ Tentative schedule:
 |Sep 19 | Information-theoretic lower bounds of PAC learning |  | SSBD 28.2.1  | |
 |Sep 24 | Le Cam's method |  | SSBD 28.2.1 | |
 |Sep 26 | Assouad's method | [Lower bound note](notes/lower_bound.pdf) | SSBD Sec 28.2.2, Sec 5.1  | [HW2](hw/hw2/hw2.pdf) [tex file](hw/hw2/hw2.tex) |
-|Oct 1  | Support Vector Machine; Margin bounds  | | SSBD Chap 10, Chap 15, Secs 26.2, 26.3 | |
+|Oct 1  | Support Vector Machine; Margin bounds  | [SVM note](notes/svm.pdf) | SSBD Chap 10, Chap 15, Secs 26.2, 26.3 | |
 |Oct 3  | Boosting | | SSBD Sec 26.2, 26.4 | |
 |Oct 8  | Backgrounds on convex functions | | SSBD Chap 12 | |
 |Oct 10 | Midterm exam | | | |

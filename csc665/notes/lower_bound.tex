@@ -517,6 +517,63 @@ Therefore, there exists at least one $\tau$ in $\cbr{\pm 1}^d$, such that
 %  \[ \| Q - Q' \|_1 \defeq \sum_{o \in \Ocal} |Q(o) - Q'(o)|. \]
 %\end{definition}
 
+\section{The fundamental theorem of statistical learning}
+
+We first recall the following definition from PAC learning. Note that agnostic PAC learnability is a {\em distribution-free} concept, that is, it is only a property of
+a hypothesis class.
+
+\begin{definition}
+$\Hcal$ is said to be agnostic PAC learnable if
+there exists a function $m_A: (0,1)^2 \to \NN$, and an algorithm $\Acal$, such that for any distribution $D$, for any $\epsilon, \delta > 0$, if $m \geq m_A(\epsilon, \delta)$, then with probability $1-\delta$ over the draw of $m$ training examples,
+\[ \err(\Acal(S), D) - \min_{h' \in \Hcal} \err(h',D) \leq \epsilon. \]
+\end{definition}
+
+We next define the uniform convergence property - that is, all classifiers' empirical error and generalization error are closer to each other as the sample size grows with high probability.
+
+\begin{definition}
+$\Hcal$ is said to satisfy the uniform convergence property if
+there exists a function $m_U: (0,1)^2 \to \NN$ such that for any distribution $D$, for any $\epsilon, \delta > 0$, if $m \geq m_U(\epsilon, \delta)$, then with probability $1-\delta$ over the draw of $m$ training examples,
+\[ \abs{\err(h, S) - \err(h,D)} \leq \epsilon. \]
+\end{definition}
+
+\begin{theorem}[The fundamental theorem of statistical learning]
+The following are equivalent:
+\begin{enumerate}
+\item $\Hcal$ satisfies the uniform convergence property.
+\label{item:uc}
+\item $\Hcal$ is agnostic PAC learnable with ERM.
+\label{item:erm}
+\item $\Hcal$ is agnostic PAC learnable.
+\label{item:pac}
+\item $\Hcal$ has finite VC dimension.
+\label{item:vc}
+\end{enumerate}
+\end{theorem}
+
+Remarks:
+\begin{enumerate}
+  \item For binary classification, finite VC dimension is  sufficient and necessary for distribution-free agnostic PAC learning. Intuitively, suppose
+$\Hcal$ is a model class (or scientific theory) that tries to ``explain'' the data (experiments). If $\Hcal$ has infinite VC dimension (``infalsifiable''), then there is no reliable way to use the theory to make future predictions of scientific outcomes.
+
+  \item ERM is optimal, in the sense that if there exists an algorithm has a finte sample complexity for agnostically learning $\Hcal$, then ERM must also have a finite sample complexity for the same task. Moreover, ERM has a optimal agnostic PAC sample complexity of $\frac{1}{\epsilon^2}(d + \ln\frac{1}{\delta})$ (by a chaining argument). However, it is known that ERM does not achieve optimal {\em realizable} PAC sample complexity - see~\cite{simon2015almost, hanneke2016optimal} for discussions.
+
+\end{enumerate}
+
+\begin{proof}
+(\ref{item:uc} $\Rightarrow$ \ref{item:erm}) Let $m_A(\epsilon, \delta) = m_U(\epsilon/2, \delta)$ and use the analysis of ERM.
+
+(\ref{item:erm} $\Rightarrow$ \ref{item:pac}) This is trivial.
+
+(\ref{item:pac} $\Rightarrow$ \ref{item:vc}) We use proof by contradiction.
+If $\VC(\Hcal) = \infty$, then by Theorem~\ref{thm:lb} with $\epsilon = \frac 1 {16}$ and $\delta = \frac 1 {16}$, we know that for any algorithm $\Acal$ and any sample size $m$, we can find a distribution $D$ such that
+\[ \PP_{S \sim D^m} \del{\err(\Acal(S), D) - \min_{h' \in \Hcal} \err(h', D) > \frac{1}{16}} > \frac{1}{16}. \]
+This contradicts with the fact that $\Hcal$ is agnostic PAC learnable (which implies that
+$m_A(\frac 1 {16}, \frac 1 {16})$ is finite).
+
+(\ref{item:vc} $\Rightarrow$ \ref{item:uc}) See Theorem 1 of the "Rademacher Complexity" note.
+\end{proof}
+
+
 \bibliographystyle{plain}
 \bibliography{learning}
 %\section{}
