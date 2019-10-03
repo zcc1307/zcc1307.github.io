@@ -24,6 +24,7 @@
 \DeclareMathOperator*{\N}{{\rm N}}
 \DeclareMathOperator*{\Var}{{\rm Var}}
 \DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\sign}{{\rm sign}}
 \DeclareMathOperator*{\Xcal}{{\cal X}}
 %\DeclareMathOperator*{\Hcal}{{\cal H}}
 \DeclareMathOperator*{\Ycal}{{\cal Y}}
@@ -247,10 +248,14 @@ It can also be verified that there exists at least one $i$, $y_i(\inner{w^\star}
 %\[ w^\star + \sum_{i \in \Ical} \alpha_i y_i x_i = 0, \]
 %where $\Ical = \cbr{i \in \cbr{1,\ldots,n}: y_i (\inner{w}{x_i} + b) = 1}$. We call the set $\cbr{(x_i, y_i): i \in \Ical}$ the {\em support vectors}, as the optimal solution can be written as a linear combination of them, and these points has the lowest margin (all equal to 1).
 
-\subsection{The soft-margin SVM}
-Can we still train SVM if the data is not linearly separable? Note that optimization problem~\eqref{eqn:svm} will not find a solution, as now the constraint set become infeasible.
+\subsection{Coping with linear non-spearability}
+Can we still train SVM if the data is not linearly separable? Note that optimization problem~\eqref{eqn:svm} will not find a solution, as now the constraint set become infeasible. Generally there are two ways to sidestep this problem: first, introduce nonlinear feature maps; second, relax the SVM formulation to allow for training examples
+to be classified incorrectly.
 
-We introduce slack variables $\xi_i \geq 0$ for every example $i$, to allow some example to be misclassified. In addition, we introduce a regularization parameter
+For the first approach, we can consider having a feature map $\phi: \RR^d \to \RR^m$, so that every example $(x_i, y_i)$ is transformed to $(\phi(x_i), y_i)$. Suppose $(\phi(x_i), y_i)$ is linearly separable, then we compute a SVM over these examples to get $w^\star \in \RR^{m+1}$ and $b \in \RR$. Our output linear classifier is $\sign(\inner{w^\star}{\phi(x_i)} + b^\star)$.
+For example, suppose we have a distribution $D$ over $\RR^2 \times \cbr{\pm 1}$ such that for all examples $(x, y)$'s on the support of $D$, $x_1^2 + x_2^2 \leq 1 \Leftrightarrow y = +1$. In this case, we can introduce feature map $\phi(x) = (x_1^2, x_2^2)$ to make the dataset linearly separable.
+
+For the second approach, we introduce slack variables $\xi_i \geq 0$ for every example $i$, to allow some example to be misclassified. In addition, we introduce a regularization parameter
 $\lambda > 0$ that trades off misclassification and margin on correct examples:
 \begin{align}
   \minimize_{w,b,\xi} \quad & \frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i & \label{eqn:svm-sm} \\
@@ -265,6 +270,8 @@ Let $\phi(z) = \max(0,1-z)$ and $R(w) = \frac{\lambda}{2}\| w \|^2$. We thus can
     \minimize_{w,b} \quad \lambda R(w)  + \sum_{i=1}^n \phi(y_i(\inner{w}{x_i} + b)).
 \end{equation}
 As a convention, we call $\phi(y(\inner{w}{x} + b))$ the {\em hinge loss} of linear classifier $(w,b)$ on example $(x,y)$, written as $\ell_{\hinge}((w,b), (x,y))$. When the margin $y(\inner{w}{x} + b)$ is larger, the hinge loss is smaller. The above form is also called a {\em regularized loss minimzation} formulation, which captures a wide range of optimization problems in machine learning (by changing loss function $\phi$ and regularizer $R$), such as logistic regression, ridge regression, lasso, etc.
+
+Both approaches has its own advantages and drawbacks. For the feature transformation approach, it is unclear if a $\phi$ will guarantee that the transformed dataset satisfies linear separability. For the soft margin approach, if the dataset is highly linearly nonpseparable (e.g. the unit circle example), then as it is still learning a linear classifier, it will not perform well. It might be a good idea to combine nonlinear feature map with soft margin in practice.
 
 \section{The dual of SVM}
 Sometimes looking at the dual problem will yield unexpected insights about the original (primal) problem. Indeed, SVM is a canonical example for this statement - we have already seen that the KKT condition implies that we can write the optimal solution $w^\star$ in terms of dual optimal solution $\alpha^\star$. We have discussed the dual problem in an abstract way so far. But what exactly is the dual problem for SVM?
@@ -334,8 +341,21 @@ Compared to \eqref{eqn:svm}, this is also a quadratic program, however, its obje
 The dual of SVM \eqref{eqn:svm-dual} uncovers an interesting fact: if we would like to compute the optimal solution of \eqref{eqn:svm}, it suffices to solve the dual optimization problem, whose
 objective function only depends on the pairwise inner product between training examples (as opposed to the original feature vectors of training examples).
 
-
-
+This opens up a new opportunity: suppose we have a feature map that is extremely high dimensional (say has dimensionality $M$) but has succinct representation on pairwise inner product $\inner{\phi(x)}{\phi(x')}$ (say can be evaluated with time $m$), then we may avoid paying a time complexity of $M$ in learning the SVM classifier on the transformed examples.
+Here is the full proposal:
+\begin{enumerate}
+\item Define $k(x,x') = \inner{\phi(x)}{\phi(x')}$ be the {\em kernel function} associated with feature mapping $\phi$.
+\item Solve the dual optimization problem \eqref{eqn:svm}, get $(\alpha_i)_{i=1}^m$.
+\item By KKT condition, we can recover
+\[ w^\star = \sum_{i=1}^n \alpha_i y_i \phi(x_i), \]
+but we only store $w^\star$ {\em implicitly}, i.e. storing the value of all $\alpha_i$'s.
+\item To recover $b^\star$, find an $j$ such that $\alpha_j > 0$, and let
+\[ b^\star = y_j - \inner{w^\star}{x_j} = y_j - \sum_{i=1}^n \alpha_i^\star y_i k(x_i, x_j), \]
+where we directly evaluate $k(x_i, x_j)$ as opposed to calculating $\phi(x_i)$, $\phi(x_j)$ and take their inner product.
+\item To make prediction on future example $x$, we compute
+\[ \inner{w^\star}{\phi(x)} + b^\star = \sum_{i=1}^n \alpha_i^\star k(x_i, x) + b^\star. \]
+Same as before, we directly evaluate the kernel function.
+\end{enumerate}
 %\begin{theorem}[Sion's minimax theorem]
 %Suppose $f(x,y)$ is a convex-concave function, i.e. for any fixed $y_0$, $f(x,y_0)$ is a convex function in $x$, and for any fixed $x_0$, $f(x_0, y)$ is a concave function in $y$. In addition suppose
 %\end{theorem}
