@@ -362,6 +362,23 @@ As discussed before, each feature map corresponds to a kernel function. Some fea
 However, if we define $\phi(x) = (x_1^2, x_1 x_2, x_2^2)$, then its corresponding
 $k(x,x')$ does not have a succinct form.
 
+Basic properties of kernel functions:
+\begin{enumerate}
+\item if $K$ is the kernel function of $\phi$, then for positive $c$, $cK$ is the kernel function of $\sqrt{c} \phi$.
+\item if $K_1$ (resp. $K_2$) is the kernel function of $\phi_1$ (resp. $\phi_2$), then $K_1 + K_2$ is the kernel function of $\phi(x) = (\phi_1(x), \phi_2(x))$.
+\item if $K_1$ (resp. $K_2$) is the kernel function of $\phi_1$ (resp. $\phi_2$), then $K_1 \cdot K_2$ is the kernel function of $\phi(x) = \phi_1(x) \otimes \phi_2(x)$, where the $\otimes$ notation denotes the Kronecker product. Suppose $a = (a_1,\ldots,a_n)$ and $b = (b_1,\ldots,b_m)$. Then,
+\[ a \otimes b = \begin{bmatrix} a_1 b \\ \ldots \\ a_n b \end{bmatrix} = \begin{bmatrix} a_1 b_1\\ \ldots \\ a_1 b_m \\ \ldots \\ a_n b_1 \\ \ldots \\ a_n b_m \end{bmatrix}. \]
+The claim follow from a basic fact about Kronecker product:
+\[ \inner{a \otimes b}{c \otimes d} = \inner{a}{c} \cdot \inner{b}{d}. \]
+\end{enumerate}
+
+Popular choices of kernel functions:
+\begin{enumerate}
+\item Polynomial kernel $k(x,x') = (1 + \sum_{i=1}^d x_i x_i')^s$.
+\item Radial basis function kernel $k(x,x') = \exp(-\frac{\|x-x'\|^2}{2\sigma^2})$.
+\end{enumerate}
+It can be verified by the basic properties above that $k(x,x')$ are kernel functions. Can you find out their respective feature mappings?
+
 %\begin{theorem}[Sion's minimax theorem]
 %Suppose $f(x,y)$ is a convex-concave function, i.e. for any fixed $y_0$, $f(x,y_0)$ is a convex function in $x$, and for any fixed $x_0$, $f(x_0, y)$ is a concave function in $y$. In addition suppose
 %\end{theorem}
