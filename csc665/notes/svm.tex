@@ -356,6 +356,12 @@ where we directly evaluate $k(x_i, x_j)$ as opposed to calculating $\phi(x_i)$, 
 \[ \inner{w^\star}{\phi(x)} + b^\star = \sum_{i=1}^n \alpha_i^\star k(x_i, x) + b^\star. \]
 Same as before, we directly evaluate the kernel function.
 \end{enumerate}
+
+As discussed before, each feature map corresponds to a kernel function. Some feature map gives succinct kernel functions, whereas others may not. For example, for input domain $\RR^2$, define $\phi(x) = (x_1^2, \sqrt{2} x_1 x_2, x_2^2)$. It can be checked that its associated kernel function has a succinct form:
+\[ \inner{\phi(x)}{\phi(x')} = (x_1x_1' + x_2x_2')^2 = (\inner{x}{x'})^2. \]
+However, if we define $\phi(x) = (x_1^2, x_1 x_2, x_2^2)$, then its corresponding
+$k(x,x')$ does not have a succinct form.
+
 %\begin{theorem}[Sion's minimax theorem]
 %Suppose $f(x,y)$ is a convex-concave function, i.e. for any fixed $y_0$, $f(x,y_0)$ is a convex function in $x$, and for any fixed $x_0$, $f(x_0, y)$ is a concave function in $y$. In addition suppose
 %\end{theorem}
