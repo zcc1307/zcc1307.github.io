@@ -157,20 +157,73 @@ The optimal hyperplane is simply $H_{w^\star,b^\star} = H_{w'^\star, b'^\star}$.
   \minimize_{w,b} \quad & \frac12 \| w \|^2 & \label{eqn:svm-d} \\
     \st \quad &  y_i(\inner{w}{x_i} + b) \geq 1, &\forall i \in \cbr{1,\ldots,n}, \nonumber
 \end{align}
-What property does the optimal solution $(w^\star, b^\star)$ have? We invoke a fundamental result from optimization.
-\begin{lemma}[Fritz John optimiality condition]
-Let $x^\star$ be the solution of
+What property does the optimal solution $(w^\star, b^\star)$ have? We will take a detour and first discuss Lagrangian duality, a fundamental concept in constrained optimization. Let us first write \eqref{eqn:svm-d} as an unconstrained optimization problem over a slightly more complicated objective:
+\begin{equation}
+   \min_{w,b,\xi} \max_{\alpha \geq 0} L(w,b,\xi;\alpha),
+   \label{eqn:svm-lag}
+\end{equation}
+where $L(w,b,\xi;\alpha) = \frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \alpha_i (1 - y_i(\inner{w}{x_i} + b))$.
+
+Define $F(w,b,\xi) := \max_{\alpha \geq 0} L(w,b,\xi;\alpha)$. Observe that:
+\[
+F(x,b,\xi) =
+\begin{cases}
+-\infty, & \exists i, 1 - y_i(\inner{w}{x_i} + b) < 0 \\
+\frac \lambda 2 \| w \|^2, & \forall i, 1 - y_i(\inner{w}{x_i} + b) \geq 0
+\end{cases}
+\]
+Therefore, optimization problem~\eqref{eqn:svm-lag} is equivalent to \eqref{eqn:svm-d}. Now consider switching the orders of min and max in \eqref{eqn:svm-lag}:
+\[ \max_{\alpha \geq 0} \min_{w,b,\xi} L(w,b,\xi;\alpha). \]
+This is called the dual problem of \eqref{eqn:svm-lag} (\eqref{eqn:svm-lag} is therefore called the primal problem). Let's call the optimal primal objective $p^\star$ and the optimal dual objective $d^\star$
+It is well known that for general function $L$, $p^\star \geq d^\star$. However,
+under fairly general assumptions, it can also be shown that $p^\star = d^\star$.
+
+We state the following result from numerical optimization. Consider a constrained convex optimization problem that has both equality and inequality constraints:
 \begin{align}
   \minimize_{x} \quad & f(x) & \nonumber \\
     \st \quad & g_i(x) \leq 0, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+              & h_i(x) = 0, &\forall i \in \cbr{1,\ldots,m}, \nonumber
 \end{align}
-Then there exists $\alpha_1, \ldots, \alpha_m \geq 0$, such that
-\[ \nabla f(x^\star) + \sum_{i \in \Ical} \alpha_i \nabla g_i(w) = 0, \]
-where $\Ical = \cbr{i \in \cbr{1,\ldots,n}: g_i(x^\star) = 0}$.
-\end{lemma}
-Applying the lemma to~\eqref{eqn:svm-d}, we get that there exists $\alpha_1, \ldots, \alpha_m \geq 0$, such that
-\[ w^\star + \sum_{i \in \Ical} \alpha_i y_i x_i = 0, \]
-where $\Ical = \cbr{i \in \cbr{1,\ldots,n}: y_i (\inner{w}{x_i} + b) = 1}$. We call the set $\cbr{(x_i, y_i): i \in \Ical}$ the {\em support vectors}, as the optimal solution can be written as a linear combination of them, and these points has the lowest margin (all equal to 1).
+Similar as before, we can define Lagrange function $L(x,\alpha,\beta) = f(x) + \sum_{i=1}^n \alpha_i g_i(x) + \sum_{i=1}^m \beta_i h_i(x)$. Define
+$p^\star = \min_x \max_{\alpha \geq 0, \beta} L(x,\alpha,\beta)$, and $d^\star = \max_{\alpha \geq 0, \beta} \min_x L(x,\alpha,\beta)$, we have the following result.
+
+\begin{theorem}
+  Under mild assumptions~\footnote{in particular, the Slater condition, that is, there exists $w,b,\xi$ such that all inequality constraints in are stictly satisfied}, we have that there exists $x^\star$, $\alpha^\star$, and $\beta$, such that
+  \[ p^\star = L(x, \alpha, \beta) = d^\star. \]
+  Moreover, the following set of equations (called Karush-Kuhn-Tucker (KKT) condition) is true:
+  \begin{eqnarray*}
+    \nabla_x L(x^\star,\alpha^\star,\beta^\star) = 0 \\
+    g_i(x^\star) \leq 0 \\
+    h_i(x^\star) \leq 0 \\
+    \alpha_i \geq 0 \\
+    \alpha_i g_i(x^\star) = 0.
+  \end{eqnarray*}
+\end{theorem}
+
+Applying the theorem to SVM optimization, we immediately have that the dual optimization problem has the same optimal value as the primal optimization problem.
+In addition, in SVM, we can also recover the optimal solution from dual solution by invoking the KKT condition! To see why, note that in SVM,
+\[ \nabla_w L(w,b,\xi;\alpha) = \lambda w - \sum_{i=1}^n \alpha_i y_i x_i, \]
+which implies that
+\[ w^\star - \sum_{i=1}^n \alpha_i^\star y_i x_i. \]
+
+%How does the dual optimal solution relate to
+%optimal solution of \eqref{eqn:svm}:
+
+
+%We invoke a fundamental result from optimization.
+%\begin{lemma}[Fritz John optimiality condition]
+%Let $x^\star$ be the solution of
+%\begin{align}
+%  \minimize_{x} \quad & f(x) & \nonumber \\
+%    \st \quad & g_i(x) \leq 0, &\forall i \in \cbr{1,\ldots,n}, \nonumber
+%\end{align}
+%Then there exists $\alpha_1, \ldots, \alpha_m \geq 0$, such that
+%\[ \nabla f(x^\star) + \sum_{i \in \Ical} \alpha_i \nabla g_i(x^\star) = 0, \]
+%where $\Ical = \cbr{i \in \cbr{1,\ldots,n}: g_i(x^\star) = 0}$.
+%\end{lemma}
+%Applying the lemma to~\eqref{eqn:svm-d}, we get that there exists $\alpha_1, \ldots, \alpha_m \geq 0$, such that
+%\[ w^\star + \sum_{i \in \Ical} \alpha_i y_i x_i = 0, \]
+%where $\Ical = \cbr{i \in \cbr{1,\ldots,n}: y_i (\inner{w}{x_i} + b) = 1}$. We call the set $\cbr{(x_i, y_i): i \in \Ical}$ the {\em support vectors}, as the optimal solution can be written as a linear combination of them, and these points has the lowest margin (all equal to 1).
 
 \subsection{The soft-margin SVM}
 Can we still train SVM if the data is not linearly separable? Note that optimization problem~\eqref{eqn:svm} will not find a solution, as now the constraint set become infeasible.
@@ -191,15 +244,38 @@ Let $\phi(z) = \max(0,1-z)$ and $R(w) = \frac{\lambda}{2}\| w \|^2$. We thus can
 \end{equation}
 As a convention, we call $\phi(y(\inner{w}{x} + b))$ the {\em hinge loss} of linear classifier $(w,b)$ on example $(x,y)$, written as $\ell_{\hinge}((w,b), (x,y))$. When the margin $y(\inner{w}{x} + b)$ is larger, the hinge loss is smaller. The above form is also called a {\em regularized loss minimzation} formulation, which captures a wide range of optimization problems in machine learning (by changing loss function $\phi$ and regularizer $R$), such as logistic regression, ridge regression, lasso, etc.
 
-\section{The dual of SVM; kernel trick}
-Every constrained convex optimization problem has a dual optimization problem, which has exactly the same optimal value. Sometimes looking at the dual problem will yield unexpected insights about the original (primal) problem! Indeed, SVM is a canonical example for this claim.
+\section{The dual of SVM}
+Let's consider writing the constrained optimization problem \eqref{eqn:svm-sm} in the following alternative way:
+\begin{align}
+   \minimize_{w,b,\xi} \max_{\alpha \geq 0, \beta \geq 0} \frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i + \sum_{i=1}^n \alpha_i (1 - \xi_i - y_i(\inner{w}{x_i} + b)) + \sum_{i=1}^n \beta_i (-\xi_i).
+    %& |\inner{w}{x_i} + b| \geq A, & \forall i \in \cbr{1,\ldots,n}.
+\end{align}
+The $\alpha_i$, $\beta_i$'s are called Lagrangian multipliers. Why is the above equivalent to the original soft margin SVM?
+
+Define $F(w,b,\xi) = \max_{\alpha \geq 0, \beta \geq 0} \frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i + \sum_{i=1}^n \alpha_i (1 - \xi_i - y_i(\inner{w}{x_i} + b)) + \sum_{i=1}^n \beta_i (-\xi_i)$. Observe that
+\[
+F(w,b,\xi) =
+\begin{cases}
+  -\infty & \exists i, y_i(\inner{w}{x_i} + b)) < 1 - \xi_i \\
+  -\infty & \exists i, \xi_i < 0 \\
+  \frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i & \text{otherwise}.
+\end{cases}
+\]
+
+
+
+
+
+
+
+Every constrained convex optimization problem has a dual optimization problem. Sometimes looking at the dual problem will yield unexpected insights about the original (primal) problem! Indeed, SVM is a canonical example for this claim.
 
 We consider the soft-margin SVM formulation \eqref{eqn:svm-sm}. To derive its dual problem, we introduce dual variables (aka Lagrange multipliers) to incorporate all constraints to the objective function:
 \[
 \min_{w,b,\xi \geq 0} \max_{\alpha \geq 0, \beta \geq 0} \del{\frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i + \sum_{i=1}^n \alpha_i \cdot (1 - \xi_i - y_i(\inner{w}{x_i} + b)) - \sum_{i=1}^n \beta_i \xi_i}
 \]
 
-It can be shown~\footnote{by checking the Slater condition, that is, there exists $w,b,\xi$ such that all inequalities in \ref{eqn:svm-sm} are stict} that the above is equivalent to
+It can be shown~ that the above is equivalent to
 \[
 \max_{\alpha \geq 0, \beta \geq 0} \min_{w,b,\xi \geq 0} \del{\frac \lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i + \sum_{i=1}^n \alpha_i \cdot (1 - \xi_i - y_i(\inner{w}{x_i} + b)) - \sum_{i=1}^n \beta_i \xi_i}
 \]
@@ -219,6 +295,7 @@ Therefore, the dual problem is equivalent to:
 \end{align}
 %Moreover, the solutions of the s
 
+\section{The kernel trick}
 
 %\begin{theorem}[Sion's minimax theorem]
 %Suppose $f(x,y)$ is a convex-concave function, i.e. for any fixed $y_0$, $f(x,y_0)$ is a convex function in $x$, and for any fixed $x_0$, $f(x_0, y)$ is a concave function in $y$. In addition suppose
