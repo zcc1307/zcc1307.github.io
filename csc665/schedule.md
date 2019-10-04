@@ -15,11 +15,11 @@ Tentative schedule:
 |Sep 17 | Rademacher complexity | [Uniform convergence / Rademacher complexity note](notes/rad.pdf) | SSBD Sec 6.5.2, 26.1, 28.1 | [HW1](hw/hw1/hw1.pdf) [tex file](hw/hw1/hw1.tex) |
 |Sep 19 | Information-theoretic lower bounds of PAC learning |  | SSBD 28.2.1  | |
 |Sep 24 | Le Cam's method |  | SSBD 28.2.1 | |
-|Sep 26 | Assouad's method | [Lower bound note](notes/lower_bound.pdf) | SSBD Sec 28.2.2, Sec 5.1  | [HW2](hw/hw2/hw2.pdf) [tex file](hw/hw2/hw2.tex) |
-|Oct 1  | Support Vector Machine; Margin bounds  | [SVM note](notes/svm.pdf) | SSBD Chap 10, Chap 15, Secs 26.2, 26.3 | |
-|Oct 3  | Boosting | | SSBD Sec 26.2, 26.4 | |
-|Oct 8  | Backgrounds on convex functions | | SSBD Chap 12 | |
-|Oct 10 | Midterm exam | | | |
+|Sep 26 | Assouad's method, fundamental theorem of statistical learning | [Lower bound note](notes/lower_bound.pdf) | SSBD Sec 28.2.2, Sec 5.1  | [HW2](hw/hw2/hw2.pdf) [tex file](hw/hw2/hw2.tex) |
+|Oct 1  | Support Vector Machine (SVM); The maximum margin hyperplane problem  | | SSBD Chap 15, Secs 26.2, 26.3 | |
+|Oct 3  | Soft margin, the dual of SVM, kernel trick | [SVM note](notes/svm.pdf) | SSBD Sec 15.4, Chap 16 | |
+|Oct 8  | Margin bounds; boosting | | SSBD Sec 26.2, 26.4, Chap 10 | |
+|Oct 10 | Backgrounds on convex functions | | SSBD Chap 12 | |
 |Oct 15 | Regularization and stability (1) | | SSBD Chap 13 | |
 |Oct 17 | Regularization and stability (2) | | SSBD Chap 13 | |
 |Oct 22 | Online classification | | SSBD Sec 21.1 | |
