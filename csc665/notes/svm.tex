@@ -30,6 +30,7 @@
 \DeclareMathOperator*{\Ycal}{{\cal Y}}
 \DeclareMathOperator*{\Acal}{{\cal A}}
 \DeclareMathOperator*{\Zcal}{{\cal Z}}
+\DeclareMathOperator*{\Gcal}{{\cal G}}
 %\DeclareMathOperator*{\Fcal}{{\cal F}}
 \DeclareMathOperator*{\Scal}{{\cal S}}
 \DeclareMathOperator*{\Ical}{{\cal I}}
@@ -39,9 +40,11 @@
 \DeclareMathOperator*{\minimize}{{\rm minimize}}
 \DeclareMathOperator*{\st}{{\rm s.t.}}
 \DeclareMathOperator*{\VC}{{\rm VC}}
+\DeclareMathOperator*{\EE}{{\mathbb E}}
+\DeclareMathOperator*{\PP}{{\mathbb P}}
 \newcommand{\RR}{\mathbb{R}} % Real numbers
-\newcommand{\EE}{\mathbb{E}}
-\newcommand{\PP}{\mathbb{P}}
+%\newcommand{\EE}{\mathbb{E}}
+%\newcommand{\PP}{\mathbb{P}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\Hcal}{\mathcal{H}}
 \newcommand{\Fcal}{\mathcal{F}}
@@ -418,18 +421,16 @@ Then with probability $1-\delta$, for all classifiers $w \in \cbr{w: \|w\|_2 \le
 $\gamma \in (0, BR]$, we have
 \[
 \PP_D( y \inner{w}{x} \leq 0 )
-\leq \PP_S (y \inner{w}{x} < \gamma) + \frac{BR}{\gamma} \sqrt{\frac{\ln2/\delta}{m}}.
+\leq \PP_S (y \inner{w}{x} < \gamma) + \frac{BR}{\gamma} \sqrt{\frac{8 + 4\ln(\frac{2}{\delta}) + 2\ln(1+\log_2(\frac{BR}{\gamma}))}{m}}.
 \]
 \label{thm:mb-l2}
 \end{theorem}
 
-The theorem is called a ``margin bound'', in the sense that the generalization error bound of the classifier depends on two quantities: first, the empirical ``margin error'' of the classifier, where an example is counted as error when it has a margin smaller than $\gamma$; second, a concentration term that decreases with margin $\gamma$. By this theorem, we immediately have the following
-important consequence regarding SVM.
+The theorem is called a ``margin bound'', in the sense that the generalization error bound of the classifier depends on two quantities: first, the empirical ``margin error'' of the classifier, where an example is counted as error when it has a margin smaller than $\gamma$; second, a concentration term that decreases with margin $\gamma$. Importantly, the theorem is {\em dimension-free} - it holds as long as examples and linear predictors have bounded norm.
 
-Another feature in the above statement is that it is invariant under positive scaling of $B$ and $\gamma$: consider a positive number $\alpha$. Given a $w$ such that $\| w \|_2 \leq B$ and a margin $\gamma \in (0, BR]$, consider their scaling $w' = \alpha w$ (with norm at most $B' = \alpha B$)  and $\gamma' \in (0,\alpha BR]$. Then
-the event
-\[ \cbr{y \inner{w}{x} \leq 0} = \cbr{y \inner{w'}{x} \leq x }, \]
-\[ \cbr{y \inner{w}{x} \leq \gamma} = \cbr{y \inner{w'}{x} \leq \gamma'}. \]
+Another feature in the above statement is that it is invariant under positive scaling of $B$ and $\gamma$: consider a positive number $\alpha$. Given a $w$ such that $\| w \|_2 \leq B$ and a margin $\gamma \in (0, BR]$, consider their scaling $w' = \alpha w$ (with norm at most $B' = \alpha B$)  and $\gamma' \in (0,\alpha BR]$. Then we have the following identities on events
+\[ \cbr{y \inner{w}{x} \leq 0} = \cbr{y \inner{w'}{x} \leq x },
+\quad \cbr{y \inner{w}{x} \leq \gamma} = \cbr{y \inner{w'}{x} \leq \gamma'}. \]
 In addition, the generalization bounds depends only on $B/\gamma$, which is equal
 to $B'/\gamma'$. This implies that it is impossible to ``game'' the theorem by initially obtaining a statement with some alternative value of $B$ and use the above scaling reasoning to get a sharper margin bound.
 
@@ -443,29 +444,180 @@ to $B'/\gamma'$. This implies that it is impossible to ``game'' the theorem by i
 %\PP_D( y \inner{w}{x} \leq 0 )
 %\leq \PP_S (y \inner{w}{x} \leq \gamma) + \frac{R}{\gamma} \sqrt{\frac{\ln2/\delta}{m}}, \forall w,\gamma: \| w \| \leq 1, \gamma \in (0, R].
 %\]
-
+By this theorem, we immediately have the following
+important consequence regarding SVM.
 \begin{corollary}
 Same setting as above. Suppose $w^\star$ is such that %$\| w^\star \| \leq B^\star$ and
 \[ \PP_{D}(y \inner{w^\star}{x} \geq \gamma) = 1. \]
 Then, with probability $1-\delta$, SVM returns a classifier $\hat{w}$, such that
 \[ \PP_D( y \inner{\hat{w}}{x} \leq 0 )
    \leq
-   \frac{\| w^\star \| R}{\gamma} \sqrt{\frac{\ln2/\delta}{m}}.
+   \frac{\|w^\star\|R}{\gamma} \sqrt{\frac{8 + 4\ln(\frac{2}{\delta}) + 2\ln(1+\log_2(\frac{\|w^\star\|R}{\gamma}))}{m}}.
  \]
 \end{corollary}
+When $\frac{\|w^\star\|R}{\gamma} \ll d$, this theorem provides much stronger guarantees than $O(\frac{d}{m})$ generalization error bound as guaranteed by VC theory.
+In addition, using advance techniques, one can show that the generalization bound is in fact $O(\frac{\|w^\star\|^2R^2}{\gamma^2 m})$; therefore, so long as $\frac{\|w^\star\|^2R^2}{\gamma^2}$ is smaller than $d$, this provides more favorable guarantees.
+
 \begin{proof}
-Note that $w^\star / \gamma$ is a feasible solution of \ref{eqn:svm-h}. By the optimality of $\hat{w}$, we know that $\| \hat{w} \| \leq \| w^\star / \gamma \| \leq \frac{B^\star}{\gamma}$. Now consider vector $w' = \gamma \hat{w}$.
+Note that $w^\star / \gamma$ is a feasible solution of \ref{eqn:svm-h}. By the optimality of $\hat{w}$, we know that $\| \hat{w} \| \leq \| w^\star / \gamma \|$. Now consider vector $w' = \gamma \hat{w}$.
 It can be seen that $\PP_D( y \inner{w}{x} \leq 0 ) = \PP_D( y \inner{w'}{x} \leq 0 )$, $\| w' \| \leq \| w^\star \|$ and for all $i$, $y_i \inner{w'}{x_i} \geq \gamma$.
 
 Now, applying Theorem~\ref{thm:mb-l2} with $w = w'$, along with
 $B = \| w^\star \|$ and $\gamma$, we have that
 %. It can be readily seen that
 \[ \PP_D( y \inner{w'}{x} \leq 0 )
-\leq \PP_S (y \inner{w'}{x} < \gamma) + \frac{\| w^\star \| R}{\gamma} \sqrt{\frac{\ln2/\delta}{m}}. \]
+\leq \PP_S (y \inner{w'}{x} < \gamma) + \frac{\|w^\star\|R}{\gamma} \sqrt{\frac{8 + 4\ln(\frac{2}{\delta}) + 2\ln(1+\log_2(\frac{\|w^\star\|R}{\gamma}))}{m}}. \]
 As $\PP_S (y \inner{w'}{x} < \gamma) = 0$, we immediately have the theorem statement.
 \end{proof}
 
 The proof of Theorem~\ref{thm:mb-l2} is slightly involved. It will be based on the following two key steps: first, relating 0-1 error and margin error to a new loss function named ramp loss; second, conduct a Rademacher complexity-based analysis of the ramp loss class, through the way we will also develop general tools bounding the Rademacher complexity of function classes.
+
+\paragraph{Step 1: relating 0-1 error to ramp loss.} Define the ramp loss as follows:
+$\ell_\gamma(w, (x,y)) = \phi_\gamma(y \inner{w}{x})$, where
+\[
+  \phi_\gamma(z) = \begin{cases} 1,& z \leq 0, \\ 1 - \frac{z}{\gamma}, & 0 < z < \gamma, \\ 0, & z \geq \gamma. \end{cases}
+\]
+Observe that $\one(z \leq 0) \leq \phi_\gamma(z) \leq \one(z \leq \gamma)$. In addition, $\phi_\gamma$ is $\frac1\gamma$-Lipschitz. Therefore,
+\[
+   \PP_{(x,y) \sim \Delta}(y \inner{w}{x} \leq 0)
+   \leq \EE_{(x,y) \sim \Delta} \phi_\gamma(y \inner{w}{x})
+   \leq \PP_{(x,y) \sim \Delta}(y \inner{w}{x} \leq \gamma).
+\]
+For both $\Delta$ = $\U(S)$ or $D$.
+
+Therefore, it suffices to show the following theorem:
+\begin{theorem}
+Suppose function $\phi$ is $L$-Lipschitz. Then with probability $1-\delta'$, for all $w$ such that $\| w \| \leq B$,
+\[
+  \EE_{(x,y) \sim D} \phi(y \inner{w}{x})
+  \leq \EE_{(x,y) \sim S} \phi(y \inner{w}{x})
+  + L B R \sqrt{\frac{8 + 4\ln(\frac{2}{\delta'})}{m}}.
+\]
+\label{thm:lip-uc}
+\end{theorem}
+
+Why does this imply the original theorem statement?
+fix $\gamma \in (0, BR]$, consider $\phi = \phi_\gamma$ which is $\frac 1 \gamma$-Lipschitz. Then,
+with probability $1-\delta'$, for all $w$ such that $\| w \| \leq B$,
+\[
+  \EE_{(x,y) \sim D} \phi_\gamma(y \inner{w}{x})
+  \leq \EE_{(x,y) \sim S} \phi_\gamma(y \inner{w}{x})
+  + \frac{BR}{\gamma} \sqrt{\frac{8 + 4\ln(\frac{2}{\delta'})}{m}}.
+\]
+
+Consider the above statement
+with $\gamma_i = \frac{BR}{2^i}$ and $\delta_i = \frac{\delta}{2i^2}$ for $i = 1,2,\ldots$. Then by a union bound, with probability $1-\delta$, for all $w$
+such that $\| w \| \leq B$, and all $i \in \NN_+$,
+\[
+  \EE_{(x,y) \sim D} \phi_{\gamma_i}(y \inner{w}{x})
+  \leq \EE_{(x,y) \sim S} \phi_{\gamma_i}(y \inner{w}{x})
+  + \frac{BR}{\gamma_i} \sqrt{\frac{8 + 4\ln(\frac{2}{\delta_i})}{m}}.
+\]
+This implies that for all $i$ in $\NN_+$,
+\[
+  \PP_{(x,y) \sim D}(y \inner{w}{x} \leq 0)
+  \leq \PP_{(x,y) \sim S}(y \inner{w}{x} \leq \gamma_i) + \frac{BR}{\gamma_i} \sqrt{\frac{8 + 4\ln(\frac{2}{\delta_i})}{m}}.
+\]
+Now consider a general $\gamma \in (0,BR]$. Note that we can always find a
+$i$ in $\NN_+$, such that $\gamma_i < \gamma \leq 2\gamma_i$. For this choice of $i$,
+we have that $\frac{1}{\gamma_i} \leq \frac{2}{\gamma}$, implying $i \leq 1 + \log_2(\frac{BR}{\gamma})$; in addition,
+\[ \PP(y\inner{w}{x} \leq \gamma_i) \leq \PP(y\inner{w}{x} < \gamma). \]
+Therefore, for all $\gamma \in (0, BR]$,
+\[
+\PP_{(x,y) \sim D}(y \inner{w}{x} \leq 0)
+\leq \PP_{(x,y) \sim S}(y \inner{w}{x} < \gamma) + \frac{BR}{\gamma} \sqrt{\frac{8 + 4\ln(\frac{2}{\delta}) + 2\ln(1+\log_2(\frac{BR}{\gamma}))}{m}}.
+\]
+
+\paragraph{Step 2: The uniform convergence of Lipschitz losses via Rademacher complexity based analysis.} Now our goal comes down to proving Theorem~\ref{thm:lip-uc}. Define loss function class
+$\Fcal = \cbr{\ell_{\phi,w}: \|w\| \leq B}$, where $\ell_{\phi,w}(x,y) = \phi(y \inner{w}{x})$ is the $\phi$-loss induced by classifier $w$.
+It can be straightforwardly seen that Theorem~\ref{thm:lip-uc} is a statement on the uniform convergence of $\EE_S f(Z)$ to $\EE_D f(Z)$.
+
+By exactly the same reasoning as in the uniform convergence proof (see ``Rademacher complexity'' note), we can easily show that with probability $1-\delta'$,
+\begin{equation}
+\EE_{(x,y) \sim D} \phi(y \inner{w}{x})
+- \EE_{(x,y) \sim S} \phi(y \inner{w}{x})
+\leq 2 \Rad_m(\Fcal) + L B R \sqrt{\frac{2\ln(\frac{2}{\delta'})}{m}},
+\label{eqn:uc-rad}
+\end{equation}
+where $\Rad_m(\Fcal) = \EE \Rad_S(\Fcal)$, and
+\[
+\Rad_S(\Fcal) = \frac{1}{m} \EE_{\sigma_1,\ldots,\sigma_m \sim \R} \sup_{f \in \Fcal}
+\sum_{i=1}^m \sigma_i f(z_i)
+\]
+are the population and empirical Rademacher complexities respectively.
+
+\paragraph{Remark.} A careful reader may notice that the empirical Rademacher complexity $\Rad_S(\Fcal)$
+is defined a bit differently from before; however, the original proof goes through with almost no changes: when we apply McDiarmid's inequality, we need to check the sensitivity of function \[ \sup_{w: \|w\| \leq B} \EE_{(x,y) \sim D} \phi(y \inner{w}{x})- \EE_{(x,y) \sim S} \phi(y \inner{w}{x}), \]
+it can be shown that the above function is $\frac{2LBR}{m}$-sensitive. The symmetrization step is also almost identical to before, except that we don't have absolute value operation on the deviation between empirical loss and generalization loss.
+
+Now let us look at $\Rad_m(\Fcal)$ more closely; first recall that $\Rad_m(\Fcal) = \EE_{S \sim D^m} \Rad_S(\Fcal)$, where
+\[ \Rad_S(\Fcal) = \frac{1}{m} \EE_{\sigma_1,\ldots,\sigma_m \sim \R} \sup_{w: \|w\|_2 \leq B} \sum_{i=1}^m \sigma_i \phi(y_i \inner{w}{x_i}). \]
+Also, note that $\Fcal$ can be written as the following composite class: $\Fcal = \cbr{\phi \circ g: g \in \Gcal}$, where $\Gcal = \cbr{ m_w: \| w \| \leq B }$, where
+$m_w(x,y) = y\inner{w}{x}$ is the margin function. We have the following lemma that relates the Rademacher complexity of $\Fcal$ and that of $\Gcal$.
+
+\begin{lemma}[Contraction Lemma]
+Suppose $S = \cbr{z_1,\ldots,z_m}$ is a dataset of size $m$. In addition, suppse $\Gcal$ is a function class, and $\phi$ is an $L$-Lipschitz function. Then, define $\Fcal = \cbr{\phi \circ g: g \in \Gcal}$, we have:
+\[ \Rad_S(\Fcal) \leq L \Rad_S(\Gcal). \]
+\end{lemma}
+
+What do we know about $\Rad_S(\Gcal)$?
+\begin{eqnarray*}
+\Rad_S(\Gcal)
+&=& \frac{1}{m} \EE \sup_{w: \|w\|_2 \leq B} \sum_{i=1}^m \sigma_i y_i \inner{w}{x_i} \\
+&=& \frac{1}{m} \EE \sup_{w: \|w\|_2 \leq B} \sum_{i=1}^m \sigma_i \inner{w}{x_i} \\
+&=& \frac{B}{m} \EE \| \sum_{i=1}^m \sigma_i x_i \| \\
+&\leq& \frac{B}{m} \sqrt{\EE \| \sum_{i=1}^m \sigma_i x_i \|^2} \\
+&\leq& \frac{B}{m} \sqrt{\EE \sum_{i=1}^m \| x_i \|^2} \leq \frac{BR}{\sqrt{m}}.
+\end{eqnarray*}
+
+Therefore, $\Rad_S(\Fcal) \leq L \Rad_S(\Gcal) \leq LBR \cdot \sqrt{\frac1m}$. Plugging into Equation~\eqref{eqn:uc-rad}, and using the elementary inequality that $\sqrt{C}+\sqrt{D} \leq \sqrt{2(C+D)}$, we have that with probability $1-\delta'$,
+\begin{equation}
+\EE_{(x,y) \sim D} \phi(y \inner{w}{x})
+\leq \EE_{(x,y) \sim S} \phi(y \inner{w}{x})
++ L B R \cdot \sqrt{\frac{8 + 4\ln(\frac{2}{\delta'})}{m}}.
+\label{eqn:uc-lip}
+\end{equation}
+
+%Applying the lemma, we immediately have
+%\[ \Rad_S(\Fcal) \leq L \Rad_S(\Gcal) = L \frac{1}{m} \EE_{\sigma_1,\ldots,\sigma_m \sim \R} \sup_{w: \|w\|_2 \leq B} \sum_{i=1}^m \sigma_i y_i \inner{w}{x_i}. \]
+
+
+\paragraph{Proof of the contraction lemma.} Recall that
+\[ m \Rad_S(\Fcal) = \EE \sup_{f \in \Fcal} \sum_{i=1}^m \phi(f(z_i)). \]
+Our high-level strategy is that, consider removing one $\phi$ at one location at a time, that is, to show
+\begin{eqnarray*}
+  && \EE \sup_{f \in \Fcal} \del{\sum_{i=1}^m \sigma_i \phi(f(z_i))}\\
+  &\leq& \EE \sup_{f \in \Fcal} \del{L \sigma_1 f(z_1) + \sum_{i=2}^m \sigma_i \phi(f(z_i))}\\
+   &\leq& \EE \sup_{f \in \Fcal} \del{L \sigma_1 f(z_1) + L \sigma_2 f(z_2) + \sum_{i=3}^m \sigma_i \phi(f(z_i))} \\
+  &\leq& \ldots \leq \EE \sup_{f \in \Fcal} \del{L \sigma_1 f(z_1) + L \sigma_2 f(z_2) + \ldots + L \sigma_m f(z_m)}.
+\end{eqnarray*}
+
+We only show the first inequality; the rest steps are fairly similar. We first  expand the left hand side by explicitly averaging over random choices of $\sigma_1$:
+\[ \EE \sup_{f \in \Fcal} \del{\sum_{i=1}^m \sigma_i \phi(f(z_i))}
+ =
+ \EE \frac12 \sbr{ \sup_{f \in \Fcal} \del{ \phi(f(z_1)) + \sum_{i=2}^m\sigma_i \phi(f(z_i))} + \sup_{f' \in \Fcal}\del{ -\phi(f'(z_1)) + \sum_{i=2}^m\sigma_i \phi(f'(z_i))}  }
+\]
+Note that the right hand side can also be written as:
+\begin{equation}
+\EE \frac12 \sbr{ \sup_{f, f' \in \Fcal} \del{ \phi(f(z_1)) - \phi(f'(z_1)) + \sum_{i=2}^m\sigma_i \phi(f(z_i)) + \sum_{i=2}^m\sigma_i \phi(f'(z_i))}}
+\label{eqn:double-sup}
+\end{equation}
+which can be bounded as follows:
+\begin{eqnarray*}
+\text{~\eqref{eqn:double-sup}} &\leq&
+\EE \frac12 \sbr{ \sup_{f, f' \in \Fcal} \del{ L\abs{f(z_1) - f'(z_1)} + \sum_{i=2}^m\sigma_i \phi(f(z_i)) + \sum_{i=2}^m\sigma_i \phi(f'(z_i))}} \\
+&\leq&
+\EE \frac12 \sbr{ \sup_{f, f' \in \Fcal} \del{ Lf(z_1) - Lf'(z_1) + \sum_{i=2}^m\sigma_i \phi(f(z_i)) + \sum_{i=2}^m\sigma_i \phi(f'(z_i))}} \\
+&=&
+\EE \frac12 \sbr{ \sup_{f \in \Fcal} \del{ Lf(z_1) + \sum_{i=2}^m\sigma_i \phi(f(z_i))} + \sup_{f' \in \Fcal}\del{ -Lf'(z_1) + \sum_{i=2}^m\sigma_i \phi(f'(z_i))}  } \\
+&=&
+\EE \sup_{f \in \Fcal} \del{L \sigma_1 f(z_1) + \sum_{i=2}^m \sigma_i \phi(f(z_i))}.
+\end{eqnarray*}
+where the first inequality uses the Lipschitzness of $\phi$, the first equality is based on the observation that there is always a pair of $f$ and $f'$ such that $f(z_1) - f'(z_1) \geq 0$ that achieves the supremum\footnote{within arbitrary precision.} - if $f(z_1) - f'(z_1) < 0$, then switch the settings of $f$ and $f'$ will give the same objective value inside the parenthesis. The second inequality is by unpacking the double supremum to the sum of two suprema (roughly speaking, ``undoing'' the operation in~\label{eqn:double-sup}), and the third inequality is by introducing the Rademacher random variable $\sigma_1$ back.
+
+%we can achieve the
+
+%\EE \sup_{f \in \Fcal} \del{\sum_{i=1}^m \sigma_i \phi(f(z_i))}
 
 %Generally, if we are given a function $K: \Xcal \times \Xcal \to \RR$, under what condition is it a kernel (i.e. there exists a feature map $\phi$ such that $K(x,x') = \inner{\phi(x)}{\phi(x')}$)? We state the following theorem.
 %\begin{theorem}[Mercer]
