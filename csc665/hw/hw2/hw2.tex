@@ -97,7 +97,7 @@ Show $\PP_{S, S' \sim D^m}(E'|E) \geq \frac 12$, and conclude that $\PP_{S \sim 
   (W_i, W_i') = \begin{cases} (Z_i, Z_i') & \sigma_i = +1, \\ (Z_i', Z_i) & \sigma_i = -1. \end{cases}
 \]
 Show that
-\[ \PP_{S, S' \sim D^m}(E') = \PP_{S, S' \sim D^m, \sigma \sim \R^n}\del{\text{exists } f \in \Fcal, \sum_{i=1}^m f(W_i) = 0, \sum_{i=1}^m f(W_i') \geq \frac{m\epsilon}{2}}, \]
+\[ \PP_{S, S' \sim D^m}(E') = \PP_{S, S' \sim D^m, \sigma \sim \R^m}\del{\text{exists } f \in \Fcal, \sum_{i=1}^m f(W_i) = 0, \sum_{i=1}^m f(W_i') \geq \frac{m\epsilon}{2}}, \]
 where $\R$ is the Rademacher distribution, i.e. uniform in $\cbr{\pm 1}$.
 %Show that for every fixed $\sigma$, $(W_1,\ldots,W_n,$
 
@@ -106,7 +106,7 @@ $f$ in $\Fcal$,
 \[ \PP_{\sigma \sim \R^n} \del{ \sum_{i=1}^m f(W_i) = 0, \sum_{i=1}^m f(W_i') \geq \frac{m\epsilon}{2} } \leq \exp(-\frac{m\epsilon}{4}).  \]
 
 \item Use the above items to conclude that for $m \geq \frac{16}{\epsilon}$,
-\[ \PP_{S \sim D^m}(\text{there exists } f \in \Fcal, \EE_S f(Z) = 0, \EE_D f(Z) \geq \epsilon) \leq 2 \Scal(\Fcal, 2n) \exp{-\frac{m\epsilon}{4}}. \]
+\[ \PP_{S \sim D^m}(\text{there exists } f \in \Fcal, \EE_S f(Z) = 0, \EE_D f(Z) \geq \epsilon) \leq 2 \Scal(\Fcal, 2m) \exp{-\frac{m\epsilon}{4}}. \]
 In addition, show that ERM has a PAC sample complexity of $O\del{\frac1\epsilon(d \ln\frac1\epsilon + \ln\frac1\delta)}$.
 \end{enumerate}
 
