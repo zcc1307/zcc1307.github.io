@@ -127,13 +127,13 @@ Note that $\min_{h \in \Hcal} \err(h', D_i) = 0$ for both $i \in \cbr{\pm 1}$.
  %D_{+1}(x,y) = \begin{cases} 1-2\epsilon, & (x,y) = (z_0, -1), \\
   %                              2\epsilon, & (x,y) = (z_1, +1), \\
   %                              0 & \text{otherwise.} \end{cases}
-For every $j$, denote by $P_{j}((x_i,y_i)_{i=1}^m) = \prod_{i=1}^m D_{j}(x_i, y_i)$ the distribution over training sets (observations).
+For every $j$ in $\cbr{\pm 1}$, denote by $P_{j}((x_i,y_i)_{i=1}^m) = \prod_{i=1}^m D_{j}(x_i, y_i)$ the distribution over training sets (observations).
 %Suppose index $I$
 %is drawn uniformly at random from $\cbr{\pm 1}$.
 %_{I \sim \U(\cbr{\pm 1})}
 Use Le Cam's method to show that for any hypothesis tester $f$, there exists an $i$
 in $\cbr{\pm 1}$, such that
-\[ \PP_i( f(S) \neq I ) > \frac12 (1-4\epsilon)^m. \]
+\[ \PP_i( f(S) \neq i ) > \frac12 (1-4\epsilon)^m. \]
 
 
 %(Hint: Define $A = \cbr{S = (x_i,y_i)_{i=1}^m: x_i = z_0 \text{ for all } i }$. Show that
