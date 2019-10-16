@@ -7,7 +7,7 @@ Tentative schedule:
 |Date  | Topics | Notes | Additional Readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|
 |Aug 27 | Introduction, motivation, course mechanics | [slides](notes/slides.pdf) [probability review](notes/prob_review.pdf) | SSBD App B.1 and B.2 | [HW0 (Calibration)](hw/hw0/hw0.pdf) [tex file](hw0/hw0.tex) |
-|Aug 29 | Basics: concentration of measure | [concentration of measure note 1](notes/conc_1.pdf) | SSBD App B.4 | |
+|Aug 29 | Concentration of measure | [concentration of measure note 1](notes/conc_1.pdf) | SSBD App B.4 | |
 |Sep 3  | Chernoff bound for Bernoulli random variables, McDiarmid's Inequality | [concentration of measure note 2](notes/conc_2.pdf) | SSBD App B.3, Lemma 26.4 | HW0 due in class [HW0 Solutions](hw/hw0/hw0sol.pdf) |
 |Sep 5  | The PAC learning framework, finite classes | [PAC learning note](notes/pac.pdf) | SSBD Chap 2, Sec 3.1 | |
 |Sep 10 | Agnostic PAC learning, infinite classes | | SSBD Sec 3.2-3.3, Chap 4, Sec 6.1 | |
@@ -16,12 +16,12 @@ Tentative schedule:
 |Sep 19 | Information-theoretic lower bounds of PAC learning |  | SSBD 28.2.1  | |
 |Sep 24 | Le Cam's method |  | SSBD 28.2.1 | |
 |Sep 26 | Assouad's method, fundamental theorem of statistical learning | [Lower bound note](notes/lower_bound.pdf) | SSBD Sec 28.2.2, Sec 5.1  | [HW2](hw/hw2/hw2.pdf) [tex file](hw/hw2/hw2.tex) |
-|Oct 1  | Support Vector Machine (SVM); The maximum margin hyperplane problem  | | SSBD Chap 15, Secs 26.2, 26.3 | |
-|Oct 3  | Soft margin, the dual of SVM, kernel trick | [SVM note](notes/svm.pdf) | SSBD Sec 15.4, Chap 16 | |
-|Oct 8  | Margin bounds; boosting | | SSBD Sec 26.2, 26.4, Chap 10 | |
-|Oct 10 | Backgrounds on convex functions | | SSBD Chap 12 | |
-|Oct 15 | Regularization and stability (1) | | SSBD Chap 13 | |
-|Oct 17 | Regularization and stability (2) | | SSBD Chap 13 | |
+|Oct 1  | Support Vector Machine (SVM); the maximum margin hyperplane problem  | | SSBD Chap 15, Secs 26.2, 26.3 | |
+|Oct 3  | Soft margin, nonlinear mapping, the dual of SVM  | | SSBD Sec 15.4 | |
+|Oct 8  | Kernel trick | | SSBD Chap 16 | |
+|Oct 10 | Margin bounds, generalization bounds of SVM | | SSBD Sec 26.3 | |
+|Oct 15 | Proof of margin bounds via Rademacher complexity | [SVM note](notes/svm.pdf) | SSBD Secs 26.2, 26.4 | |
+|Oct 17 | Boosting, margins | | SSBD Chap 10, Sec 26.2 | |
 |Oct 22 | Online classification | | SSBD Sec 21.1 | |
 |Oct 24 | Online convex optimization (OCO): online to batch conversion | | SSBD Sec 21.3, Sections 14.1-14.3  | |
 |Oct 29 | Follow the regularized leader (FTRL) | | H Sec 5.3 | |
