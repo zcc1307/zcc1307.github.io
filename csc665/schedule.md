@@ -21,7 +21,7 @@ Tentative schedule:
 |Oct 8  | Kernel trick | | SSBD Chap 16 | |
 |Oct 10 | Margin bounds, generalization bounds of SVM | | SSBD Sec 26.3 | |
 |Oct 15 | Proof of margin bounds via Rademacher complexity | [SVM note](notes/svm.pdf) | SSBD Secs 26.2, 26.4 | |
-|Oct 17 | Boosting, margins | | SSBD Chap 10, Sec 26.2 | |
+|Oct 17 | Model selection, structural risk minimization | | SSBD Chap 7 | [Midterm (take home)](hw/midterm/midterm.pdf) |
 |Oct 22 | Online classification | | SSBD Sec 21.1 | |
 |Oct 24 | Online convex optimization (OCO): online to batch conversion | | SSBD Sec 21.3, Sections 14.1-14.3  | |
 |Oct 29 | Follow the regularized leader (FTRL) | | H Sec 5.3 | |
@@ -39,3 +39,4 @@ Tentative schedule:
 |Dec 10 | Final presentation (2) | | | |
 
 [//]: # (|Sep 26 | Structural risk minimization | | SSBD Chap 7 | |)
+[//]: # (SSBD Chap 10, Sec 26.2)
