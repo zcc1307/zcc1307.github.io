@@ -15,14 +15,14 @@ Tentative schedule:
 |Sep 17 | Rademacher complexity | [Uniform convergence / Rademacher complexity note](notes/rad.pdf) | SSBD Sec 6.5.2, 26.1, 28.1 | [HW1](hw/hw1/hw1.pdf) [tex file](hw/hw1/hw1.tex) [HW1 Solutions](hw/hw1/hw1sol.pdf) |
 |Sep 19 | Information-theoretic lower bounds of PAC learning |  | SSBD 28.2.1  | |
 |Sep 24 | Le Cam's method |  | SSBD 28.2.1 | |
-|Sep 26 | Assouad's method, fundamental theorem of statistical learning | [Lower bound note](notes/lower_bound.pdf) | SSBD Sec 28.2.2, Sec 5.1  | [HW2](hw/hw2/hw2.pdf) [tex file](hw/hw2/hw2.tex) |
+|Sep 26 | Assouad's method, fundamental theorem of statistical learning | [Lower bound note](notes/lower_bound.pdf) | SSBD Sec 28.2.2, Sec 5.1  | [HW2](hw/hw2/hw2.pdf) [tex file](hw/hw2/hw2.tex) [HW2 Solutions](hw/hw2/hw2sol.pdf) |
 |Oct 1  | Support Vector Machine (SVM); the maximum margin hyperplane problem  | | SSBD Chap 15, Secs 26.2, 26.3 | |
 |Oct 3  | Soft margin, nonlinear mapping, the dual of SVM  | | SSBD Sec 15.4 | |
 |Oct 8  | Kernel trick | | SSBD Chap 16 | |
 |Oct 10 | Margin bounds, generalization bounds of SVM | | SSBD Sec 26.3 | |
 |Oct 15 | Proof of margin bounds via Rademacher complexity | [SVM note](notes/svm.pdf) | SSBD Secs 26.2, 26.4 | |
-|Oct 17 | Model selection, structural risk minimization | | SSBD Chap 7 | [Midterm (take home)](hw/midterm/midterm.pdf) |
-|Oct 22 | Online classification | | SSBD Sec 21.1 | |
+|Oct 17 | Model selection, structural risk minimization | [Model selection note](notes/model_sel.pdf) | SSBD Chap 7 | [Midterm (take home)](hw/midterm/midterm.pdf) |
+|Oct 22 | Boosting: AdaBoost | [Boosting note](notes/boosting.pdf) | SSBD Chap 10 | |
 |Oct 24 | Online convex optimization (OCO): online to batch conversion | | SSBD Sec 21.3, Sections 14.1-14.3  | |
 |Oct 29 | Follow the regularized leader (FTRL) | | H Sec 5.3 | |
 |Oct 31 | Online mirror descent (OMD) | | H Sec 5.2 | |
@@ -40,3 +40,4 @@ Tentative schedule:
 
 [//]: # (|Sep 26 | Structural risk minimization | | SSBD Chap 7 | |)
 [//]: # (SSBD Chap 10, Sec 26.2)
+[//]: # (|Oct 22 | Online classification | | SSBD Sec 21.1 | |)
