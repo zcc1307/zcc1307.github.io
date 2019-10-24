@@ -21,9 +21,9 @@ Tentative schedule:
 |Oct 8  | Kernel trick | | SSBD Chap 16 | |
 |Oct 10 | Margin bounds, generalization bounds of SVM | | SSBD Sec 26.3 | |
 |Oct 15 | Proof of margin bounds via Rademacher complexity | [SVM note](notes/svm.pdf) | SSBD Secs 26.2, 26.4 | |
-|Oct 17 | Model selection, structural risk minimization | [Model selection note](notes/model_sel.pdf) | SSBD Chap 7 | [Midterm (take home)](hw/midterm/midterm.pdf) |
-|Oct 22 | Boosting: AdaBoost | [Boosting note](notes/boosting.pdf) | SSBD Chap 10 | |
-|Oct 24 | Online convex optimization (OCO): online to batch conversion | | SSBD Sec 21.3, Sections 14.1-14.3  | |
+|Oct 17 | Model selection, structural risk minimization | [Model selection note](notes/model_sel.pdf) | SSBD Chap 7, [Modern bias-variance tradeoff](https://arxiv.org/pdf/1812.11118.pdf) | [Midterm (take home)](hw/midterm/midterm.pdf) |
+|Oct 22 | Boosting: AdaBoost | | SSBD Chap 10 | |
+|Oct 24 | Boosting and margin bound; two styles of margin bounds | [Boosting note](notes/boosting.pdf) | SSBD Sec 26.2, [Boosted ResNet paper](https://arxiv.org/pdf/1706.04964.pdf) | |
 |Oct 29 | Follow the regularized leader (FTRL) | | H Sec 5.3 | |
 |Oct 31 | Online mirror descent (OMD) | | H Sec 5.2 | |
 |Nov 5 | Online convex optimization for strongly-convex / exp-concave functions | | H Sec 3.3, Chap 4  | |
@@ -41,3 +41,4 @@ Tentative schedule:
 [//]: # (|Sep 26 | Structural risk minimization | | SSBD Chap 7 | |)
 [//]: # (SSBD Chap 10, Sec 26.2)
 [//]: # (|Oct 22 | Online classification | | SSBD Sec 21.1 | |)
+[//]: # (|Oct 24 | Online convex optimization (OCO): online to batch conversion | | SSBD Sec 21.3, Sections 14.1-14.3  | |)
