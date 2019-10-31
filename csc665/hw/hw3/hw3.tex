@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+
+\newtheorem{theorem}{Theorem}
+
+\DeclareMathOperator*{\sign}{{\rm sign}}
+\DeclareMathOperator*{\VC}{{\rm VC}}
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator*{\Ber}{{\rm Bernoulli}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\Var}{{\rm var}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\R}{{\rm R}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\median}{{\rm median}}
+\DeclareMathOperator*{\minimize}{{\rm minimize}}
+\DeclareMathOperator*{\st}{{\rm s.t.}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\EE}{\mathbb{E}} % Real numbers
+\newcommand{\PP}{\mathbb{P}} % Real numbers
+\newcommand{\Acal}{\mathcal{A}} % Real numbers
+\newcommand{\Xcal}{\mathcal{X}} % Real numbers
+\newcommand{\Ycal}{\mathcal{Y}} % Real numbers
+\newcommand{\Hcal}{\mathcal{H}} % Real numbers
+\newcommand{\Bcal}{\mathcal{B}} % Real numbers
+\newcommand{\Fcal}{\mathcal{F}} % Real numbers
+\newcommand{\Scal}{\mathcal{S}} % Real numbers
+\newcommand{\Ical}{\mathcal{I}} % Real numbers
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+
+\title{CSC 665: Homework 3}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+Please complete the following set of problems. You must do the exercises completely on your own (no collaboration allowed).
+The exam is due \textbf{on Nov 14, 12:30pm, on Gradescope}. You are free to
+cite existing theorems from the textbooks and course notes.
+
+%\section*{Problem 1}
+%\textbf{Weak duality:} Prove that for any function $f$ of two vector variables $x \in \Xcal$, $y \in \Ycal$, it holds that
+%\[ \min_{x \in \Xcal} \max_{y \in \Ycal} f(x,y) \geq \max_{y \in \Ycal} \min_{x \in \Xcal} f(x,y). \]
+
+\section*{Problem 1}
+Consider the homogeneous, soft-margin SVM optimization problem:
+\begin{align}
+  \minimize_{w,\xi} \quad & \frac\lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i & \label{eqn:svm-d} \\
+    \st \quad & y_i(\inner{w}{x_i}) \geq 1, &\forall i \in \cbr{1,\ldots,n}, \\
+    & \xi_i \geq 0, &\forall i \in \cbr{1,\ldots,n}. \nonumber
+\end{align}
+\begin{enumerate}
+\item Introducing dual variables $\alpha_i \geq 0$ for each constraint $i$, $i \in \cbr{1,\ldots,n}$ and $\beta_i \geq 0$ for each constraint $i$, $i \in \cbr{1,\ldots,n}$,
+compute the Lagrangian function $L(w,\xi,\alpha,\beta)$.
+
+\item Derive the dual optimization problem.
+
+\item Use the KKT condition to interpret: which of the training examples are ``support vectors'' that contribute to the SVM solution?
+
+%interpretation of support vectors
+\end{enumerate}
+
+\section*{Problem 2}
+Suppose we have $k$ finite hypothesis classes $\Hcal_1, \ldots, \Hcal_k$, and $m$ training examples drawn iid from $D$. In addition we are given the promise that there exists $i_0 \in \cbr{1,\ldots,k}$ such that $\min_{h \in \Hcal_{i_0}} \err(h, D) = 0$ (but we don't know the identity of $i_0$); Can we design an algorithm that has generalization error $O(\frac{\ln|\Hcal_{i_0}|}{m})$ with high probability? Why or why not?
+
+\section*{Problem 3}
+Show that for AdaBoost, at iteration $t$, the updated distribution $D_{t+1}$
+satisfies that
+\[
+ \sum_{i=1}^m D_{t+1}(i) \one(h_t(x_i) \neq y_i) = \frac12.
+\]
+Why is this a reasonable update?
+
+\section*{Problem 4}
+In this exercise, we conduct experiment with AdaBoost with a simple benchmark dataset named {\em ringnorm}.
+\begin{enumerate}
+  \item Generate 100 training and 100 test examples from the following distribution $D$ supported on $\RR^{10} \times \cbr{\pm 1}$: $\PP_D(Y = -1) = \PP_D(Y = +1) = \frac12$, $X |_{Y = +1} \sim \N((0,\ldots,0), 4I)$; $X |_{Y = -1} \sim \N((\frac{2}{\sqrt{20}}, \ldots, \frac{2}{\sqrt{20}}), I)$.
+  \item Define base hypothesis class $\Hcal = \cbr{\sigma \cdot (2I(x_i \leq t) - 1), \sigma \in \cbr{\pm 1}, i \in \cbr{1,\ldots,d}, t \in \RR}$ as the set of bi-directional decision stumps. Let the weak learner $\Bcal$ be: given a weighted dataset, return the classifier $h \in \Hcal$ that has the smallest weighted error. Implement AdaBoost with $\Bcal$, and run it for $300$ iterations. At time $t$, suppose the following cumulative voting classifier
+  \[ H_t(x) = \sign(f_t(x)), \quad f_s(x) = \sum_{s=1}^t \alpha_s h_s(x) \]
+  is produced.
+
+  Plot AdaBoost's learning curves: the training error of $H_t$, the test error of $H_t$ and the training exponential loss of $f_t$ as a function of iteration $t$. What do you see?
+
+  \item Given a voting classiifer $f_t$, define its normalization as
+  \begin{equation}
+    \bar{f}_t(x) = \frac{f_t(x)}{\sum_{s=1}^t \alpha_s} = \frac{\sum_{s=1}^t \alpha_s h_s(x)}{\sum_{s=1}^t \alpha_s}.
+    \label{eqn:normalize}
+  \end{equation}
+
+  Now, given an example $(x,y)$, define its normalized margin at timestep $t$ as $y\bar{f}_t(x)$. At iterations $t = 10, 30, 50, 100, 300$, show histograms of normalized margins of training examples. Do you see any tendency at $t$ increases?
+\end{enumerate}
+
+\section*{Problem 5 (No need to submit)}
+Show that AdaBoost produces large-margin voting classifiers under the $\gamma$-weak learning assumption. If at every iteration $t$, $\epsilon_t \leq \frac12 - \gamma$,
+then after $T$ rounds, the {\em margin error} of the output classifier will also decrease
+exponentially in $T$. Specifically, show:
+\[
+\frac1m \sum_{i=1}^m \one(y_i \bar{f}_T(x_i) \leq \gamma) \leq \exp{-\Omega(T\gamma^2)}.
+\]
+where $\bar{f}_T$ is the normalized voting classifier defined as per Equation~\eqref{eqn:normalize}.
+%(You can use the elementary inequality that $\ln(1+x) \leq x$.)
+% implement adaboost
+\end{document}
