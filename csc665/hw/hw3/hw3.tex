@@ -70,7 +70,7 @@ compute the Lagrangian function $L(w,\xi,\alpha,\beta)$.
 \end{enumerate}
 
 \section*{Problem 2}
-Suppose we have $k$ finite hypothesis classes $\Hcal_1, \ldots, \Hcal_k$, and $m$ training examples drawn iid from $D$. In addition we are given the promise that there exists $i_0 \in \cbr{1,\ldots,k}$ such that $\min_{h \in \Hcal_{i_0}} \err(h, D) = 0$ (but we don't know the identity of $i_0$); Can we design an algorithm that has generalization error $O(\frac{\ln|\Hcal_{i_0}|}{m})$ with high probability? Why or why not?
+Suppose we have $k$ finite hypothesis classes $\Hcal_1, \ldots, \Hcal_k$, and $m$ training examples drawn iid from $D$. In addition we are given the promise that there exists $i_0 \in \cbr{1,\ldots,k}$ such that $\min_{h \in \Hcal_{i_0}} \err(h, D) = 0$ (but we don't know the identity of $i_0$); Can we design an algorithm that produces classifiers with generalization error $O(\frac{\ln|\Hcal_{i_0}|}{m})$ with high probability? Why or why not?
 
 \section*{Problem 3}
 Show that for AdaBoost, at iteration $t$, the updated distribution $D_{t+1}$
