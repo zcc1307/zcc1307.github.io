@@ -55,7 +55,7 @@ cite existing theorems from the textbooks and course notes.
 Consider the homogeneous, soft-margin SVM optimization problem:
 \begin{align}
   \minimize_{w,\xi} \quad & \frac\lambda 2 \| w \|^2 + \sum_{i=1}^n \xi_i & \label{eqn:svm-d} \\
-    \st \quad & y_i(\inner{w}{x_i}) \geq 1, &\forall i \in \cbr{1,\ldots,n}, \\
+    \st \quad & y_i(\inner{w}{x_i}) \geq 1 - \xi_i, &\forall i \in \cbr{1,\ldots,n}, \\
     & \xi_i \geq 0, &\forall i \in \cbr{1,\ldots,n}. \nonumber
 \end{align}
 \begin{enumerate}
