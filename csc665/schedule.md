@@ -28,9 +28,9 @@ Tentative schedule:
 |Oct 31 | Minimax analysis: Littlestone's dimension; Expert problem | | SSBD Sec 21.1.1 | |
 |Nov 5 | Cover's Impossibility Result; Decision-theoretic online learning. | | SSBD Sec 21.2 | |
 |Nov 7 | Hedge; Online to Batch conversion. | | SSBD Sec 21.2.1, [Hedge paper](http://rob.schapire.net/papers/FreundSc95.pdf); [Loss range adaptivity](https://arxiv.org/abs/1801.00101) | |
-|Nov 12 | Prediction with expert advice (2) | | | |
-|Nov 14 | Stochastic multi-armed bandits (1) | | LS Chaps 6, 7 | |
-|Nov 19 | Stochastic multi-armed bandits (2) | |  | |
+|Nov 12 | Convexity, subgradients | | | |
+|Nov 14 | Subgradients, norms | | | |
+|Nov 19 | Lipschitzness, strong convexity and smoothness | |  | [HW4](hw/hw4/hw4.pdf) |
 |Nov 21 | Adversarial multi-armed bandits | | LS Chap 11 | |
 |Nov 26 | Stochastic linear bandits (1) | | LS Chap 19 | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
@@ -45,4 +45,7 @@ Tentative schedule:
 [//]: # (Follow the regularized leader (FTRL) | | H Sec 5.3 |)
 [//]: # (Online mirror descent (OMD) | | H Sec 5.2 | |)
 [//]: # (|Nov 5 | Online convex optimization for strongly-convex / exp-concave functions | | H Sec 3.3, Chap 4  | |
-|Nov 7 | Prediction with expert advice (1) | | SSBD Sec 21.2 | |)
+|Nov 7 | Prediction with expert advice (1) | | SSBD Sec 21.2 | |
+|Nov 12 | Prediction with expert advice (2) | | | |
+|Nov 14 | Stochastic multi-armed bandits (1) | | LS Chaps 6, 7 | |
+|Nov 19 | Stochastic multi-armed bandits (2) | |  | |)
