@@ -29,10 +29,10 @@ Tentative schedule:
 |Nov 5 | Cover's Impossibility Result; Decision-theoretic online learning. | | SSBD Sec 21.2 | |
 |Nov 7 | Hedge; Online to Batch conversion. | | SSBD Sec 21.2.1, [Hedge paper](http://rob.schapire.net/papers/FreundSc95.pdf); [Loss range adaptivity](https://arxiv.org/abs/1801.00101) | |
 |Nov 12 | Convexity, subgradients | | | |
-|Nov 14 | Subgradients, norms | | | |
+|Nov 14 | Bregman divergence, norms, dual norms | | | |
 |Nov 19 | Lipschitzness, strong convexity and smoothness | |  | [HW4](hw/hw4/hw4.pdf) |
-|Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader | | | |
-|Nov 26 | Stochastic linear bandits (1) | | LS Chap 19 | |
+|Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader (FTRL) | | | |
+|Nov 26 | Analysis of FTRL; adaptive regularization | | LS Chap 19 | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
 |Dec 3 | Stochastic linear bandits (2) | | LS Chap 20 | |
 |Dec 5 | Final presentation (1) | | | |
