@@ -31,7 +31,7 @@ Tentative schedule:
 |Nov 12 | Convexity, subgradients | | | |
 |Nov 14 | Subgradients, norms | | | |
 |Nov 19 | Lipschitzness, strong convexity and smoothness | |  | [HW4](hw/hw4/hw4.pdf) |
-|Nov 21 | Adversarial multi-armed bandits | | LS Chap 11 | |
+|Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader | | | |
 |Nov 26 | Stochastic linear bandits (1) | | LS Chap 19 | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
 |Dec 3 | Stochastic linear bandits (2) | | LS Chap 20 | |
@@ -48,4 +48,5 @@ Tentative schedule:
 |Nov 7 | Prediction with expert advice (1) | | SSBD Sec 21.2 | |
 |Nov 12 | Prediction with expert advice (2) | | | |
 |Nov 14 | Stochastic multi-armed bandits (1) | | LS Chaps 6, 7 | |
-|Nov 19 | Stochastic multi-armed bandits (2) | |  | |)
+|Nov 19 | Stochastic multi-armed bandits (2) | |  | |
+|Nov 21 | Adversarial multi-armed bandits | | LS Chap 11 | |)
