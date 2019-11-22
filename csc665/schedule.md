@@ -32,11 +32,11 @@ Tentative schedule:
 |Nov 14 | Bregman divergence, norms, dual norms | | | |
 |Nov 19 | Lipschitzness, strong convexity and smoothness | |  | [HW4](hw/hw4/hw4.pdf) |
 |Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader (FTRL) | | | |
-|Nov 26 | Analysis of FTRL; adaptive regularization | | LS Chap 19 | |
+|Nov 26 | Analysis of FTRL; Online linear classification with margins | |  | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
-|Dec 3 | Stochastic linear bandits (2) | | LS Chap 20 | |
-|Dec 5 | Final presentation (1) | | | |
-|Dec 10 | Final presentation (2) | | | |
+|Dec 3 | Adaptive regularization: Adagrad, online optimization of strongly convex and exp-concave functions | | LS Chap 20 | |
+|Dec 5 |   | | | |
+|Dec 10 | Final presentation | | | |
 
 [//]: # (|Sep 26 | Structural risk minimization | | SSBD Chap 7 | |)
 [//]: # (SSBD Chap 10, Sec 26.2)
@@ -49,4 +49,7 @@ Tentative schedule:
 |Nov 12 | Prediction with expert advice (2) | | | |
 |Nov 14 | Stochastic multi-armed bandits (1) | | LS Chaps 6, 7 | |
 |Nov 19 | Stochastic multi-armed bandits (2) | |  | |
-|Nov 21 | Adversarial multi-armed bandits | | LS Chap 11 | |)
+|Nov 21 | Adversarial multi-armed bandits | | LS Chap 11 | |
+LS Chap 19
+|Dec 3 | Stochastic linear bandits (2) | | LS Chap 20 | |
+)
