@@ -24,7 +24,7 @@ Tentative schedule:
 |Oct 17 | Model selection, structural risk minimization | [Model selection note](notes/model_sel.pdf) | SSBD Chap 7, [Modern bias-variance tradeoff](https://arxiv.org/pdf/1812.11118.pdf) | [Midterm (take home)](hw/midterm/midterm.pdf) [Midterm solutions](hw/midterm/midterm_sol.pdf) |
 |Oct 22 | Boosting: AdaBoost | | SSBD Chap 10 | |
 |Oct 24 | Boosting and margin bound; two styles of margin bounds | [Boosting note](notes/boosting.pdf) | SSBD Sec 26.2, [Boosted ResNet paper](https://arxiv.org/pdf/1706.04964.pdf) | |
-|Oct 29 | Intro to Online learning; Online classification | | SSBD Sec 21.1 |  [HW3](hw/hw3/hw3.pdf) |
+|Oct 29 | Intro to Online learning; Online classification | | SSBD Sec 21.1 |  [HW3](hw/hw3/hw3.pdf) [HW 3 Solutions](hw/hw3/hw3sol.pdf) |
 |Oct 31 | Minimax analysis: Littlestone's dimension; Expert problem | | SSBD Sec 21.1.1 | |
 |Nov 5 | Cover's Impossibility Result; Decision-theoretic online learning. | | SSBD Sec 21.2 | |
 |Nov 7 | Hedge; Online to Batch conversion. | | SSBD Sec 21.2.1, [Hedge paper](http://rob.schapire.net/papers/FreundSc95.pdf); [Loss range adaptivity](https://arxiv.org/abs/1801.00101) | |
