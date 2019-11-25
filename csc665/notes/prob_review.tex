@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\EE}{\mathbb{E}} % Real numbers
+\newcommand{\PP}{\mathbb{P}} % Real numbers
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+
+\title{CSC 665: Probability review}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+\section{Probability review}
+
+\begin{enumerate}
+\item \textbf{Probability.} Denote by $\PP(A)$ the probability of event $A$; (e.g. throwing
+a die, $A = \cbr{ \text{ number 6 is up } }$, $\PP(A) = 1/6$.)
+
+Probability satisfies additivity: if $A \cap B = \emptyset$, i.e. they are mutually exclusive, then $\PP(A \cup B) = \PP(A) + \PP(B)$.
+It also satisfies subadditivity: for general $A, B$, $\PP(A \cup B) \leq \PP(A) + \PP(B)$.
+
+Events $A$ and $B$ are called independent if $\PP(A \cap B) = \PP(A) \cdot \PP(B)$.
+
+Union bound: $\PP(A_1 \cup A_2 \cup \ldots \cup A_n) \leq \PP(A_1) + \ldots + \PP(A_n)$.
+
+\item \textbf{Expectation.} For a random variable $X$, denote by its expectation $\EE[X]$. Specifically,
+if $X$ takes value in a discrete set $S$, with probability mass function $p$, then
+\[ \EE[X] \defeq \sum_{x \in S} x \cdot p(x); \]
+If $X$ is continuous and has probability density function $p$, then
+\[ \EE[X] \defeq \int_\RR x \cdot p(x) dx. \]
+
+\item \textbf{Indicator function.} Denote by indicator function
+\[
+\one(A) \defeq \begin{cases} 1 & A \text{ is true, } \\ 0 & A \text{ is false. } \end{cases}
+\]
+As $\one(A)$ only takes values $0$ and $1$, we immediately get from the definition
+of expectation that
+\[ \EE \one(A) = 1 \times \PP(A) + 0 \times \PP(\bar{A}) = \PP(A). \]
+
+\item \textbf{Linearity of expectation.} Suppose $X$, $Y$ are two (possibly dependent) random
+variables. Then, $\EE[X + Y] = \EE[X] + \EE[Y]$.
+Moreover, $\EE[a X] = a \EE[X]$ for any scalar $a$.
+
+Is $\EE[X Y] = \EE[X] \EE[Y]$? This is not true in general (consider $(X,Y)$ as having the joint distribution of taking $(-1,-1)$ and $(+1,+1)$ with probability $0.5$.) However, if $X$ and $Y$ are independent, then
+\[ \EE[X Y] = \EE[X] \EE[Y] \]
+is true. Furthermore, if $X$ and $Y$ are independent, then for any functions $f$ and $g$,
+\[ \EE f(X) g(Y) = \EE[f(X)] \EE[g(Y)]. \]
+
+\item \textbf{Variance.} Recall
+that the variance of a random variable $X$ (with mean $\mu$) is defined as:
+
+\[ \Var(X) \defeq \EE (X - \mu)^2. \]
+
+By linearity of expectation,
+
+\[ \EE (X - \mu)^2 = \EE X^2 - \EE 2 X \cdot \mu + \mu^2 = \EE X^2 - \mu^2. \]
+
+How does $\Var(X+Y)$ relate to $\Var(X)$ and $\Var(Y)$? Again, there is no equation relationship in general. However a notable fact is that if $X$ and $Y$ are independent, then $\Var(X+Y) = \Var(X) + \Var(Y)$. This is because,
+\[ \Var(X+Y) = \EE(X + Y - \EE X - \EE Y)^2 = \EE(X - \EE X)^2 + \EE(Y - \EE Y)^2 + 2 \EE(X - \EE X)(Y - \EE Y) = \Var(X) + \Var(Y). \]
+
+Note that for scalar $a$, $\Var(a X) = a^2 \Var(X)$.
+
+\item \textbf{Jensen's Inequality.} Recall that a convex function $f$ is one that
+for all $x_1$, $x_2$ in $\RR$, and $t \in [0,1]$,
+\[ f(t x_1 + (1-t) x_2) \leq t f(x_1) + (1-t) f(x_2). \]
+
+Useful facts:
+\begin{enumerate}
+\item A twice differentiable function is convex if and only if its second derivative is always nonnegative. (This provides a practical way to check convexity.)
+\item If $f$ is differentiable, then for any $x$,$y$, $f(y) \geq f(x) + f'(x)(y-x)$.
+That is, $f$ is always above its first-order approximation. (For twice differentiable $f$, this is a direct consequence of Taylor's Theorem: $f(y) = f(x) + f'(x)(y-x) + \frac{f''(\xi)}{2}(y-x)^2$ for some $\xi$ between $x$ and $y$.)
+\end{enumerate}
+
+\begin{theorem}
+Suppose $f$ is a convex function, and $X$ is a random variable. Then
+\[ f(\EE X) \leq \EE f(X). \]
+\end{theorem}
+\begin{proof}
+  We only show the inequality when $f$ is differentiable.
+  Denote by $\mu \defeq \EE X$.
+  Observe that for all $x$, $f(x) \geq f(\mu) + f'(\mu)(x-\mu)$.
+  Taking expectation on both sides, we get that
+  $\EE f(X) \geq f(\mu) + \EE f'(\mu)(X-\mu) = f(\mu) = f(\EE X)$.
+\end{proof}
+
+\item \textbf{Markov's inequality:} a positive random variable with bounded
+mean should not take large values too often.
+
+\begin{theorem}[Markov's Inequality]
+Suppose $X$ is a nonnegative random variable. Then for any $a > 0$,
+$\PP(X \geq a) \leq \frac{\EE X}{a}$.
+\end{theorem}
+\begin{proof}
+Observe that for any positive $x$, $x \geq a \one(x \geq a)$.
+Therefore,
+\[ \EE X \geq \EE a \one(X \geq a) = a \PP(X \geq a). \]
+The proof is concluded by dividing both sides by $a$.
+\end{proof}
+
+\item \textbf{Chebyshev's Inequality:} a random variable with a bounded variance
+should not deviate from its mean too often.
+
+\begin{theorem}[Chebyshev's Inequality]
+Suppose $X$ is a random variable with mean $\mu$ and variance $v > 0$. Then for any
+$b > 0$,
+$\PP( | X - \mu | \geq b ) \leq \frac{v}{b^2}$.
+\end{theorem}
+\begin{proof}
+Applying Markov's Inequality to the random variable $Y = (X-\mu)^2$ and $a = b^2$,
+we get
+\[ \PP((X-\mu)^2 \geq b^2) \leq \frac{\EE Y}{b^2}. \]
+The proof is concluded by noting that event $\cbr{| X - \mu | \geq b}$ is
+the same as event $\cbr{( X - \mu )^2 \geq b^2}$, and the fact that
+$\EE Y = v$.
+\end{proof}
+\end{enumerate}
+\end{document}

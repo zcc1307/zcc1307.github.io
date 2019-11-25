@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+\usepackage{algorithm, algorithmic}
+\usepackage{natbib}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{claim}{Claim}
+\newtheorem{fact}{Fact}
+
+\DeclareMathOperator*{\hinge}{{\rm hinge}}
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator{\Rad}{{\mathrm{Rad}}}
+\DeclareMathOperator*{\R}{{\rm R}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\sign}{{\rm sign}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+%\DeclareMathOperator*{\Hcal}{{\cal H}}
+\DeclareMathOperator*{\Ycal}{{\cal Y}}
+\DeclareMathOperator*{\Acal}{{\cal A}}
+\DeclareMathOperator*{\Bcal}{{\cal B}}
+\DeclareMathOperator*{\Zcal}{{\cal Z}}
+\DeclareMathOperator*{\Gcal}{{\cal G}}
+\DeclareMathOperator*{\CH}{{\rm CH}}
+%\DeclareMathOperator*{\Fcal}{{\cal F}}
+\DeclareMathOperator*{\Scal}{{\cal S}}
+\DeclareMathOperator*{\Ical}{{\cal I}}
+\DeclareMathOperator*{\argmin}{{\rm argmin}}
+\DeclareMathOperator*{\argmax}{{\rm argmax}}
+\DeclareMathOperator*{\maximize}{{\rm maximize}}
+\DeclareMathOperator*{\minimize}{{\rm minimize}}
+\DeclareMathOperator*{\st}{{\rm s.t.}}
+\DeclareMathOperator*{\VC}{{\rm VC}}
+\DeclareMathOperator{\EE}{{\mathbb E}}
+\DeclareMathOperator{\PP}{{\mathbb P}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+%\newcommand{\EE}{\mathbb{E}}
+%\newcommand{\PP}{\mathbb{P}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Ocal}{\mathcal{O}}
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\DeclareMathOperator*{\Ber}{{\rm Bernoulli}}
+
+\title{CSC 665: Online classification}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+\section{Online learning}
+\begin{enumerate}
+\item Sequential decision making problem
+\item Different from statistical learning, here training and test are interleaved
+\item Has many applications, e.g. spam filtering, (personalized) product recommendation, experimental design, sequential investment, etc
+\end{enumerate}
+
+General setup:
+
+\begin{algorithm}
+  \caption{Online learning: general setup}
+\begin{algorithmic}
+\REQUIRE{Context space $\Xcal$, action space $\Acal$.}
+\FOR{timesteps $t = 1,2,\ldots,T$:}
+\STATE (Optional) Observe context $x_t \in \Xcal$
+\STATE Take action $a_t \in \Acal$
+\STATE Receive feedback $b_t$ (that reveals information about loss $\ell_t$)
+\ENDFOR
+\STATE Goal: minimize cumulative loss $\sum_{t=1}^T \ell_t(a_t)$
+\end{algorithmic}
+\end{algorithm}
+
+Examples:
+\begin{enumerate}
+\item Spam filtering (online classification).
+\begin{enumerate}
+  \item Each $x_t$ (in $\Xcal = \RR^d$) denotes the feature representation
+of an email.
+  \item Use $\Acal = \cbr{\pm 1}$: $+1$ denotes non-spam, $-1$ denotes spam.
+  \item Feedback $b_t = y_t$: true label of email
+  \item Loss: $\ell_t(a) = \one(a \neq y_t)$ - classification error
+\end{enumerate}
+
+
+\item Spam filtering, modified (partial information online classification).
+Same as the setup before, except that the feedback model is different:
+\[ b_t = \begin{cases} y_t & a_t = -1 \\ \bot & a_t = +1 \\ \end{cases} \]
+In words, if an email is classified as non-spam, then it goes to the inbox and user marks
+spam if necessary; however if an email is classified as spam, then the user does not
+check the spam folder and never provided feedback on it.
+
+\item Product recommendation (multi-armed bandits).
+\begin{enumerate}
+  \item No context
+  \item $\Acal = \cbr{1,\ldots,K}$: $K$ products
+  \item Loss: $\ell_t(a)$ - the cost of recommending product $a$ to user $t$ (characterizing user's preferences on all products)
+  \item Feedback: $b_t = \ell_t(a_t)$ - user's preferences on product recommended (but not other $K-1$ products)
+\end{enumerate}
+
+\item Personalized product recommendation (contextual bandits).
+Same as the setup before, except that a context $x_t$ is given at each timestep $t$, that reveals ``charateristics'' about user $t$. The goal is to utilize the contexts to make better product recommendations.
+\end{enumerate}
+
+Some terminlogies:
+\begin{enumerate}
+  \item Full information vs. Partial information: if $b_t$ reveals the true loss function $\ell_t$, then it is called full-information setting; otherwise it is called partial-information setting. Both settings have many applications in practice.
+  \item Stochastic vs. Adversarial: if $(x_t, \ell_t)$'s are iid, then it is called the stochastic setting (where techniques in statistical learning can potentially carry over); Adversarial setting refers to the setup where we don't have assumptions on the data generation process.
+\end{enumerate}
+
+\section{Online classification}
+Convention: as $\Acal = \Ycal = \cbr{\pm 1}$, we often write $a_t$ as $\hat{y}_t$. The goal is to minimize the cumulative number of classification errors, $\sum_{t=1}^T \one(\hat{y}_t \neq y_t)$.
+
+As a starting point, let's consider a simple setting when $\Hcal$ is finite, and we are in the realizable setting: there exists a classifier $h^\star$ in $\Hcal$ that agrees with all the examples. How can we design a learning algorithm that makes a small number of mistakes?
+
+\paragraph{The consistency algorithm: a first trial.} One plausible idea is to utilize the consitency algorithm (or ERM algorithm) we studied in statistical learning: at time $t$, define $V_t = \cbr{h \in \Hcal: h(x_s) = y_s \forall s \leq t-1}$.
+\begin{theorem}
+The consistency algorithm makes $|\Hcal| - 1$ mistakes (regardless of the length of time horizon $T$).
+\end{theorem}
+
+\end{document}

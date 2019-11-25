@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+\usepackage{algorithm, algorithmic}
+\usepackage{natbib}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{claim}{Claim}
+\newtheorem{fact}{Fact}
+
+\DeclareMathOperator*{\hinge}{{\rm hinge}}
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator{\Rad}{{\mathrm{Rad}}}
+\DeclareMathOperator*{\R}{{\rm R}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\sign}{{\rm sign}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+%\DeclareMathOperator*{\Hcal}{{\cal H}}
+\DeclareMathOperator*{\Ycal}{{\cal Y}}
+\DeclareMathOperator*{\Acal}{{\cal A}}
+\DeclareMathOperator*{\Bcal}{{\cal B}}
+\DeclareMathOperator*{\Zcal}{{\cal Z}}
+\DeclareMathOperator*{\Gcal}{{\cal G}}
+\DeclareMathOperator*{\CH}{{\rm CH}}
+%\DeclareMathOperator*{\Fcal}{{\cal F}}
+\DeclareMathOperator*{\Scal}{{\cal S}}
+\DeclareMathOperator*{\Ical}{{\cal I}}
+\DeclareMathOperator*{\argmin}{{\rm argmin}}
+\DeclareMathOperator*{\argmax}{{\rm argmax}}
+\DeclareMathOperator*{\maximize}{{\rm maximize}}
+\DeclareMathOperator*{\minimize}{{\rm minimize}}
+\DeclareMathOperator*{\st}{{\rm s.t.}}
+\DeclareMathOperator*{\VC}{{\rm VC}}
+\DeclareMathOperator{\EE}{{\mathbb E}}
+\DeclareMathOperator{\PP}{{\mathbb P}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+%\newcommand{\EE}{\mathbb{E}}
+%\newcommand{\PP}{\mathbb{P}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Ocal}{\mathcal{O}}
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\DeclareMathOperator*{\Ber}{{\rm Bernoulli}}
+
+\title{CSC 665: Model Selection}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+\section{Error decomposition in machine learning}
+Setup:
+\begin{enumerate}
+  \item distribution $D$,
+  \item training examples $S$ drawn iid from $D$
+  \item learning algorithm $\Acal$ that outputs $\hat{h}$ from hypothesis class
+  $\Hcal$, based on $S$
+\end{enumerate}
+
+Question: what are the factors that contribute to the generalization error
+of $\hat{h}$?
+
+Denote by $h' \defeq \arg\min_{h \in \Hcal} \err(h, S)$, $h^\star \defeq \arg\min_{h \in \Hcal} \err(h, D)$. We have the following theorem.
+
+\begin{theorem}
+With probability $1-\delta$,
+\[ \err(\hat{h}, D) \leq \epsilon_{\text{gen}} + \epsilon_{\text{opt}} + \err(h^\star, D) + \sqrt{\frac{\ln\frac1\delta}{2m}}. \]
+where $\epsilon_{\text{gen}} = \err(\hat{h}, D) - \err(\hat{h}, S)$ is called the {\em generalization gap},
+$\epsilon_{\text{opt}} = \err(\hat{h}, S) - \err(h', S)$ is called the {\em optimization error}.
+\end{theorem}
+
+\begin{proof}
+Observe that
+\[ \err(\hat{h}, D) = [\err(\hat{h}, D) - \err(\hat{h}, S)] + [\err(\hat{h}, S) - \err(h^\star, S)] + [\err(h^\star, S) - \err(h^\star, D)] + \err(h^\star, D). \]
+note that the first term is $\epsilon_{\text{gen}}$;
+the second term is at most $\epsilon_{\text{opt}}$, as $\err(h', S) \leq \err(h^\star, S)$;
+the third term is at most $\sqrt{\frac{\ln\frac1\delta}{2m}}$ with probability $1-\delta$ by Hoeffding's inequality.
+\end{proof}
+
+Remarks:
+\begin{enumerate}
+\item $\err(h^\star, D)$ is called the {\em bias} of the hypothesis class $\Hcal$. A more expressive $\Hcal$ gives a smaller bias.
+\item When $m$ is reasonably large, then $\sqrt{\frac{\ln\frac1\delta}{2m}}$ can usually be omitted.
+\item The bound can be loose: aside from application of Hoeffding's inequality, the only other place we use inequality is bounding $\err(h', S)$ using $\err(h^\star, S)$ - but the gap between them can be large: if the data is highly noisy and $\Hcal$ is too expressive, then $\err(\hat{h}, S)$ can be close to zero, whereas $\err(h^\star, S)$ can be large.
+\end{enumerate}
+
+%Key formula (error decomposition):
+%\[ \err(\hat{h}, D) = \del{\err(\hat{h}, D) - \err(h', D)} + \del{\err(h', D) - \err(h^\star, D)} \]
+
+\paragraph{Important special case: ERM.} Suppose $\Acal$ is ERM wrt $\Hcal$. In this case, $\hat{h} = h'$, therefore $\epsilon_{\text{opt}}$ is zero. Moreover, as we have seen before, we can bound $\epsilon_{\text{gen}}$ by $\sup_{h \in \Hcal} \err(\hat{h}, D) - \err(\hat{h}, S)$, which in turn can be controlled by
+$O(\sqrt{\frac{\ln\frac{|\Hcal|}{\delta}}{m}})$ using uniform convergence arguments. We have that with probability $1-\delta$:
+\[ \err(\hat{h}, D) \leq \err(h^
+\star, D) + 2\sqrt{\frac{\ln\frac{2|\Hcal|}{\delta}}{2m}}. \]
+
+There are two possible factors that contribute to $\hat{h}$'s error:
+\begin{enumerate}
+\item The bias of $\Hcal$.
+\item The ``complexity'' of $\Hcal$: an upper bound of the generalization gap of $\hat{h}$.
+\end{enumerate}
+This is called the bias-complexity tradeoff. Say $\Hcal \subset \Hcal'$, then $\Hcal'$ has a smaller bias, while having a larger complexity.
+
+\begin{enumerate}
+\item Underfitting: $\Hcal$ is too restricted so that the bias is too large. This can sometimes be caught by observing that $\err(\hat{h}, S)$ is too large, as $\err(\hat{h}, S) \leq \err(h^\star, S) \approx \err(h^\star, D)$.
+\item Overfitting: $\Hcal$ is too expressive so that the generalization gap is too large. This cannot be directly caught by monitoring the training error rate of ERM, however, it can be caught by maintaining a separate {\em validation set}. Suppose we have a fresh validation set $V$, then $\err(\hat{h}, D) \approx \err(\hat{h}, V)$ by Hoeffding's inequality, so $\epsilon_{\text{gen}} \approx \err(\hat{h}, S) - \err(\hat{h}, V)$.
+\end{enumerate}
+
+\section{How to choose hypothesis class $\Hcal$ in practice?}
+\begin{enumerate}
+\item PAC learning theory deals with learning a fixed hypothesis class $\Hcal$
+\item In practice (exploratory data analysis), it is often not the case that analysts ``commits'' to a fixed learning algorithm - one often tries different learning algorithms for different hypothesis classes (e.g. SVM for training linear classifiers with different regularization parameters, ID3 for training decision trees with different pruning strategies, backprop for training neural nets with different learning rates / weight decay, etc) to see which one performs the best.
+\item How shall we choose the learning algorithm to use in practice?
+\item For simplicity, let us consider only algorithm that are ERMs over hypothesis classes.
+\end{enumerate}
+
+Given hypothesis classes $\Hcal_1, \ldots, \Hcal_k$.
+For every $i$, define $h_i^\star = \arg\min_{h \in \Hcal} \err(h, D)$ as the optimal classifier on $\Hcal_i$;
+$\hat{h}_i = \arg\min_{h \in \Hcal_i} \err(h, S)$ is the output of ERM over $\Hcal_i$.
+How do we select which $\hat{h}_i$ to pick to have low generalization error? Can we certain model selection criteria via the error decomposition theorem?
+
+
+%One plausible idea is to pick a classifier among all the $\hat{h}_i$'s.
+%Then we can bound the generalization gap of $\hat{h}_i$ by the familiar Hoeffding's inequality and union bound: with probability $1-\delta$,
+%\[ \epsilon_{\text{gen},i} = \err(\hat{h}_i, D) - \err(\hat{h}_i, S) \leq \sqrt{\frac{\ln\frac{2k|\Hcal_i|}{\delta}}{m}}, \forall i \in \cbr{1,\ldots,k}. \]
+
+%A simple application of Hoeffding's inequality and union bound gives the following result:
+%Applying the error decomposition theorem (with some algebra) with union bound, we can easily show the following result (proof omitted):
+%\begin{theorem}
+%With probability $1-\delta$,
+%\begin{equation}
+%  \err(\hat{h}_i, D) \leq \err(h_i^\star, D) + 2\sqrt{\frac{\ln\frac{2k|\Hcal_i|}{\delta}}{m}}.
+%  \label{eqn:hyp-class-dev}
+%\end{equation}
+%\end{theorem}
+
+%How does this theorem guide us how to find a classifier with low generalization error? One plausible idea is to pick a classifier among all the $\hat{h}_i$'s. In theory, we may want to pick $i$ that minimizes the right side of~\eqref{eqn:hyp-class-dev}. But in practice, we never know the bias of all $\Hcal_i$'s, therefore, a operable criterion of model ($i$) selection is still missing. Can we design one?
+%By looking at the generalization bound on the right hand side, % It is important to select $\Hcal$ with appropriate complexity, to avoid:
+
+
+%In theory, we may want to pick $i$ that minimizes the right side of~\eqref{eqn:hyp-class-dev}. But in practice, we never know the bias of all $\Hcal_i$'s, therefore, a operable criterion of model ($i$) selection is still missing. Can we design one?
+
+\paragraph{Idea 1: validation.} As discussed before, a fresh validation set can help us provide good evaluation on the trained classifiers. Suppose $V$ is a validation set of size $n$. Let $\hat{\Hcal} = \cbr{\hat{h}_1, \ldots, \hat{h}_k}$ be the set of ERMs.
+Define $\hat{h} = \arg\min_{h \in \hat{\Hcal}} \err(h, V)$ as the ERM over the ERMs. We have the following simple theorem:
+\begin{theorem}
+  With probability $1-\delta$,
+  \begin{eqnarray*}
+    \err(\hat{h}, D) &\leq& \min_{i \in \cbr{1,\ldots,k}} \err(\hat{h}_i, D) + 2\sqrt{\frac{\ln\frac{4}{\delta}}{2n}} \\
+    &\leq& \min_{i \in \cbr{1,\ldots,k}} \del{\err(h_i^\star, D) + 2\sqrt{\frac{\ln\frac{4k|\Hcal_i|}{\delta}}{2m}}
+    + 2\sqrt{\frac{\ln\frac{4}{\delta}}{2n}}}
+  \end{eqnarray*}
+\end{theorem}
+
+The proof of this theorem follows from simple analysis of ERMs, which is left as an exercise.
+
+Suppose $n = \Theta(m)$, then the third term is dominated by the second term (complexity of $\Hcal_i$), implying that $\hat{h}$'s error upper bound is almost the same as the error upper bound of doing ERM over $\Hcal_i$ (had we known the ``best'' $i$ - the one that has the best bias-complexity tradeoff).
+
+\paragraph{Idea 2: structural risk minimization (penalized ERM).} There is an alternative approach (inspired by theory) that achieves roughly the same type of error guarantee as validation. Note that selecting $i$ that minimizes $\err(\hat{h}_i, S)$ may be a terrible idea, as $\hat{h}_i$ may overfit.
+However, we can do the following fix: we add penalty that depends on $\Hcal_i$'s complexity, that is,
+\[ \hat{i} = \arg\min_{i \in \cbr{1,\ldots,k}} \err(\hat{h}_i, S) + 2\sqrt{\frac{\ln\frac{4k|\Hcal_i|}{\delta}}{2m}}, \]
+and define the final output as $\hat{h} = \hat{h}_{\hat{i}}$. Note that similar to SVM, this can be interpreted as regularized loss minimzation - for different classifiers, in addition to minimizing its empirical error, we also add a penalty that depends on which hypothesis class it lies in.
+
+As we will see next, this approach implicitly minimizes the generalization error bounds on all $\hat{h}_i$'s.
+
+
+\begin{theorem}
+  With probability $1-\delta$,
+  \begin{eqnarray*}
+    \err(\hat{h}, D) &\leq&
+    \min_{i \in \cbr{1,\ldots,k}} \del{\err(\hat{h}_i, D) + 2\sqrt{\frac{\ln\frac{4k|\Hcal_i|}{\delta}}{2m}}} \\
+     &\leq& \min_{i \in \cbr{1,\ldots,k}} \del{\err(h_i^\star, D) + 4\sqrt{\frac{\ln\frac{4k|\Hcal_i|}{\delta}}{2m}}}.
+  \end{eqnarray*}
+\end{theorem}
+
+The first inequality is called an {\em oracle inequality}, in that it relates the performance of a learned classifier to a classifier output by some ideal learning algorithm (that relies on information unavailable in reality). To see this, note that we can define $i_0$ that minimizes $\err(\hat{h}_i, D) + 2\sqrt{\frac{\ln\frac{4k|\Hcal_i|}{\delta}}{2m}}$, which is unavailable as $\err(\hat{h}_i, D)$ cannot be exactly computed. The theorem tries to relate the generalization error of $\hat{h}$ to that of $\hat{h}_{i_0}$.
+
+\begin{proof}
+By Hoeffding's inequality and union bound, with probability $1-\delta$,
+\begin{equation}
+   |\err(h, S) - \err(h_i, D)| \leq \sqrt{\frac{\ln\frac{2k|\Hcal_i|}{\delta}}{2m}}, \forall h \in \Hcal_i.
+   \label{eqn:uc}
+ \end{equation}
+ Note that this is a {\em non-uniform convergence} statement: classifiers in larger
+ hypothesis classes's error concentration are controlled more loosely.
+%Specifically,
+%\[ |\err(\hat{h}_i, S) - \err(\hat{h}_i, D)| \leq \sqrt{\frac{\ln\frac{2k|\Hcal_i|}{\delta}}{2m}}. \]
+
+Therefore, for every $i$ in $\cbr{1,\ldots,k}$,
+\begin{eqnarray*}
+\err(\hat{h}, D) = \err(\hat{h}_{\hat{i}}, D) &\leq& \err(\hat{h}_{\hat{i}}, S) + \sqrt{\frac{\ln\frac{4k|\Hcal_{\hat{i}}|}{\delta}}{2m}} \\
+&\leq& \err(\hat{h}_i, S) + \sqrt{\frac{\ln\frac{4k|\Hcal_i|}{\delta}}{2m}} \\
+&\leq& \err(\hat{h}_i, D) + 2\sqrt{\frac{\ln\frac{4k|\Hcal_i|}{\delta}}{m}} \\
+&\leq& \err(h_i^\star, D) + 4\sqrt{\frac{\ln\frac{4k|\Hcal_i|}{\delta}}{m}}.
+\end{eqnarray*}
+where the first inequality is by error concentration in $\Hcal_{\hat{i}}$;
+the second inequality is by the optimality of $\hat{i}$;
+the third inequality is from by error conentration in $\Hcal_i$;
+where the last step is by the familiar analysis of ERM on $\Hcal_i$ given uniform convergence~\eqref{eqn:uc} holds.
+The theroem is concluded by noting that the above holds for all $i$.
+\end{proof}
+
+\bibliographystyle{plainnat}
+\bibliography{learning}
+%\section{}
+
+
+\end{document}

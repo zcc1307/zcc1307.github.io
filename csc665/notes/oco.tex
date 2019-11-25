@@ -1,0 +1,627 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+\usepackage{algorithm, algorithmic}
+\usepackage{natbib}
+
+\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{claim}{Claim}
+\newtheorem{fact}{Fact}
+
+\DeclareMathOperator*{\diag}{{\rm diag}}
+\DeclareMathOperator*{\Reg}{{\rm Reg}}
+\DeclareMathOperator*{\ope}{{\rm op}}
+\DeclareMathOperator*{\hinge}{{\rm hinge}}
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator{\Rad}{{\mathrm{Rad}}}
+\DeclareMathOperator*{\R}{{\rm R}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\sign}{{\rm sign}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+%\DeclareMathOperator*{\Hcal}{{\cal H}}
+\DeclareMathOperator*{\Ycal}{{\cal Y}}
+\DeclareMathOperator*{\Acal}{{\cal A}}
+\DeclareMathOperator*{\Bcal}{{\cal B}}
+\DeclareMathOperator*{\Zcal}{{\cal Z}}
+\DeclareMathOperator*{\Gcal}{{\cal G}}
+\DeclareMathOperator*{\Ccal}{{\cal C}}
+\DeclareMathOperator*{\CH}{{\rm CH}}
+%\DeclareMathOperator*{\Fcal}{{\cal F}}
+\DeclareMathOperator*{\Scal}{{\cal S}}
+\DeclareMathOperator*{\Ical}{{\cal I}}
+\DeclareMathOperator*{\argmin}{{\rm argmin}}
+\DeclareMathOperator*{\argmax}{{\rm argmax}}
+\DeclareMathOperator*{\maximize}{{\rm maximize}}
+\DeclareMathOperator*{\minimize}{{\rm minimize}}
+\DeclareMathOperator*{\st}{{\rm s.t.}}
+\DeclareMathOperator*{\VC}{{\rm VC}}
+\DeclareMathOperator{\EE}{{\mathbb E}}
+\DeclareMathOperator{\PP}{{\mathbb P}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+%\newcommand{\EE}{\mathbb{E}}
+%\newcommand{\PP}{\mathbb{P}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Ocal}{\mathcal{O}}
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\DeclareMathOperator*{\Ber}{{\rm Bernoulli}}
+
+\title{CSC 665: Online convex optimization}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+\section{Background knowledge}
+
+\subsection{Norms}
+\begin{definition}
+A function $\| \cdot \|: \RR^d \to \RR_+$ (that maps $x$ to $\|x\|$) is called a norm, if the following holds:
+\begin{enumerate}
+\item(Homogeneity) $\forall a \in \RR$, $\| ax \| = |a| \| x \|$.
+\item(Triangle inequality) $\forall x, y \in \RR^d$, $\| x + y \| \leq \| x \| + \|y\|$.
+\item(Point separation) If $\| v \| = 0$, then $v = \vec{0}$. In other words, all nonzero vectors have nonzero norms.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+For a norm $\| \cdot \|$, define its dual norm as follows:
+\[ \| z \|_\star = \sup_{x: \| x \| \leq 1} \inner{x}{z}. \]
+(It can be checked that $\| \cdot \|_\star$ also satisfies the requirements of a norm.)
+\end{definition}
+
+\begin{example}
+\begin{enumerate}
+  \item $\| \cdot \|_2$ has dual norm $\| \cdot \|_2$.
+  \item In general, for $p, q \in [1,\infty]$ being conjugate exponents, that is $\frac1p + \frac1q = 1$, $\| \cdot\|_p$ has dual norm $\| \cdot \|_q$.
+  \item Given a positive definite matrix $A$, define $\| x \|_A = \sqrt{x^\top A x}$. It has dual norm $\| \cdot \|_{A^{-1}}$.
+\end{enumerate}
+\end{example}
+
+\begin{fact}[``Cauchy-Schwarz'' for general norms]
+For any norm $\| \|$ and its dual norm $\| \|_\star$, and any two points
+$x, z \in \RR^d$,
+\[ \inner{x}{z} \leq \| x \| \| z \|_\star. \]
+\end{fact}
+The fact simply follows from the definition of dual norm.
+
+One might wonder, $\| \cdot\|$ has dual norm $\| \cdot\|_\star$, but
+what is the dual norm of $\| \cdot\|_\star$? It turns out that under mild assumptions, the dual of $\|\cdot \|_\star$ is $\|\cdot \|$.
+
+%A $d \times d$ matrix $M$ can be viewed as a linear operator that maps $x \in \RR^d$ to $Mx \in \RR^d$. Sometimes it would be convenient to consider the following operator norm:
+%\begin{definition}
+%Suppose $\| \cdot \|$ is a norm on $\RR^d$. Define the opeator norm of a matrix $M$ as:
+%\[ \| M\|_{\ope} = \max_{x: \| x \| \leq 1} \| M x \|_\star \]
+%\end{definition}
+
+%\begin{example}
+%  \begin{enumerate}
+%    \item The operator norm of $M$ with respect to $\| \cdot \|_2$ is $\sigma_{1}(M)$, where $\sigma_{1}(A)$ denotes the maximum singular value of $A$.
+%    \item The operator norm of $M$ with respect to $\| \cdot \|_1$ is
+%  \end{enumerate}
+%\end{example}
+
+\subsection{Convexity}
+
+\begin{definition}
+Define convex sets and convex functions as follows:
+\begin{enumerate}
+\item A set $\Ccal \subset \RR^d$ is convex, if for any $u$, $v$ in $\Ccal$ and any $\alpha \in [0,1]$,
+$\alpha u + (1-\alpha) v \in \Ccal$.
+
+\item A function $f: \Ccal \to \RR$ is convex, if for any $u$, $v$ in $\Ccal$, and any $\alpha \in [0,1]$, $f(\alpha u + (1-\alpha)v) \leq \alpha f(u) + (1-\alpha) f(v)$.
+\end{enumerate}
+\end{definition}
+
+\begin{fact}[Local minimum vs. global minimum]
+Suppose $f$ is a convex function. If $x$ is a local minimum of $f$, in that there exists a radius $r > 0$ such that for all $y$ such that $\| y - x\| \leq r$, $f(x) \leq f(y)$, then $x$ is also a global minimum $f$.
+\end{fact}
+
+\begin{definition}[Subgradient]
+Given a convex function $f: \Ccal \to \RR$ and a point $v \in \Ccal$, define $\partial f(v)$ as the set of $g \in \RR^d$'s such that:
+\[ \forall u \in \Ccal, \quad f(u) \geq f(v) + \inner{g}{u - v}. \]
+\end{definition}
+
+Therefore, for convex $f$, if $x^\star$ global minimum of $f$, then $0 \in \partial f(x^\star)$. It can be easily checked that the converse is also true. %This means that in some sense, convex optimization boils down to finding a point with a
+
+\begin{fact}
+For any convex $f: \Ccal \to \RR$ and a point $v \in \Ccal$, $\partial f(v) \neq \emptyset$, i.e. subgradient always exists. If $f$ is differentiable at $v$, then $\partial f(v) = \cbr{\nabla f(v)}$.
+\end{fact}
+
+\begin{example}
+For function $f(x) = |x|$,
+\[ \partial f(x) = \begin{cases} +1 & x > 0, \\ [-1,+1] & x = 0, \\ -1 & x < 0. \end{cases}\]
+\end{example}
+
+\begin{definition}[Bregman divergence]
+For a differentiable convex function $f$, define its induced Bregman divergence on points $u$ and $v$ as:
+\[ D_f(u, v) = f(u) - f(v) - \inner{\nabla f(v)}{u - v}. \]
+\end{definition}
+In words, $D_f(u, v)$ is the gap between $f$ and its first order approximation (using $v$) at location $u$. By convexity of $f$, $D_f(u, v)$ is always nonnegative. Interestingly, $D_f(u, v)$ may not agree with $D_f(v, u)$, as can be seen in the second example below.
+
+\begin{example}
+  \begin{enumerate}
+  \item If $f(x) = \frac{\lambda}{2}\|x\|^2$, then $D_f(u, v) = \frac{\lambda}{2}\|u - v\|_2^2$.
+  \item If $f(x) = \sum_{i=1}^d x_i \ln x_i$, then $D_f(u, v)= \sum_{i=1}^d (u_i \ln\frac{u_i}{v_i} - u_i + v_i)$. This is the {\em unnormalized relative entropy} between $u$ and $v$; if both $u$ and $v$ are in $\Delta^{d-1}$, then $D_f(u, v)$ is the {\em relative entropy} between these two probability vectors.
+\end{enumerate}
+\end{example}
+
+
+\begin{fact}[Building convex functions from simple ones]
+Suppose $f_1, \ldots, f_n$ is a collection of convex functions.
+\begin{enumerate}
+\item If $w_1,\ldots, w_n \geq 0$, then $\sum_{i=1}^n w_i f_i(x)$ is convex.
+
+\item Let $f(x) = \max(f_1(x), \ldots, f_n(x))$. Then $f$ is convex. Moreover, given an $x$,
+$\partial f(x)$ contains elements of $\partial f_{i}(x)$, where $i \in \arg\max_{i=1}^n f_i(x)$.
+\end{enumerate}
+\label{fact:build-cvx}
+\end{fact}
+
+
+\begin{definition}
+$f$ is $L$-Lipschitz with respect to norm $\| \cdot \|$ if for any $u, v$, $f(u) - f(v) \leq L\| u - v\|$.
+\end{definition}
+
+\begin{fact}
+For any convex $f: \Ccal \to \RR$,
+\[ f \text{ is } L-\text{Lipschitz} \Leftrightarrow \forall v, \forall g \in \partial f(v), \| g \|_\star \leq L. \]
+\end{fact}
+
+Therefore, for differentiable functions, to check Lipschitzness, it suffices to check that the gradients at all locations have uniformly-bounded norms.
+
+\subsection{Strong convexity}
+
+\begin{definition}[Strong convexity]
+A function $f: \Ccal \to \RR$ is $\lambda$-strongly convex with respect to norm $\| \cdot \|$, if for any two points
+$u, v \in \Ccal$, and $\alpha \in [0,1]$,
+\[ f(\alpha u + (1-\alpha)v) \leq \alpha f(u) + (1-\alpha) f(v) - \frac{\lambda}{2}\alpha(1-\alpha) \| u - v\|^2. \]
+\end{definition}
+
+Strong convexity requires that the gap between interpolated function values and the function value of the interpolated input to have a quadratic lower bound. Clearly, if $f$ is $\lambda$-strongly convex, then $f$ is $\lambda'$-strongly convex for $\lambda' < \lambda$. Moreover, a function $f$ is $0$-strongly convex iff $f$ is convex.
+
+\begin{fact}
+The following are equivalent:
+\begin{enumerate}
+  \item $f$ is $\lambda$-strongly convex.
+  \item For any $v$ in $\Ccal$, and $g \in \partial f(v)$,
+  \[ f(u) \geq f(v) + \inner{g}{u - v} + \frac{\lambda}{2}\| u - v\|^2, \forall u \in \Ccal. \]
+  \item For any $v$ in $\Ccal$, there exists a vector $g$ such that:
+  \[ f(u) \geq f(v) + \inner{g}{u - v} + \frac{\lambda}{2}\| u - v\|^2, \forall u \in \Ccal. \]
+\end{enumerate}
+\end{fact}
+
+Properties 2 or 3 are sometimes easier to check than the original strong convexity definition. Specifically, if $f$ is differentiable, then strong convexity is equivalent to a quadratic lower bound on Bregman divergence: $D_f(u, v) \geq \frac{\lambda}{2}\|u-v\|^2$.
+
+\begin{example}
+\begin{enumerate}
+  \item If $f(x) = \frac{\lambda}{2}\|x\|^2$, then $D_f(u, v) = \frac{\lambda}{2}\|u - v\|_2^2$. Therefore $f$ is $\lambda$-strongly convex with respect to $\| \cdot \|_2$.
+  \item If $f(x) = \sum_{i=1}^d x_i \ln x_i, x \in \cbr{x \in \RR^d: x_i > 0 \forall i, \sum_{i=1}^d x_i \leq B_1}$,
+  then it can be checked by second-order Taylor's Theorem that $D_f(u, v) \geq \frac{1}{2B_1}\|u - v\|_1^2$, in other words, $f$ is $\frac{1}{B_1}$-strongly convex with respect to $\| \cdot \|_1$.
+\end{enumerate}
+\end{example}
+
+Strongly convex function has unique global minimum, as given by the following fact:
+\begin{fact}
+If $f$ is $\lambda$-strongly convex, and $x^\star$ is a global minimum of $f$, then
+$f(x) - f(x^\star) \geq \frac{\lambda}2 \| x - x^\star \|^2$. Therefore, if $f(x) \leq f(x^\star)$, then $x = x^\star$.
+\end{fact}
+
+\subsection{Smoothness}
+
+For twice-differentiable $f$,
+strong convexity with respect to $\| \cdot \|_2$ reduces to the following simple
+criterion.
+\begin{fact}
+Suppose $f$ is twice differentiable.
+$f$ is $\lambda$-strongly convex with respect to $\| \cdot \|_2$ iff for any $x$,
+$\nabla^2 f(x) \succeq \lambda I$.
+\end{fact}
+
+\begin{definition}[Smoothness]
+A differentiable function $f$ is called $\beta$-smooth with respect to norm $\|\cdot \|$, if for any $u$, $v$,
+$\| \nabla f(u) - \nabla f(v) \|_\star \leq \beta \| u - v \|$.
+In other words, $\nabla f$ is $\beta$-Lipschitz with respect to $\| \cdot \|$.
+\end{definition}
+
+\begin{fact}
+The following are equivalent:
+\begin{enumerate}
+  \item $f$ is $\beta$-smooth with respect to norm $\| \cdot \|$.
+  \item For any $u, v$, $f(u) \leq f(v) + \inner{\nabla f(v)}{u - v} + \frac{\beta}{2}\| u - v \|^2$.
+  \item For any $u, v$, $f(u) \geq f(v) + \inner{\nabla f(v)}{u - v} + \frac{1}{2\beta} \| u - v \|^2$.
+\end{enumerate}
+\end{fact}
+
+It can be seen that, smoothness is opposite to strong convexity: it asks for a function $f$, $D_f(u, v) \leq \frac{\beta}{2}\| u - v\|^2$ for any $u$, $v$. Therefore, if $f$ is both $\lambda$-strongly convex and $\beta$-smooth, then $\lambda \leq \beta$.
+
+Again for twice-differentiable function $f$ and $\ell_2$ norm, we have a simpler way
+to check smoothness:
+\begin{fact}
+Suppose $f$ is twice differentiable.
+$f$ is $\beta$-smooth with respect to $\| \cdot \|_2$ iff for any $x$,
+$\nabla^2 f(x) \preceq \beta I$.
+\end{fact}
+
+\subsection{Legendre-Fenchel duality}
+
+Main idea: given convex function $f$, use all its tangents to charaterize it.
+
+Fix a slope $s$, find a tangent of $f$ with slope $s$. One charaterization of the tangent is that, go over all $x$'s, look at the gaps between $f(x)$ and $\inner{s}{x}$, and find the location with the smallest gap. This smallest gap is the offset $b$, such that $\inner{s}{x} + b$ is the tangent of $f$ with slope $s$.
+
+As discussed above, the offeset can be written as:
+\[ b(s) =  \min_x \del{f(x) - \inner{s}{x}}. \]
+
+We define the Legendre-Fenchel conjugate of $f$ as $-b(s)$, denoted as $f^\star(s)$. \begin{definition}
+The Legendre-Fenchel conjugate (dual) of $f$, $f^\star$, is defined as
+\[ f^\star(s) = \max_{x} \del{\inner{s}{x} - f(x)}. \]
+\end{definition}
+As $f^\star$ is the pointwise maximum of a collection of convex functions, $f^\star$ is convex. Can we give a characterization of the subgradient of $f^\star$? Using a generalization of Fact~\ref{fact:build-cvx}, and the fact that $s \mapsto \inner{s}{x} - f(x)$ has subgradient $x$,
+we can see that
+\[ \argmax_{x} \del{\inner{s}{x} - f(x)} \in \partial f^\star (s). \]
+
+Let us look at the dual of $f^\star$, that is $f^{\star\star}(x) = \max_{s} \del{\inner{x}{s} - f^\star(s)}$. Note that it has the following nice geometric interpretation: recall that for each $s$, $\inner{x}{s} - f^\star(s)$ is the tangent of $f$ of slope $s$; we get a collection of lines below $f$. Taking an upper envelope of these lines, we recover the original function $f$.
+
+\begin{fact}
+Suppose $f$ is closed (in that $\cbr{(x,t): f(x) \leq t}$ is a closed set) and
+convex, then $f^{\star\star} = f$. In words, the dual of the dual is the original function.
+\end{fact}
+
+%therefore, taking a pointwise maximum over all tangents, we get a convex lower envelope of $f$.
+The following simple fact is by the definition of Legendre-Fenchel conjugate function:
+\begin{fact}[Fenchel-Young's Inequality]
+For any pairs of $x$ and $s$,
+\[ f(x) + f^\star(s) \geq \inner{x}{s}. \]
+\end{fact}
+
+\begin{example}
+\begin{enumerate}
+  \item For conjugate exponents $p, q \in (1,\infty)$ such that $\frac1p + \frac1q = 1$, if $f(x) = \frac{x^{p}}{p}$, then $f^\star(s) = \frac{s^q}{q}$. This is the classical Young's inequality.
+  \item For any norm $\| \cdot \|$, if $f(x) = \frac\lambda2 \| x \|^2$, then $f^\star(s) = \frac1{2\lambda}\| s \|_\star^2$.
+  \item If $f(x) = \begin{cases} \sum_{i=1}^d x_i \ln x_i, & x \in \Delta^{d-1} \\
+   +\infty, & x \notin \Delta^{d-1} \end{cases}$, then $f^\star(s) = \ln \sum_{s=1}^d e^{s_i}$.
+  \item If $f(x) = \begin{cases} \sum_{i=1}^d x_i \ln x_i, & x \succ 0 \\
+   +\infty, & x \nsucc 0 \end{cases}$, then $f^\star(s) = \sum_{i=1}^d e^{s_i - 1}$.
+\end{enumerate}
+\end{example}
+
+
+If $f \geq g$, then by the definition of conjugate function, $f^\star \leq g^\star$.
+
+It can be shown that for a strongly convex $f$, $f^\star$ is differentiable. Specifically,
+\[ \nabla f^\star(s) = \argmax_{x} \del{\inner{s}{x} - f(x)}, \]
+as $f$ is strongly convex, the right hand side has unique element and the equality
+is thus well-defined.
+%we have a simpler characterization of $\nabla f^\star$:
+
+
+\begin{fact}
+$f$ is $\lambda$-strongly convex with respect to $\| \cdot \|$ iff $f^\star$ is $\frac1\lambda$-smooth with respect to $\| \cdot \|_\star$.
+\label{fact:sc-sm}
+\end{fact}
+\begin{proof}
+We only show the ``only if'' here. Our goal is to show that for $u, v$,
+\[ \| x_u - x_v \|_\star \leq \frac1\lambda \| u - v\|, \]
+where
+\[ x_u = \nabla f^\star(u) = \argmin_x h_u(x), \text{ where } h_u(x) = \del{f(x) - \inner{u}{x}} , \]
+\[ x_v = \nabla f^\star(v) = \argmin_x h_v(x), \text{ where } h_v(x) = \del{f(x) - \inner{v}{x}} . \]
+
+Note that $h_u$ and $h_v$ are close to each other when $u$ and $v$ are close: but close functions may not necessarily imply that their optimal points are close to each other; for example, $f(x) = 0.01x$ has minimum at $-\infty$, and
+$f(x) = -0.01x$ has minimum at $+\infty$; luckily, for strongly convex functions that differ by a small linear function, we show that their minimum points are close.
+
+By the strong convexity of $h_u(x)$ (resp. $h_v(x)$) and the optimality of $x_u$ (resp. $x_v$),
+\[ h_u(x_v) \geq h_u(x_u) + \frac{\lambda}{2} \| x_u - x_v \|^2, \]
+\[ h_v(x_u) \geq h_v(x_v) + \frac{\lambda}{2} \| x_u - x_v \|^2. \]
+Summing the two inequalities up,
+\[ \inner{u - v}{x_u - x_v} \geq \lambda \| x_u - x_v \|^2. \]
+By the generalized Cauchy-Schwarz, we have
+\[ \lambda \| x_u - x_v \|^2 \leq \| u -v \| \| x_u - x_v \|, \]
+implying
+\[ \| x_u - x_v \|_\star \leq \frac1\lambda \| u - v \|. \qedhere\]
+\end{proof}
+
+The above fact shows that, if $f$ is more ``curved'', then $f^\star$ is more ``flat'', and vice versa.
+%Thanks to the above fact,
+
+\section{Online convex optimization}
+
+Setup:
+\begin{algorithm}
+\caption{Online convex optimization (OCO)}
+\begin{algorithmic}
+\REQUIRE{Convex decision set $\Ccal$.}
+\FOR{timesteps $t = 1,2,\ldots,T$:}
+\STATE Learner chooses $x_t \in \Ccal$,
+\STATE Learner receives a convex loss $f_t$.
+\ENDFOR
+\STATE Goal: minimize cumulative loss $\sum_{t=1}^T f_t(x_t)$.
+\end{algorithmic}
+\end{algorithm}
+
+\begin{definition}
+  Suppose for every $f_t$, $f_t(x) = \inner{g_t}{x}$ for some vector $g_t$,
+  then the OCO problem is called an online linear optimization (OLO) problem.
+\end{definition}
+
+\subsection{Follow the regularized leader (FTRL) for OLO}
+Given a $\lambda$-strongly convex regularization function $R$, set
+\begin{eqnarray*}
+  x_t &=& \argmin_{x} \sum_{s=1}^{t-1} \inner{g_s}{x} + R(x) \\
+  &=& \argmax_{x} \inner{-G_{t-1}}{x} - R(x) \\
+  &=& \nabla R^\star(-G_{t-1}),
+\end{eqnarray*}
+where $G_t = \sum_{s=1}^{t} g_s$ is the cumulative gradients. the mapping $\nabla R^\star$ is called the {\em mirror map}, that ``transports'' the cumulative negative gradient to a point in the decision space.
+
+\begin{example}
+We give a few instantiations of FTRL:
+\begin{enumerate}
+\item Hedge as FTRL: let $g_t = \ell_t$ for every $t$, and let $R(x) = \begin{cases} \frac1\eta \sum_{i=1}^d x_i \ln x_i, & x \in \Delta^{d-1} \\
+ +\infty, & x \notin \Delta^{d-1} \end{cases}$, then it can be checked that
+ \[ x_{t,i} = \exp\del{-\eta \sum_{s=1}^{t-1} \ell_{s,i}}. \]
+
+\item Online gradient descent: let $R(x) = \frac{1}{2\eta}\| x \|_2^2$, then $R^\star(G) = \frac{\eta}{2} \| G \|_2^2$, and $\nabla R^\star(G) = \eta G$.
+Therefore, $x_t = -\eta G_{t-1} = - \sum_{s=1}^{t-1} \eta g_s$. This is the cumulative sum of negative gradients, times a stepsize of $\eta$.
+
+\item Online gradient descent with lazy projections: let $R(x) = \begin{cases} \frac{1}{2\eta}\| x \|^2,& x \in \Ccal, \\ +\infty, & x \notin \Ccal \end{cases}$, then it can be shown that,
+\[ x_t = \argmin_{x \in \Ccal} \| x - (-\eta G_{t-1}) \|_2, \]
+which is the $\ell_2$-projection of the point returned by online gradient descent to the convex set $\Ccal$.
+\end{enumerate}
+\end{example}
+
+In this theoreom below, we will show that FTRL has a small regret given an appropriately-tuned step size $\eta$.
+
+\begin{theorem}
+If $R$ is $\lambda$-strongly convex with respect to $\| \cdot \|$, then FTRL has the following regret:
+\[ \Reg(T, x) = \sum_{t=1}^T \inner{g_t}{x_t - x} \leq R(x) - \min_{x'} R(x') + \frac1 \lambda \sum_{t=1}^T \| g_t \|_\star^2. \]
+\label{thm:ftrl}
+\end{theorem}
+
+\begin{proof}
+Recall that $f_t(x) = \inner{g_t}{x}$. We break the proof into two steps:
+\begin{enumerate}
+  \item Consider a 'look-ahead' prediction strategy named the ``be-the-regularized leader'' (BTRL), that is, at time $t$, $x_{t+1}$'s are selected as the decision point. We will show that BTRL has a small regret.
+  \item Note that BTRL cannot be implemented as a real algorithm: $x_{t+1}$ relies on information on $g_t$, which is unavailable at the beginning of round $t$. Nevertheless, we will show that $x_t$, the decision point selected by FTRL, is close to $x_{t+1}$, therefore the regret of FTRL can be bounded in terms of that of BTRL.
+\end{enumerate}
+
+\paragraph{Step 1: Analysis of BTRL.} Denote by $f_0(x) = R(x)$. Consider a modification of the original OCO game: there is an extra round of online convex optimization at the beginning, namely round 0.
+We will show that BTRL has nonpositive regret on this.
+\begin{lemma}[Be the leader]
+For any $x^\star$,
+\[ \sum_{t=0}^T f_t(x_{t+1}) \leq \sum_{t=0}^T f_t(x^\star). \]
+\label{lem:btl}
+\end{lemma}
+\begin{proof}
+This is best illustrated by iteratively relaxing the right hand side; as $x_{T+1} = \argmin_x \sum_{t=0}^T f_t(x)$, we have that
+\[ \sum_{t=0}^T f_t(x_{T+1}) \leq \sum_{t=0}^T f_t(x^\star). \]
+Now let us focus on all but the last term in the left hand side, that is, $\sum_{t=0}^{T-1} f_t(x_{t+1})$. As as $x_{T} = \argmin_x \sum_{t=0}^{T-1} f_t(x)$, we have that
+\[ \del{\sum_{t=0}^{T-1} f_t(x_T)} + f_T(x_{T+1}) \leq \sum_{t=0}^T f_t(x_{T+1}) \leq \sum_{t=0}^T f_t(x^\star). \]
+By iteratively using the fact that $x_{\tau} = \argmin_x \sum_{t=0}^{\tau-1} f_t(x)$, we have that
+\[ \del{\sum_{t=0}^{\tau-1} f_t(x_\tau)} + f_{\tau}(x_{\tau+1}) + \ldots + f_{T}(x_{T+1}) \leq \sum_{t=0}^T f_t(x^\star). \]
+The lemma is a direct consequence of the above inequality in the case of $\tau = 1$.
+\end{proof}
+
+Lemma~\ref{lem:btl} immediately implies that:
+\begin{eqnarray}
+  \sum_{t=1}^T \inner{g_t}{x_{t+1} - x^\star} \leq R(x^\star) - R(x_1).
+  \label{eqn:btrl}
+\end{eqnarray}
+
+
+\paragraph{Step 2: relating BTRL to FTRL.} Our next task will be to upper bound $\sum_{t=1}^T \inner{g_t}{x_{t} - x_{t+1}}$, the difference of the cumulative losses of FTRL and BTRL.
+
+\begin{lemma}[Stability]
+\begin{eqnarray}
+  \sum_{t=1}^T \inner{g_t}{x_{t} - x_{t+1}} \leq \frac1 \lambda \sum_{t=1}^T \| g_t \|_\star^2.
+  \label{eqn:stab}
+\end{eqnarray}
+\end{lemma}
+\begin{proof}
+We will show that for every $t$, $\inner{g_t}{x_{t} - x_{t+1}} \leq \frac1\lambda \| g_t \|_\star^2$. To show this, by generalized Cauchy-Schwarz, it suffices to show that
+\[ \| x_t - x_{t+1} \| \leq \frac1\lambda \| g_t \|_\star. \]
+By definition of $x_t = \nabla R^\star(-G_{t-1})$ and $x_{t+1} = \nabla R^\star(-G_t)$, we see that
+\[ \| x_t - x_{t+1} \| = \| \nabla R^\star(-G_{t-1}) - \nabla R^\star(-G_t) \|. \]
+Recall that $R$ is $\lambda$-strongly convex, by Fact~\ref{fact:sc-sm}, $R^\star$ is $\frac1\lambda$-smooth. Therefore the right hand side is indeed at most
+$\frac1\lambda \| -G_{t-1} - (-G_t)\| = \frac1\lambda \| g_t \|_\star$.
+\end{proof}
+
+The theorem is proved by summing Equations~\eqref{eqn:btrl} and~\eqref{eqn:stab} together.
+\end{proof}
+
+\subsection{FTRL for general OCO}
+It turns out that a low-regret algorithm for OLO immediately yields an algorithm for OCO.
+To see this, suppose that at every iteration $t$, $f_t$ is a general convex function.
+Now, suppose that $g_t \in \partial f_t(x_t)$ is a subgradient of $f_t$ at location $x_t$.
+We have that for any $x^\star$,
+\[ f_t(x_t) - f_t(x^\star) \leq \inner{g_t}{x_t - x^\star}. \]
+
+Therefore, if we let $\tilde{f}_t(x) = \inner{g_t}{x}$, and run FTRL on $\tilde{f}_t$'s, we get that
+\[ \sum_{t=1}^T \inner{g_t}{x_t - x^\star} \leq R(T) \]
+for some regret function $R(T)$. This implies that
+\[ \Reg(T, x^\star) = \sum_{t=1}^T f_t(x_t) - f_t(x^\star) \leq \sum_{t=1}^T \inner{g_t}{x_t - x^\star} \leq R(T). \]
+
+\subsection{Instantiations of FTRL}
+
+\begin{enumerate}
+  \item
+  \item
+\end{enumerate}
+
+\subsection{Applications of FTRL in online linear classification}
+
+\subsection{FTRL with adaptive regularization}
+As we have seen before, the choice of regularizer is crucial to obtain good online prediction performance. However, if we are faced with a stream of data, it is difficult to know which regularizer to choose ahead of the time.
+In this section, we will look at FTRL with adaptive regularization, which is a systematic way to achieve online performance guarantees that adapts to the geometry of the data on the fly.
+
+Our starting point is to consider the following algorithm:
+\[ x_t = \nabla R_{t-1}^\star(-G_{t-1}), \]
+recall that $G_{t-1} = \sum_{s=1}^{t-1} g_s$ is the sum of the gradients up to time $t-1$.
+We called the above algorithm FTRL-AR.
+Specifically, we will be looking at a sequence of monotonically increasing regularizers $\cbr{R_t}$'s, where $R_t$'s are generated on the fly, and can thus carry over information on the past $g_t$'s.
+
+\begin{theorem}
+Suppose FTRL-AR uses $R_t$ that are $1$-strongly convex with respect to $\| \cdot \|_{t}$.
+Then it has the following upper bound on its cumulative loss guarantee:
+\[ \sum_{t=1}^T \inner{g_t}{x_t} \leq R_0^\star(0) - R_T^\star(-G_T) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+Consequently,
+\[ \Reg(T, x^\star) = \sum_{t=1}^T \inner{g_t}{x_t - x^\star} \leq R_T(x^\star) + R_0^\star(0) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+\end{theorem}
+
+Note that the above theorem supercedes Theorem~\ref{thm:ftrl}, as it is a direct consequence of the above theorem by taking $R_t \equiv R_0$ and observing that $R_0^\star(0) = -\min_{x'} R_0(x')$.
+
+\begin{proof}
+It suffices to show that
+\[ \inner{g_t}{x_t} \leq R_{t-1}^\star(-G_{t-1}) - R_t^\star(-G_t) + \| g_t \|_{\star, t-1}^2, \]
+as the theorem concludes by summing this inequality up over all $t$'s.
+
+To show the above inequality, it suffices for us to show that
+\[ R_t^\star(-G_t) - R_{t-1}^\star(-G_{t-1}) + \inner{g_t}{x_t} \leq \| g_t \|_{\star, t-1}^2. \]
+
+The above inequality is true by the following observations: first, as $R_t \geq R_{t-1}$, $R_t^\star \leq R_{t-1}^\star$; second, $x_t = \nabla R_{t-1}^\star(-G_{t-1})$, therefore,
+the left hand side of the inequality is at most
+\[ R_{t-1}^\star(-G_t) - R_{t-1}^\star(-G_{t-1}) - \inner{\nabla R_{t-1}^\star(-G_{t-1})}{-g_t} = D_{R_{t-1}^\star}(-G_t, -G_{t-1}). \]
+third, as $R_{t-1}$ is 1-strongly convex wrt $\| \cdot \|_{t-1}$, $R_{t-1}^\star$ is 1-smooth wrt $\| \cdot \|_{\star, t-1}$, implying that the right hand side is at most $\frac12 \| -G_t - (-G_{t-1}) \|_{\star, t-1}^2 = \frac12 \| g_t \|_{\star, t-1}^2$.
+\end{proof}
+
+Using the above meta-theorem, we can instantiate with different adpative regularizers and get online learning algorithms with different degrees of adaptivity.
+
+\paragraph{Online gradient descent with adaptive step-sizes.} One instantiation of the above result is to let
+\[ R_t(x) = \frac{\sqrt{t+1}}{\eta_0 } \| x \|_2^2. \]
+
+This implies that
+\[ \Reg(T, x^\star) \leq \frac{\sqrt{T+1}}{\eta_0} \| x^\star \|_2^2 + \sum_{t=1}^T \eta_0 \cdot \frac{\| g_t \|^2}{\sqrt{t}}.  \]
+
+Note that if $\eta = $, then this algorithm automatically achieves a $O(\sqrt{T})$ regret for all timesteps $T$.
+
+There is a variant of the above $\ell_2$ regularization scheme with another setting of the regularization strength:
+\[ R_t(x) = \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| x \|^2. \]
+for some $\sigma > 0$.
+
+\paragraph{Adaptive subgradient methods (Adagrad).} More generally we can allow adaptive Mahalanobis norm-based regularization. Specifically, we can let
+\[ R_t(x) = \frac12 \| x \|_{A_t}^2, \]
+for some adaptively generated $A_t$.
+
+Specifically, one can let
+\[ A_t = \frac1\eta (\sigma I + \diag( \sum_{s=1}^t g_s g_s^\top) )^\frac12\] be an "diagonal" adaptive regularizer.
+
+Alternatively, one can let
+\[ A_t = \frac1\eta (\sigma I + \sum_{s=1}^t g_s g_s^\top )^\frac12 \]
+be an ``nondiagnoal'' adaptive regularizer.
+
+\section{OCO for strongly convex functions}
+
+Motivating example: SVM optimization:
+\[ \min_{w} \sum_{t=1}^T \del{\frac\lambda2\|w\|_2^2 + (1-\inner{w}{y_t x_t})_+}. \]
+Here $f_t(w) = \frac\lambda2\|w\|_2^2 + (1-\inner{w}{y_t x_t})_+$. If one can get a low regret $R(T)$, then one can use online-to-batch conversion to get a $f$ that has excess expected regularized loss $\frac{R(T)}{T}$.
+
+One can show that if all $f_t$'s are $\lambda$-strongly convex, one can design a better OCO algorithm with regret bound much better than $O(\sqrt{T})$, that is, $O(\ln T)$.
+
+How to achieve this? We will use the adaptive regularization method developed in the last section. Recall that AR-FTRL has the following regret guarantee:
+\[ \sum_{t=1}^T \inner{g_t}{x_t - x^\star} \leq R_0^\star(0) + R_T(x^\star) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+How can the above regret relate to $\Reg(T, x^\star) = \sum_{t=1}^T f_t(x_t) - f_t(x^\star)$? Now because $f_t$ is $\lambda$-strongly convex, we have a tighter bound on it. Specifically,
+\[ \Reg(T, x^\star) \leq \sum_{t=1}^T \inner{g_t}{x_t -x^\star} - \sum_{t=1}^T \frac\lambda 2\| x_t - x^\star \|^2. \]
+
+This motivates us to define $R_t(x) = \frac\lambda 2\| x \|^2 + \sum_{s=1}^t \frac\lambda 2\| x_s - x \|^2$ so that $R_T(x^\star)$ cancels out the negative terms induced by linear approximation.
+Observe that $R_t$ is 1-strongly convex with respect to $\| \cdot \|_{\lambda(t+1) I}$.
+We therefore get:
+\[ \Reg(T, x^\star) \leq \frac{\lambda}{2}\|x\|^2 + \sum_{t=1}^T \frac{\| g_t \|^2}{\lambda t}. \]
+
+%The bottom line:
+
+\section{OCO for exp-concave functions}
+
+\paragraph{Motivating example 1: sequential investing.} There are $d$ stocks, with different growth rates every day.
+
+$W_1 \gets 1$.
+
+For $t = 1,2,\ldots,T$:
+\begin{enumerate}
+\item Given the current wealth $W_t$, allocate $p_t \in \Delta^{d-1}$ (spend $p_{t,i}$ fraction of current wealth to stock $i$)
+\item Receive loss $f_t(p_t) = -\ln(\inner{c_t}{p_t})$, where $c_t \in \RR^d_+$, and $c_{t,i}$ is the ratio of the stock $i$ at the .
+\item Sell all stocks, get new wealth $W_{t+1}$. Observe that
+\[ W_{t+1} = W_t \del{\sum_{t=1}^T p_{t,i} c_{t,i}}, \]
+i.e. $\ln(W_{t+1}) = \ln(W_t) - f_t(p_t)$. Therefore, maximizing $W_{T+1}$ amounts to minimizing the cumulative loss $\sum_{t=1}^T f_t(p_t)$.
+\end{enumerate}
+
+Goal: compete with the best constant rebalanced portfolio in hindsight (abbrev. CRP; that is, at the beginning of every day, allocate a constant fraction $q \in \Delta^{d-1}$ to all stocks.) Concretely,
+\[ \Reg(T, q) = \sum_{t=1}^T f_t(p_t) - \sum_{t=1}^T f_t(q). \]
+
+
+\paragraph{Motivating example 2: online least squares regression.}
+
+For $t = 1,2,\ldots,T$:
+\begin{enumerate}
+\item Output a linear predictor $w_t \in \RR^d$.
+\item Receive example $(x_t, y_t) \in \RR^d \times \RR$.
+\item Suffer loss $f_t(w_t)$, where $f_t(w) = \frac12(\inner{w}{x_t} - y_t)^2$.
+\end{enumerate}
+
+\[ \Reg(T, w^\star) = \sum_{t=1}^T f_t(w_t) - \sum_{t=1}^T f_t(w^\star). \]
+
+The common characteristic of the above two OCO problems are that the $f_t$'s are structured:
+they are compositions of a univariate ``strongly convex'' function and a linear function. It turns out that they both belong to the family called {\em exp-concave} functions.
+
+\begin{definition}
+$f$ is called $\alpha$-exp-concave, if $\exp(-\alpha f(x))$ is a concave function.
+\end{definition}
+
+Clearly, $f(x) = -\ln(\inner{c}{x})$ is 1-exp-concave.
+
+\begin{lemma}
+$f$ is $\alpha$-exp-concave, iff for every $x$,
+\[ \nabla^2 f(x) \succeq \alpha \nabla f(x) \cdot \nabla f(x)^\top. \]
+\end{lemma}
+\begin{proof}
+$h = \exp(-\alpha f(x))$ is concave iff for every $x$, the hessian of $h$ is negative
+semidefinite.
+Observe that
+\[ \nabla^2 h(x) = \alpha^2 \nabla f(x) \nabla f(x)^\top \exp(-\alpha f(x)) - \alpha \nabla^2 f(x) \exp(-\alpha f(x)) \preceq 0. \]
+\end{proof}
+
+It can be readily seen that for $\alpha < \gamma$, if $f$ is $\gamma$-exp-concave, then $f$ is $\alpha$-exp-concave.
+
+\begin{lemma}
+Suppose $h$ is $\lambda$-strongly convex and has gradient at most $G$. Then for any $sw$, $h(\inner{w}{x})$ is $\frac{\lambda}{G^2}$-exp-concave.
+\end{lemma}
+
+For online least-square regression with domain $\cbr{w: \| w\|_2 \leq B}$ and all $x \in \cbr{x: \| x \|_2 \leq R}$ and $y \in [-Y, Y]$,
+one can take $h(z) = \frac12(z - y)^2$, which is $1$-strongly convex, and has gradient norm at most $RB+Y$. Therefore, $\frac12(\inner{w}{x}-y)^2$ is $\frac{1}{(RB+Y)^2}$-exp-concave.
+
+For exp-concave functions, one can have a more refined lower bound than linear approximation.
+\begin{lemma}
+If $f$ is $\alpha$-exp-concave and $G$-Lipschitz,
+then for any two points $u, v \in \cbr{x: \| x \|_2 \leq B}$, we have
+\[ f(u) \geq f(v) + \inner{\nabla f(v)}{u - v} + \frac{\tilde{\alpha}}{2}(u - v)^\top \nabla f(v) \nabla f(v)^\top (u - v), \]
+where $\tilde{\alpha} = \min(\frac{1}{8BR}, \frac{1}{2\alpha})$.
+\label{lem:quad-approx}
+\end{lemma}
+
+\paragraph{Algorithm with logarithmic regret: adaptive regularization.} We will be using Lemma~\ref{lem:quad-approx} and the insights similar to OCO for strongly-convex optimization to develop an algorithm with a $O(\log T)$ regret.
+
+Recall that AR-FTRL has the following regret guarantee:
+\[ \sum_{t=1}^T \inner{g_t}{x_t - x^\star} \leq R_0^\star(0) + R_T(x^\star) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+
+In addition, by Lemma~\ref{lem:quad-approx}, we have that
+\[ \sum_{t=1}^T f_t(x_t) - f_t(x^\star) \leq \sum_{t=1}^T \inner{g_t}{x_t - x^\star} -  \sum_{t=1}^T \frac{\tilde{\alpha}}{2}(x^\star - x_t)^\top \nabla f(x_t) \nabla f(x_t)^\top (x^\star - x_t) \]
+
+This motivates us to set $R_T(x) = \frac\sigma2 \|x\|_2^2 + \sum_{t=1}^T \frac{\tilde{\alpha}}{2}(x - x_t)^\top \nabla f(x_t) \nabla f(x_t)^\top (x - x_t)$. Observe that for every $t$, $R_t(x)$ is $\sigma$-strongly convex with respect to $\| \cdot \|_t = \| \cdot \|_{A_t}$, where $A_t = \sigma I + \sum_{t=1}^T \nabla f(x_t) \nabla f(x_t)^\top$.
+
+This gives that
+\[ \Reg(T, x^\star) \leq \frac\sigma2 \|x^\star\|_2^2 + \sum_{t=1}^T \| g_t \|_{A_{t-1}^{-1}}^2. \]
+
+\end{document}

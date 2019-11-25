@@ -1,0 +1,215 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{commath}
+\usepackage{algorithm, algorithmic}
+\usepackage{natbib}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{claim}{Claim}
+\newtheorem{fact}{Fact}
+
+\DeclareMathOperator*{\hinge}{{\rm hinge}}
+\DeclareMathOperator*{\kl}{{\rm kl}}
+\DeclareMathOperator*{\h}{{\rm h}}
+\DeclareMathOperator*{\KL}{{\rm KL}}
+\DeclareMathOperator*{\nent}{{\rm H}}
+\DeclareMathOperator*{\Bin}{{\rm B}}
+\DeclareMathOperator{\Rad}{{\mathrm{Rad}}}
+\DeclareMathOperator*{\R}{{\rm R}}
+\DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\N}{{\rm N}}
+\DeclareMathOperator*{\Var}{{\rm Var}}
+\DeclareMathOperator*{\err}{{\rm err}}
+\DeclareMathOperator*{\sign}{{\rm sign}}
+\DeclareMathOperator*{\Xcal}{{\cal X}}
+%\DeclareMathOperator*{\Hcal}{{\cal H}}
+\DeclareMathOperator*{\Ycal}{{\cal Y}}
+\DeclareMathOperator*{\Acal}{{\cal A}}
+\DeclareMathOperator*{\Bcal}{{\cal B}}
+\DeclareMathOperator*{\Zcal}{{\cal Z}}
+\DeclareMathOperator*{\Gcal}{{\cal G}}
+\DeclareMathOperator*{\CH}{{\rm CH}}
+%\DeclareMathOperator*{\Fcal}{{\cal F}}
+\DeclareMathOperator*{\Scal}{{\cal S}}
+\DeclareMathOperator*{\Ical}{{\cal I}}
+\DeclareMathOperator*{\argmin}{{\rm argmin}}
+\DeclareMathOperator*{\argmax}{{\rm argmax}}
+\DeclareMathOperator*{\maximize}{{\rm maximize}}
+\DeclareMathOperator*{\minimize}{{\rm minimize}}
+\DeclareMathOperator*{\st}{{\rm s.t.}}
+\DeclareMathOperator*{\VC}{{\rm VC}}
+\DeclareMathOperator{\EE}{{\mathbb E}}
+\DeclareMathOperator{\PP}{{\mathbb P}}
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+%\newcommand{\EE}{\mathbb{E}}
+%\newcommand{\PP}{\mathbb{P}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Ocal}{\mathcal{O}}
+\newcommand{\defeq}{\triangleq}
+\newcommand*{\one}{{\bf 1}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\DeclareMathOperator*{\Ber}{{\rm Bernoulli}}
+
+\title{CSC 665: Boosting}
+\author{Chicheng Zhang}
+
+\begin{document}
+\maketitle
+
+\section{Boosting}
+
+Motivation: spam classification
+\begin{enumerate}
+\item Given: emails in the form of text; Goal: find a good classifier that can tell good emails from spam emails.
+\item Observation: there are many ``rule of thumb'' available: e.g. contains ``free offer'' / ``a million dollar'' $\Rightarrow$ spam
+\item However: hard to find a single rule that is accurate
+\item Boosting: one systematic way of combining ``weak'' classification rules to strong classification rules.
+\end{enumerate}
+
+Theoretical Formulation:
+
+\begin{definition}[weak PAC learning] $\Acal$ is a $\gamma$-weak PAC learner for hypothesis class $\Hcal$, if for any distribution $D$ realizable by $\Hcal$, any $\epsilon \geq \frac{1}{2}-\gamma$, $\Acal$ produces a classifier $h$ such that with probability $1-\delta$,
+\[ \err(h, D) \leq \epsilon. \]
+$\Hcal$ is called $\gamma$-weak PAC learnable if there is a $\gamma$-weak PAC learner for $\Hcal$.
+\end{definition}
+
+Note that the difference between weak PAC learning and the regular notion of PAC learning. In weak PAC learning, we only require that the classifier output by the weak learner has an error slightly better than random guessing (50\%), as opposed to arbitrary small $\epsilon$.
+
+A brief history of boosting:
+\begin{enumerate}
+\item ~\citep{kearns88} - open question: if $\Hcal$ is a weak PAC learnable, is $\Hcal$ also PAC learnable?
+\item ~\citep{schapire1990strength}: Affirmative answer to the open question with a new technique now known as ``boosting''. Proposes the first boosting algoithm (by recursion).
+\item ~\citep{freundboosting}: Boost by majority algorithm: combining the output of weak learners by a majority vote
+\item ~\citep{freund1997decision}: AdaBoost, an adaptive and practical boosting algorithm (that does not need to know $\gamma$)
+\item Since then: many more empirical success stories of boosting, e.g. XGBoost~\citep{chen2016xgboost} is still dominating many ML competitions (e.g. those in Kaggle) as of now.
+\end{enumerate}
+
+\section{AdaBoost: algorithm and analysis}
+
+High-level idea: Maintain a weighting on training examples.
+Repeatedly call weak learner, and adjust the weightings of training examples so that hard examples get emphasized in subsequent training. See Algorithm~\ref{alg:ab} for a formal description.
+
+\begin{algorithm}
+\caption{Adaboost}
+\label{alg:ab}
+\begin{algorithmic}
+\REQUIRE{Training examples $(x_i,y_i)_{i=1}^m$, weak learner $\Bcal$.}
+\STATE Initialize distributions over all training examples $(D_1(i))_{i=1}^m$.
+\FOR{$t=1,2,\ldots,T$:}
+\STATE $h_t \gets$ $\Bcal$ trained on weighted examples $((x_i, y_i), D_t(i))_{i=1}^m$.
+\STATE Let $\epsilon_t = \sum_{i=1}^m D_t(i) \one(y_i \neq h_t(x_i))$ be the weighted error
+of $h_t$ on distribution $D_t$, and $\alpha_t = \frac12\ln\frac{1-\epsilon_t}{\epsilon_t}$.
+\STATE Update weighting on training examples:
+        $D_{t+1}(i) =  D_t(i) e^{-\alpha_t y_i h_t(x_i)} / Z_t$
+        where $Z_t$ is a normalizer that ensures $\sum_{i=1}^m D_{t+1}(i) = 1$.
+\ENDFOR
+\STATE Final classifier $H_T(x) = \sign(\sum_{t=1}^T \alpha_t h_t(x))$.
+\end{algorithmic}
+\end{algorithm}
+
+We can show that, if at every round of AdaBoost, $\Bcal$ returns a ``useful'' classifier, in the sense that $\epsilon_t$ is slightly better than 0.5 (by a positive ``edge'' $\gamma$), then AdaBoost will bring the training error down exponentially fast.
+
+\begin{theorem}
+Suppose for every $t$, $\epsilon_t \leq \frac12 - \gamma$. Then
+$\err(H_T, S) \leq \exp{-2 T \gamma^2}$.
+\end{theorem}
+\begin{proof}
+Define exponential loss as $\phi(z) = \exp(-z)$. It can be seen that
+$\phi(z) \geq \one(z \leq 0)$. Denote by $f_s(x) = \sum_{t=1}^s \alpha_t h_t(x)$.
+Using the notation, $H_T(x) = \sign(f_T(x))$.
+
+Using this relationship, we can upper bound the training error of $H_t$ using
+its empirical exponential loss:
+\begin{eqnarray*}
+  \err(H_T, S) &=& \frac1m \sum_{i=1}^m \one(H_T(x_i) \neq y_i) \\
+               &=& \frac1m \sum_{i=1}^m \one(y_i \cdot f_T(x) \leq 0) \\
+               &\leq& \frac1m \sum_{i=1}^m \exp{ - y_i f_T(x_i) }
+\end{eqnarray*}
+
+What do we know about the expoential loss for the $i$-th example, $\exp{ - y_i f_T(x_i) }$?
+In fact it is propotional to $D_{T+1}(i)$. To see this, let us unwrap $D_{T+1}(i)$:
+\begin{eqnarray*}
+   D_{T+1}(i)
+   &=& \frac{D_T(i) e^{-\alpha_T y_i h_T(x_i)}}{Z_T} \\
+   &=& \frac{D_{T-1}(i) e^{-(\alpha_{T-1} y_i h_{T-1}(x_i) + \alpha_T y_i  h_T(x_i))}}{Z_{T-1} Z_T} \\
+   &=& \ldots \\
+   &=& \frac{\frac1m e^{-\sum_{t=1}^T \alpha_t y_i h_t(x_i)}}{\prod_{t=1}^T Z_t} \\
+   &=& \frac{\frac1m \sum_{i=1}^m \exp{ - y_i f_T(x_i) }}{\prod_{t=1}^T Z_t}
+\end{eqnarray*}
+
+As $D_{T+1}(i)$ is a distribution over training examples, $\sum_{i=1}^m D_{T+1}(i) = 1$. This implies that the exponential loss, $\frac1m \sum_{i=1}^m \exp{ - y_i f_T(x_i) }$, equals $\prod_{t=1}^T Z_t$, the product of the normalization factors at all rounds.
+
+What can we say about each $Z_t$? Note that
+\begin{eqnarray*}
+  Z_t &=& \sum_{i=1}^m D_t(i) e^{-\alpha_t y_i h_t(x_i)} \\
+      &=& \sum_{i: y_i = h_t(x_i)} D_t(i) e^{-\alpha_t} + \sum_{i: y_i \neq h_t(x_i)} D_t(i) e^{\alpha_t} \\
+      &=& (1-\epsilon_t) e^{-\alpha_t} + \epsilon_t e^{\alpha_t} \\
+      &=& (1-\epsilon_t) \sqrt{\frac{\epsilon_t}{1-\epsilon_t}} + \epsilon_t  \sqrt{\frac{1-\epsilon_t}{\epsilon_t}}\\
+      &=& 2\sqrt{\epsilon_t(1-\epsilon_t)} \leq \sqrt{1-4\gamma^2} \leq \exp{-2\gamma^2}.
+\end{eqnarray*}
+Therefore, $\prod_{t=1}^T Z_t$ is at most $\exp{-2T\gamma^2}$, which concludes that the training error of $H_T$ is at most $\exp{-2T\gamma^2}$.
+
+%Let us look at $\sum_{i=1}^m \exp{ - y_i f_T(x_i) }$ more closely.
+\end{proof}
+
+\section{Margin bound of Boosting}
+An intriguing feature of AdaBoost is that, it is ``immune'' to overfitting. When the number of iterations $T$ increases, one should expect the returned classifier to be more complex - specifically, if at each round, weak learner chooses classifier $h_t$ from some base hypothesis class $\Hcal$, then
+$H_T(x) = \sign(\sum_{t=1}^T \alpha_t h_t(x))$ can be seen as coming from the hypothesis class of weighted majority vote over the base classifiers:
+$\Hcal_T = \cbr{\sum_{t=1}^T \alpha_t h_t(x): \forall t, \alpha_t \in \RR, h_t \in \Hcal}$.
+As $T$ grows, it can be shown that the VC dimension of $\Hcal_T$ also grows (specifically, in the order of $T \VC(\Hcal)$ ). By a straightforward application of VC theory, we have that with high probability,
+\[
+  \err(H_T, D) \leq \err(H_T, S) + O(\sqrt{\frac{T\VC(\Hcal)}{m}}).
+\]
+Therefore, according to VC theory, AdaBoost is expected to overfit, as the generalization bound on the right hand side is growing.
+
+However, it is noted in many datasets that as $T$ grows, the generalization error of the classifier output by AdaBoost keeps decreasing, even if training error already reaches zero! What is going on in AdaBoost? To explain the discrepancy between the theory and the experiments, works have shown that similar to SVM, AdaBoost also implicitly performs margin maximization~\citep{schapire1998boosting}. Moreover, similar to linear classifiers, there is a theory of margin-based generalization error bounds for voting classifiers~\citep{schapire1998boosting,breiman1998arcing,koltchinskii2002empirical,wang2011refined}.
+
+\begin{theorem}
+Suppose $\Hcal$ is finite. Define $\CH(\Hcal) := \cbr{\sum_{h \in \Hcal} \alpha_h h(x): \sum_{h \in \Hcal} |\alpha_h| \leq 1}$ be the set of voting classifiers over $\Hcal$. Fix margin value $\gamma \in (0,1]$. Then, with probability $1-\delta$ over the draw of $m$ training examples $S$, for all predictors $f$ on $\CH(\Hcal)$,
+\[ \PP_D(y f(x) \leq 0) \leq \PP_S(y f(x) \leq \gamma) + O\del{\frac{1}{\gamma}\sqrt{\frac{\ln\frac{|\Hcal|}{\delta}}{m}}}. \]
+\label{thm:margin-1-inf}
+\end{theorem}
+%of the form $f(x) = \sign()$,
+\paragraph{Remark.} Note the similarity between this bound and the margin bound of linear classification we discussed in the analysis of SVM. In fact this bound can also be viewed as a statement of linear classification: suppose each $x$ is represented by a $d = |\Hcal|$-dimensonal vector $\phi(x) = (h(x))_{\Hcal}$, we can alternatively view the theorem statement as: with probability $1-\delta$: for all $w$ such that $\sum_{i=1}^d |w_i| \leq 1$,
+\[ \PP_D(y\inner{w}{\phi(x)} \leq 0) \leq \PP_S(y\inner{w}{\phi(x)} \leq \gamma) + O\del{\frac{1}{\gamma}\sqrt{\frac{\ln\frac{d}{\delta}}{m}}}. \]
+Note that this statement is not a direct consequence of the margin bound discussed last time (usually referred to as $\ell_2/\ell_2$ margin bound): for all $x$, $\phi(x) \leq \sqrt{d} := R$, and for all $w$ such that $\|w\|_1 = 1$, the best $\ell_2$ ball that captures this set is of radius $1 := B$, which gives a much weaker deviation bound of $\frac{1}{\gamma} \sqrt{\frac{d \ln\frac{1}{\delta}}{m}}$.
+We usually refer to the Theorem~\ref{thm:margin-1-inf} as a $\ell_1/\ell_\infty$ margin bound.
+
+\begin{proof}
+The proof uses the same line of reasoning as the $\ell_2/\ell_2$-style margin bound. We can show that (with details left to the reader) with probability $1-\delta$, for all $f$ in $\CH(\Hcal)$,
+\begin{equation}
+  \PP_D(y f(x) \leq 0) \leq \PP_S(y f(x) \leq \gamma) +
+\sqrt{\frac{\ln\frac{2}{\delta}}{m}} + \frac{2}{\gamma} \EE \Rad_S(\Fcal).
+\label{eqn:mb-rad}
+\end{equation}
+Here $\Fcal$ is the class of margin functions, each induced by one weighting over the base hypothesis class $\Hcal$:
+\[ \Fcal = \cbr{m_\alpha: \|\alpha_1\| \leq 1}, \]
+where
+\[ m_\alpha(x,y) = y \sum_{h \in \Hcal} \alpha_h h(x). \]
+
+We now bound the empirical Rademacher complexity $\Rad_S(\Fcal)$ for dataset $S$ differently:
+\begin{eqnarray*}
+\Rad_S(\Fcal)
+&=& \frac1m \EE_\sigma \sup_{\alpha: \|\alpha\|_1 \leq 1} \sum_{i=1}^m \sigma_i y_i \del{\sum_{h \in \Hcal} \alpha_h h(x_i)} \\
+&=& \frac1m \EE_\sigma \sup_{\alpha: \|\alpha\|_1 \leq 1} \sum_{i=1}^m \sigma_i \del{\sum_{h \in \Hcal} \alpha_h h(x_i)} \\
+&=& \frac1m \EE_\sigma \sup_{\alpha: \|\alpha\|_1 \leq 1} \sum_{h \in \Hcal} \alpha_h \sum_{i=1}^m \sigma_i h(x_i) \\
+&=& \frac1m \EE_\sigma \sup_{h \in \Hcal} \abs{\sum_{i=1}^m \sigma_i h(x_i)}.
+\end{eqnarray*}
+But we have seen this before! This is the Rademacher complexity (with absolute value sign) of class $\Hcal$. As seen before, by Massart's Lemma, the above is at most
+\[ \frac1m \sqrt{m \ln(2|\Hcal|)} = \sqrt{\frac{\ln(2|\Hcal|)}m}. \]
+The proof is concluded by combining the above fact with Equation~\eqref{eqn:mb-rad}, along with simple algebra.
+\end{proof}
+
+\bibliographystyle{plainnat}
+\bibliography{learning}
+%\section{}
+
+
+\end{document}
