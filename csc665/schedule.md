@@ -31,7 +31,7 @@ Tentative schedule:
 |Nov 12 | Convexity, subgradients | | | |
 |Nov 14 | Bregman divergence, norms, dual norms | | | |
 |Nov 19 | Lipschitzness, strong convexity and smoothness | |  | [HW4](hw/hw4/hw4.pdf) |
-|Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader (FTRL) | | [OCO note (draft)](notes/oco.pdf) | |
+|Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader (FTRL) | [OCO note (draft)](notes/oco.pdf) |  | |
 |Nov 26 | Analysis of FTRL; Online linear classification with margins | |  | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
 |Dec 3 | Adaptive regularization: Adagrad, online optimization of strongly convex and exp-concave functions | | LS Chap 20 | |
