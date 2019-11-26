@@ -68,7 +68,7 @@
 \begin{document}
 \maketitle
 
-\section{Background knowledge}
+\section{Background}
 
 \subsection{Norms}
 \begin{definition}
@@ -455,14 +455,114 @@ Therefore, if we let $\tilde{f}_t(x) = \inner{g_t}{x}$, and run FTRL on $\tilde{
 for some regret function $R(T)$. This implies that
 \[ \Reg(T, x^\star) = \sum_{t=1}^T f_t(x_t) - f_t(x^\star) \leq \sum_{t=1}^T \inner{g_t}{x_t - x^\star} \leq R(T). \]
 
-\subsection{Instantiations of FTRL}
+\subsection{Instantiations of FTRL: theoretical guarantees}
 
 \begin{enumerate}
-  \item
-  \item
+  \item Online gradient descent (OGD): $R(x) = \frac{1}{2\eta}\| x \|_2^2$, which is $\frac1\eta$-strongly convex wrt $\| \cdot \|_2$. FTRL with $R$ has regret
+  \[ \Reg(T, x) \leq \frac{\| x \|_2^2}{2\eta} + \eta \sum_{t=1}^T \| g_t \|_2^2, \]
+  for all benchmark $x \in \RR^d$.
+
+  Suppose we would like to guarantee $\Reg(T, \Ccal)$ with
+  $\Ccal \subset \cbr{x: \| x\| \leq B_2}$.
+  If in addition, it is known apriori that $\| g_t \| \leq R_2$, then
+  \[ \Reg(T, \Ccal) \leq \frac{B_2^2}{2\eta} + \eta T R_2^2. \]
+  We can setting $\eta = \frac{B_2}{R_2\sqrt{2T}}$ that minimize the regret bound, which gives $B_2 R_2 \sqrt{2T}$.
+
+  \item OGD with lazy projections:
+  \[ R(x) = \begin{cases} \frac{1}{2\eta}\| x \|_2^2 & x \in \Ccal \\ +\infty & x \notin \Ccal \end{cases}, \]
+  which is also $\frac1\eta$-strongly convex wrt $\| \cdot \|_2$. Note that FTRL in this case gives $x_t \in \Ccal$ at every round.
+  FTRL with $R$ has regret:
+  \[ \Reg(T, x) \leq \frac{\| x \|_2^2}{2\eta} + \eta \sum_{t=1}^T \| g_t \|_2^2, \]
+  for all benchmark $x \in \Ccal$. Again, setting $\eta = \frac{B_2}{R_2\sqrt{2T}}$ guarantees $\Reg(T, \Ccal) \leq B_2 R_2 \sqrt{2T}$.
+
+  \item $p$-norm algorithms ($p \geq 2$): It is known that $R(x) = \frac{1}{2\eta}\| x \|_p^2$ is $\frac1\eta$-strongly convex wrt $\| \cdot \|_p$. FTRL with $R$ has regret:
+  \[ \Reg(T, x) \leq \frac{\| x \|_p^2}{2\eta} + \eta \sum_{t=1}^T \| g_t \|_q^2. \]
+  If $\Ccal \subset \cbr{x: \| x\|_p \leq B_p}$, and for all $t$, $\| g_t \|_q \leq R_q$,
+  setting $\eta = \frac{B_p}{R_q\sqrt{2T}}$ implies that
+  \[ \Reg(T, \Ccal) \leq B_p R_q \sqrt{2T}. \]
+
+  \item Exponentiated gradient (Hedge): consider the negative entropy regularizer
+  \[ R(x) = \begin{cases} \frac{1}{\eta} \sum_{i=1}^d x_i \ln x_i, & x \in \Delta^{d-1}, \\ +\infty, & \text{otherwise}. \end{cases} \]
+  Recall that by the calibration exercise, $R(x)$ is $1$-strongly convex with respect to $\| \cdot \|_1$. Therefore, FTRL with $R$ has regret:
+  \[ \Reg(T, x) \leq \frac{\sum_{i=1}^d x_i \ln x_i - \min_{x' \in \Delta^{d-1}}\sum_{i=1}^d x_i' \ln x_i'}{\eta} + \eta \sum_{t=1}^T \| g_t \|_\infty^2. \]
+
+  It can be seen that $\sum_{i=1}^d x_i \ln x_i \leq 0$, on the other hand, $\min_{x' \in \Delta^{d-1}} \sum_{i=1}^d x_i' \ln x_i' = - \max_{x' \in \Delta^{d-1}} H(x)$,
+  where $H(x)$ is the entropy of probability vector $x$. Therefore, it is $-\ln d$. This implies that the first term is at most $\frac{\ln d}{\eta}$. Now suppose we know that all $t$ is such that $\| g_t \|_\infty \leq R_\infty$, we have
+  \[ \Reg(T, x) \leq \frac{\ln d}{\eta} + \eta T R_\infty^2. \]
+  Setting $\eta = \frac{\sqrt{\ln d}}{R_\infty \sqrt{T}}$ gives that
+  \[ \Reg(T, \Delta^{d-1}) \leq 2 R_\infty \sqrt{T \ln d}. \]
+
+  (The above regularizer can also be used to deal with a scaled version of probability simplex: $\cbr{x: \forall i, x_i > 0, \sum_{i=1}^d x_i = B_1}$ for general $B_1 > 0$; we will skip the discussion for simplicity.)
+
+
 \end{enumerate}
 
-\subsection{Applications of FTRL in online linear classification}
+\subsection{Applications of FTRL to online linear classification}
+\begin{algorithm}
+\caption{Online linear classification (with FTRL)}
+\begin{algorithmic}
+\REQUIRE{Regularizer $R$, stepsize $\eta$.}
+\FOR{timesteps $t = 1,2,\ldots,T$:}
+\STATE Learner chooses $w_t = \nabla (\frac{R}{\eta})^\star(-\sum_{s=1}^{t-1} g_s) \in \RR^d$,
+\STATE Learner receives an example $(x_t, y_t)$.
+\STATE Learner suffers from zero-one loss $M_t = \one(\inner{w_t}{y_t x_t} \leq 0)$.
+\STATE Induced loss $f_t(w) = \one(\inner{w_t}{y_t x_t} \leq 0)(1 - \inner{w}{y_t x_t})$.
+\STATE Let $g_t = \nabla f_t(w) |_{w = w_t} = \begin{cases} 0 & M_t = 0 \\ -y_t x_t & M_t = 1 \end{cases} \in \partial f_t(w_t)$.
+\ENDFOR
+\STATE Goal: minimize cumulative zero-one loss $\sum_{t=1}^T M_t$.
+\end{algorithmic}
+\end{algorithm}
+
+\begin{theorem}
+Suppose $R$ is $1$-strongly convex defined on $\Ccal$ with
+with respect to $\| \cdot \|$, and for all $x_t$, $\| x_t \|_\star \leq R$.
+Moreover, for all $w, w' \in \Ccal$, $R(w) - R(w') \leq \Delta$.
+Then, for any $w \in \Ccal$,
+\[ \sum_{t=1}^T M_t \leq \frac{1}{1-\eta R^2} (L_T(w) + \frac{\Delta}{\eta}), \]
+where $L_T(w) = \sum_{t=1}^T (1 - \inner{w}{y_t x_t})_+$ is the cumulative hinge loss of $w$.
+%L_t(w) + B \sqrt{L_t(w)} + B^2
+Specifically, if there exists $w \in \Ccal$ such that the data is separable by a margin of 1: $\forall t, \inner{w}{y_t x_t} \geq 1$, then setting $\eta = \frac{1}{2R^2}$ implies that
+\[ \sum_{t=1}^T M_t \leq 2R^2 \Delta, \]
+in other words, the algorithm has a finite mistake bound.
+\end{theorem}
+
+\begin{proof}
+As $R$ is $1$-strongly convex wrt $\| \cdot \|$, $\frac{R}{\eta}$ is $\frac1\eta$-strongly convex wrt $\| \cdot \|$.
+By the guarantees of OCO with respect to $\cbr{f_t(\cdot)}$'s, we have that for all $w$ in $\Ccal$,
+\[ \sum_{t=1}^T f_t(w_t) - \sum_{t=1}^T f_t(w) \leq \frac{\Delta}{\eta} + \sum_{t=1}^T \eta \|g_t\|^2. \]
+
+We have the following observations:
+\begin{enumerate}
+\item $g_t = 0$ if $M_t = 0$; therefore, the second term on the right hand side is at most $\eta R^2 (\sum_{t=1}^T M_t)$.
+
+\item Moreover, $f_t(w_t) = \one(\inner{w_t}{y_t x_t} \leq 0)(1 - \inner{w_t}{y_t x_t})$. Observe that $f_t(w_t) \geq 0$. Moreover, if $M_t = 1$, then $f_t(w_t) \geq 1$. Therefore, $\sum_{t=1}^T M_t \leq \sum_{t=1}^T f_t(w_t)$.
+
+\item $f_t(w) \leq \one(\inner{w_t}{y_t x_t} \leq 0)(1 - \inner{w}{y_t x_t})_+ \leq (1 - \inner{w}{y_t x_t})_+$, which is the instantaneous hinge loss of $w$.
+\end{enumerate}
+
+Combining the above insights, we get
+\[ \sum_{t=1}^T M_t \cdot (1 - \eta R^2) \leq L_t(w) + \frac{\Delta}{\eta}, \]
+that is,
+\[ \sum_{t=1}^T M_t \leq \frac{1}{1-\eta R^2} (L_t(w) + \frac{\Delta}{\eta}). \]
+
+The second claim of the theorem follows simply from algebra and the fact that $L_t(w) = 0$.
+\end{proof}
+
+\paragraph{Instantiations: Perceptron and Winnow.} We consider two settings of $R$'s:
+\begin{enumerate}
+\item Let $R(w) = \frac{1}{2}\|w\|^2$, and $\Ccal = \cbr{w: \| w \|_2 \leq B}$. Then it can be checked that $\Delta$ can be set as $B^2$. Suppose all examples lies in $\cbr{x: \|x\|_2 \leq R}$.
+FTRL with $R$ has a mistake bound of
+\[ \sum_{t=1}^T M_t \leq \min_{w \in \Ccal} \frac{1}{1-\eta R^2}(L_T(w) + \eta B^2). \]
+If the data is linearly separable by margin $1$ by classifier w in $\Ccal$, then setting $\eta = \frac{1}{2R^2}$ gives that
+\[ \sum_{t=1}^T M_t \leq 2 R^2 B^2. \]
+This is a variant of the well-known Percetron convergence theorem by Novikoff.
+
+\item Let $R(w) = \begin{cases} \sum_{i=1}^d w_i \ln w_i, & w \in \Delta^{d-1}, \\ +\infty, & \text{otherwise}. \end{cases}$. As seen before $\Delta$ can be set as $\ln d$. Suppose all examples lies in $\cbr{x: \|x\|_\infty \leq R}$. FTRL with $R$ has a mistake bound of
+\[ \sum_{t=1}^T M_t \leq \min_{w \in \Ccal} \frac{1}{1-\eta R^2}(L_T(w) + \eta \ln d). \]
+If the data is linearly separable by margin $1$ by classifier w in $\Delta^{d-1}$, then setting $\eta = \frac{1}{2R^2}$ gives that
+\[ \sum_{t=1}^T M_t \leq 2 R^2 \ln d. \]
+\end{enumerate}
+
 
 \subsection{FTRL with adaptive regularization}
 As we have seen before, the choice of regularizer is crucial to obtain good online prediction performance. However, if we are faced with a stream of data, it is difficult to know which regularizer to choose ahead of the time.
