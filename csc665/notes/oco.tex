@@ -245,7 +245,7 @@ The following are equivalent:
 \begin{enumerate}
   \item $f$ is $\beta$-smooth with respect to norm $\| \cdot \|$.
   \item For any $u, v$, $f(u) \leq f(v) + \inner{\nabla f(v)}{u - v} + \frac{\beta}{2}\| u - v \|^2$.
-  \item For any $u, v$, $f(u) \geq f(v) + \inner{\nabla f(v)}{u - v} + \frac{1}{2\beta} \| u - v \|^2$.
+  \item For any $u, v$, $f(u) \geq f(v) + \inner{\nabla f(v)}{u - v} + \frac{1}{2\beta} \| \nabla f(u) - \nabla f(v) \|^2$.
 \end{enumerate}
 \end{fact}
 
@@ -341,7 +341,7 @@ The above fact shows that, if $f$ is more ``curved'', then $f^\star$ is more ``f
 
 \section{Online convex optimization}
 
-Setup:
+Setup~\cite{gordon1999regret, zinkevich2003online}:
 \begin{algorithm}
 \caption{Online convex optimization (OCO)}
 \begin{algorithmic}
@@ -458,7 +458,7 @@ for some regret function $R(T)$. This implies that
 \subsection{Instantiations of FTRL: theoretical guarantees}
 
 \begin{enumerate}
-  \item Online gradient descent (OGD): $R(x) = \frac{1}{2\eta}\| x \|_2^2$, which is $\frac1\eta$-strongly convex wrt $\| \cdot \|_2$. FTRL with $R$ has regret
+  \item Online gradient descent (OGD)~\cite{zinkevich2003online}: $R(x) = \frac{1}{2\eta}\| x \|_2^2$, which is $\frac1\eta$-strongly convex wrt $\| \cdot \|_2$. FTRL with $R$ has regret
   \[ \Reg(T, x) \leq \frac{\| x \|_2^2}{2\eta} + \eta \sum_{t=1}^T \| g_t \|_2^2, \]
   for all benchmark $x \in \RR^d$.
 
@@ -475,13 +475,13 @@ for some regret function $R(T)$. This implies that
   \[ \Reg(T, x) \leq \frac{\| x \|_2^2}{2\eta} + \eta \sum_{t=1}^T \| g_t \|_2^2, \]
   for all benchmark $x \in \Ccal$. Again, setting $\eta = \frac{B_2}{R_2\sqrt{2T}}$ guarantees $\Reg(T, \Ccal) \leq B_2 R_2 \sqrt{2T}$.
 
-  \item $p$-norm algorithms ($p \geq 2$): It is known that $R(x) = \frac{1}{2\eta}\| x \|_p^2$ is $\frac1\eta$-strongly convex wrt $\| \cdot \|_p$. FTRL with $R$ has regret:
-  \[ \Reg(T, x) \leq \frac{\| x \|_p^2}{2\eta} + \eta \sum_{t=1}^T \| g_t \|_q^2. \]
+  \item $p$-norm algorithms ($p \in (1, 2]$)~\cite{gentile2003robustness}: It is known that $R(x) = \frac{1}{2\eta}\| x \|_p^2$ is $\frac{p-1}\eta$-strongly convex wrt $\| \cdot \|_p$. FTRL with $R$ has regret:
+  \[ \Reg(T, x) \leq \frac{\| x \|_p^2}{2\eta} + \frac{\eta}{p-1} \sum_{t=1}^T \| g_t \|_q^2. \]
   If $\Ccal \subset \cbr{x: \| x\|_p \leq B_p}$, and for all $t$, $\| g_t \|_q \leq R_q$,
-  setting $\eta = \frac{B_p}{R_q\sqrt{2T}}$ implies that
-  \[ \Reg(T, \Ccal) \leq B_p R_q \sqrt{2T}. \]
+  setting $\eta = \frac{B_p}{R_q\sqrt{2(p-1)T}}$ implies that
+  \[ \Reg(T, \Ccal) \leq B_p R_q \sqrt{\frac{2T}{p-1}}. \]
 
-  \item Exponentiated gradient (Hedge): consider the negative entropy regularizer
+  \item Exponentiated gradient (Hedge)~\cite{freund1997decision, kivinen1997exponentiated}: consider the negative entropy regularizer
   \[ R(x) = \begin{cases} \frac{1}{\eta} \sum_{i=1}^d x_i \ln x_i, & x \in \Delta^{d-1}, \\ +\infty, & \text{otherwise}. \end{cases} \]
   Recall that by the calibration exercise, $R(x)$ is $1$-strongly convex with respect to $\| \cdot \|_1$. Therefore, FTRL with $R$ has regret:
   \[ \Reg(T, x) \leq \frac{\sum_{i=1}^d x_i \ln x_i - \min_{x' \in \Delta^{d-1}}\sum_{i=1}^d x_i' \ln x_i'}{\eta} + \eta \sum_{t=1}^T \| g_t \|_\infty^2. \]
@@ -492,7 +492,9 @@ for some regret function $R(T)$. This implies that
   Setting $\eta = \frac{\sqrt{\ln d}}{R_\infty \sqrt{T}}$ gives that
   \[ \Reg(T, \Delta^{d-1}) \leq 2 R_\infty \sqrt{T \ln d}. \]
 
-  (The above regularizer can also be used to deal with a scaled version of probability simplex: $\cbr{x: \forall i, x_i > 0, \sum_{i=1}^d x_i = B_1}$ for general $B_1 > 0$; we will skip the discussion for simplicity.)
+  (The above regularizer can also be used to deal with a scaled version of probability simplex:
+  \[ \cbr{x: \forall i, x_i > 0, \sum_{i=1}^d x_i = B_1} \]
+  for general $B_1 > 0$; we skip the discussion for brevity.)
 
 
 \end{enumerate}
@@ -548,14 +550,14 @@ that is,
 The second claim of the theorem follows simply from algebra and the fact that $L_t(w) = 0$.
 \end{proof}
 
-\paragraph{Instantiations: Perceptron and Winnow.} We consider two settings of $R$'s:
+\paragraph{Instantiations: Perceptron~\cite{rosenblatt1958perceptron} and Winnow~\cite{littlestone1988learning}.} We consider two settings of $R$'s:
 \begin{enumerate}
 \item Let $R(w) = \frac{1}{2}\|w\|^2$, and $\Ccal = \cbr{w: \| w \|_2 \leq B}$. Then it can be checked that $\Delta$ can be set as $B^2$. Suppose all examples lies in $\cbr{x: \|x\|_2 \leq R}$.
 FTRL with $R$ has a mistake bound of
 \[ \sum_{t=1}^T M_t \leq \min_{w \in \Ccal} \frac{1}{1-\eta R^2}(L_T(w) + \eta B^2). \]
 If the data is linearly separable by margin $1$ by classifier w in $\Ccal$, then setting $\eta = \frac{1}{2R^2}$ gives that
 \[ \sum_{t=1}^T M_t \leq 2 R^2 B^2. \]
-This is a variant of the well-known Percetron convergence theorem by Novikoff.
+This is a variant of the well-known Percetron convergence theorem by Novikoff~\cite{rosenblatt1958perceptron}.
 
 \item Let $R(w) = \begin{cases} \sum_{i=1}^d w_i \ln w_i, & w \in \Delta^{d-1}, \\ +\infty, & \text{otherwise}. \end{cases}$. As seen before $\Delta$ can be set as $\ln d$. Suppose all examples lies in $\cbr{x: \|x\|_\infty \leq R}$. FTRL with $R$ has a mistake bound of
 \[ \sum_{t=1}^T M_t \leq \min_{w \in \Ccal} \frac{1}{1-\eta R^2}(L_T(w) + \eta \ln d). \]
@@ -574,7 +576,7 @@ recall that $G_{t-1} = \sum_{s=1}^{t-1} g_s$ is the sum of the gradients up to t
 We called the above algorithm FTRL-AR.
 Specifically, we will be looking at a sequence of monotonically increasing regularizers $\cbr{R_t}$'s, where $R_t$'s are generated on the fly, and can thus carry over information on the past $g_t$'s.
 
-\begin{theorem}
+\begin{theorem}[Modified from~\cite{orabona2015generalized}]
 Suppose FTRL-AR uses $R_t$ that are $1$-strongly convex with respect to $\| \cdot \|_{t}$.
 Then it has the following upper bound on its cumulative loss guarantee:
 \[ \sum_{t=1}^T \inner{g_t}{x_t} \leq R_0^\star(0) - R_T^\star(-G_T) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
@@ -600,7 +602,7 @@ third, as $R_{t-1}$ is 1-strongly convex wrt $\| \cdot \|_{t-1}$, $R_{t-1}^\star
 
 Using the above meta-theorem, we can instantiate with different adpative regularizers and get online learning algorithms with different degrees of adaptivity.
 
-\paragraph{Online gradient descent with adaptive step-sizes.} One instantiation of the above result is to let
+\paragraph{Online gradient descent with adaptive step-sizes~\cite{zinkevich2003online}.} One instantiation of the above result is to let
 \[ R_t(x) = \frac{\sqrt{t+1}}{\eta_0 } \| x \|_2^2. \]
 
 This implies that
@@ -612,7 +614,7 @@ There is a variant of the above $\ell_2$ regularization scheme with another sett
 \[ R_t(x) = \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| x \|^2. \]
 for some $\sigma > 0$.
 
-\paragraph{Adaptive subgradient methods (Adagrad).} More generally we can allow adaptive Mahalanobis norm-based regularization. Specifically, we can let
+\paragraph{Adaptive subgradient methods (Adagrad)~\cite{duchi2011adaptive}.} More generally we can allow adaptive Mahalanobis norm-based regularization. Specifically, we can let
 \[ R_t(x) = \frac12 \| x \|_{A_t}^2, \]
 for some adaptively generated $A_t$.
 
@@ -723,5 +725,8 @@ This motivates us to set $R_T(x) = \frac\sigma2 \|x\|_2^2 + \sum_{t=1}^T \frac{\
 
 This gives that
 \[ \Reg(T, x^\star) \leq \frac\sigma2 \|x^\star\|_2^2 + \sum_{t=1}^T \| g_t \|_{A_{t-1}^{-1}}^2. \]
+
+\bibliographystyle{plain}
+\bibliography{learning}
 
 \end{document}
