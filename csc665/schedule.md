@@ -28,13 +28,13 @@ Tentative schedule:
 |Oct 31 | Minimax analysis: Littlestone's dimension; Expert problem | [Online classification note](notes/online_cls.pdf) | SSBD Sec 21.1.1 | |
 |Nov 5 | Cover's Impossibility Result; Decision-theoretic online learning. | | SSBD Sec 21.2 | |
 |Nov 7 | Hedge; Online to Batch conversion. | [Handwritten notes](notes/online_handwritten.pdf) | SSBD Sec 21.2.1, [Hedge paper](http://rob.schapire.net/papers/FreundSc95.pdf); [Loss range adaptivity](https://arxiv.org/abs/1801.00101) | |
-|Nov 12 | Convexity, subgradients | | | |
+|Nov 12 | Convexity, subgradients | | SSBD Sec 12.1, 14.2 | |
 |Nov 14 | Bregman divergence, norms, dual norms | | | |
-|Nov 19 | Lipschitzness, strong convexity and smoothness | |  | [HW4](hw/hw4/hw4.pdf) |
-|Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader (FTRL) | [OCO note (draft)](notes/oco.pdf) |  | |
-|Nov 26 | Analysis of FTRL; Online linear classification with margins | |  | |
+|Nov 19 | Lipschitzness, strong convexity and smoothness | | SSBD Sec 12.1, 13.3 | [HW4](hw/hw4/hw4.pdf) |
+|Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader (FTRL) | [OCO note (draft)](notes/oco.pdf) | Section 2.7, 2.3 of [Shalev-Shwartz's Survey](https://www.cs.huji.ac.il/~shais/papers/OLsurvey.pdf) | |
+|Nov 26 | Analysis of FTRL; Online linear classification with margins | | H Sec 5.3 | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
-|Dec 3 | Adaptive regularization: Adagrad, online optimization of strongly convex and exp-concave functions | | LS Chap 20 | |
+|Dec 3 | Adaptive regularization: Adagrad, online optimization of strongly convex and exp-concave functions | | | |
 |Dec 5 |   | | | |
 |Dec 10 | Final presentation | | | |
 
