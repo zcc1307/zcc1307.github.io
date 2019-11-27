@@ -29,11 +29,12 @@
 \DeclareMathOperator*{\Xcal}{{\cal X}}
 %\DeclareMathOperator*{\Hcal}{{\cal H}}
 \DeclareMathOperator*{\Ycal}{{\cal Y}}
-\DeclareMathOperator*{\Acal}{{\cal A}}
+\DeclareMathOperator{\Acal}{{\cal A}}
 \DeclareMathOperator*{\Bcal}{{\cal B}}
 \DeclareMathOperator*{\Zcal}{{\cal Z}}
 \DeclareMathOperator*{\Gcal}{{\cal G}}
 \DeclareMathOperator*{\CH}{{\rm CH}}
+\DeclareMathOperator{\Mcal}{{\cal M}}
 %\DeclareMathOperator*{\Fcal}{{\cal F}}
 \DeclareMathOperator*{\Scal}{{\cal S}}
 \DeclareMathOperator*{\Ical}{{\cal I}}
@@ -127,9 +128,75 @@ Convention: as $\Acal = \Ycal = \cbr{\pm 1}$, we often write $a_t$ as $\hat{y}_t
 
 As a starting point, let's consider a simple setting when $\Hcal$ is finite, and we are in the realizable setting: there exists a classifier $h^\star$ in $\Hcal$ that agrees with all the examples. How can we design a learning algorithm that makes a small number of mistakes?
 
-\paragraph{The consistency algorithm: a first trial.} One plausible idea is to utilize the consitency algorithm (or ERM algorithm) we studied in statistical learning: at time $t$, define $V_t = \cbr{h \in \Hcal: h(x_s) = y_s \forall s \leq t-1}$.
+\paragraph{The consistency algorithm: a first trial.} One plausible idea is to utilize the consitency algorithm (or ERM algorithm) we studied in statistical learning: at time $t$, define version space $V_t = \cbr{h \in \Hcal: h(x_s) = y_s \forall s \leq t-1}$. The name {\em version space} comes from the fact that this set of classifiers gets constantly updated, therefore having ``versions'' indexed by timesteps.
+The algorithm then selects a classifier $h_t \in V_t$ and uses that to make prediction: $\hat{y}_t = h_t(x_t)$.
+
 \begin{theorem}
 The consistency algorithm makes $|\Hcal| - 1$ mistakes (regardless of the length of time horizon $T$).
+\label{thm:cons}
 \end{theorem}
+
+\begin{proof}
+First, by the definition of version space, and the realizability assumption, the algorithm maintains the invariant that $h^\star \in V_t$.
+
+Second, let $M_t = \one(\hat{y}_t \neq y_t)$  be the mistake indicator at time $t$. We claim that $M_t \leq |V_t| - |V_{t+1}|$. We look at two cases:
+\begin{enumerate}
+  \item if $M_t = 0$, as $V_{t+1} \subset V_{t}$, the right hand side is positive, thus the inequality is true.
+  \item if $M_t = 1$, note that $h_t$ will be excluded from $V_t$. This implies that $|V_{t+1}| - |V_t| \geq 1$.
+\end{enumerate}
+
+Define potential $\Phi_t = |V_t|$; in this notation, $M_t \leq \Phi_t - \Phi_{t+1}$. Summing over all round $t$ from $1$ to $T$, we have
+\[ \sum_{t=1}^T \leq \Phi_1 - \Phi_{T+1} \leq \Phi_1 = |\Hcal|. \]
+\end{proof}
+
+Can we design a better algorithm for online binary classification under realizability?
+It turns out that using a more carefully designed prediction strategy we can do much better, reducing the mistake bound from linear in $|\Hcal|$ to only logarithmic.
+
+\paragraph{The halving algorithm.} Same as the consistency algorithm, Halving will also keep track of version space, defined in the same way. At timestep $t$, observe that example $x_t$ divides the version space $V_t$ into two parts: $V_t^+ = \cbr{h \in V_t: h(x_t) = +1}$, and $V_t^- = \cbr{h \in V_t: h(x_t) = -1}$. We know that at the end of round $t$, one of them would become the update version space $V_{t+1}$.
+
+The halving algorithm makes prediction as follows:
+\[ \hat{y}_t = \begin{cases} +1 & |V_t^+| \geq |V_t| / 2, \\ -1 & \text{otherwise}, \end{cases} \]
+which is equivalent to a majority vote over classifiers in $V_t$ (tie broken in favor of $+1$).
+
+What is the advantage of this new prediction strategy? We claim that $M_t \leq \log |V_t| - \log |V_{t+1}|$. Why? We also conduct a case analysis on $M_t$:
+\begin{enumerate}
+  \item If $M_t = 0$, the right hand side is $\log |V_t| - \log |V_{t+1}|$, which is at least $0$; therefore the inequality is true.
+  \item If $M_t = 1$, then $y_t = -\hat{y}_t$. It can be seen that from the definition of $\hat{y}_t$, $V_{t+1} = V_t^{y_t} = V_t^{-\hat{y}_t}$ is the minority class, implying that $|V_{t+1}| \leq |V_t| / 2$. The claimed inequality is shown by taking logarithms on both sides.
+\end{enumerate}
+
+Define potential $\Phi_t = \log|V_t|$; in this notation, $M_t \leq \Phi_t - \Phi_{t+1}$. Summing over all round $t$ from $1$ to $T$, we have
+\[ \sum_{t=1}^T \leq \Phi_1 - \Phi_{T+1} \leq \Phi_1 = \log|\Hcal|. \]
+
+To summarize, we have the following theorem.
+\begin{theorem}
+The halving algorithm makes $\log |\Hcal|$ mistakes (regardless of the length of time horizon $T$).
+\label{thm:halv}
+\end{theorem}
+
+\section{Mistake bound model and the minimax analysis of realizable online learning}
+
+\begin{definition}
+  \begin{enumerate}
+  \item Algorithm $\Acal$ is said to acheive a mistake bound $B$ with hypothesis class $\Hcal$,
+  if for any sequence of examples $S$ realizable with respect to $\Hcal$, $\Mcal_{\Acal}(S)$,
+  the cumulative number of mistakes made by $\Acal$ on $S$ is at most $B$.
+  \item $\Hcal$ is online learnable if there exists an algorithm $\Acal$ such that $\Acal$ achieves a finite mistake bound on $\Hcal$.
+\end{enumerate}
+\end{definition}
+
+In light of Theorem~\ref{thm:cons} or Theorem~\ref{thm:halv}, we have the following simple fact.
+
+\begin{corollary}
+Any finite hypothesis class $\Hcal$ is online learnable.
+\end{corollary}
+
+What happens for infinte hypothesis classes? Can we develop similar capacity measure like VC dimension that measures the fundamental complexity of online learning? Imaging online classification as a game between the learner and the environment, where the learning algorithm makes online predictions at every timestep that tries to minimize the number of mistakes, while the environment shows examples sequentially to ``trick'' the learner to make as many mistakes, without violating the realizability assumption. We can formulate the design of online classification algorithms as the following optimization problem:
+\[ \min_{\Acal} \max_{S: S \text{ realizable by } \Hcal} \Mcal_{\Acal}(S). \]
+
+In other words, we would like to design an algorithm, $\Acal$, that has the smallest number of worst case mistakes (where every sequence of example realizable by $\Hcal$ is a ``case'').
+
+To analyze this, let us first look at the flip side: can we design a strategy of the environment to enforce any learner to make a lot of mistakes? To study this, we need the concept called mistake trees. (See handwritten notes for details.)
+
+%What are some intrinsic measure of complexity of a hypothesis class that makes it hard to learn online?
 
 \end{document}
