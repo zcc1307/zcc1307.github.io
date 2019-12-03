@@ -5,6 +5,8 @@
 \usepackage{commath}
 \usepackage{algorithm, algorithmic}
 \usepackage{natbib}
+%\usepackage{hyperref}
+\usepackage{url}
 
 \newtheorem{example}{Example}
 \newtheorem{theorem}{Theorem}
@@ -213,6 +215,7 @@ $f$ is $L$-Lipschitz with respect to norm $\| \cdot \|$ if for any $u, v$, $f(u)
 \begin{fact}
 For any convex $f: \Ccal \to \RR$,
 \[ f \text{ is } L-\text{Lipschitz} \Leftrightarrow \forall v, \forall g \in \partial f(v), \| g \|_\star \leq L. \]
+\label{fact:lip}
 \end{fact}
 
 Therefore, for differentiable functions, to check Lipschitzness, it suffices to check that the gradients at all locations have uniformly-bounded norms.
@@ -719,7 +722,7 @@ Even we don't have any prior knowledge on the norm of the $g_t$'s, setting $\eta
 
 Corollary~\ref{cor:ftal-ar-pd} implies that, with this setting of $\Phi_t$,
 \[ \Reg(T, w^\star) \leq \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| w^\star \|^2 + \sum_{s=1}^t \frac{\eta_0 \| g_s \|^2}{\sqrt{\sigma + \sum_{s=1}^{t-1} \| g_s \|^2}}\]
-If $\sigma \geq \max_{t=1}^T \| g_t \|_2^2$, it can be shown that second term on the right hand side is at most
+If $\sigma \geq \max_{t=1}^T \| g_t \|_2^2$~\footnote{It turns out that a sibling of FTRL, namely Online Mirror Descent, can get rid of this extra $\sigma$ while achieving the same guarantee. We refer the reader to \cite[][Lecture 5]{orabona2019introduction}.}, it can be shown that second term on the right hand side is at most
 \begin{eqnarray*}
  2 \sum_{s=1}^t \frac{\eta_0 \| g_s \|^2}{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}
 &\leq& 4 \sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}.
@@ -747,14 +750,22 @@ Specifically, we can look at the point it selects at iteration $t$, $w_t$:
 Intuitively, the algorithm is performing online gradient descent on every coordinate separately: for coordinate $i$, if we have seen a big cumulative gradient along the direction of $e_i$, then we decrease the learning rate on that direction, as we have already learned a lot there.
 
 Corollary~\ref{cor:ftal-ar-pd} gives that,
-\[ \Reg(T, w^\star) \leq O\del{ \frac{\| x^\star \|_{A_T}^2}{2} + \eta \sum_{t=1}^T \sum_{i=1}^d \frac{g_{t,i}^2}{\sqrt{\sigma + \sum_{s=1}^{t-1} g_{s,i}^2}}}. \]
+\[ \Reg(T, w^\star) \leq O\del{ \frac{\| w^\star \|_{A_T}^2}{2} + \eta \sum_{t=1}^T \sum_{i=1}^d \frac{g_{t,i}^2}{\sqrt{\sigma + \sum_{s=1}^{t-1} g_{s,i}^2}}}. \]
 
-If $\sigma \geq \max_{s=1}^T \max_{i=1}^d g_{s,i}^2$, then using Lemma~\ref{lem:sca-sqrt} and a similar reasoning as the last subsection (such that we can replace the $t-1$ by $t$ in the denominator with only a constant factor overhead), we can show that the second term is at most $\sum_{i=1}^d \sqrt{\sum_{t=1}^T g_{t,i}^2}$.
+If $\sigma \geq \max_{t=1}^T \max_{i=1}^d g_{t,i}^2$, then using Lemma~\ref{lem:sca-sqrt} and a similar reasoning as the last subsection (such that we can replace the $t-1$ by $t$ in the denominator with only a constant factor overhead), we can show that the second term is at most $\sum_{i=1}^d \sqrt{\sum_{t=1}^T g_{t,i}^2}$.
 
-Thus, note that $\| x\|_M^2 \leq \| x \|_\infty^2 \sum_{i=1}^d M_i$, we get that the above is at most
-\[ \Reg(T, w^\star) \leq O\del{ \del{\frac{\| x^\star \|_\infty^2}{\eta} + \eta} \cdot \del{\sum_{i=1}^d \sqrt{\sum_{t=1}^T g_{t,i}^2}} }. \]
+Thus, note that $\| w \|_M^2 \leq \| w \|_\infty^2 \sum_{i=1}^d M_{ii}$ for diagnoal $M$, we get that the above is at most
+\[ \Reg(T, w^\star) \leq O\del{ \del{\frac{\| w^\star \|_\infty^2}{\eta} + \eta} \cdot \del{\sum_{i=1}^d \sqrt{\sum_{t=1}^T g_{t,i}^2}} }. \]
 
-If $\eta = \| x^\star \|_\infty$, then AdaGrad gives a regret bound of $O\del{ \| x^\star \|_\infty \cdot \del{\sum_{i=1}^d \sqrt{\sum_{t=1}^T g_{t,i}^2}} }$, which is a new regret guarantee incomparable with the ones obtained by (variants of) online gradient descent discussed above.
+If $\eta = \| w^\star \|_\infty$, then AdaGrad gives a regret bound of $O\del{ \| w^\star \|_\infty \cdot \del{\sum_{i=1}^d \sqrt{\sum_{t=1}^T g_{t,i}^2}} }$, which is a new regret guarantee incomparable with the ones obtained by (variants of) online gradient descent discussed above.
+
+\begin{example}
+Let us compare the regret bound of AdaGrad with that obtained by online gradient descent with optimal tuning of step size, that is:
+\[ \Reg(T, w^\star) = O\del{\| w^\star \|_2 \sqrt{\sum_{t=1}^T \| g_t \|_2^2 }} = O\del{\| w^\star \|_2 \sqrt{\sum_{t=1}^T \sum_{i=1}^d g_{t,i}^2 }}. \]
+
+Suppose the $g_{t,i}$'s are such that only $g_{t,1}$'s are nonzero. Then the second fact on the regret bounds agree with each other. Therefore, in terms of the final regret bound, AdaGrad is better, as $\|w^\star\|_\infty \leq \| w^\star\|_2$.
+
+\end{example}
 
 
 Alternatively, one can let
@@ -764,39 +775,47 @@ be a nondiagnoal adaptive regularizer. The induced FTRL algorithm is called {\em
 
 \section{OCO for strongly convex functions}
 
-Motivating example: we would like a fast optimizer for soft-margin SVM or regularized logistic regression:
+Motivating example: we would like a fast optimizer for regularized loss minimization, e.g. soft-margin SVM or logistic regression:
 \[ \min_{w} F(w), \quad \text{where } F(w) = \EE_{(x,y) \sim D} \del{\frac\lambda2\|w\|_2^2 + (1-\inner{w}{y x})_+}, \]
-or $F(w) = \EE_{(x,y) \sim D} \del{\frac\lambda2\|w\|_2^2 + \ln(1 + \exp\del{-\inner{w}{y x}})}$. Throughout the rest of the section, let us consider soft-margin SVM for concreteness. 
+or $F(w) = \EE_{(x,y) \sim D} \del{\frac\lambda2\|w\|_2^2 + \ln(1 + \exp\del{-\inner{w}{y x}})}$. Throughout the rest of the section, let us consider soft-margin SVM for concreteness.
 
 Here, letting $f(w, (x,y)) = \frac\lambda2\|w\|_2^2 + (1-\inner{w}{y x})_+$, we can write
 $F(w) = \EE_{(x, y) \sim D} f(w, (x,y))$; this is called a {\em finite sum} of strongly convex functions.
 
-If one can develop a fast OCO algorithm with $\cbr{f_t(w) \defeq f(w, (x_t, y_t))}_{t=1}^T$, with a small regret guarantee $\R(T)$, as we have seen before, one can use online-to-batch conversion to get a $f$ that has excess expected regularized loss $\frac{\R(T)}{T}$, in other words,
+If one can develop a fast OCO algorithm with $\cbr{f_t(w) \defeq f(w, (x_t, y_t))}_{t=1}^T$, with a small regret guarantee $\R(T)$, as we have seen before, one can use online-to-batch conversion, and run the OCO algorithm on $f_t$'s induced by iid $(x_t, y_t) \sim D$ to get a $\bar{w}_{T}$ that has excess expected regularized loss $\frac{\R(T)}{T}$, in other words,
 \[ \EE F(\bar{w}_T) - \min_{w} F(w) \leq \frac{\R(T)}{T}. \]
 
 One baseline is the FTRL algorithm with squared norm regularizer $\Phi(w) = \frac{1}{2\eta}\|w\|^2$, with surrogate convex function $\tilde{f}_t(w) = \inner{g_t}{w}$, where $g_t \in \partial f(w_t)$. This achieves a regret of $O(\sqrt{T})$; moreover, each step, the algorithm simply calculates $w_t = - \eta \sum_{s=1}^t g_{t-1}$, which can be maintained efficiently on the fly. It can be checked that to guarantee an expected excess loss of $\epsilon$, the computational complexity is $O(\frac{d}{\epsilon^2})$.
 
 In fact, we can do better! In this section, we show that by utilizing the structure that all $f_t$'s are $\lambda$-strongly convex, one can design a better OCO algorithm with regret bound much better than $O(\sqrt{T})$, that is, $O(\frac{\ln T}{\lambda})$.
 
-How to achieve this? We will use the adaptive regularization method developed in the last section. Recall that FTRL-AR has the following regret guarantee:
+How to achieve this? We will use the adaptive regularization method developed in the last section.
+\begin{theorem}
+Suppose all $f_t$'s are $\lambda$-strongly convex and $L$-Lipschitz. Then FTRL-AR with adaptive regularizer  $R_t(w) = \frac\lambda 2\| w \|^2 + \sum_{s=1}^t \frac\lambda 2\| w_s - w \|^2$ has regret
+\[ \Reg(T, w^\star) = O\del{\frac{R^2 \ln T}{\lambda}}. \]
+\end{theorem}
+\begin{proof}
+Recall that FTRL-AR has the following regret guarantee:
 \[ \sum_{t=1}^T \inner{g_t}{w_t - w^\star} \leq R_0^\star(0) + R_T(w^\star) + \sum_{t=1}^T \| w_t \|_{\star, t-1}^2. \]
 How can the above regret relate to $\Reg(T, w^\star) = \sum_{t=1}^T f_t(w_t) - f_t(w^\star)$? Now because $f_t$ is $\lambda$-strongly convex, we have a tighter bound on it. Specifically, for all $g_t \in \partial f_t(w_t)$, we have
 \[ f_t(w_t) - f_t(w^\star) \leq \inner{g_t}{w_t - w^\star} - \frac\lambda 2\| w_t - w^\star \|^2. \]
 This implies that,
 \[ \Reg(T, w^\star) \leq \sum_{t=1}^T \inner{g_t}{w_t - w^\star} - \sum_{t=1}^T \frac\lambda 2\| w_t - w^\star \|^2. \]
 
-This motivates us to define $R_t(w) = \frac\lambda 2\| w \|^2 + \sum_{s=1}^t \frac\lambda 2\| w_s - w \|^2$ so that $R_T(w^\star)$ cancels out the negative terms induced by linear approximation.
-Observe that $R_t$ is 1-strongly convex with respect to $\| \cdot \|_{\lambda(t+1) I}$.
-Suppose for all $g_t$, $\| g_t \| \leq R$, we get,
+This motivates the definition of $R_T$, so that $R_T(w^\star)$ cancels out the negative terms induced by linear approximation.
+Observe that $R_t$ is 1-strongly convex with respect to $\| \cdot \|_t = \| \cdot \|_{\lambda(t+1) I}$.
 We therefore get:
-\[ \Reg(T, w^\star) \leq \frac{\lambda}{2}\|w^\star\|^2 + \sum_{t=1}^T \frac{\| g_t \|^2}{\lambda t} \leq \frac{\lambda}{2}\|w^\star\|^2 + \frac{R^2}{\lambda}(1 + \ln T) = O\del{\frac{\ln T}{\lambda}}. \]
+\[ \Reg(T, w^\star) \leq \frac{\lambda}{2}\|w^\star\|^2 + \sum_{t=1}^T \frac{\| g_t \|^2}{\lambda t} \leq \frac{\lambda}{2}\|w^\star\|^2 + \frac{L^2}{\lambda}(1 + \ln T) = O\del{\frac{L^2 \ln T}{\lambda}}. \]
+where the penultimate inequality uses the $L$-Lipschitzness of $f$ and Fact~\ref{fact:lip}, and the last inequality uses the simple fact that $\sum_{t=1}^T \frac1t \leq 1 + \ln T$.
+\end{proof}
 
 What is the induced FTRL-AR algorithm? It can be shown that
 \begin{eqnarray*}
   w_t &=& \argmin_w \del{ \sum_{s=1}^{t-1} \inner{g_s}{w} + \frac\lambda 2\| w \|^2 + \sum_{s=1}^{t-1} \frac\lambda 2\| w_s - w \|^2} \\
   &=& \frac{1}{t} \del{\sum_{s=1}^{t-1} w_s - \frac1\lambda \sum_{s=1}^{t-1} g_s},
 \end{eqnarray*}
-which can be obtained on the fly with $O(d)$ time per round~\footnote{In fact a much simpler algorithm can also admit a logarithmic regret analysis: just let $w_t = -\frac{1}{\lambda t} \sum_{s=1}^{t-1} g_s$; see~\cite[][Theorem 1]{hazan2007logarithmic} or~\cite[][Section 14.4.4 and 14.5.3]{shalev2014understanding}.}, by maintaining $\sum_{s=1}^{t-1} w_s$ and $\sum_{s=1}^{t-1} g_s$ online. Therefore, to obtain an excess loss guarantee of $\epsilon$, one can let run FTRL-AR with the specified regularizer with $T = O\del{ \frac{1}{\lambda\epsilon}\ln\frac{1}{\lambda\epsilon}}$, which has a total running time of $\tilde{O}(\frac{d}{\lambda \epsilon})$
+which can be obtained on the fly with $O(d)$ time per round~\footnote{In fact a much simpler algorithm can also admit a logarithmic regret analysis: just let $w_t = -\frac{1}{\lambda t} \sum_{s=1}^{t-1} g_s$; see~\cite[][Theorem 1]{hazan2007logarithmic} or~\cite[][Section 14.4.4 and 14.5.3]{shalev2014understanding}.},
+by maintaining $\sum_{s=1}^{t-1} w_s$ and $\sum_{s=1}^{t-1} g_s$ online. Therefore, to obtain an excess loss guarantee of $\epsilon$, one can let run FTRL-AR with the specified regularizer with $T = O\del{ \frac{1}{\lambda\epsilon}\ln\frac{1}{\lambda\epsilon}}$, which has a total running time of $\tilde{O}(\frac{d}{\lambda \epsilon})$
 (where $\tilde{O}$ ignores logarithmic factors).
 
 %The bottom line:
