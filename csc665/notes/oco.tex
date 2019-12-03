@@ -655,48 +655,65 @@ As we have seen before, the choice of regularizer is crucial to obtain good onli
 In this section, we will look at FTRL with adaptive regularization, which is a systematic way to achieve online performance guarantees that adapts to the geometry of the data on the fly.
 
 Our starting point is to consider the following algorithm:
-\[ x_t = \nabla R_{t-1}^\star(-G_{t-1}), \]
+\[ w_t = \argmin_w \del{ \Phi_{t-1}(w) + \sum_{s=1}^{t-1} \inner{g_s}{w} } = \nabla \Phi_{t-1}^\star(-G_{t-1}), \]
+where $\cbr{\Phi_{t}}_{t=0}^T$ is a sequence of regularizers, and
 recall that $G_{t-1} = \sum_{s=1}^{t-1} g_s$ is the sum of the gradients up to time $t-1$.
-We called the above algorithm FTRL-AR.
-Specifically, we will be looking at a sequence of monotonically increasing regularizers $\cbr{R_t}$'s, where $R_t$'s are generated on the fly, and can thus carry over information on the past $g_t$'s.
+We called the above algorithm FTRL with adaptive regularization, abbreviated as FTRL-AR.
+Specifically, we will be looking at sequences of $\cbr{\Phi_t}$'s such that they are generated on the fly, and can thus carry information on the past $g_t$'s.
 
-\begin{theorem}[Modified from~\cite{orabona2015generalized}]
-Suppose FTRL-AR uses $R_t$ that are $1$-strongly convex with respect to $\| \cdot \|_{t}$.
+\begin{theorem}[Modified from Lemma 1 of~\cite{orabona2015generalized}]
+Suppose FTRL-AR uses $\Phi_t$'s that are $1$-strongly convex with respect to time-varying norm $\| \cdot \|_{t}$.
 Then it has the following upper bound on its cumulative loss guarantee:
-\[ \sum_{t=1}^T \inner{g_t}{x_t} \leq R_0^\star(0) - R_T^\star(-G_T) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+\[ \sum_{t=1}^T \inner{g_t}{w_t} \leq R_0^\star(0) - R_T^\star(-G_T) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
 Consequently,
-\[ \Reg(T, x^\star) = \sum_{t=1}^T \inner{g_t}{x_t - x^\star} \leq R_T(x^\star) + R_0^\star(0) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+\[ \Reg(T, w^\star) = \sum_{t=1}^T \inner{g_t}{x_t - w^\star} \leq R_T(w^\star) + R_0^\star(0) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+\label{thm:ftrl-ar}
 \end{theorem}
 
-Note that the above theorem supercedes Theorem~\ref{thm:ftrl}, as it is a direct consequence of the above theorem by taking $R_t \equiv R_0$ and observing that $R_0^\star(0) = -\min_{x'} R_0(x')$.
+Note that the above theorem supercedes Theorem~\ref{thm:ftrl}, as it is a direct consequence of the above theorem by taking $R_t \equiv R_0$ for all $t$, and observing that $R_0^\star(0) = -\min_{w'} R_0(w')$.
 
 \begin{proof}
 It suffices to show that
-\[ \inner{g_t}{x_t} \leq R_{t-1}^\star(-G_{t-1}) - R_t^\star(-G_t) + \| g_t \|_{\star, t-1}^2, \]
+\[ \inner{g_t}{w_t} \leq R_{t-1}^\star(-G_{t-1}) - R_t^\star(-G_t) + \| g_t \|_{\star, t-1}^2, \]
 as the theorem concludes by summing this inequality up over all $t$'s.
 
 To show the above inequality, it suffices for us to show that
-\[ R_t^\star(-G_t) - R_{t-1}^\star(-G_{t-1}) + \inner{g_t}{x_t} \leq \| g_t \|_{\star, t-1}^2. \]
+\[ R_t^\star(-G_t) - R_{t-1}^\star(-G_{t-1}) + \inner{g_t}{w_t} \leq \| g_t \|_{\star, t-1}^2. \]
 
-The above inequality is true by the following observations: first, as $R_t \geq R_{t-1}$, $R_t^\star \leq R_{t-1}^\star$; second, $x_t = \nabla R_{t-1}^\star(-G_{t-1})$, therefore,
+The above inequality is true by the following observations: first, as $R_t \geq R_{t-1}$, $R_t^\star \leq R_{t-1}^\star$; second, $w_t = \nabla R_{t-1}^\star(-G_{t-1})$, therefore,
 the left hand side of the inequality is at most
-\[ R_{t-1}^\star(-G_t) - R_{t-1}^\star(-G_{t-1}) - \inner{\nabla R_{t-1}^\star(-G_{t-1})}{-g_t} = D_{R_{t-1}^\star}(-G_t, -G_{t-1}). \]
+\[ R_{t-1}^\star(-G_t) - R_{t-1}^\star(-G_{t-1}) - \inner{\nabla R_{t-1}^\star(-G_{t-1})}{-g_t} = D_{R_{t-1}^\star}(-G_t, -G_{t-1}); \]
+recall that $D_f(\cdot, \cdot)$ is the Bregman divergence induced by $f$.
 third, as $R_{t-1}$ is 1-strongly convex wrt $\| \cdot \|_{t-1}$, $R_{t-1}^\star$ is 1-smooth wrt $\| \cdot \|_{\star, t-1}$, implying that the right hand side is at most $\frac12 \| -G_t - (-G_{t-1}) \|_{\star, t-1}^2 = \frac12 \| g_t \|_{\star, t-1}^2$.
 \end{proof}
 
 Using the above meta-theorem, we can instantiate with different adpative regularizers and get online learning algorithms with different degrees of adaptivity.
 
 \paragraph{Online gradient descent with adaptive step-sizes~\cite{zinkevich2003online}.} One instantiation of the above result is to let
-\[ R_t(x) = \frac{\sqrt{t+1}}{\eta_0 } \| x \|_2^2. \]
+\[ \Phi_t(w) = \frac{\sqrt{t+1}}{2\eta_0} \| w \|_2^2 = \frac12\| w \|_{A_t}^2. \]
+where $A_t = \frac{\sqrt{t+1}}{\eta_0} I_d$.
+Observe that $\Phi_t(w)$ is 1-strongly convex with norm $\| w \|_t = \| w \|_{A_t}$. Meanwhile, $\| g \|_{t,\star} = \| g \|_{A_t^{-1}}$.
 
-This implies that
-\[ \Reg(T, x^\star) \leq \frac{\sqrt{T+1}}{\eta_0} \| x^\star \|_2^2 + \sum_{t=1}^T \eta_0 \cdot \frac{\| g_t \|^2}{\sqrt{t}}.  \]
+Theorem~\ref{thm:ftrl-ar} implies that,
+\[ \Reg(T, w^\star) \leq \frac{\sqrt{T+1}}{2\eta_0} \| x^\star \|_2^2 + \sum_{t=1}^T \eta_0 \cdot \frac{\| g_t \|^2}{\sqrt{t}}.  \]
 
-Note that if $\eta = $, then this algorithm automatically achieves a $O(\sqrt{T})$ regret for all timesteps $T$.
+Suppose the benchmark set $\Ccal$ is defined as $\cbr{w: \| w^\star \| \leq B_2}$.
+If one knows that $\| g_t \|_2 \leq R_2$, then setting $\eta_0 = \frac{R_2}{B_2}$ gives
+\[ \Reg(T, w^\star) \leq O\del{R_2 B_2 \sqrt{T}}, \quad \forall w \in \Ccal. \]
+Even we don't have any prior knowledge on the norm of the $g_t$'s, setting $\eta_0 = 1$ gives
+\[ \Reg(T, w^\star) \leq O\del{(R_2^2 + B_2^2) \sqrt{T}}, \quad \forall w \in \Ccal. \]
 
-There is a variant of the above $\ell_2$ regularization scheme with another setting of the regularization strength:
-\[ R_t(x) = \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| x \|^2. \]
+\paragraph{Regularization that depends on historical gradient lengths.} There is a variant of the above $\ell_2$ regularization scheme with another setting of the regularization strength:
+\[ \Phi_t(w) = \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| w \|^2 = \frac12\|w\|_{A_t}^2, \]
+where $A_t = \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{\eta_0} I_d$,
 for some $\sigma > 0$.
+
+Theorem~\ref{thm:ftrl-ar} implies that, with this setting of $\Phi_t$,
+\[ \Reg(T, w^\star) \leq \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| w^\star \|^2 + \sum_{s=1}^t \frac{\eta_0 \| g_s \|^2}{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}\]
+If $\sigma \geq \max_{t=1}^T \| g_t \|_2^2$, it can be shown that the right hand side is at most
+\[ O\del{ \sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2} \del{\frac{\|w^\star\|^2}{\eta_0} + \eta_0} }.\]
+If $\eta_0 = \| w^\star \|$, and $\sigma$ is a constant factor away from $\max_{t=1}^T \| g_t \|_2^2$, then the regret guarantee is $O(\|w^\star\| \sqrt{\sum_{s=1}^{t} \| g_s \|^2})$, which can be much better than $R_2^2 B_2^2$.
+
 
 \paragraph{Adaptive subgradient methods (Adagrad)~\cite{duchi2011adaptive}.} More generally we can allow adaptive Mahalanobis norm-based regularization. Specifically, we can let
 \[ R_t(x) = \frac12 \| x \|_{A_t}^2, \]
