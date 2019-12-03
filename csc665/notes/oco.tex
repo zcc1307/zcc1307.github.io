@@ -351,6 +351,8 @@ For any pairs of $x$ and $s$ in $\RR^d$,
 
 \begin{example}
 \begin{enumerate}
+  \item Suppose $f(x) = \begin{cases} 0 & \| x \| \leq 1 \\ +\infty & \| x \| > 1 \end{cases}$. Its conjugate function $f^\star(s) = \max_{x: \| x \| \leq 1} \inner{x}{s} = \| s \|_\star$.
+
   \item For conjugate exponents $p, q \in (1,\infty)$ such that $\frac1p + \frac1q = 1$, if $f(x) = \frac{x^{p}}{p}$, then $f^\star(s) = \frac{s^q}{q}$. This is the classical Young's inequality.
   \item For any norm $\| \cdot \|$, if $f(x) = \frac\lambda2 \| x \|^2$, then $f^\star(s) = \frac1{2\lambda}\| s \|_\star^2$.
   \item If $f(x) = \begin{cases} \sum_{i=1}^d x_i \ln x_i, & x \in \Delta^{d-1} \\
