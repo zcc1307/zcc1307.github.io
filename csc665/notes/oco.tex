@@ -637,7 +637,7 @@ Now, if the data is linearly separable by margin $1$ by classifier $w$ such that
 This is a variant of the well-known Percetron convergence theorem by Novikoff~\cite{rosenblatt1958perceptron}.
 
 \item Let $\Phi(w) = \begin{cases} \sum_{i=1}^d w_i \ln w_i, & w \in \Delta^{d-1}, \\ +\infty, & \text{otherwise}. \end{cases}$. This gives the  Winnow~\cite{littlestone1988learning} algorithm:
-\[ w_{t,i} = \exp{-\eta \sum_{s=1}^{t=1} g_{s,i}}, \forall i \in \cbr{1,\ldots,d}. \]
+\[ w_{t,i} = \exp{-\eta \sum_{s=1}^{t-1} g_{s,i}}, \forall i \in \cbr{1,\ldots,d}. \]
 
 Suppose all examples lies in $\cbr{x: \|x\|_\infty \leq R_\infty}$. Also, as discussed before, we can set $\Phi_{\min} = -\ln d$ and $\Phi(w) - \Phi_{\min} \leq \ln d$ for all $w^\star \in \Delta^{d-1}$. Therefore,
 FTRL with $\Phi$ has a mistake bound of
@@ -687,14 +687,23 @@ recall that $D_f(\cdot, \cdot)$ is the Bregman divergence induced by $f$.
 third, as $R_{t-1}$ is 1-strongly convex wrt $\| \cdot \|_{t-1}$, $R_{t-1}^\star$ is 1-smooth wrt $\| \cdot \|_{\star, t-1}$, implying that the right hand side is at most $\frac12 \| -G_t - (-G_{t-1}) \|_{\star, t-1}^2 = \frac12 \| g_t \|_{\star, t-1}^2$.
 \end{proof}
 
-Using the above meta-theorem, we can instantiate with different adpative regularizers and get online learning algorithms with different degrees of adaptivity.
+Using the above meta-theorem, we can instantiate with different adpative regularizers and get online learning algorithms with different degrees of adaptivity. Below, we focus on a specific family of regularizer; that is, the squared Mahalanobis norm regularizer:
+\[ \Phi_t(w) = \frac12 \| w \|_{A_t}^2, \]
+where $A_t \succeq A_{t-1}$ for all $t \geq 1$. Observe that $\Phi_t(w)$ is 1-strongly convex with norm $\| w \|_t = \| w \|_{A_t}$. Meanwhile, $\| g \|_{t,\star} = \| g \|_{A_t^{-1}}$. FTRL-AR selects the following point at round $t$:
+\[ w_t = \nabla \Phi_{t-1}^\star(-G_{t-1}) = -A_{t-1}^{-1} G_{t-1}. \]
+Therefore, we have the following simple corollary:
+\begin{corollary}
+Suppose FTRL-AR is executed with $\Phi_t(w) = \frac12 \| w \|_{A_t}^2$ for a sequence of monotonically increasing positive definite matrices $\cbr{A_t}$. Then,
+\[ \Reg(T, w^\star) \leq \frac{1}{2}\| w \|_{A_T}^2 + \sum_{t=1}^T \| g_t \|_{A_{t-1}^{-1}}^2. \]
+\label{cor:ftal-ar-pd}
+\end{corollary}
+We discuss several nice consequences of the corollary below.
 
-\paragraph{Online gradient descent with adaptive step-sizes~\cite{zinkevich2003online}.} One instantiation of the above result is to let
-\[ \Phi_t(w) = \frac{\sqrt{t+1}}{2\eta_0} \| w \|_2^2 = \frac12\| w \|_{A_t}^2. \]
-where $A_t = \frac{\sqrt{t+1}}{\eta_0} I_d$.
-Observe that $\Phi_t(w)$ is 1-strongly convex with norm $\| w \|_t = \| w \|_{A_t}$. Meanwhile, $\| g \|_{t,\star} = \| g \|_{A_t^{-1}}$.
+%\argmin_w \del{ \Phi_{t-1}(w) + \sum_{s=1}^{t-1} \inner{g_s}{w} } =
 
-Theorem~\ref{thm:ftrl-ar} implies that,
+\paragraph{Online gradient descent with adaptive step-sizes~\cite{zinkevich2003online}.} One instantiation of Corollary~\ref{cor:ftal-ar-pd} is to let $A_t = \frac{\sqrt{t+1}}{\eta_0} I_d$, which implies that,
+%which %implies that
+%\[ \Phi_t(w) = \frac12\| w \|_{A_t}^2 = \frac{\sqrt{t+1}}{2\eta_0} \| w \|_2^2. \]
 \[ \Reg(T, w^\star) \leq \frac{\sqrt{T+1}}{2\eta_0} \| x^\star \|_2^2 + \sum_{t=1}^T \eta_0 \cdot \frac{\| g_t \|^2}{\sqrt{t}}.  \]
 
 Suppose the benchmark set $\Ccal$ is defined as $\cbr{w: \| w^\star \| \leq B_2}$.
@@ -703,46 +712,92 @@ If one knows that $\| g_t \|_2 \leq R_2$, then setting $\eta_0 = \frac{R_2}{B_2}
 Even we don't have any prior knowledge on the norm of the $g_t$'s, setting $\eta_0 = 1$ gives
 \[ \Reg(T, w^\star) \leq O\del{(R_2^2 + B_2^2) \sqrt{T}}, \quad \forall w \in \Ccal. \]
 
-\paragraph{Regularization that depends on historical gradient lengths.} There is a variant of the above $\ell_2$ regularization scheme with another setting of the regularization strength:
-\[ \Phi_t(w) = \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| w \|^2 = \frac12\|w\|_{A_t}^2, \]
-where $A_t = \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{\eta_0} I_d$,
-for some $\sigma > 0$.
+\paragraph{Regularization that depends on historical gradient lengths.} We let $\sigma > 0$, and $A_t = \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{\eta_0} I_d$.
+%There is a variant of the above $\ell_2$ regularization scheme with another setting of the regularization strength.
+%The induced adaptive regularizer is:
+%\[ \Phi_t(w) = \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| w \|^2 = \frac12\|w\|_{A_t}^2. \]
 
-Theorem~\ref{thm:ftrl-ar} implies that, with this setting of $\Phi_t$,
-\[ \Reg(T, w^\star) \leq \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| w^\star \|^2 + \sum_{s=1}^t \frac{\eta_0 \| g_s \|^2}{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}\]
-If $\sigma \geq \max_{t=1}^T \| g_t \|_2^2$, it can be shown that the right hand side is at most
-\[ O\del{ \sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2} \del{\frac{\|w^\star\|^2}{\eta_0} + \eta_0} }.\]
+Corollary~\ref{cor:ftal-ar-pd} implies that, with this setting of $\Phi_t$,
+\[ \Reg(T, w^\star) \leq \frac{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}{2 \eta_0} \| w^\star \|^2 + \sum_{s=1}^t \frac{\eta_0 \| g_s \|^2}{\sqrt{\sigma + \sum_{s=1}^{t-1} \| g_s \|^2}}\]
+If $\sigma \geq \max_{t=1}^T \| g_t \|_2^2$, it can be shown that second term on the right hand side is at most
+\begin{eqnarray*}
+ 2 \sum_{s=1}^t \frac{\eta_0 \| g_s \|^2}{\sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}}
+&\leq& 4 \sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2}.
+\end{eqnarray*}
+where the inequality is from Lemma~\ref{lem:sca-sqrt}.
+
+Therefore, the regret is at most:
+\begin{eqnarray*}
+ \Reg(T, w^\star) = O\del{ \sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2} \del{\frac{\|w^\star\|^2}{\eta_0} + \eta_0} }.
+\end{eqnarray*}
 If $\eta_0 = \| w^\star \|$, and $\sigma$ is a constant factor away from $\max_{t=1}^T \| g_t \|_2^2$, then the regret guarantee is $O(\|w^\star\| \sqrt{\sum_{s=1}^{t} \| g_s \|^2})$, which can be much better than $R_2^2 B_2^2$.
 
 
-\paragraph{Adaptive subgradient methods (Adagrad)~\cite{duchi2011adaptive}.} More generally we can allow adaptive Mahalanobis norm-based regularization. Specifically, we can let
-\[ R_t(x) = \frac12 \| x \|_{A_t}^2, \]
-for some adaptively generated $A_t$.
+\paragraph{Adaptive subgradient methods (Adagrad)~\cite{duchi2011adaptive}.} More generally, we allow adaptive regularization matrix $A_t$ being a general diagnoal matrix, or even a matrix with nonzero diagonal entries.
+%we can allow Mahalanobis norm-based regularization, with the positive semidefinite matrix
+%Specifically, we still consider
+%for some adaptively generated $A_t$.
 
 Specifically, one can let
-\[ A_t = \frac1\eta (\sigma I + \diag( \sum_{s=1}^t g_s g_s^\top) )^\frac12\] be an "diagonal" adaptive regularizer.
+\[ A_t = \frac1\eta \del{\sigma I + \diag( \sum_{s=1}^t g_s g_s^\top) }^\frac12\] be a diagonal adaptive regularizer. Here the $\diag(M)$ takes a full $d \times d$ matrix and set all its off-diagnoal entries to be zero.
+The induced FTRL algorithm is called {\em AdaGrad with diagnonal matrices}. This is one of the most widely used gradient-based optimization algorithm in modern machine learning.
+
+Specifically, we can look at the point it selects at iteration $t$, $w_t$:
+\[ w_{t,i} = -\eta \cdot \frac{\sum_{s=1}^{t-1} g_{s,i}}{\sqrt{\sigma + \sum_{s=1}^{t-1} g_{s,i}^2}}, \quad \forall i \in \cbr{1,\ldots,d}. \]
+Intuitively, the algorithm is performing online gradient descent on every coordinate separately: for coordinate $i$, if we have seen a big cumulative gradient along the direction of $e_i$, then we decrease the learning rate on that direction, as we have already learned a lot there.
+
+Corollary~\ref{cor:ftal-ar-pd} gives that,
+\[ \Reg(T, w^\star) \leq O\del{ \frac{\| x^\star \|_{A_T}^2}{2} + \eta \sum_{t=1}^T \sum_{i=1}^d \frac{g_{t,i}^2}{\sqrt{\sigma + \sum_{s=1}^{t-1} g_{s,i}^2}}}. \]
+
+If $\sigma \geq \max_{s=1}^T \max_{i=1}^d g_{s,i}^2$, then using Lemma~\ref{lem:sca-sqrt} and a similar reasoning as the last subsection (such that we can replace the $t-1$ by $t$ in the denominator with only a constant factor overhead), we can show that the second term is at most $\sum_{i=1}^d \sqrt{\sum_{t=1}^T g_{t,i}^2}$.
+
+Thus, note that $\| x\|_M^2 \leq \| x \|_\infty^2 \sum_{i=1}^d M_i$, we get that the above is at most
+\[ \Reg(T, w^\star) \leq O\del{ \del{\frac{\| x^\star \|_\infty^2}{\eta} + \eta} \cdot \del{\sum_{i=1}^d \sqrt{\sum_{t=1}^T g_{t,i}^2}} }. \]
+
+If $\eta = \| x^\star \|_\infty$, then AdaGrad gives a regret bound of $O\del{ \| x^\star \|_\infty \cdot \del{\sum_{i=1}^d \sqrt{\sum_{t=1}^T g_{t,i}^2}} }$, which is a new regret guarantee incomparable with the ones obtained by (variants of) online gradient descent discussed above.
+
 
 Alternatively, one can let
-\[ A_t = \frac1\eta (\sigma I + \sum_{s=1}^t g_s g_s^\top )^\frac12 \]
-be an ``nondiagnoal'' adaptive regularizer.
+\[ A_t = \frac1\eta \del{\sigma I + \sum_{s=1}^t g_s g_s^\top }^\frac12 \]
+be a nondiagnoal adaptive regularizer. The induced FTRL algorithm is called {\em AdaGrad with full matrices}. We can still apply Corollary~\ref{cor:ftal-ar-pd} to obtain a regret guarantee, but the interpretation is slightly more involved, and we refer the reader to~\cite[][Section 5.6]{hazan2016introduction} for details.
+
 
 \section{OCO for strongly convex functions}
 
-Motivating example: SVM optimization:
-\[ \min_{w} \sum_{t=1}^T \del{\frac\lambda2\|w\|_2^2 + (1-\inner{w}{y_t x_t})_+}. \]
-Here $f_t(w) = \frac\lambda2\|w\|_2^2 + (1-\inner{w}{y_t x_t})_+$. If one can get a low regret $R(T)$, then one can use online-to-batch conversion to get a $f$ that has excess expected regularized loss $\frac{R(T)}{T}$.
+Motivating example: we would like a fast optimizer for soft-margin SVM or regularized logistic regression:
+\[ \min_{w} F(w), \quad \text{where } F(w) = \EE_{(x,y) \sim D} \del{\frac\lambda2\|w\|_2^2 + (1-\inner{w}{y x})_+}, \]
+or $F(w) = \EE_{(x,y) \sim D} \del{\frac\lambda2\|w\|_2^2 + \ln(1 + \exp\del{-\inner{w}{y x}})}$. Throughout the rest of the section, let us consider soft-margin SVM for concreteness. 
 
-One can show that if all $f_t$'s are $\lambda$-strongly convex, one can design a better OCO algorithm with regret bound much better than $O(\sqrt{T})$, that is, $O(\ln T)$.
+Here, letting $f(w, (x,y)) = \frac\lambda2\|w\|_2^2 + (1-\inner{w}{y x})_+$, we can write
+$F(w) = \EE_{(x, y) \sim D} f(w, (x,y))$; this is called a {\em finite sum} of strongly convex functions.
 
-How to achieve this? We will use the adaptive regularization method developed in the last section. Recall that AR-FTRL has the following regret guarantee:
-\[ \sum_{t=1}^T \inner{g_t}{x_t - x^\star} \leq R_0^\star(0) + R_T(x^\star) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
-How can the above regret relate to $\Reg(T, x^\star) = \sum_{t=1}^T f_t(x_t) - f_t(x^\star)$? Now because $f_t$ is $\lambda$-strongly convex, we have a tighter bound on it. Specifically,
-\[ \Reg(T, x^\star) \leq \sum_{t=1}^T \inner{g_t}{x_t -x^\star} - \sum_{t=1}^T \frac\lambda 2\| x_t - x^\star \|^2. \]
+If one can develop a fast OCO algorithm with $\cbr{f_t(w) \defeq f(w, (x_t, y_t))}_{t=1}^T$, with a small regret guarantee $\R(T)$, as we have seen before, one can use online-to-batch conversion to get a $f$ that has excess expected regularized loss $\frac{\R(T)}{T}$, in other words,
+\[ \EE F(\bar{w}_T) - \min_{w} F(w) \leq \frac{\R(T)}{T}. \]
 
-This motivates us to define $R_t(x) = \frac\lambda 2\| x \|^2 + \sum_{s=1}^t \frac\lambda 2\| x_s - x \|^2$ so that $R_T(x^\star)$ cancels out the negative terms induced by linear approximation.
+One baseline is the FTRL algorithm with squared norm regularizer $\Phi(w) = \frac{1}{2\eta}\|w\|^2$, with surrogate convex function $\tilde{f}_t(w) = \inner{g_t}{w}$, where $g_t \in \partial f(w_t)$. This achieves a regret of $O(\sqrt{T})$; moreover, each step, the algorithm simply calculates $w_t = - \eta \sum_{s=1}^t g_{t-1}$, which can be maintained efficiently on the fly. It can be checked that to guarantee an expected excess loss of $\epsilon$, the computational complexity is $O(\frac{d}{\epsilon^2})$.
+
+In fact, we can do better! In this section, we show that by utilizing the structure that all $f_t$'s are $\lambda$-strongly convex, one can design a better OCO algorithm with regret bound much better than $O(\sqrt{T})$, that is, $O(\frac{\ln T}{\lambda})$.
+
+How to achieve this? We will use the adaptive regularization method developed in the last section. Recall that FTRL-AR has the following regret guarantee:
+\[ \sum_{t=1}^T \inner{g_t}{w_t - w^\star} \leq R_0^\star(0) + R_T(w^\star) + \sum_{t=1}^T \| w_t \|_{\star, t-1}^2. \]
+How can the above regret relate to $\Reg(T, w^\star) = \sum_{t=1}^T f_t(w_t) - f_t(w^\star)$? Now because $f_t$ is $\lambda$-strongly convex, we have a tighter bound on it. Specifically, for all $g_t \in \partial f_t(w_t)$, we have
+\[ f_t(w_t) - f_t(w^\star) \leq \inner{g_t}{w_t - w^\star} - \frac\lambda 2\| w_t - w^\star \|^2. \]
+This implies that,
+\[ \Reg(T, w^\star) \leq \sum_{t=1}^T \inner{g_t}{w_t - w^\star} - \sum_{t=1}^T \frac\lambda 2\| w_t - w^\star \|^2. \]
+
+This motivates us to define $R_t(w) = \frac\lambda 2\| w \|^2 + \sum_{s=1}^t \frac\lambda 2\| w_s - w \|^2$ so that $R_T(w^\star)$ cancels out the negative terms induced by linear approximation.
 Observe that $R_t$ is 1-strongly convex with respect to $\| \cdot \|_{\lambda(t+1) I}$.
+Suppose for all $g_t$, $\| g_t \| \leq R$, we get,
 We therefore get:
-\[ \Reg(T, x^\star) \leq \frac{\lambda}{2}\|x\|^2 + \sum_{t=1}^T \frac{\| g_t \|^2}{\lambda t}. \]
+\[ \Reg(T, w^\star) \leq \frac{\lambda}{2}\|w^\star\|^2 + \sum_{t=1}^T \frac{\| g_t \|^2}{\lambda t} \leq \frac{\lambda}{2}\|w^\star\|^2 + \frac{R^2}{\lambda}(1 + \ln T) = O\del{\frac{\ln T}{\lambda}}. \]
+
+What is the induced FTRL-AR algorithm? It can be shown that
+\begin{eqnarray*}
+  w_t &=& \argmin_w \del{ \sum_{s=1}^{t-1} \inner{g_s}{w} + \frac\lambda 2\| w \|^2 + \sum_{s=1}^{t-1} \frac\lambda 2\| w_s - w \|^2} \\
+  &=& \frac{1}{t} \del{\sum_{s=1}^{t-1} w_s - \frac1\lambda \sum_{s=1}^{t-1} g_s},
+\end{eqnarray*}
+which can be obtained on the fly with $O(d)$ time per round~\footnote{In fact a much simpler algorithm can also admit a logarithmic regret analysis: just let $w_t = -\frac{1}{\lambda t} \sum_{s=1}^{t-1} g_s$; see~\cite[][Theorem 1]{hazan2007logarithmic} or~\cite[][Section 14.4.4 and 14.5.3]{shalev2014understanding}.}, by maintaining $\sum_{s=1}^{t-1} w_s$ and $\sum_{s=1}^{t-1} g_s$ online. Therefore, to obtain an excess loss guarantee of $\epsilon$, one can let run FTRL-AR with the specified regularizer with $T = O\del{ \frac{1}{\lambda\epsilon}\ln\frac{1}{\lambda\epsilon}}$, which has a total running time of $\tilde{O}(\frac{d}{\lambda \epsilon})$
+(where $\tilde{O}$ ignores logarithmic factors).
 
 %The bottom line:
 
@@ -829,5 +884,62 @@ This gives that
 
 \bibliographystyle{plain}
 \bibliography{learning}
+
+\appendix
+
+\section{Auxiliary lemmas}
+
+\begin{lemma}
+Suppose $a_1, \ldots, a_T \geq 0$ is a sequence of positive numbers, with $a_1 > 0$. Let $A_t = \sum_{s=1}^t a_s$. Then
+\[ \sum_{t=1}^T \frac{a_t}{\sqrt{A_t}} \leq 2\sqrt{A_T}. \]
+\label{lem:sca-sqrt}
+\end{lemma}
+\begin{proof}
+We note that each term on the left hand side is
+\[ \frac{a_t}{\sqrt{A_t}} = \frac{A_t - A_{t-1}}{\sqrt{A_t}} \leq 2 \cdot \frac{A_t - A_{t-1}}{\sqrt{A_t} + \sqrt{A_{t-1}}} \leq 2(\sqrt{A_t} - \sqrt{A_{t-1}}). \]
+The lemma is concluded by summing over all $t$'s from $1$ to $T$.
+\end{proof}
+
+We have the following matrix generalization of the above lemma.
+\begin{lemma}
+  Suppose $M_1, \ldots, M_T \succeq 0$ is a sequence of positive semidefinite matrices, with $M_1 \succ 0$. Let $N_t = \sum_{s=1}^t M_s$. Then
+  \[ \sum_{t=1}^T \tr\del{N_t^{-\frac12} M_t} \leq 2\tr(N_T^{\frac12}). \]
+  \label{lem:mat-sqrt}
+\end{lemma}
+\begin{proof}
+We claim that
+\[ \tr\del{N_t^{-\frac12} M_t} = \tr\del{N_t^{-\frac12} (N_t - N_{t-1})} \leq 2\tr\del{N_t^{\frac12}} - 2\tr\del{N_{t-1}^\frac12}. \]
+Indeed, by the concavity of function $f(N) = 2\tr\del{N^{\frac12}}$, and the fact that
+$\nabla f(N) = N^{-\frac12}$, we have that $f(N) - f(N') \leq \inner{\nabla f(N')}{N - N'}$, which implies the last equality above by taking $N = N_{t-1}$ and $N' = N_t$.
+\end{proof}
+
+Similarly as above, we also have the following lemma regarding the sum of a sequence of
+numbers divided by their cumulative sums.
+
+\begin{lemma}
+Suppose $a_1, \ldots, a_T \geq 0$ is a sequence of positive numbers, with $a_1 > 0$. Let $A_t = \sum_{s=1}^t a_s$. Then
+\[ \sum_{t=1}^T \frac{a_t}{A_t} \leq \ln \frac{A_T}{A_1}. \]
+\label{lem:sca-ln}
+\end{lemma}
+\begin{proof}
+Each term on the left hand side can be upper bounded as:
+\[ \frac{a_t}{A_t} \leq -\ln(1-\frac{a_t}{A_t}) = \ln\frac{A_t}{A_{t-1}}. \]
+The lemma is concluded by summing over all $t$'s from $1$ to $T$.
+\end{proof}
+
+We also have its matrix generalization:
+\begin{lemma}
+  Suppose $M_1, \ldots, M_T \succeq 0$ is a sequence of positive semidefinite matrices, with $M_1 \succ 0$. Let $N_t = \sum_{s=1}^t M_s$. Then
+  \[ \sum_{t=1}^T \tr\del{N_t^{-1} M_t} \leq \ln\det(N_T) - \ln\det(N_1). \]
+  \label{lem:mat-ln}
+\end{lemma}
+\begin{proof}
+We claim that
+\[ \tr\del{N_t^{-1} M_t} \leq \ln\det(N_{t}) - \ln\det(N_{t-1}). \]
+Ineed, by the concavity of function $f(N) = \ln\det(N)$, and the fact that $\nabla f(N) = N^{-1}$, we have that $f(N) - f(N') \leq \inner{\nabla f(N')}{N - N'}$, which implies the last equality above by taking $N = N_{t-1}$ and $N' = N_t$.
+\end{proof}
+
+
+%\frac{A_t - A_{t-1}}{A_t} = 1 - \frac{A_{t-1}}{A_t} \leq \ln
 
 \end{document}
