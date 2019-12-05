@@ -34,8 +34,8 @@ Tentative schedule:
 |Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader (FTRL) | [OCO note (draft)](notes/oco.pdf) | Section 2.7, 2.3 of [Shalev-Shwartz's Survey](https://www.cs.huji.ac.il/~shais/papers/OLsurvey.pdf) | |
 |Nov 26 | Analysis of FTRL; Online linear classification with margins | | H Sec 5.3 | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
-|Dec 3 | Adaptive regularization: Adagrad, online optimization of strongly convex and exp-concave functions | | | |
-|Dec 5 |   | | | |
+|Dec 3 | Adaptive regularization | | | |
+|Dec 5 | Adagrad, online optimization of strongly convex and exp-concave functions | | | |
 |Dec 10 | Final presentation | | | |
 
 [//]: # (|Sep 26 | Structural risk minimization | | SSBD Chap 7 | |)
