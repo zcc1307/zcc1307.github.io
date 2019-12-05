@@ -7,6 +7,7 @@
 \usepackage{natbib}
 %\usepackage{hyperref}
 \usepackage{url}
+\usepackage{color}
 
 \newtheorem{example}{Example}
 \newtheorem{theorem}{Theorem}
@@ -549,7 +550,8 @@ for some regret function $\R(T)$. This implies that
   \[ \Reg(T, w^\star) \leq \frac{\| w^\star \|_2^2}{2\eta} + \eta \sum_{t=1}^T \| g_t \|_2^2, \]
   for all benchmark $w^\star \in \Ccal$. Again, setting $\eta = \frac{B_2}{R_2\sqrt{2T}}$ guarantees $\Reg(T, \Ccal) \leq B_2 R_2 \sqrt{2T}$.
 
-  \item $p$-norm algorithms ($p \in (1, 2]$)~\cite{grove2001general,gentile2003robustness}: It is known that $\Phi(w) = \frac{1}{2\eta}\| w \|_p^2$ is $\frac{p-1}\eta$-strongly convex wrt $\| \cdot \|_p$. FTRL with $R$ has regret:
+  \item $p$-norm algorithms ($p \in (1, 2]$)~\cite{grove2001general,gentile2003robustness}:
+  It is known that $\Phi(w) = \frac{1}{2\eta}\| w \|_p^2$ is $\frac{p-1}\eta$-strongly convex wrt $\| \cdot \|_p$ (see~\cite[][Lemma 17]{shalev2007online} or~\cite[cesa2006prediction][Corollary 2.1]{}). FTRL with $R$ has regret:
   \[ \Reg(T, w) \leq \frac{\| w \|_p^2}{2\eta} + \frac{\eta}{p-1} \sum_{t=1}^T \| g_t \|_q^2. \]
   If $\Ccal \subset \cbr{w: \| w \|_p \leq B_p}$, and for all $t$, $\| g_t \|_q \leq R_q$,
   setting $\eta = \frac{B_p}{R_q\sqrt{2(p-1)T}}$ implies that
@@ -824,8 +826,12 @@ which can be obtained on the fly with $O(d)$ time per round
 by maintaining $\sum_{s=1}^{t-1} w_s$ and $\sum_{s=1}^{t-1} g_s$ online. Therefore, to obtain an excess loss guarantee of $\epsilon$, one can let run FTRL-AR with the specified regularizer with $T = O\del{ \frac{1}{\lambda\epsilon}\ln\frac{1}{\lambda\epsilon}}$, which has a total running time of $\tilde{O}(\frac{d}{\lambda \epsilon})$
 (where $\tilde{O}$ ignores logarithmic factors).
 
+\newpage
 
-\paragraph{A brief introduction to online gradient descent.} Here we introduce an alternative method for online strongly convex optimization called {\em online gradient descent (OGD)}. OGD and FTRL are closely related; it can be shown that FTRL with certain regularizer is algorithmically equivalent to OGD with a fixed stepsize, under natural assumptions. In a nutshell, OGD performs the following steps of update at every round:
+\textbf{Below are materials not covered in the class and can be safely skipped!}
+
+
+\paragraph{A brief introduction to online gradient descent.$^\star$} Here we introduce an alternative method for online strongly convex optimization called {\em online gradient descent (OGD)}. OGD and FTRL are closely related; it can be shown that FTRL with certain regularizer is algorithmically equivalent to OGD with a fixed stepsize, under natural assumptions. In a nutshell, OGD performs the following steps of update at every round:
 \[ w_{t+1} \defeq w_t - \eta_t g_t, \text{ where } g_t \in \partial f_t(w_t), \]
 here, $\eta_t > 0$ is the time-varying step size parameter. Intuitively, if all $f_t \equiv f$'s are the same, then OGD selects $w_t$'s that walks in the negative gradient direction of $f$, making the function value smaller.
 
@@ -866,7 +872,7 @@ Observe that the first two terms on the right hand side is {\em telescoping}: su
 
 %The bottom line:
 
-\section{OCO for exp-concave functions (optional)}
+\section{OCO for exp-concave functions$^\star$}
 
 \paragraph{Motivating example 1: sequential investing.} There are $d$ types of assets (e.g. stocks, bonds, commodities), with different growth rates at every timestep.
 
