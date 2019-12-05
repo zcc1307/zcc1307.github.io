@@ -59,6 +59,7 @@
 \newcommand{\Hcal}{\mathcal{H}}
 \newcommand{\Fcal}{\mathcal{F}}
 \newcommand{\Ocal}{\mathcal{O}}
+%\newcommand{\Ccal}{\mathcal{O}}
 \newcommand{\defeq}{\triangleq}
 \newcommand*{\one}{{\bf 1}}
 \newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
@@ -793,8 +794,9 @@ In fact, we can do better! In this section, we show that by utilizing the struct
 
 How to achieve this? We will use the adaptive regularization method developed in the last section.
 \begin{theorem}
-Suppose all $f_t$'s are $\lambda$-strongly convex and $L$-Lipschitz. Then FTRL-AR with adaptive regularizer  $R_t(w) = \frac\lambda 2\| w \|^2 + \sum_{s=1}^t \frac\lambda 2\| w_s - w \|^2$ has regret
-\[ \Reg(T, w^\star) = O\del{\frac{R^2 \ln T}{\lambda}}. \]
+Suppose all $f_t$'s are $\lambda$-strongly convex and $L$-Lipschitz wrt $\| \cdot \|_2$. Then FTRL-AR with adaptive regularizer  $R_t(w) = \frac\lambda 2\| w \|^2 + \sum_{s=1}^t \frac\lambda 2\| w_s - w \|^2$ has regret
+\[ \Reg(T, w^\star) = O\del{\frac{L^2 \ln T}{\lambda}}. \]
+\label{thm:log-ftrl-ar}
 \end{theorem}
 \begin{proof}
 Recall that FTRL-AR has the following regret guarantee:
@@ -816,29 +818,73 @@ What is the induced FTRL-AR algorithm? It can be shown that
   w_t &=& \argmin_w \del{ \sum_{s=1}^{t-1} \inner{g_s}{w} + \frac\lambda 2\| w \|^2 + \sum_{s=1}^{t-1} \frac\lambda 2\| w_s - w \|^2} \\
   &=& \frac{1}{t} \del{\sum_{s=1}^{t-1} w_s - \frac1\lambda \sum_{s=1}^{t-1} g_s},
 \end{eqnarray*}
-which can be obtained on the fly with $O(d)$ time per round~\footnote{In fact a much simpler algorithm can also admit a logarithmic regret analysis: just let $w_t = -\frac{1}{\lambda t} \sum_{s=1}^{t-1} g_s$; see~\cite[][Theorem 1]{hazan2007logarithmic} or~\cite[][Section 14.4.4 and 14.5.3]{shalev2014understanding}.},
+which can be obtained on the fly with $O(d)$ time per round
+%~\footnote{In fact a much simpler algorithm can also admit a logarithmic regret analysis: just let $w_t = -\frac{1}{\lambda t} \sum_{s=1}^{t-1} g_s$; see~\cite[][Theorem 1]{hazan2007logarithmic} or~\cite[][Section 14.4.4 and 14.5.3]{shalev2014understanding}.},
 by maintaining $\sum_{s=1}^{t-1} w_s$ and $\sum_{s=1}^{t-1} g_s$ online. Therefore, to obtain an excess loss guarantee of $\epsilon$, one can let run FTRL-AR with the specified regularizer with $T = O\del{ \frac{1}{\lambda\epsilon}\ln\frac{1}{\lambda\epsilon}}$, which has a total running time of $\tilde{O}(\frac{d}{\lambda \epsilon})$
 (where $\tilde{O}$ ignores logarithmic factors).
 
+
+\paragraph{A brief introduction to online gradient descent.} Here we introduce an alternative method for online strongly convex optimization called {\em online gradient descent (OGD)}. OGD and FTRL are closely related; it can be shown that FTRL with certain regularizer is algorithmically equivalent to OGD with a fixed stepsize, under natural assumptions. In a nutshell, OGD performs the following steps of update at every round:
+\[ w_{t+1} \defeq w_t - \eta_t g_t, \text{ where } g_t \in \partial f_t(w_t), \]
+here, $\eta_t > 0$ is the time-varying step size parameter. Intuitively, if all $f_t \equiv f$'s are the same, then OGD selects $w_t$'s that walks in the negative gradient direction of $f$, making the function value smaller.
+
+The following theroem is now well-known; see~\cite[][Theorem 1]{hazan2007logarithmic} or~\cite[][Section 14.4.4 and 14.5.3]{shalev2014understanding}.
+
+\begin{theorem}
+If all $f_t$'s are $\lambda$-strongly convex and $L$-Lipschitz wrt $\| \cdot \|_2$, then OGD with $\eta_t = \frac{1}{\lambda t}$ has the following regret guarantee:
+\[ \Reg(T, w^\star) = O(\frac{L^2 \ln T}{\lambda}). \]
+\label{thm:log-ogd}
+\end{theorem}
+\begin{proof}
+
+We have the following key claim:
+\begin{eqnarray}
+  \inner{g_t}{w_t - w^\star} &=& \frac{\| w_t - w^\star \|^2 - \| w_{t+1} - w^\star \|^2}{2\eta_t} + \eta_t \| g_t \|^2 \label{eqn:potential} \\
+  &\leq& \frac{\lambda t \| w_t - w^\star \|^2}{2} - \frac{\lambda t \| w_{t+1} - w^\star \|^2}{2} + \frac{1}{\lambda t} L^2.
+  \label{eqn:tbc}
+\end{eqnarray}
+
+This inequality has a nice intuitive explanation: if we have a larger instaneous regret $\inner{g_t}{w_t - w^\star}$ at round $t$, then $w_{t+1}$ will be brought closer to $w^\star$, as the right hand side is larger. Hence, we can think of $\| w_t - w^\star \|^2$ as some kind of ``potential function'' as in the analysis of Consistency and Halving in online classification.
+
+%\[ 2\inner{\eta_t g_t}{w_t - w^\star} = \| w_t - w^\star \|^2 - \| w_{t+1} - w^\star \|^2  + \| w_t - w_{t+1} \|^2.  \]
+Equation~\eqref{eqn:potential} is true, because of the following simple calculation:
+\[ \| w_{t+1} - w^\star \|^2 = \| w_t - w^\star - \eta_t g_t \|^2 = \| w_t - w^\star \|^2 - 2\inner{\eta_t g_t}{w_t - w^\star} + \| \eta_t g_t \|^2.  \]
+
+Now continuing Equation~\ref{eqn:tbc}, we would like to relate it to the instanteous regret $f_t(w_t) - f_t(w^\star)$. Recall that by strong convexity, we have
+\[ f_t(w_t) - f_t(w^\star) \leq  \inner{g_t}{w_t - w^\star} - \frac{\lambda}{2}\| w_t - w^\star \|^2, \]
+This implies that
+\[ f_t(w_t) - f_t(w^\star) \leq \frac{\lambda (t-1) \| w_t - w^\star \|^2}{2} - \frac{\lambda t \| w_{t+1} - w^\star \|^2}{2} + \frac{1}{\lambda t} L^2. \]
+Observe that the first two terms on the right hand side is {\em telescoping}: summing over all $t = 1,2,\ldots,T$, we get
+\[ \Reg(T, w^\star) = \sum_{t=1}^T f_t(w_t) - f_t(w^\star) \leq \frac{\lambda \cdot 0 \| w_1 - w^\star \|^2}{2} - \frac{\lambda \cdot T \| w_{T+1} - w^\star \|^2}{2} + \del{\sum_{t=1}^T \frac{1}{\lambda t}} L^2
+\leq \frac{L^2 (1 + \ln T)}{\lambda}. \]
+
+\end{proof}
+
+
+
+
 %The bottom line:
 
-\section{OCO for exp-concave functions}
+\section{OCO for exp-concave functions (optional)}
 
-\paragraph{Motivating example 1: sequential investing.} There are $d$ stocks, with different growth rates every day.
+\paragraph{Motivating example 1: sequential investing.} There are $d$ types of assets (e.g. stocks, bonds, commodities), with different growth rates at every timestep.
 
-$W_1 \gets 1$.
+Suppose we start with unit wealth, $W_1 \gets 1$.
 
 For $t = 1,2,\ldots,T$:
 \begin{enumerate}
-\item Given the current wealth $W_t$, allocate $p_t \in \Delta^{d-1}$ (spend $p_{t,i}$ fraction of current wealth to stock $i$)
-\item Receive loss $f_t(p_t) = -\ln(\inner{c_t}{p_t})$, where $c_t \in \RR^d_+$, and $c_{t,i}$ is the ratio of the stock $i$ at the .
-\item Sell all stocks, get new wealth $W_{t+1}$. Observe that
-\[ W_{t+1} = W_t \del{\sum_{t=1}^T p_{t,i} c_{t,i}}, \]
-i.e. $\ln(W_{t+1}) = \ln(W_t) - f_t(p_t)$. Therefore, maximizing $W_{T+1}$ amounts to minimizing the cumulative loss $\sum_{t=1}^T f_t(p_t)$.
+\item Given the current wealth $W_t$, allocate $w_t \in \Delta^{d-1}$ (spend $w_{t,i}$ fraction of current wealth, i.e, $W_t \cdot w_{t,i}$, to asset $i$)
+\item Receive where $c_t \in \RR^d_+$, and $c_{t,i}$ is the growth of the asset $i$ at timestep $t$ (defined as the ratio between the prices of stock $i$ at timestep $t+1$ and $t$).
+\item Cash out all assets, get new wealth $W_{t+1}$. Observe that
+\[ W_{t+1} = W_t \del{\sum_{t=1}^T w_{t,i} c_{t,i}}, \]
+i.e. $\ln(W_{t+1}) = \ln(W_t) - f_t(w_t)$, where loss
+\[ f_t(w_t) = -\ln(\inner{c_t}{w_t}).\]
+Consequently, $\ln(W_{T+1}) = -\sum_{t=1}^T f_t(w_t)$, and therefore, maximizing $W_{T+1}$ amounts to minimizing the cumulative loss.
 \end{enumerate}
 
-Goal: compete with the best constant rebalanced portfolio in hindsight (abbrev. CRP; that is, at the beginning of every day, allocate a constant fraction $q \in \Delta^{d-1}$ to all stocks.) Concretely,
-\[ \Reg(T, q) = \sum_{t=1}^T f_t(p_t) - \sum_{t=1}^T f_t(q). \]
+Goal: compete with the best constant rebalanced portfolio in hindsight (abbrev. CRP; that is, at the beginning of every day, allocate a constant fraction $w^\star \in \Delta^{d-1}$ to all assets. This has the advantage that the portion of each asset is well-controlled, and therefore can effective control risk.)
+Concretely,
+\[ \Reg(T, w^\star) = \sum_{t=1}^T f_t(w_t) - \sum_{t=1}^T f_t(w^\star). \]
 
 
 \paragraph{Motivating example 2: online least squares regression.}
@@ -864,44 +910,101 @@ Clearly, $f(x) = -\ln(\inner{c}{x})$ is 1-exp-concave.
 \begin{lemma}
 $f$ is $\alpha$-exp-concave, iff for every $x$,
 \[ \nabla^2 f(x) \succeq \alpha \nabla f(x) \cdot \nabla f(x)^\top. \]
+\label{lem:hes-grad}
 \end{lemma}
 \begin{proof}
-$h = \exp(-\alpha f(x))$ is concave iff for every $x$, the hessian of $h$ is negative
+$h(x) = \exp(-\alpha f(x))$ is concave iff for every $x$, the hessian of $h$ is negative
 semidefinite.
 Observe that
 \[ \nabla^2 h(x) = \alpha^2 \nabla f(x) \nabla f(x)^\top \exp(-\alpha f(x)) - \alpha \nabla^2 f(x) \exp(-\alpha f(x)) \preceq 0. \]
+The lemma is proved in light of the fact that $\exp(-\alpha f(x)) > 0$.
 \end{proof}
 
 It can be readily seen that for $\alpha < \gamma$, if $f$ is $\gamma$-exp-concave, then $f$ is $\alpha$-exp-concave.
 
+The following lemma shows that a univariate strongly convex function, composed with a linear function, is exp-concave.
 \begin{lemma}
-Suppose $h$ is $\lambda$-strongly convex and has gradient at most $G$. Then for any $sw$, $h(\inner{w}{x})$ is $\frac{\lambda}{G^2}$-exp-concave.
+Suppose $h$ is $\lambda$-strongly convex and has gradient at most $G$. Then for any vector $w$, $h(\inner{w}{x})$ is $\frac{\lambda}{G^2}$-exp-concave.
 \end{lemma}
+\begin{proof}
+Because $\nabla h(\inner{w}{x}) = h'(\inner{w}{x}) w$,
+we have the following two simple observations:
+\[ \nabla^2 h(\inner{w}{x}) = h''(\inner{w}{x}) w w^\top \succeq \lambda w w^\top. \]
+\[ \nabla h(\inner{w}{x}) \cdot \nabla h(\inner{w}{x})^\top \preceq h'(\inner{w}{x})^2 w w^\top \leq G^2 w w^\top. \]
+The lemma is shown in light of Lemma~\ref{lem:hes-grad}.
+\end{proof}
 
 For online least-square regression with domain $\cbr{w: \| w\|_2 \leq B}$ and all $x \in \cbr{x: \| x \|_2 \leq R}$ and $y \in [-Y, Y]$,
-one can take $h(z) = \frac12(z - y)^2$, which is $1$-strongly convex, and has gradient norm at most $RB+Y$. Therefore, $\frac12(\inner{w}{x}-y)^2$ is $\frac{1}{(RB+Y)^2}$-exp-concave.
+one can take $h(z) = \frac12(z - y)^2$, which is $1$-strongly convex, and has gradient norm at most $RB+Y$. Therefore, $f(w) = \frac12(\inner{w}{x}-y)^2$ is $\frac{1}{(RB+Y)^2}$-exp-concave.
 
 For exp-concave functions, one can have a more refined lower bound than linear approximation.
 \begin{lemma}
-If $f$ is $\alpha$-exp-concave and $G$-Lipschitz,
-then for any two points $u, v \in \cbr{x: \| x \|_2 \leq B}$, we have
+If $f$ is $\alpha$-exp-concave and $L$-Lipschitz,
+then for any two points $u, v \in \cbr{w: \| w \|_2 \leq B}$, we have
 \[ f(u) \geq f(v) + \inner{\nabla f(v)}{u - v} + \frac{\tilde{\alpha}}{2}(u - v)^\top \nabla f(v) \nabla f(v)^\top (u - v), \]
-where $\tilde{\alpha} = \min(\frac{1}{8BR}, \frac{1}{2\alpha})$.
+where $\tilde{\alpha} = \min(\frac{1}{16BL}, \frac\alpha2)$.
 \label{lem:quad-approx}
 \end{lemma}
+\begin{proof}
+Let $\gamma \leq \alpha$ be a number to be decided.
+By the concavity of $\exp(-\tilde{\gamma f(w)})$, we have that for any two points $u$, $v$ with norm at most $B$,
+\[ \exp(-\gamma f(u)) \leq \exp(-\gamma f(v)) - \gamma \exp(-\gamma f(v)) \inner{\nabla f(v)}{u - v}. \]
+In other words,
+\[ \exp(-\gamma (f(u) - f(v))) \leq 1 - \gamma \inner{\nabla f(v)}{u - v}. \]
+Therefore,
+\[ -\gamma (f(u) - f(v)) \leq \ln(1 - \gamma \inner{\nabla f(v)}{u - v}). \]
+Let us take $\gamma = \min(\alpha, \frac{1}{8BL})$. This ensures that $\gamma \leq \alpha$, and $\abs{\gamma \inner{\nabla f(v)}{u - v}} \leq \frac{1}{8BL} \cdot 2BL \leq \frac14$. Using the simple fact that $\ln(1-z) \leq - z - \frac 14 z^2$ for all
+$z \in [-\frac14, \frac14]$, we have that
+\[ -\gamma (f(u) - f(v)) \leq - \gamma \inner{\nabla f(v)}{u - v} - \frac14 \gamma^2 (\inner{\nabla f(v)}{u - v})^2. \]
+The lemma is proved by dividing both sides by $-\gamma$ and recognizing that $\tilde{\alpha} = \frac{\gamma}2$.
+\end{proof}
 
 \paragraph{Algorithm with logarithmic regret: adaptive regularization.} We will be using Lemma~\ref{lem:quad-approx} and the insights similar to OCO for strongly-convex optimization to develop an algorithm with a $O(\log T)$ regret.
 
 Recall that AR-FTRL has the following regret guarantee:
-\[ \sum_{t=1}^T \inner{g_t}{x_t - x^\star} \leq R_0^\star(0) + R_T(x^\star) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+\[ \sum_{t=1}^T \inner{g_t}{w_t - w^\star} \leq R_0^\star(0) + R_T(w^\star) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
 
 In addition, by Lemma~\ref{lem:quad-approx}, we have that
-\[ \sum_{t=1}^T f_t(x_t) - f_t(x^\star) \leq \sum_{t=1}^T \inner{g_t}{x_t - x^\star} -  \sum_{t=1}^T \frac{\tilde{\alpha}}{2}(x^\star - x_t)^\top \nabla f(x_t) \nabla f(x_t)^\top (x^\star - x_t) \]
+\begin{equation}
+  \sum_{t=1}^T f_t(w_t) - f_t(w^\star) \leq \sum_{t=1}^T \inner{g_t}{w_t - w^\star} -  \sum_{t=1}^T \frac{\tilde{\alpha}}{2}(w^\star - w_t)^\top \nabla f(w_t) \nabla f(w_t)^\top (w^\star - w_t).
+  \label{eqn:neg-exp-concave}
+\end{equation}
 
-This motivates us to set $R_T(x) = \frac\sigma2 \|x\|_2^2 + \sum_{t=1}^T \frac{\tilde{\alpha}}{2}(x - x_t)^\top \nabla f(x_t) \nabla f(x_t)^\top (x - x_t)$. Observe that for every $t$, $R_t(x)$ is $\sigma$-strongly convex with respect to $\| \cdot \|_t = \| \cdot \|_{A_t}$, where $A_t = \sigma I + \sum_{t=1}^T \nabla f(x_t) \nabla f(x_t)^\top$.
+Using the same idea behind logarithmic regret for strongly convex functions (Theorem~\ref{thm:log-ftrl-ar}), we choose a specialized regularizer that takes advantage of the negative terms relating OCO with $\cbr{f_t}$ and OLO with $\cbr{w \mapsto \inner{g_t}{w}}$, that induces a logarithmic regret algorithm.
 
-This gives that
-\[ \Reg(T, x^\star) \leq \frac\sigma2 \|x^\star\|_2^2 + \sum_{t=1}^T \| g_t \|_{A_{t-1}^{-1}}^2. \]
+\begin{theorem}
+Suppose $f_t$'s are all $\alpha$-exp-concave, and are $L$-Lipschitz wrt $\| \cdot \|_2$.
+Denote by $\Ccal = \cbr{w: \| w \|_2 \leq B}$ be the feasible set.
+Then,
+FTRL-AR with adaptive regularizer $\cbr{\Phi_t}$, where $\Phi_t(w) = \frac{\alpha L^2}2 \| w \|_2^2 + \sum_{s=1}^t \frac{\tilde{\alpha}}{2}(w - w_s)^\top \nabla f_s(w_s) \nabla f_s(w_s)^\top (w - w_s)$ has regret
+\[ \Reg(T, w^\star) \leq O\del{d \cdot (\frac{1}{\alpha} + LB) \ln T}, \]
+against all $w^\star \in \Ccal$. Recall that $\tilde{\alpha} = \min(\frac{1}{16BL}, \frac\alpha2)$ is defined in Lemma~\ref{lem:quad-approx}.
+\end{theorem}
+
+\begin{proof}
+%This motivates us to set $R_T(x) = \frac\sigma2 \|x\|_2^2 + \sum_{t=1}^T \frac{\tilde{\alpha}}{2}(x - x_t)^\top \nabla f(x_t) \nabla f(x_t)^\top (x - x_t)$.
+Observe that for every $t$, $\Phi_t(x)$ is $1$-strongly convex with respect to $\| \cdot \|_t = \| \cdot \|_{A_t}$, where $A_t = \tilde{\alpha} \del{L^2 I + \sum_{s=1}^t \nabla f_s(w_s) \nabla f_s(w_s)^\top}$.
+
+With this choice of $\cbr{\Phi_t}$, theorem~\ref{thm:ftrl-ar} implies that
+\[
+\sum_{t=1}^T \inner{g_t}{x_t - w^\star} \leq \frac{\tilde{\alpha} L^2}2 \| w^\star\|^2 + \sum_{t=1}^T \frac{\tilde{\alpha}}{2}(w^\star - w_t)^\top \nabla f_t(w_t) \nabla f_t(w_t)^\top (w - w_t) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2.
+\]
+In combination with Equation~\eqref{eqn:neg-exp-concave}, note that the quadratic terms on $w$ cancel out completely.
+We have:
+\begin{equation}
+  \Reg(T, w^\star) \leq \frac{\tilde{\alpha} L^2}2 \|w^\star\|_2^2 + \sum_{t=1}^T \| g_t \|_{A_{t-1}^{-1}}^2.
+  \label{eqn:ftrl-ar-exp-ccv}
+\end{equation}
+
+As $A_{t-1} \succeq \tilde{\alpha} L^2 I$, $A_t = A_{t-1} + \tilde{\alpha} g_t g_t^\top \preceq 2 A_{t-1}$. This implies that we can simplify the right hand side of Equation~\eqref{eqn:ftrl-ar-exp-ccv} as follows:
+\begin{eqnarray*}
+~\eqref{eqn:ftrl-ar-exp-ccv} &\leq& \frac{\tilde{\alpha} L^2 B^2}{2} + 2 \sum_{t=1}^T \| g_t \|_{A_t^{-1}}^2 \\
+&=& O \del{ \frac1{\tilde{\alpha}} \sum_{t=1}^T \tr( (g_t g_t^\top) \cdot A_t^{-1} ) } \\
+&=& O \del{ \frac1{\tilde{\alpha}} \del{\ln \det( A_T ) - \ln \det (A_0)} } \\
+&=& O \del{ \frac1{\tilde{\alpha}} \del{\sum_{i=1}^d \ln\frac{\lambda_i}{L^2}} } = O\del{ \frac{d}{\tilde{\alpha}} \ln T },
+\end{eqnarray*}
+where in the penultimate equality, we denote by $\cbr{\lambda_i}_{i=1}^d$ the $d$ eigenvalues of $A_T$, and the last inequality uses the AM-GM inequality and the fact that $\sum_{i=1}^d \lambda_i = \tr(A_T) \leq (T+1) L^2$. The theorem follows from expanding the definition of $\tilde{\alpha}$.
+\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{learning}
@@ -950,8 +1053,8 @@ The lemma is concluded by summing over all $t$'s from $1$ to $T$.
 
 We also have its matrix generalization:
 \begin{lemma}
-  Suppose $M_1, \ldots, M_T \succeq 0$ is a sequence of positive semidefinite matrices, with $M_1 \succ 0$. Let $N_t = \sum_{s=1}^t M_s$. Then
-  \[ \sum_{t=1}^T \tr\del{N_t^{-1} M_t} \leq \ln\det(N_T) - \ln\det(N_1). \]
+  Suppose $M_1, \ldots, M_T \succeq 0$ is a sequence of positive semidefinite matrices. Given $N_0 \succ 0$, let $N_t = N_0 + \sum_{s=1}^t M_s$. Then
+  \[ \sum_{t=1}^T \tr\del{N_t^{-1} M_t} \leq \ln\det(N_T) - \ln\det(N_0). \]
   \label{lem:mat-ln}
 \end{lemma}
 \begin{proof}
