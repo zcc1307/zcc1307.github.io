@@ -1002,9 +1002,9 @@ As $A_{t-1} \succeq \tilde{\alpha} L^2 I$, $A_t = A_{t-1} + \tilde{\alpha} g_t g
 ~\eqref{eqn:ftrl-ar-exp-ccv} &\leq& \frac{\tilde{\alpha} L^2 B^2}{2} + 2 \sum_{t=1}^T \| g_t \|_{A_t^{-1}}^2 \\
 &=& O \del{ \frac1{\tilde{\alpha}} \sum_{t=1}^T \tr( (g_t g_t^\top) \cdot A_t^{-1} ) } \\
 &=& O \del{ \frac1{\tilde{\alpha}} \del{\ln \det( A_T ) - \ln \det (A_0)} } \\
-&=& O \del{ \frac1{\tilde{\alpha}} \del{\sum_{i=1}^d \ln\frac{\lambda_i}{L^2}} } = O\del{ \frac{d}{\tilde{\alpha}} \ln T },
+&=& O \del{ \frac1{\tilde{\alpha}} \del{\sum_{i=1}^d \ln\frac{\lambda_i}{\tilde{\alpha} L^2}} } = O\del{ \frac{d}{\tilde{\alpha}} \ln T },
 \end{eqnarray*}
-where in the penultimate equality, we denote by $\cbr{\lambda_i}_{i=1}^d$ the $d$ eigenvalues of $A_T$, and the last inequality uses the AM-GM inequality and the fact that $\sum_{i=1}^d \lambda_i = \tr(A_T) \leq (T+1) L^2$. The theorem follows from expanding the definition of $\tilde{\alpha}$.
+where the first equality is based on the observation that $\tilde{\alpha} \leq \frac1{LB}$; the second equality is from Lemma~\ref{lem:mat-ln}; in the penultimate equality, we denote by $\cbr{\lambda_i}_{i=1}^d$ the $d$ eigenvalues of $A_T$, and the last inequality uses the AM-GM inequality and the fact that $\sum_{i=1}^d \lambda_i = \tr(A_T) \leq \tilde{\alpha}(T+1) L^2$. The theorem follows from expanding the definition of $\tilde{\alpha}$.
 \end{proof}
 
 \bibliographystyle{plain}
