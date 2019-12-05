@@ -783,7 +783,8 @@ Motivating example: we would like a fast optimizer for regularized loss minimiza
 or $F(w) = \EE_{(x,y) \sim D} \del{\frac\lambda2\|w\|_2^2 + \ln(1 + \exp\del{-\inner{w}{y x}})}$. Throughout the rest of the section, let us consider soft-margin SVM for concreteness.
 
 Here, letting $f(w, (x,y)) = \frac\lambda2\|w\|_2^2 + (1-\inner{w}{y x})_+$, we can write
-$F(w) = \EE_{(x, y) \sim D} f(w, (x,y))$; this is called a {\em finite sum} of strongly convex functions.
+$F(w) = \EE_{(x, y) \sim D} f(w, (x,y))$.
+%this is called a {\em finite sum} of strongly convex functions.
 
 If one can develop a fast OCO algorithm with $\cbr{f_t(w) \defeq f(w, (x_t, y_t))}_{t=1}^T$, with a small regret guarantee $\R(T)$, as we have seen before, one can use online-to-batch conversion, and run the OCO algorithm on $f_t$'s induced by iid $(x_t, y_t) \sim D$ to get a $\bar{w}_{T}$ that has excess expected regularized loss $\frac{\R(T)}{T}$, in other words,
 \[ \EE F(\bar{w}_T) - \min_{w} F(w) \leq \frac{\R(T)}{T}. \]
