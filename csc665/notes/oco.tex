@@ -672,30 +672,31 @@ Specifically, we will be looking at sequences of $\cbr{\Phi_t}$'s such that they
 \begin{theorem}[Modified from Lemma 1 of~\cite{orabona2015generalized}]
 Suppose FTRL-AR uses $\Phi_t$'s that are $1$-strongly convex with respect to time-varying norm $\| \cdot \|_{t}$.
 Then it has the following upper bound on its cumulative loss guarantee:
-\[ \sum_{t=1}^T \inner{g_t}{w_t} \leq R_0^\star(0) - R_T^\star(-G_T) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+\[ \sum_{t=1}^T \inner{g_t}{w_t} \leq \Phi_0^\star(0) - \Phi_T^\star(-G_T) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
 Consequently,
-\[ \Reg(T, w^\star) = \sum_{t=1}^T \inner{g_t}{x_t - w^\star} \leq R_T(w^\star) + R_0^\star(0) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
+\[ \Reg(T, w^\star) = \sum_{t=1}^T \inner{g_t}{x_t - w^\star} \leq \Phi_T(w^\star) + \Phi_0^\star(0) + \sum_{t=1}^T \| g_t \|_{\star, t-1}^2. \]
 \label{thm:ftrl-ar}
 \end{theorem}
 
-Note that the above theorem supercedes Theorem~\ref{thm:ftrl}, as it is a direct consequence of the above theorem by taking $R_t \equiv R_0$ for all $t$, and observing that $R_0^\star(0) = -\min_{w'} R_0(w')$.
+We observe that $\Phi_0^\star(0) = -\min_{w'} \Phi_0(w')$.
+Note that the above theorem is a generalization of Theorem~\ref{thm:ftrl}, as it is a by taking $\Phi_t \equiv \Phi$ for all $t$.
 
 \begin{proof}
 It suffices to show that
-\[ \inner{g_t}{w_t} \leq R_{t-1}^\star(-G_{t-1}) - R_t^\star(-G_t) + \| g_t \|_{\star, t-1}^2, \]
+\[ \inner{g_t}{w_t} \leq \Phi_{t-1}^\star(-G_{t-1}) - \Phi_t^\star(-G_t) + \| g_t \|_{\star, t-1}^2, \]
 as the theorem concludes by summing this inequality up over all $t$'s.
 
 To show the above inequality, it suffices for us to show that
-\[ R_t^\star(-G_t) - R_{t-1}^\star(-G_{t-1}) + \inner{g_t}{w_t} \leq \| g_t \|_{\star, t-1}^2. \]
+\[ \Phi_t^\star(-G_t) - \Phi_{t-1}^\star(-G_{t-1}) + \inner{g_t}{w_t} \leq \| g_t \|_{\star, t-1}^2. \]
 
-The above inequality is true by the following observations: first, as $R_t \geq R_{t-1}$, $R_t^\star \leq R_{t-1}^\star$; second, $w_t = \nabla R_{t-1}^\star(-G_{t-1})$, therefore,
+The above inequality is true by the following observations: first, as $\Phi_t \geq \Phi_{t-1}$, $\Phi_t^\star \leq \Phi_{t-1}^\star$; second, $w_t = \nabla \Phi_{t-1}^\star(-G_{t-1})$, therefore,
 the left hand side of the inequality is at most
-\[ R_{t-1}^\star(-G_t) - R_{t-1}^\star(-G_{t-1}) - \inner{\nabla R_{t-1}^\star(-G_{t-1})}{-g_t} = D_{R_{t-1}^\star}(-G_t, -G_{t-1}); \]
+\[ \Phi_{t-1}^\star(-G_t) - \Phi_{t-1}^\star(-G_{t-1}) - \inner{\nabla \Phi_{t-1}^\star(-G_{t-1})}{-g_t} = D_{\Phi_{t-1}^\star}(-G_t, -G_{t-1}); \]
 recall that $D_f(\cdot, \cdot)$ is the Bregman divergence induced by $f$.
-third, as $R_{t-1}$ is 1-strongly convex wrt $\| \cdot \|_{t-1}$, $R_{t-1}^\star$ is 1-smooth wrt $\| \cdot \|_{\star, t-1}$, implying that the right hand side is at most $\frac12 \| -G_t - (-G_{t-1}) \|_{\star, t-1}^2 = \frac12 \| g_t \|_{\star, t-1}^2$.
+third, as $\Phi_{t-1}$ is 1-strongly convex wrt $\| \cdot \|_{t-1}$, $\Phi_{t-1}^\star$ is 1-smooth wrt $\| \cdot \|_{\star, t-1}$, implying that the right hand side is at most $\frac12 \| -G_t - (-G_{t-1}) \|_{\star, t-1}^2 = \frac12 \| g_t \|_{\star, t-1}^2$.
 \end{proof}
 
-Using the above meta-theorem, we can instantiate with different adpative regularizers and get online learning algorithms with different degrees of adaptivity. Below, we focus on a specific family of regularizer; that is, the squared Mahalanobis norm regularizer:
+We can instantiate the above ``template'' theorem with different adaptive regularizers and get online learning algorithms with different degrees of adaptivity. Below, we focus on a specific family of regularizers; that is, the squared Mahalanobis norm regularizer:
 \[ \Phi_t(w) = \frac12 \| w \|_{A_t}^2, \]
 where $A_t \succeq A_{t-1}$ for all $t \geq 1$. Observe that $\Phi_t(w)$ is 1-strongly convex with norm $\| w \|_t = \| w \|_{A_t}$. Meanwhile, $\| g \|_{t,\star} = \| g \|_{A_t^{-1}}$. FTRL-AR selects the following point at round $t$:
 \[ w_t = \nabla \Phi_{t-1}^\star(-G_{t-1}) = -A_{t-1}^{-1} G_{t-1}. \]
@@ -738,7 +739,7 @@ Therefore, the regret is at most:
 \begin{eqnarray*}
  \Reg(T, w^\star) = O\del{ \sqrt{\sigma + \sum_{s=1}^{t} \| g_s \|^2} \del{\frac{\|w^\star\|^2}{\eta_0} + \eta_0} }.
 \end{eqnarray*}
-If $\eta_0 = \| w^\star \|$, and $\sigma$ is a constant factor away from $\max_{t=1}^T \| g_t \|_2^2$, then the regret guarantee is $O(\|w^\star\| \sqrt{\sum_{s=1}^{t} \| g_s \|^2})$, which can be much better than $R_2^2 B_2^2$.
+If $\eta_0 = \| w^\star \|$, and $\sigma$ is a constant factor away from $\max_{t=1}^T \| g_t \|_2^2$, then the regret guarantee is $O(\|w^\star\| \sqrt{\sum_{t=1}^{T} \| g_t \|^2})$, which can be much better than $R_2 B_2 \sqrt{T}$ when some of the $\|g_t\|$'s are much smaller than $R_2$.
 
 
 \paragraph{Adaptive subgradient methods (Adagrad)~\cite{mcmahan2010adaptive, duchi2011adaptive}.} More generally, we allow adaptive regularization matrix $A_t$ being a general diagnoal matrix, or even a matrix with nonzero diagonal entries.
@@ -797,20 +798,20 @@ In fact, we can do better! In this section, we show that by utilizing the struct
 
 How to achieve this? We will use the adaptive regularization method developed in the last section.
 \begin{theorem}
-Suppose all $f_t$'s are $\lambda$-strongly convex and $L$-Lipschitz wrt $\| \cdot \|_2$. Then FTRL-AR with adaptive regularizer  $R_t(w) = \frac\lambda 2\| w \|^2 + \sum_{s=1}^t \frac\lambda 2\| w_s - w \|^2$ has regret
+Suppose all $f_t$'s are $\lambda$-strongly convex and $L$-Lipschitz wrt $\| \cdot \|_2$. Then FTRL-AR with adaptive regularizer $\Phi_t(w) = \frac\lambda 2\| w \|^2 + \sum_{s=1}^t \frac\lambda 2\| w_s - w \|^2$ has regret
 \[ \Reg(T, w^\star) = O\del{\frac{L^2 \ln T}{\lambda}}. \]
 \label{thm:log-ftrl-ar}
 \end{theorem}
 \begin{proof}
 Recall that FTRL-AR has the following regret guarantee:
-\[ \sum_{t=1}^T \inner{g_t}{w_t - w^\star} \leq R_0^\star(0) + R_T(w^\star) + \sum_{t=1}^T \| w_t \|_{\star, t-1}^2. \]
+\[ \sum_{t=1}^T \inner{g_t}{w_t - w^\star} \leq \Phi_0^\star(0) + \Phi_T(w^\star) + \sum_{t=1}^T \| w_t \|_{\star, t-1}^2. \]
 How can the above regret relate to $\Reg(T, w^\star) = \sum_{t=1}^T f_t(w_t) - f_t(w^\star)$? Now because $f_t$ is $\lambda$-strongly convex, we have a tighter bound on it. Specifically, for all $g_t \in \partial f_t(w_t)$, we have
 \[ f_t(w_t) - f_t(w^\star) \leq \inner{g_t}{w_t - w^\star} - \frac\lambda 2\| w_t - w^\star \|^2. \]
 This implies that,
 \[ \Reg(T, w^\star) \leq \sum_{t=1}^T \inner{g_t}{w_t - w^\star} - \sum_{t=1}^T \frac\lambda 2\| w_t - w^\star \|^2. \]
 
-This motivates the definition of $R_T$, so that $R_T(w^\star)$ cancels out the negative terms induced by linear approximation.
-Observe that $R_t$ is 1-strongly convex with respect to $\| \cdot \|_t = \| \cdot \|_{\lambda(t+1) I}$.
+This motivates the definition of $\cbr{\Phi_t}_{t=0}^T$, so that $\Phi_T(w^\star)$ cancels out the negative terms induced by linear approximation.
+Observe that $\Phi_t$ is 1-strongly convex with respect to $\| \cdot \|_t = \| \cdot \|_{\lambda(t+1) I}$.
 We therefore get:
 \[ \Reg(T, w^\star) \leq \frac{\lambda}{2}\|w^\star\|^2 + \sum_{t=1}^T \frac{\| g_t \|^2}{\lambda t} \leq \frac{\lambda}{2}\|w^\star\|^2 + \frac{L^2}{\lambda}(1 + \ln T) = O\del{\frac{L^2 \ln T}{\lambda}}. \]
 where the penultimate inequality uses the $L$-Lipschitzness of $f$ and Fact~\ref{fact:lip}, and the last inequality uses the simple fact that $\sum_{t=1}^T \frac1t \leq 1 + \ln T$.
@@ -821,9 +822,9 @@ What is the induced FTRL-AR algorithm? It can be shown that
   w_t &=& \argmin_w \del{ \sum_{s=1}^{t-1} \inner{g_s}{w} + \frac\lambda 2\| w \|^2 + \sum_{s=1}^{t-1} \frac\lambda 2\| w_s - w \|^2} \\
   &=& \frac{1}{t} \del{\sum_{s=1}^{t-1} w_s - \frac1\lambda \sum_{s=1}^{t-1} g_s},
 \end{eqnarray*}
-which can be obtained on the fly with $O(d)$ time per round
+which can be obtained with $O(d)$ time per round
 %~\footnote{In fact a much simpler algorithm can also admit a logarithmic regret analysis: just let $w_t = -\frac{1}{\lambda t} \sum_{s=1}^{t-1} g_s$; see~\cite[][Theorem 1]{hazan2007logarithmic} or~\cite[][Section 14.4.4 and 14.5.3]{shalev2014understanding}.},
-by maintaining $\sum_{s=1}^{t-1} w_s$ and $\sum_{s=1}^{t-1} g_s$ online. Therefore, to obtain an excess loss guarantee of $\epsilon$, one can let run FTRL-AR with the specified regularizer with $T = O\del{ \frac{1}{\lambda\epsilon}\ln\frac{1}{\lambda\epsilon}}$, which has a total running time of $\tilde{O}(\frac{d}{\lambda \epsilon})$
+by maintaining $\sum_{s=1}^{t-1} w_s$ and $\sum_{s=1}^{t-1} g_s$ on the fly. Therefore, to obtain an excess loss guarantee of $\epsilon$, one can run FTRL-AR with the specified regularizer with $T = O\del{ \frac{1}{\lambda\epsilon}\ln\frac{1}{\lambda\epsilon}}$, which has a total running time of $\tilde{O}(\frac{d}{\lambda \epsilon})$
 (where $\tilde{O}$ ignores logarithmic factors).
 
 \newpage
@@ -835,7 +836,7 @@ by maintaining $\sum_{s=1}^{t-1} w_s$ and $\sum_{s=1}^{t-1} g_s$ online. Therefo
 \[ w_{t+1} \defeq w_t - \eta_t g_t, \text{ where } g_t \in \partial f_t(w_t), \]
 here, $\eta_t > 0$ is the time-varying step size parameter. Intuitively, if all $f_t \equiv f$'s are the same, then OGD selects $w_t$'s that walks in the negative gradient direction of $f$, making the function value smaller.
 
-The following theroem is now well-known; see~\cite[][Theorem 1]{hazan2007logarithmic} or~\cite[][Section 14.4.4 and 14.5.3]{shalev2014understanding}.
+The following theorem is now well-known; see~\cite[][Theorem 1]{hazan2007logarithmic} or~\cite[][Section 14.4.4 and 14.5.3]{shalev2014understanding}.
 
 \begin{theorem}
 If all $f_t$'s are $\lambda$-strongly convex and $L$-Lipschitz wrt $\| \cdot \|_2$, then OGD with $\eta_t = \frac{1}{\lambda t}$ has the following regret guarantee:
