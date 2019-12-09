@@ -34,7 +34,7 @@ Tentative schedule:
 |Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader (FTRL) | [OCO note](notes/oco.pdf) | Section 2.7, 2.3 of [Shalev-Shwartz's Survey](https://www.cs.huji.ac.il/~shais/papers/OLsurvey.pdf) | |
 |Nov 26 | Analysis of FTRL; FTRL Examples | | H Sec 5.3 | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
-|Dec 3 | Online linear classification with margins; FTRL with Adaptive regularization | | Section 2.7, 2.3 of [Shalev-Shwartz's Survey](https://www.cs.huji.ac.il/~shais/papers/OLsurvey.pdf); H Sec 5.6 | |
+|Dec 3 | Online linear classification with margins; FTRL with Adaptive regularization | | Section 3.3 of [Shalev-Shwartz's Survey](https://www.cs.huji.ac.il/~shais/papers/OLsurvey.pdf); H Sec 5.6 | |
 |Dec 5 | Adagrad, online optimization of strongly convex functions | | H Sec 3.3 | |
 |Dec 10 | Final presentation | | | |
 
