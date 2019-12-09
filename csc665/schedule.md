@@ -30,7 +30,7 @@ Tentative schedule:
 |Nov 7 | Hedge; Online to Batch conversion. | [Handwritten notes](notes/online_handwritten.pdf) | SSBD Sec 21.2.1, [Hedge paper](http://rob.schapire.net/papers/FreundSc95.pdf); [Loss range adaptivity](https://arxiv.org/abs/1801.00101) | |
 |Nov 12 | Convexity, subgradients | | SSBD Sec 12.1, 14.2 | |
 |Nov 14 | Bregman divergence, norms, dual norms | | | |
-|Nov 19 | Lipschitzness, strong convexity and smoothness | | SSBD Sec 12.1, 13.3 | [HW4](hw/hw4/hw4.pdf) |
+|Nov 19 | Lipschitzness, strong convexity and smoothness | | SSBD Sec 12.1, 13.3 | [HW4](hw/hw4/hw4.pdf) [HW4 Solutions](hw/hw4/hw4sol.pdf) |
 |Nov 21 | Legendre-Fenchel conjugacy, online convex optimization, Follow the regularized leader (FTRL) | [OCO note](notes/oco.pdf) | Section 2.7, 2.3 of [Shalev-Shwartz's Survey](https://www.cs.huji.ac.il/~shais/papers/OLsurvey.pdf) | |
 |Nov 26 | Analysis of FTRL; FTRL Examples | | H Sec 5.3 | |
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
