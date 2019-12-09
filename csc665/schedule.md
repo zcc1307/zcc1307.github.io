@@ -36,7 +36,7 @@ Tentative schedule:
 |Nov 28 | No Class. Thanksgiving Holiday! | | | |
 |Dec 3 | Online linear classification with margins; FTRL with Adaptive regularization | | Section 3.3 of [Shalev-Shwartz's Survey](https://www.cs.huji.ac.il/~shais/papers/OLsurvey.pdf); H Sec 5.6 | |
 |Dec 5 | Adagrad, online optimization of strongly convex functions | | H Sec 3.3 | |
-|Dec 10 | Final presentation | | | |
+|Dec 10 | Final presentation | | | [Topics to review](notes/study_guide.pdf) |
 
 [//]: # (|Sep 26 | Structural risk minimization | | SSBD Chap 7 | |)
 [//]: # (SSBD Chap 10, Sec 26.2)
