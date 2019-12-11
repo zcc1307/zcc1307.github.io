@@ -26,8 +26,8 @@ Tentative schedule:
 |Oct 24 | Boosting and margin bound; two styles of margin bounds | [Boosting note](notes/boosting.pdf) | SSBD Sec 26.2, [Boosted ResNet paper](https://arxiv.org/pdf/1706.04964.pdf) | |
 |Oct 29 | Intro to Online learning; Online classification | | SSBD Sec 21.1 |  [HW3](hw/hw3/hw3.pdf) [HW 3 Solutions](hw/hw3/hw3sol.pdf) |
 |Oct 31 | Minimax analysis: Littlestone's dimension; Expert problem | [Online classification note](notes/online_cls.pdf) | SSBD Sec 21.1.1 | |
-|Nov 5 | Cover's Impossibility Result; Decision-theoretic online learning. | | SSBD Sec 21.2 | |
-|Nov 7 | Hedge; Online to Batch conversion. | [Handwritten notes](notes/online_handwritten.pdf) | SSBD Sec 21.2.1, [Hedge paper](http://rob.schapire.net/papers/FreundSc95.pdf); [Loss range adaptivity](https://arxiv.org/abs/1801.00101) | |
+|Nov 5 | Cover's Impossibility Result; Decision-theoretic online learning. | [Handwritten notes](notes/online_handwritten.pdf) | SSBD Sec 21.2 |  |
+|Nov 7 | Hedge; Online to Batch conversion. | [Online to batch conversion notes](notes/online_to_batch.pdf) | SSBD Sec 21.2.1, [Hedge paper](http://rob.schapire.net/papers/FreundSc95.pdf); [Loss range adaptivity](https://arxiv.org/abs/1801.00101) | |
 |Nov 12 | Convexity, subgradients | | SSBD Sec 12.1, 14.2 | |
 |Nov 14 | Bregman divergence, norms, dual norms | | | |
 |Nov 19 | Lipschitzness, strong convexity and smoothness | | SSBD Sec 12.1, 13.3 | [HW4](hw/hw4/hw4.pdf) [HW4 Solutions](hw/hw4/hw4sol.pdf) |
