@@ -22,6 +22,7 @@
 \DeclareMathOperator{\Rad}{{\mathrm{Rad}}}
 \DeclareMathOperator*{\R}{{\rm R}}
 \DeclareMathOperator*{\U}{{\rm U}}
+\DeclareMathOperator*{\B}{{\rm B}}
 \DeclareMathOperator*{\N}{{\rm N}}
 \DeclareMathOperator*{\Var}{{\rm Var}}
 \DeclareMathOperator*{\err}{{\rm err}}
@@ -34,6 +35,7 @@
 \DeclareMathOperator*{\Zcal}{{\cal Z}}
 \DeclareMathOperator*{\Gcal}{{\cal G}}
 \DeclareMathOperator*{\CH}{{\rm CH}}
+\DeclareMathOperator*{\C}{{\rm C}}
 %\DeclareMathOperator*{\Fcal}{{\cal F}}
 \DeclareMathOperator*{\Scal}{{\cal S}}
 \DeclareMathOperator*{\Ical}{{\cal I}}
@@ -172,35 +174,81 @@ Therefore, according to VC theory, AdaBoost is expected to overfit, as the gener
 However, it is noted in many datasets that as $T$ grows, the generalization error of the classifier output by AdaBoost keeps decreasing, even if training error already reaches zero! What is going on in AdaBoost? To explain the discrepancy between the theory and the experiments, works have shown that similar to SVM, AdaBoost also implicitly performs margin maximization~\citep{schapire1998boosting}. Moreover, similar to linear classifiers, there is a theory of margin-based generalization error bounds for voting classifiers~\citep{schapire1998boosting,breiman1998arcing,koltchinskii2002empirical,wang2011refined}.
 
 \begin{theorem}
-Suppose $\Hcal$ is finite. Define $\CH(\Hcal) := \cbr{\sum_{h \in \Hcal} \alpha_h h(x): \sum_{h \in \Hcal} |\alpha_h| \leq 1}$ be the set of voting classifiers over $\Hcal$. Fix margin value $\gamma \in (0,1]$. Then, with probability $1-\delta$ over the draw of $m$ training examples $S$, for all predictors $f$ on $\CH(\Hcal)$,
-\[ \PP_D(y f(x) \leq 0) \leq \PP_S(y f(x) \leq \gamma) + O\del{\frac{1}{\gamma}\sqrt{\frac{\ln\frac{|\Hcal|}{\delta}}{m}}}. \]
+Suppose $\Hcal$ is finite. Define $\C(\Hcal) := \cbr{\sum_{h \in \Hcal} \alpha_h h(x): \sum_{h \in \Hcal} |\alpha_h| \leq B_1}$ be the set of voting classifiers over $\Hcal$. Fix margin value $\gamma \in (0,1]$. Then, with probability $1-\delta$ over the draw of $m$ training examples $S$, for all predictors $f$ on $\C(\Hcal)$,
+\[ \PP_D(y f(x) \leq 0) \leq \PP_S(y f(x) \leq \gamma) + O\del{\frac{B_1}{\gamma}\sqrt{\frac{\ln\frac{|\Hcal|}{\delta}}{m}}}. \]
 \label{thm:margin-1-inf}
 \end{theorem}
 %of the form $f(x) = \sign()$,
-\paragraph{Remark.} Note the similarity between this bound and the margin bound of linear classification we discussed in the analysis of SVM. In fact this bound can also be viewed as a statement of linear classification: suppose each $x$ is represented by a $d = |\Hcal|$-dimensonal vector $\phi(x) = (h(x))_{\Hcal}$, we can alternatively view the theorem statement as: with probability $1-\delta$: for all $w$ such that $\sum_{i=1}^d |w_i| \leq 1$,
-\[ \PP_D(y\inner{w}{\phi(x)} \leq 0) \leq \PP_S(y\inner{w}{\phi(x)} \leq \gamma) + O\del{\frac{1}{\gamma}\sqrt{\frac{\ln\frac{d}{\delta}}{m}}}. \]
-Note that this statement is not a direct consequence of the margin bound discussed last time (usually referred to as $\ell_2/\ell_2$ margin bound): for all $x$, $\phi(x) \leq \sqrt{d} := R$, and for all $w$ such that $\|w\|_1 = 1$, the best $\ell_2$ ball that captures this set is of radius $1 := B$, which gives a much weaker deviation bound of $\frac{1}{\gamma} \sqrt{\frac{d \ln\frac{1}{\delta}}{m}}$.
-We usually refer to the Theorem~\ref{thm:margin-1-inf} as a $\ell_1/\ell_\infty$ margin bound.
+\paragraph{Remark.} Note the similarity between this bound and the margin bound of linear classification we discussed in the analysis of SVM. In fact this bound can also be viewed as a statement of linear classification: suppose each $x$ is represented by a $d = |\Hcal|$-dimensonal vector $\phi(x) = (h(x))_{\Hcal}$, we can alternatively view the theorem statement as: with probability $1-\delta$: for all $w$ such that $\sum_{i=1}^d |w_i| \leq B_1$,
+\[ \PP_D(y\inner{w}{\phi(x)} \leq 0) \leq \PP_S(y\inner{w}{\phi(x)} \leq \gamma) + O\del{\frac{B_1}{\gamma}\sqrt{\frac{\ln\frac{d}{\delta}}{m}}}. \]
 
-\begin{proof}
-The proof uses the same line of reasoning as the $\ell_2/\ell_2$-style margin bound. We can show that (with details left to the reader) with probability $1-\delta$, for all $f$ in $\CH(\Hcal)$,
+In light of the above connection, it is not hard to show a slight generalization of Theorem~\ref{thm:margin-1-inf} in the context of linear classification, allowing each example to have bounded $\ell_\infty$ norms.
+\begin{theorem}
+Suppose labeled data distribution $D$ is support on $\cbr{x \in \RR^d: \| x \|_\infty \leq R_\infty} \times \cbr{\pm 1}$.
+Fix margin value $\gamma \in (0,1]$. Then, with probability $1-\delta$ over the draw of $m$ training examples $S$, for all predictors $w$ such that $\| w \|_1 \leq B_1$,
+\[ \PP_D(y \inner{w}{x} \leq 0) \leq \PP_S(y \inner{w}{x} \leq \gamma) + O\del{\frac{B_1 R_\infty}{\gamma}\sqrt{\frac{\ln\frac{d}{\delta}}{m}}}. \]
+\label{thm:margin-1-inf-2}
+\end{theorem}
+%We assume that
+
+%$\ell_\infty$ ball \cb
+
+We usually refer to the Theorem~\ref{thm:margin-1-inf-2} as a $\ell_1$ (predictor norm) / $\ell_\infty$ (example norm) margin bound, which is in contrast with the $\ell_2$ / $\ell_2$ margin bound for SVMs (Theorem 2 of the note on SVM). Let us make a detailed comparison here. For notational simplicity, denote by $\B_p(v_0,r) = \cbr{v: \| v - v_0\|_p \leq r}$ as the $\ell_p$ ball centered at $v_0$ with radius $r$.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Bound type & Constraint on $x$ & Constraint on $w$ & generalization error bound \\
+\hline
+$\ell_1$ / $\ell_\infty$ & $\B_\infty(0, R_\infty)$ & $\B_1(0, B_1)$ & $\tilde{O}(\frac{B_1 R_\infty}{\gamma} \sqrt{\frac{1}{m}})$ \\
+$\ell_2$ / $\ell_2$ & $\B_2(0, R_2)$ & $\B_2(0, B_2)$ & $\tilde{O}(\frac{B_2 R_2}{\gamma} \sqrt{\frac{1}{m}})$ \\
+\hline
+\end{tabular}
+\end{table}
+Ignoring logarithmic factors, both bounds have the common term of $\frac{1}{\gamma}\sqrt{\frac{1}{m}}$. So the key difference lies in the factors $B_2 R_2$ and $B_1 R_\infty$, respectively. Let us consider two settings:
+\begin{enumerate}
+\item Suppose all examples $(x,y)$ are such that $x \in \B_{\infty}(0, R_\infty)$, and the predictor $w$ of interest satisfies $w \in \B_1(0, B_1)$. We already know that $\ell_1$ / $\ell_\infty$ generalization error bound has a factor of $B_1 R_\infty$.
+
+However, it is also possible to apply $\ell_2$ / $\ell_2$ generalization bound here.
+Specifically, the smallest $\ell_2$ ball that contains $\B_{\infty}(0, R_\infty)$ is $\B_2(0,R_\infty)$~\footnote{To see this, draw a picture of a $\ell_\infty$ ball in 2d, and try to grow a $\ell_2$ ball that is just enough to encapsulate it.}, and the smallest $\ell_2$ ball that contains $\B_{1}(0, B_1)$ is $\B_1(0,\sqrt{d} B_1)$. This implies that
+$\ell_1$ / $\ell_\infty$ generalization bound is a factor of $\sqrt{d}$ worse than the $\ell_2$ / $\ell_2$ bound when applied to this setting.
+
+\item Suppose all examples $(x,y)$ are such that $x \in \B_{2}(0, R_2)$, and the predictor $w$ of interest satisfies $w \in \B_2(0, B_2)$. We already know that $\ell_2$ / $\ell_2$ generalization error bound has a factor of $B_2 R_2$.
+
+However, it is also possible to apply $\ell_1$ / $\ell_\infty$ generalization bound here.
+Specifically, the smallest $\ell_\infty$ ball that contains $\B_{2}(0, R_2)$ is $\B_\infty(0,R_2)$, and the smallest $\ell_1$ ball that contains $\B_{2}(0, R_1)$ is $\B_1(0,\sqrt{d} R_1)$.
+This implies that $\ell_2$ / $\ell_2$ generalization bound is a factor of $\sqrt{d}$ worse than the $\ell_1$ / $\ell_\infty$ bound when applied to this setting.
+\end{enumerate}
+
+
+%Let us try to understand
+
+
+
+
+%Note that this statement is not a direct consequence of the margin bound discussed last time (usually referred to as $\ell_2/\ell_2$ margin bound): for all $x$, $\phi(x) \leq \sqrt{d} := R$, and for all $w$ such that $\|w\|_1 = 1$, the best $\ell_2$ ball that captures this set is of radius $1 := B$, which gives a much weaker deviation bound of $\frac{1}{\gamma} \sqrt{\frac{d \ln\frac{1}{\delta}}{m}}$.
+
+
+\begin{proof}[Proof of Theorem~\ref{thm:margin-1-inf}]
+The proof uses the same line of reasoning as the $\ell_2$ / $\ell_2$ margin bound. We can show that (with details left to the reader) with probability $1-\delta$, for all $f$ in $\C(\Hcal)$,
 \begin{equation}
   \PP_D(y f(x) \leq 0) \leq \PP_S(y f(x) \leq \gamma) +
 \sqrt{\frac{\ln\frac{2}{\delta}}{m}} + \frac{2}{\gamma} \EE \Rad_S(\Fcal).
 \label{eqn:mb-rad}
 \end{equation}
 Here $\Fcal$ is the class of margin functions, each induced by one weighting over the base hypothesis class $\Hcal$:
-\[ \Fcal = \cbr{m_\alpha: \|\alpha_1\| \leq 1}, \]
+\[ \Fcal = \cbr{m_\alpha: \|\alpha\|_1 \leq B_1}, \]
 where
 \[ m_\alpha(x,y) = y \sum_{h \in \Hcal} \alpha_h h(x). \]
 
 We now bound the empirical Rademacher complexity $\Rad_S(\Fcal)$ for dataset $S$ differently:
 \begin{eqnarray*}
 \Rad_S(\Fcal)
-&=& \frac1m \EE_\sigma \sup_{\alpha: \|\alpha\|_1 \leq 1} \sum_{i=1}^m \sigma_i y_i \del{\sum_{h \in \Hcal} \alpha_h h(x_i)} \\
-&=& \frac1m \EE_\sigma \sup_{\alpha: \|\alpha\|_1 \leq 1} \sum_{i=1}^m \sigma_i \del{\sum_{h \in \Hcal} \alpha_h h(x_i)} \\
-&=& \frac1m \EE_\sigma \sup_{\alpha: \|\alpha\|_1 \leq 1} \sum_{h \in \Hcal} \alpha_h \sum_{i=1}^m \sigma_i h(x_i) \\
-&=& \frac1m \EE_\sigma \sup_{h \in \Hcal} \abs{\sum_{i=1}^m \sigma_i h(x_i)}.
+&=& \frac1m \EE_\sigma \sup_{\alpha: \|\alpha\|_1 \leq B_1} \sum_{i=1}^m \sigma_i y_i \del{\sum_{h \in \Hcal} \alpha_h h(x_i)} \\
+&=& \frac1m \EE_\sigma \sup_{\alpha: \|\alpha\|_1 \leq B_1} \sum_{i=1}^m \sigma_i \del{\sum_{h \in \Hcal} \alpha_h h(x_i)} \\
+&=& \frac1m \EE_\sigma \sup_{\alpha: \|\alpha\|_1 \leq B_1} \sum_{h \in \Hcal} \alpha_h \sum_{i=1}^m \sigma_i h(x_i) \\
+&=& \frac{B_1}m \EE_\sigma \sup_{h \in \Hcal} \abs{\sum_{i=1}^m \sigma_i h(x_i)}.
 \end{eqnarray*}
 But we have seen this before! This is the Rademacher complexity (with absolute value sign) of class $\Hcal$. As seen before, by Massart's Lemma, the above is at most
 \[ \frac1m \sqrt{m \ln(2|\Hcal|)} = \sqrt{\frac{\ln(2|\Hcal|)}m}. \]
