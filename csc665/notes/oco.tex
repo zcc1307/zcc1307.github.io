@@ -645,7 +645,9 @@ Now, if the data is linearly separable by margin $1$ by classifier $w$ such that
 This is a variant of the well-known Percetron convergence theorem by Novikoff~\cite{rosenblatt1958perceptron}.
 
 \item Let $\Phi(w) = \begin{cases} \sum_{i=1}^d w_i \ln w_i, & w \in \Delta^{d-1}, \\ +\infty, & \text{otherwise}. \end{cases}$. This gives the  Winnow~\cite{littlestone1988learning} algorithm:
-\[ w_{t,i} = \exp{-\eta \sum_{s=1}^{t-1} g_{s,i}}, \forall i \in \cbr{1,\ldots,d}. \]
+\[ w_{t,i} = \frac{\exp(-\eta \sum_{s=1}^{t-1} g_{s,i})}{Z_t}, \forall i \in \cbr{1,\ldots,d}, \]
+where $Z_t = \sum_{i=1}^d \exp(-\eta \sum_{s=1}^{t-1} g_{s,i})$ is the normalization factor that ensures $w_t \in \Delta^{d-1}$.
+
 
 Suppose all examples lies in $\cbr{x: \|x\|_\infty \leq R_\infty}$. Also, as discussed before, we can set $\Phi_{\min} = -\ln d$ and $\Phi(w) - \Phi_{\min} \leq \ln d$ for all $w^\star \in \Delta^{d-1}$. Therefore,
 FTRL with $\Phi$ has a mistake bound of
@@ -814,7 +816,7 @@ This motivates the definition of $\cbr{\Phi_t}_{t=0}^T$, so that $\Phi_T(w^\star
 Observe that $\Phi_t$ is 1-strongly convex with respect to $\| \cdot \|_t = \| \cdot \|_{\lambda(t+1) I}$.
 We therefore get:
 \[ \Reg(T, w^\star) \leq \frac{\lambda}{2}\|w^\star\|^2 + \sum_{t=1}^T \frac{\| g_t \|^2}{\lambda t} \leq \frac{\lambda}{2}\|w^\star\|^2 + \frac{L^2}{\lambda}(1 + \ln T) = O\del{\frac{L^2 \ln T}{\lambda}}. \]
-where the penultimate inequality uses the $L$-Lipschitzness of $f$ and Fact~\ref{fact:lip}, and the last inequality uses the simple fact that $\sum_{t=1}^T \frac1t \leq 1 + \ln T$.
+where the last inequality uses the $L$-Lipschitzness of $f$ and Fact~\ref{fact:lip}, along with the simple fact that $\sum_{t=1}^T \frac1t \leq 1 + \ln T$.
 \end{proof}
 
 What is the induced FTRL-AR algorithm? It can be shown that
