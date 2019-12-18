@@ -193,32 +193,32 @@ Fix margin value $\gamma \in (0,1]$. Then, with probability $1-\delta$ over the 
 
 %$\ell_\infty$ ball \cb
 
-We usually refer to the Theorem~\ref{thm:margin-1-inf-2} as a $\ell_1$ (predictor norm) / $\ell_\infty$ (example norm) margin bound, which is in contrast with the $\ell_2$ / $\ell_2$ margin bound for SVMs (Theorem 2 of the note on SVM). Let us make a detailed comparison here. For notational simplicity, denote by $\B_p(v_0,r) = \cbr{v: \| v - v_0\|_p \leq r}$ as the $\ell_p$ ball centered at $v_0$ with radius $r$.
+We usually refer to the Theorem~\ref{thm:margin-1-inf-2} as a $\ell_1$(predictor norm)-$\ell_\infty$ (example norm) margin bound, which is in contrast with the $\ell_2$-$\ell_2$ margin bound for SVMs (Theorem 2 of the note on SVM). Let us make a detailed comparison here. For notational simplicity, denote by $\B_p(v_0,r) = \cbr{v: \| v - v_0\|_p \leq r}$ as the $\ell_p$ ball centered at $v_0$ with radius $r$.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline
-Bound type & Constraint on $x$ & Constraint on $w$ & generalization error bound \\
+Bound type & Constraint on $x$ & Constraint on $w$ & Generalization error bound \\
 \hline
-$\ell_1$ / $\ell_\infty$ & $\B_\infty(0, R_\infty)$ & $\B_1(0, B_1)$ & $\tilde{O}(\frac{B_1 R_\infty}{\gamma} \sqrt{\frac{1}{m}})$ \\
-$\ell_2$ / $\ell_2$ & $\B_2(0, R_2)$ & $\B_2(0, B_2)$ & $\tilde{O}(\frac{B_2 R_2}{\gamma} \sqrt{\frac{1}{m}})$ \\
+$\ell_1$-$\ell_\infty$ & $\B_\infty(0, R_\infty)$ & $\B_1(0, B_1)$ & $\tilde{O}(\frac{B_1 R_\infty}{\gamma} \sqrt{\frac{1}{m}})$ \\
+$\ell_2$-$\ell_2$ & $\B_2(0, R_2)$ & $\B_2(0, B_2)$ & $\tilde{O}(\frac{B_2 R_2}{\gamma} \sqrt{\frac{1}{m}})$ \\
 \hline
 \end{tabular}
 \end{table}
 Ignoring logarithmic factors, both bounds have the common term of $\frac{1}{\gamma}\sqrt{\frac{1}{m}}$. So the key difference lies in the factors $B_2 R_2$ and $B_1 R_\infty$, respectively. Let us consider two settings:
 \begin{enumerate}
-\item Suppose all examples $(x,y)$ are such that $x \in \B_{\infty}(0, R_\infty)$, and the predictor $w$ of interest satisfies $w \in \B_1(0, B_1)$. We already know that $\ell_1$ / $\ell_\infty$ generalization error bound has a factor of $B_1 R_\infty$.
+\item Suppose all examples $(x,y)$ are such that $x \in \B_{\infty}(0, R_\infty)$, and the predictor $w$ of interest satisfies $w \in \B_1(0, B_1)$. We already know that $\ell_1$-$\ell_\infty$ generalization error bound has a factor of $B_1 R_\infty$.
 
-However, it is also possible to apply $\ell_2$ / $\ell_2$ generalization bound here.
-Specifically, the smallest $\ell_2$ ball that contains $\B_{\infty}(0, R_\infty)$ is $\B_2(0,R_\infty)$~\footnote{To see this, draw a picture of a $\ell_\infty$ ball in 2d, and try to grow a $\ell_2$ ball that is just enough to encapsulate it.}, and the smallest $\ell_2$ ball that contains $\B_{1}(0, B_1)$ is $\B_1(0,\sqrt{d} B_1)$. This implies that
-$\ell_1$ / $\ell_\infty$ generalization bound is a factor of $\sqrt{d}$ worse than the $\ell_2$ / $\ell_2$ bound when applied to this setting.
+It is also possible to apply $\ell_2$-$\ell_2$ generalization bound here.
+Specifically, the smallest $\ell_2$ ball that contains $\B_{\infty}(0, R_\infty)$ is $\B_2(0, \sqrt{d} R_\infty)$~\footnote{To see this, draw a picture of a $\ell_\infty$ ball in 2d, and try to grow a $\ell_2$ ball that is just enough to encapsulate it.}, and the smallest $\ell_2$ ball that contains $\B_{1}(0, B_1)$ is $\B_2(0,B_1)$. This implies that
+the $\ell_1$-$\ell_\infty$ generalization bound is a factor of $\sqrt{d}$ worse than the $\ell_2$-$\ell_2$ bound, when applied to this setting.
 
-\item Suppose all examples $(x,y)$ are such that $x \in \B_{2}(0, R_2)$, and the predictor $w$ of interest satisfies $w \in \B_2(0, B_2)$. We already know that $\ell_2$ / $\ell_2$ generalization error bound has a factor of $B_2 R_2$.
+\item Suppose all examples $(x,y)$ are such that $x \in \B_{2}(0, R_2)$, and the predictor $w$ of interest satisfies $w \in \B_2(0, B_2)$. We already know that $\ell_2$-$\ell_2$ generalization error bound has a factor of $B_2 R_2$.
 
-However, it is also possible to apply $\ell_1$ / $\ell_\infty$ generalization bound here.
+It is also possible to apply $\ell_1$-$\ell_\infty$ generalization bound here.
 Specifically, the smallest $\ell_\infty$ ball that contains $\B_{2}(0, R_2)$ is $\B_\infty(0,R_2)$, and the smallest $\ell_1$ ball that contains $\B_{2}(0, R_1)$ is $\B_1(0,\sqrt{d} R_1)$.
-This implies that $\ell_2$ / $\ell_2$ generalization bound is a factor of $\sqrt{d}$ worse than the $\ell_1$ / $\ell_\infty$ bound when applied to this setting.
+This implies that $\ell_2$-$\ell_2$ generalization bound is a factor of $\sqrt{d}$ worse than the $\ell_1$-$\ell_\infty$ bound, when applied to this setting.
 \end{enumerate}
 
 
@@ -231,7 +231,7 @@ This implies that $\ell_2$ / $\ell_2$ generalization bound is a factor of $\sqrt
 
 
 \begin{proof}[Proof of Theorem~\ref{thm:margin-1-inf}]
-The proof uses the same line of reasoning as the $\ell_2$ / $\ell_2$ margin bound. We can show that (with details left to the reader) with probability $1-\delta$, for all $f$ in $\C(\Hcal)$,
+The proof uses the same line of reasoning as the $\ell_2$-$\ell_2$ margin bound. We can show that (with details left to the reader) with probability $1-\delta$, for all $f$ in $\C(\Hcal)$,
 \begin{equation}
   \PP_D(y f(x) \leq 0) \leq \PP_S(y f(x) \leq \gamma) +
 \sqrt{\frac{\ln\frac{2}{\delta}}{m}} + \frac{2}{\gamma} \EE \Rad_S(\Fcal).
