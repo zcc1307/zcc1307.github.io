@@ -1,29 +1,38 @@
-### CSC 665 Section 2: Machine Learning Theory - Fall 2019
+## CSC 588: Machine Learning Theory (Spring 2021)
 
-Designed mainly as a more theoretically-oriented version of [CSC 580 Principles of Machine Learning](https://cscheid.net/courses/spr19/csc665/), students will learn, via the lens of mathematical foundations, how and when machine learning is possible/impossible as well as various algorithms with theoretical guarantees. Specifically, the course offers mathematical formulation of learning environments (e.g., stochastic and adversarial worlds with possibly limited feedback), fundamental limits of learning in these environments, various algorithms concerning sample efficiency, computational efficiency, and generality. Throughout, students will not only learn fundamental mathematical tools upholding the current understanding of machine learning systems in the research community but also develop skills of adapting these techniques to their own research needs such as developing new algorithms.
+This course provides an introduction to the theoretical aspects of machine learning. Students will
+learn how and when machine learning is possible/impossible as well as various algorithms with
+theoretical guarantees under minimal assumptions. Specifically, the course offers formulation of
+learning environments (e.g., batch and online settings, stochastic and adversarial worlds with possibly limited feedback),
+fundamental limits of learning in these environments, various algorithms concerning sample
+efficiency, computational efficiency, and generality. Throughout, students will not only learn
+fundamental tools upholding the current understanding of machine learning systems in the research
+community but also develop skills of adapting these techniques to their own research needs such as
+developing new algorithms for large-scale, data-driven applications.
 
-#### Logistics info
-TuTh 12:30-1:45pm
+### Logistics info
 
-PAS 414
+TuTh 9:30am-10:45am on Zoom (see D2L for meeting link)
 
-[Piazza link](https://piazza.com/arizona/fall2019/csc665) access code: CSC665-2
+[Gradescope](https://www.gradescope.com/courses/60240) entry code: GEPJNE
 
-[Gradescope](https://www.gradescope.com/courses/60240) entry code: 95D244 (Note: for the calibration homework, please still submit a physical copy in class; we will be using gradescope from HW 1 onwards.)
+[D2L course webpage](https://d2l.arizona.edu/d2l/home/1012955)
 
-[//]: # ()
+[Syllabus](syllabus.pdf)
 
-#### Instructor
+[//]: # ([Piazza link](https://piazza.com/arizona/fall2019/csc665) access code: CSC665-2)
+
+
+
+### Instructor
 
 [Chicheng Zhang](https://zcc1307.github.io/)
 
-Gould-Simpson 720
-
 chichengz@cs.arizona.edu
 
-Office Hour: Mondays 1-2pm or by email appointment
+Office Hour: Mondays 1-2pm (see D2L for meeting link) or by email appointment
 
-#### Textbook
+### Textbook
 
 There is no designated textbook for this course. Much of the course
 materials will be based on the following books (in the order of appearance
@@ -31,11 +40,13 @@ materials will be based on the following books (in the order of appearance
 
 [Understanding machine learning: from theory to algorithms](https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/) by Shai Shalev-Shwartz and Shai Ben-David (SSBD)
 
-[Introduction to online optimization](https://ocobook.cs.princeton.edu/OCObook.pdf) by Elad Hazan (H)
+[A Modern Introduction to Online Learning](https://arxiv.org/pdf/1912.13213.pdf) by Francesco Orabona (O)
 
 [Bandit algorithms](https://tor-lattimore.com/downloads/book/book.pdf) by Tor Lattimore and Csaba Szepesvari (LS)
 
 The following set of surveys and books also provide a good coverage of relevant materials:
+
+[Introduction to online optimization](https://ocobook.cs.princeton.edu/OCObook.pdf) by Elad Hazan
 
 [Online learning and online convex optimization](https://www.cs.huji.ac.il/~shais/papers/OLsurvey.pdf) by Shai Shalev-Shwartz
 
@@ -43,21 +54,21 @@ The following set of surveys and books also provide a good coverage of relevant 
 
 [Introduction to Multi-Armed Bandits](https://arxiv.org/pdf/1904.07272.pdf) by Alex Slivkins
 
-#### Review for prerequisites
+### Review for prerequisites
 
 Here are some excellent notes for [probability review](http://cs229.stanford.edu/section/cs229-prob.pdf) and [linear algebra review](http://cs229.stanford.edu/section/cs229-linalg.pdf).
 
 
-#### Machine learning courses at UA
+### Machine learning courses at UA
 [CSC 535 Probabilistic Graphical Models](http://kobus.ca/teaching/cs535/spring18/index.html) by Kobus Barnard
 
-[ISTA 457/INFO 557 Neural Networks] by [Steven Bethard](https://bethard.faculty.arizona.edu/)
+ISTA 457/INFO 557 Neural Networks by [Steven Bethard](https://bethard.faculty.arizona.edu/)
 
-CSC 665 Topics in Online Learning and Bandits by [Kwang-Sung Jun](https://kwangsungjun.github.io/) (Spring 2020)
+[CSC 665 Online Learning and Multi-armed Bandits](https://kwangsungjun.github.io/teach/20.1.csc665/index.html) by [Kwang-Sung Jun](https://kwangsungjun.github.io/)
 
 [INFO 521 Introduction to Machine Learning](http://w3.sista.arizona.edu/~clayton/courses/ml/index.html) by Clayton Morrison
 
-[CSC 665 Section 1 Advanced Topics in Probabilistic Graphical Models](https://www2.cs.arizona.edu/~pachecoj/courses/csc665-1/index.html) by Jason Pacheco (Fall 2019)
+[CSC 665 Advanced Topics in Probabilistic Graphical Models](https://www2.cs.arizona.edu/~pachecoj/courses/csc665-1/index.html) by Jason Pacheco
 
 [CSC 580 Principles of Machine Learning](https://cscheid.net/courses/spr19/csc665/) by Carlos Scheidegger
 
@@ -65,9 +76,9 @@ MIS 601 Statistical Foundations of Machine Learning by Junming Yin
 
 [MATH 574M Statistical Machine Learning](http://math.arizona.edu/~hzhang/math574m.html) by Helen Zhang
 
-#### Learning theory courses at other institutions
+### Learning theory courses at other institutions
 
-The following is a far-from-complete list of learning theory courses offered at other institutions:
+There are many learning theory courses offered at other institutions. Many of them have good lecture materials and together offers a diverse set of perspectives of this field; here are just a few examples:
 
 [Foundations of Machine Learning and Data Science](http://www.cs.cmu.edu/%7Eninamf/courses/806/10-806-index.html) by Nina Balcan and Avrim Blum
 
