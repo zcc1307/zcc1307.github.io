@@ -16,7 +16,7 @@ TuTh 9:30am-10:45am on Zoom (see D2L for meeting link)
 
 [Gradescope](https://www.gradescope.com/courses/60240) entry code: GEPJNE
 
-[D2L course webpage](https://d2l.arizona.edu/d2l/home/1012955)
+[D2L course webpage](https://d2l.arizona.edu/d2l/home/1012955): lecture video recordings can be found at "UA Tools" -> "Panopto"
 
 [Syllabus](syllabus.pdf)
 

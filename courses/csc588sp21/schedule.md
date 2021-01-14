@@ -1,6 +1,6 @@
 ### CSC 588: Machine Learning Theory - Spring 2021
 
-####Tentative schedule
+#### Tentative schedule
 
 |Date  | Topics | Scribe notes | Additional readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|
