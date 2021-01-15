@@ -58,6 +58,11 @@ The following set of surveys and books also provide a good coverage of relevant 
 
 Here are some excellent notes for [probability review](http://cs229.stanford.edu/section/cs229-prob.pdf) and [linear algebra review](http://cs229.stanford.edu/section/cs229-linalg.pdf).
 
+### Scribing and LaTeX
+We will be using the following [scribe note LaTeX template file](notes/scribe_template.tex). See also [Prof. Rob Schapire's suggestions on preparing scribe notes](https://www.cs.princeton.edu/courses/archive/spring19/cos511/scribeinfo.html).
+
+Some useful LaTeX resources: [Learn LaTeX in 30 minutes by Overleaf](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes#Adding_math_to_LaTeX)
+
 
 ### Machine learning courses at UA
 [CSC 535 Probabilistic Graphical Models](http://kobus.ca/teaching/cs535/spring18/index.html) by Kobus Barnard

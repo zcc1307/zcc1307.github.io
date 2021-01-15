@@ -4,7 +4,7 @@
 
 |Date  | Topics | Scribe notes | Additional readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|
-| Jan 14 | Introduction, motivation, course mechanics | | SSBD App B.1 and B.2 | HW0 (calibration) |
+| Jan 14 | Introduction, motivation, course mechanics | | SSBD App B.1 and B.2 | [HW0 (calibration)](hw/CSC_588_HW_1.pdf) |
 | Jan 19  | The PAC learning framework |  |  |  |
 | Jan 21  |  |  |  |  |
 | Jan 26  | Concentration inequalities: Hoeffding's inequality |  |  |  |
