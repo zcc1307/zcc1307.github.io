@@ -4,11 +4,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
 \usepackage{definitions}
+\usepackage{algorithm, algorithmic}
+\usepackage{graphicx}
 
 \newcounter{lecnum}
 
 \newcommand{\lecture}[4]{
-   \pagestyle{myheadings}
+   %\pagestyle{myheadings}
    \thispagestyle{plain}
    \newpage
    \setcounter{lecnum}{#1}
@@ -26,10 +28,12 @@
       \vspace{2mm}}
    }
    \end{center}
-   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   %\markboth{Lecture #1: #2}{Lecture #1: #2}
    \vspace*{1mm}
 }
 
+\DeclareMathOperator*{\err}{{\rm err}}
+\newcommand{\defeq}{\triangleq}
 
 \begin{document}
 

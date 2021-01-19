@@ -5,7 +5,7 @@
 |Date  | Topics | Scribe notes | Additional readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|
 | Jan 14 | Introduction, motivation, course mechanics | | SSBD App B.1 and B.2 | [HW0 (calibration)](hw/CSC_588_HW_0.pdf) |
-| Jan 19  | The PAC learning framework |  |  |  |
+| Jan 19  | The PAC learning framework; the consistency algorithm | [Overleaf note (read-only)](https://www.overleaf.com/project/60072817d35e3de066dc5c6c) (Please feel free to make a copy of this as a starting point when scribing) | SSBD Chap 2, Sec 3.1  |  |
 | Jan 21  |  |  |  |  |
 | Jan 26  | Concentration inequalities: Hoeffding's inequality |  |  |  |
 | Jan 28  | VC theory |  |  |  |
