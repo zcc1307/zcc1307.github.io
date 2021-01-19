@@ -20,6 +20,9 @@ TuTh 9:30am-10:45am on Zoom (see D2L for meeting link)
 
 [Syllabus](syllabus.pdf)
 
+[Piazza link](https://piazza.com/arizona/spring2021/csc588) access code: generalization
+
+
 [//]: # ([Piazza link](https://piazza.com/arizona/fall2019/csc665) access code: CSC665-2)
 
 
