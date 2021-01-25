@@ -39,7 +39,14 @@ If you need help with choosing a project, please schedule an appointment with me
 
 ### Project ideas
 
-Below are a few example research directions in machine learning theory, each with a few "seed papers"; you can use the related work section in these papers, or use the "cited by" functionality in e.g. [google scholar](https://scholar.google.com/) to find more papers on the same topic. Please also refer to [ICML](http://proceedings.mlr.press/v97/), [COLT](http://proceedings.mlr.press/v99/), [NeurIPS](https://papers.nips.cc/) proceedings page for more ideas.
+Below are a few example research directions in machine learning theory, each with a few "seed papers"; you can use the related work section in these papers, or use the "cited by" functionality in e.g. [google scholar](https://scholar.google.com/) to find more papers on the same topic. Please also refer to proceeding pages of recent machine learning / learning theory conferences and workshops for more project ideas, such as:
+
+* [ICML](http://proceedings.mlr.press/v97/), 
+* [COLT](http://proceedings.mlr.press/v99/), 
+* [NeurIPS](https://papers.nips.cc/) , 
+* [AISTATS](http://proceedings.mlr.press/v108/), 
+* [ALT](http://proceedings.mlr.press/v117/), 
+* [NeurIPS Workshop on Machine Learning with Guarantees](https://sites.google.com/view/mlwithguarantees/accepted-papers?authuser=0).
 
 Similiar courses in other institutions may also have nice collections of interesting project ideas, for example:
 
