@@ -2,40 +2,40 @@
 
 #### Tentative schedule
 
-|Date  | Topics | Scribe notes | Additional readings  | Homework |
-|:---:|:------------:|:---:|:---:|:---:|
-| Jan 14 | Introduction, motivation, course mechanics | | SSBD App B.1 and B.2 | [HW0 (calibration)](hw/CSC_588_HW_0.pdf) |
-| Jan 19  | The PAC learning framework; the consistency algorithm | [Overleaf note (read-only)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | SSBD Chap 2, Sec 3.1  |  |
-| Jan 21  |  |  |  |  |
-| Jan 26  | Concentration inequalities: Hoeffding's inequality |  |  |  |
-| Jan 28  | VC theory |  |  |  |
-| Feb 2  |  |  |  |  |
-| Feb 4  |  |  |  |  |
-| Feb 9  |  |  |  |  |
-| Feb 11  |  |  |  |  |
-| Feb 16  |  |  |  |  |
-| Feb 18  |  |  |  |  |
-| Feb 23  | Regularization and Stability |  |  |  |
-| Feb 25  | No class - Reading day |  |  |  |
-| Mar 2  |  |  |  |  |
-| Mar 4  |  |  |  |  |
-| Mar 9  | No class - Reading day |  |  |  |
-| Mar 11  | Online learning, online convex optimization |  |  |  |
-| Mar 16  |  |  |  |  |
-| Mar 18  |  |  |  |  |
-| Mar 23  |  |  |  |  |
-| Mar 25 |  |  |  |  |
-| Mar 30  |  |  |  |  |
-| Apr 1  |  |  |  |  |
-| Apr 6  | Multi-armed bandits, linear bandits, MDPs |  |  |  |
-| Apr 8  |  |  |  |  |
-| Apr 13  |  |  |  |  |
-| Apr 15  |  |  |  |  |
-| Apr 20  |  |  |  |  |
-| Apr 22  |  |  |  |  |
-| Apr 27  |  |  |  |  |
-| Apr 29  | Project presentation I |  |  |  |
-| May 4  | Project presentation II |  |  |  |
+|Date  | Topics | Scribe notes | Handwritten notes | Additional readings  | Homework |
+|:---:|:------------:|:---:|:---:|:---:|:---:|
+| Jan 14 | Introduction, motivation, course mechanics | | | SSBD App B.1 and B.2 | [HW0 (calibration)](hw/CSC_588_HW_0.pdf) |
+| Jan 19  | The PAC learning framework; the consistency algorithm | [Overleaf note (read-only)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | [Note 2](notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
+| Jan 21  | Analysis of the consistency algorithm; agnostic PAC learning; Hoeffding's Inequality |  |  [Note 3](notes/lec3_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
+| Jan 26  | Proof of Hoeffding's inequality; Bernstein's inequality |  | [Note 4](notes/lec4_handwritten.pdf)  | SSBD B.4, B.5 |  |
+| Jan 28  | Analysis of ERM; VC theory |  |  |  | |
+| Feb 2  |  |  |  |  | |
+| Feb 4  |  |  |  |  | |
+| Feb 9  |  |  |  |  | |
+| Feb 11  |  |  |  |  | |
+| Feb 16  |  |  |  |  | |
+| Feb 18  |  |  |  |  | |
+| Feb 23  | Regularization and Stability |  |  |  | |
+| Feb 25  | No class - Reading day |  |  |  | |
+| Mar 2  |  |  |  |  | |
+| Mar 4  |  |  |  |  | |
+| Mar 9  | No class - Reading day |  |  |  | |
+| Mar 11  | Online learning, online convex optimization |  |  |  | |
+| Mar 16  |  |  |  |  | |
+| Mar 18  |  |  |  |  | |
+| Mar 23  |  |  |  |  | |
+| Mar 25 |  |  |  |  | |
+| Mar 30  |  |  |  |  | |
+| Apr 1  |  |  |  |  | |
+| Apr 6  | Multi-armed bandits, linear bandits, MDPs |  |  |  | |
+| Apr 8  |  |  |  |  | |
+| Apr 13  |  |  |  |  | |
+| Apr 15  |  |  |  |  | |
+| Apr 20  |  |  |  |  | |
+| Apr 22  |  |  |  |  | |
+| Apr 27  |  |  |  |  | |
+| Apr 29  | Project presentation I |  |  |  | |
+| May 4  | Project presentation II |  |  |  | |
 
 
 [//]: # (|Sep 26 | Structural risk minimization | | SSBD Chap 7 | |)
