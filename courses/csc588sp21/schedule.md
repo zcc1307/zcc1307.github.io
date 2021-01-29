@@ -5,10 +5,10 @@
 |Date  | Topics | Scribe notes | Handwritten notes | Additional readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|:---:|
 | Jan 14 | Introduction, motivation, course mechanics | | | SSBD App B.1 and B.2 | [HW0 (calibration)](hw/CSC_588_HW_0.pdf) |
-| Jan 19  | The PAC learning framework; the consistency algorithm | [Overleaf note (read-only)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | [Note 2](notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
+| Jan 19  | The PAC learning framework; the consistency algorithm | [Overleaf note (0119/)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | [Note 2](notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
 | Jan 21  | Analysis of the consistency algorithm; agnostic PAC learning; Hoeffding's Inequality |  |  [Note 3](notes/lec3_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
-| Jan 26  | Proof of Hoeffding's inequality; Bernstein's inequality |  | [Note 4](notes/lec4_handwritten.pdf)  | SSBD B.4, B.5 |  |
-| Jan 28  | Analysis of ERM; VC theory |  |  |  | |
+| Jan 26  | Proof of Hoeffding's inequality; Bernstein's inequality | [Overleaf note (0126/)](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 4](notes/lec4_handwritten.pdf)  | SSBD B.4, B.5 |  |
+| Jan 28  | Analysis of ERM; VC theory |  | [Note 5](notes/lec5_handwritten.pdf) | SSBD Chap 4, Sec 6.1, 6.2 |  |
 | Feb 2  |  |  |  |  | |
 | Feb 4  |  |  |  |  | |
 | Feb 9  |  |  |  |  | |
