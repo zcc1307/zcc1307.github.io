@@ -9,7 +9,7 @@
 | Jan 21  | Analysis of the consistency algorithm; agnostic PAC learning; Hoeffding's Inequality |  |  [Note 3](notes/lec3_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
 | Jan 26  | Proof of Hoeffding's inequality; Bernstein's inequality | [Scribe note (0126/) by Brian Toner](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 4](notes/lec4_handwritten.pdf)  | SSBD B.4, B.5 |  |
 | Jan 28  | Analysis of ERM; VC theory | [Scribe note (0128/) by Alonso Granados](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 5](notes/lec5_handwritten.pdf) | SSBD Chap 4, Sec 6.1, 6.2 |  |
-| Feb 2  | VC dimension examples; Sauer's Lemma |  | [Note 6](notes/lec6_handwritten.pdf) | SSBD Sec 6.2 - 6.5.1 | [HW1](hw/CSC_588_HW_1.pdf) |
+| Feb 2  | VC dimension examples; Sauer's Lemma | [Scribe note (0202/) by Katherine Best](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 6](notes/lec6_handwritten.pdf) | SSBD Sec 6.2 - 6.5.1 | [HW1](hw/CSC_588_HW_1.pdf) |
 | Feb 4  |  |  |  |  | |
 | Feb 9  |  |  |  |  | |
 | Feb 11  |  |  |  |  | |
