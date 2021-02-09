@@ -10,8 +10,8 @@
 | Jan 26  | Proof of Hoeffding's inequality; Bernstein's inequality | [Scribe note (0126/) by Brian Toner](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 4](notes/lec4_handwritten.pdf)  | SSBD B.4, B.5 |  |
 | Jan 28  | Analysis of ERM; VC theory | [Scribe note (0128/) by Alonso Granados](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 5](notes/lec5_handwritten.pdf) | SSBD Chap 4, Sec 6.1, 6.2 |  |
 | Feb 2  | VC dimension examples; Sauer's Lemma | [Scribe note (0202/) by Katherine Best](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 6](notes/lec6_handwritten.pdf) | SSBD Sec 6.2 - 6.5.1 | [HW1](hw/CSC_588_HW_1.pdf) |
-| Feb 4  |  |  |  |  | |
-| Feb 9  |  |  |  |  | |
+| Feb 4  | Proof of Sauer's Lemma; VC dimension of composite hypothesis classes | [Scribe note (0204/) by Marium Yousuf](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 7](notes/lec7_handwritten.pdf)  | SSBD Sec 6.2 - 6.5.1  | |
+| Feb 9  | Uniform convergence via Rademacher complexity |  | [Note 8](notes/lec8_handwritten.pdf)  | SSBD Sec 6.5.2, 26.1, 28.1 | |
 | Feb 11  |  |  |  |  | |
 | Feb 16  |  |  |  |  | |
 | Feb 18  |  |  |  |  | |
