@@ -12,9 +12,9 @@
 | Feb 2  | VC dimension examples; Sauer's Lemma | [Scribe note (0202/) by Katherine Best](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 6](notes/lec6_handwritten.pdf) | SSBD Sec 6.2 - 6.5.1 | [HW1](hw/CSC_588_HW_1.pdf) |
 | Feb 4  | Proof of Sauer's Lemma; VC dimension of composite hypothesis classes | [Scribe note (0204/) by Marium Yousuf](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 7](notes/lec7_handwritten.pdf)  | SSBD Sec 6.2 - 6.5.1  | |
 | Feb 9  | Uniform convergence via Rademacher complexity | [Scribe note (0209/) by Brady Gales](https://www.overleaf.com/read/cjdpjbhwhpcx)  | [Note 8](notes/lec8_handwritten.pdf)  | SSBD Sec 6.5.2, 26.1, 28.1 | |
-| Feb 11  | Proof of uniform convergence of VC classes |  | [Note 9](notes/lec9_handwritten.pdf) | SSBD Sec 6.5.2, 26.1, 28.1 | |
-| Feb 16  |  |  |  |  | |
-| Feb 18  |  |  |  |  | |
+| Feb 11  | Proof of uniform convergence of VC classes | [Scribe note (0211/) by Yinan Li](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 9](notes/lec9_handwritten.pdf) | SSBD Sec 6.5.2, 26.1, 28.1 | |
+| Feb 16  | Lower bounds of PAC learning with VC classes; fundamental theorem of statistical learning | [Scribe note (0216/) by Xiaolan Gu](https://www.overleaf.com/read/cjdpjbhwhpcx)  |  | SSBD Sec 5.1 | |
+| Feb 18  | Error decomposition in statistical learning; model selection |  |  | SSBD Chap 7 | |
 | Feb 23  | Regularization and Stability |  |  |  | |
 | Feb 25  | No class - Reading day |  |  |  | |
 | Mar 2  |  |  |  |  | |
