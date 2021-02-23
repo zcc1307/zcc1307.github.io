@@ -14,11 +14,11 @@
 | Feb 9  | Uniform convergence via Rademacher complexity | [Scribe note (0209/) by Brady Gales](https://www.overleaf.com/read/cjdpjbhwhpcx)  | [Note 8](notes/lec8_handwritten.pdf)  | SSBD Sec 6.5.2, 26.1, 28.1 | |
 | Feb 11  | Proof of uniform convergence of VC classes | [Scribe note (0211/) by Yinan Li](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 9](notes/lec9_handwritten.pdf) | SSBD Sec 6.5.2, 26.1, 28.1 | |
 | Feb 16  | Lower bounds of PAC learning with VC classes; fundamental theorem of statistical learning | [Scribe note (0216/) by Xiaolan Gu](https://www.overleaf.com/read/cjdpjbhwhpcx)  | [Note 10](notes/lec10_handwritten.pdf) | SSBD Sec 5.1 | |
-| Feb 18  | Error decomposition in statistical learning; model selection |  | [Note 11](notes/lec11_handwritten.pdf) | SSBD Chap 7 |  |
-| Feb 23  | Regularization and Stability |  |  |  | |
+| Feb 18  | Error decomposition in statistical learning; model selection | [Scribe note (0218/) by Jie Bian](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 11](notes/lec11_handwritten.pdf) | SSBD Chap 7 |  |
+| Feb 23  | Finish SRM; Adaboost and its training error analysis |  | [Note 12](notes/lec12_handwritten.pdf) | SSBD Chap 10 | |
 | Feb 25  | No class - Reading day |  |  |  | |
 | Mar 2  |  |  |  |  | |
-| Mar 4  |  |  |  |  | |
+| Mar 4  |  | Regularization and Stability |  |  | |
 | Mar 9  | No class - Reading day |  |  |  | |
 | Mar 11  | Online learning, online convex optimization |  |  |  | |
 | Mar 16  |  |  |  |  | |
