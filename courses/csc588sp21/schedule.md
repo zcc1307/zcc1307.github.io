@@ -18,10 +18,10 @@
 | Feb 23  | Finish SRM; Adaboost and its training error analysis |  | [Note 12](notes/lec12_handwritten.pdf) | SSBD Chap 10 | |
 | Feb 25  | No class - Reading day |  |  |  | |
 | Mar 2  |  |  |  |  | |
-| Mar 4  |  | Regularization and Stability |  |  | |
+| Mar 4  |  |  |  |  | |
 | Mar 9  | No class - Reading day |  |  |  | |
-| Mar 11  | Online learning, online convex optimization |  |  |  | |
-| Mar 16  |  |  |  |  | |
+| Mar 11  | Regularization and Stability |  |  |  | |
+| Mar 16  | Online learning, online convex optimization |  |  |  | |
 | Mar 18  |  |  |  |  | |
 | Mar 23  |  |  |  |  | |
 | Mar 25 |  |  |  |  | |
