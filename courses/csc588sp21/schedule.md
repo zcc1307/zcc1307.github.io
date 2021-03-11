@@ -20,7 +20,7 @@
 | Mar 2  | Weak learnability implies "linear separability" through minimax theorem; Margin-based generalization error bounds for AdaBoost and linear classification | [Scribe note (0302/) by Ryan Sullivant](https://www.overleaf.com/read/cjdpjbhwhpcx)  | [Note 13](notes/lec13_handwritten.pdf) | SSBD 26.1, 26.2, 26.4 | [HW2](hw/CSC_588_HW_2.pdf) |
 | Mar 4  | Proof of margin-based generalization error bounds; Contraction inequality of Rademacher complexity; SVM formulations | [Scribe note (0304/) by Ruby Abrams](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 14](notes/lec14_handwritten.pdf) | SSBD 26.3 | |
 | Mar 9  | No class - Reading day |  |  |  | |
-| Mar 11  | ell_2-norm-based margin bounds; Extensions of SVM; Regularized loss minimization formulations |  | [Note 15](notes/lec15_handwritten.pdf) | SSBD 26.3; Chap 15  | | |
+| Mar 11  | ell_2-norm-based margin bounds; Extensions of SVM; Regularized loss minimization formulations |  | [Note 15](notes/lec15_handwritten.pdf) | SSBD 26.3; Chap 15; [Spectrally-normalized margin bounds for neural networks](https://arxiv.org/abs/1706.08498)  | | |
 | Mar 16  | Online learning, online convex optimization |  |  |  | |
 | Mar 18  |  |  |  |  | |
 | Mar 23  |  |  |  |  | |
