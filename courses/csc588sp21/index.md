@@ -59,7 +59,7 @@ The following set of surveys and books also provide a good coverage of relevant 
 
 ### Review for prerequisites
 
-Here are some excellent notes for [probability review](http://cs229.stanford.edu/section/cs229-prob.pdf) and [linear algebra review](http://cs229.stanford.edu/section/cs229-linalg.pdf).
+Here are some excellent notes for [probability review](http://cs229.stanford.edu/section/cs229-prob.pdf) and [linear algebra review](http://cs229.stanford.edu/section/cs229-linalg.pdf) from Stanford's CS 229 course.
 
 ### Scribing and LaTeX
 We will be using the following [scribe note LaTeX template file](notes/scribe_template.tex) and [style file](notes/definitions.sty). See also [Prof. Rob Schapire's suggestions on preparing scribe notes](https://www.cs.princeton.edu/courses/archive/spring19/cos511/scribeinfo.html). Please sign up for one slot at the [sign up sheet](https://docs.google.com/spreadsheets/d/1Q2X4C__guFy0Mbk0nETBeDpEAAFnvdVo2CDpjeRkVJo/edit?usp=sharing).
