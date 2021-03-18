@@ -21,8 +21,8 @@
 | Mar 4  | Proof of margin-based generalization error bounds; Contraction inequality of Rademacher complexity; SVM formulations | [Scribe note (0304/) by Ruby Abrams](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 14](notes/lec14_handwritten.pdf) | SSBD 26.3 | |
 | Mar 9  | No class - Reading day |  |  |  | |
 | Mar 11  | ell_2-norm-based margin bounds; Extensions of SVM; Regularized loss minimization formulations |  | [Note 15](notes/lec15_handwritten.pdf) | SSBD 26.3; Chap 15; [Spectrally-normalized margin bounds for neural networks](https://arxiv.org/abs/1706.08498)  | | |
-| Mar 16  | Online learning, online convex optimization |  |  |  | |
-| Mar 18  |  |  |  |  | |
+| Mar 16  | Stability, strong convexity, and regularization |  | [Note 16](notes/lec16_handwritten.pdf)  | SSBD Chap 13  | | |
+| Mar 18  | Stability-fitting tradeoff; online learning, online to batch conversion |  |   | SSBD Chap 13.4 O Chap 1, Chap 3  | |
 | Mar 23  |  |  |  |  | |
 | Mar 25 |  |  |  |  | |
 | Mar 30  |  |  |  |  | |
