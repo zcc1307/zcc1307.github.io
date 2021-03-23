@@ -23,8 +23,8 @@
 | Mar 11  | ell_2-norm-based margin bounds; Extensions of SVM; Regularized loss minimization formulations | [Scribe note (0311/) by Shahriar Golchin](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 15](notes/lec15_handwritten.pdf) | SSBD 26.3; Chap 15; [Spectrally-normalized margin bounds for neural networks](https://arxiv.org/abs/1706.08498)  | | |
 | Mar 16  | Stability, strong convexity, and regularization |  | [Note 16](notes/lec16_handwritten.pdf)  | SSBD Chap 13  | | |
 | Mar 18  | Stability-fitting tradeoff; online learning: definitions and examples |  | [Note 17](notes/lec17_handwritten.pdf)  | SSBD Chap 13.4, O Chap 1, [Haipeng Luo's online learning lecture notes 1 (which this lecture is heavily based on)](https://haipeng-luo.net/courses/CSCI699/)  | |
-| Mar 23  | Online to batch conversion using Azuma's Inequality; prediction with expert advice |  |  | O Chap 3 | |
-| Mar 25 |  |  |  |  | |
+| Mar 23  | Online to batch conversion; Azuma's Inequality; online gradient descent |  | [Note 18](notes/lec18_handwritten.pdf) | O Chap 3, Chap 2 | |
+| Mar 25 | Analysis of online gradient descent; Online mirror descent: basic definitions and algorithm (class meeting cancelled; Pre-recorded lecture on Panopto) |  | [Note 19](notes/lec19_handwritten.pdf) | O Chap 2, Sec 6.1-6.3 | |
 | Mar 30  |  |  |  |  | |
 | Apr 1  |  |  |  |  | |
 | Apr 6  | Multi-armed bandits, linear bandits, MDPs |  |  |  | |
