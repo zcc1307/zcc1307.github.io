@@ -14,7 +14,7 @@ In addition, we ask that your experiment must be used to support theoretical res
 * __Research.__ Research projects, roughly speaking, can have two styles: first, attacking an existing open problem in the literature; second, formulating a new (theoretically interesting and practically relevant) problem and proposing a feasible solution. Completing a research project naturally requires a thorough literature survey in the first place - you need to ensure that your approach or model has never been proposed in prior works. *Note that a research project may require substantially larger amount of time compared to the first two project types, so I suggest being careful with this choice if you already have a heavy workload this semester.* The upside of a research project is that your work may result in publications.
 
 ### Project timelines
-* __Project Proposal.__ A 1-page project proposal is due __Mar 16__. The project proposal should consist of the following parts:
+* __Project Proposal.__ A 1-page project proposal is due __Mar 16__ on gradescope. The project proposal should consist of the following parts:
 
   * a list of team members,
   * a brief description of the project topic,
@@ -23,7 +23,7 @@ In addition, we ask that your experiment must be used to support theoretical res
 
 If you need help with choosing a project, please schedule an appointment with me and I will help you brainstorm one.
 
-* __Midterm Progress Report.__ A 1-page report on your progress is due __Apr 6__.
+* __Midterm Progress Report.__ A 1-page report on your progress is due __Apr 6__ on gradescope.
 
   * For literature survey, give a list of papers you have already read, and how they are related.
   * For implementation projects, give a list of algorithms that you have already implemented, and provide experimental results (if you have some). How do the results answer the questions you asked in the proposal?
@@ -31,7 +31,7 @@ If you need help with choosing a project, please schedule an appointment with me
 
 * __Final Presentation.__ The presentation will be on __Apr 29__ and __May 4__, in class. The actual lengths of the presentations will depend on the number of groups in the class. Please send me a copy of your slides after your presentation.
 
-* __Final Report.__ A 4-page summary of the project is due __May 4__, by email. The report will be judged on both clarity and quality. The report needs to be typeset by LaTeX.
+* __Final Report.__ A 4-page summary of the project is due __May 4__ on gradescope. The report will be judged on both clarity and quality. The report needs to be typeset by LaTeX.
 
   * For literature survey, provide a critical summary of the papers you have read; discuss the connections among these papers, and their impacts to broader field.
   * For implementation projects, present your experimental results, and check whether the experimental results agree with theory.
