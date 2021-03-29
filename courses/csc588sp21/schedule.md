@@ -25,7 +25,7 @@
 | Mar 18  | Stability-fitting tradeoff; online learning: definitions and examples | [Scribe note (0318/) by Sarah Luca](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 17](notes/lec17_handwritten.pdf)  | SSBD Chap 13.4, O Chap 1, [Haipeng Luo's online learning lecture notes 1 (which this lecture is based heavily on)](https://haipeng-luo.net/courses/CSCI699/)  | |
 | Mar 23  | Online to batch conversion; Azuma's Inequality; online gradient descent |  | [Note 18](notes/lec18_handwritten.pdf) | O Chap 3, Chap 2 | |
 | Mar 25 | Analysis of online gradient descent; Online mirror descent: basic definitions and algorithm (class meeting cancelled; Pre-recorded lecture on Panopto) |  | [Note 19](notes/lec19_handwritten.pdf) | O Chap 2, Sec 6.1-6.3 | |
-| Mar 30  |  |  |  |  | [HW3](hw/CSC_588_HW_3.pdf) |
+| Mar 30  |  |  |  |  | [HW3](hw/CSC_588_HW3.pdf) |
 | Apr 1  |  |  |  |  | |
 | Apr 6  | Multi-armed bandits, linear bandits, MDPs |  |  |  | |
 | Apr 8  |  |  |  |  | |
