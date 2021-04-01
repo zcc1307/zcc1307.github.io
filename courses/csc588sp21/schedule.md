@@ -25,8 +25,8 @@
 | Mar 18  | Stability-fitting tradeoff; online learning: definitions and examples | [Scribe note (0318/) by Sarah Luca](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 17](notes/lec17_handwritten.pdf)  | SSBD Chap 13.4, O Chap 1, [Haipeng Luo's online learning lecture notes 1 (which this lecture is based heavily on)](https://haipeng-luo.net/courses/CSCI699/)  | |
 | Mar 23  | Online to batch conversion; Azuma's Inequality; online gradient descent | [Scribe note (0323/) by Sheldon Deeny](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 18](notes/lec18_handwritten.pdf) | O Chap 3, Chap 2 | |
 | Mar 25 | Analysis of online gradient descent; Online mirror descent: basic definitions (class meeting cancelled; Pre-recorded lecture on Panopto) |  | [Note 19](notes/lec19_handwritten.pdf) | O Chap 2, Sec 6.1-6.3 | |
-| Mar 30  | Online mirror descent examples: p-norm, exponential weights; Fenchel conjugate |  | [Note 20](notes/lec20_handwritten.pdf)  | O Theorem 2.19, O 5.2.1, O 6.4.1, 6.6, 6.7 | [HW3](hw/CSC_588_HW3.pdf) |
-| Apr 1  |  |  |  |  | |
+| Mar 30  | Online mirror descent examples: p-norm, exponential weights; Fenchel conjugate |  | [Note 20](notes/lec20_handwritten.pdf)  | O Theorem 2.19, 5.2.1, 6.4.1, 6.6, 6.7 | [HW3](hw/CSC_588_HW3.pdf) |
+| Apr 1  | Online mirror descent analysis; Online learning odds & ends: unknown time horizon, lower bounds, Follow the Regularized Leader |  | [Note 21](notes/lec21_handwritten.pdf) | O 6.4, 5.1, 7.1 | | |
 | Apr 6  | Multi-armed bandits, linear bandits, MDPs |  |  |  | |
 | Apr 8  |  |  |  |  | |
 | Apr 13  |  |  |  |  | |
