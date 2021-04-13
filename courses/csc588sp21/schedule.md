@@ -28,7 +28,7 @@
 | Mar 30  | Online mirror descent examples: p-norm, exponential weights; Fenchel conjugate | [Scribe note (0330/) by Erik Wessel](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 20](notes/lec20_handwritten.pdf)  | O Theorem 2.19, 5.2.1, 6.4.1, 6.6, 6.7 | [HW3](hw/CSC_588_HW3.pdf) |
 | Apr 1  | Online mirror descent analysis; Online learning odds & ends: unknown time horizon, lower bounds, Follow the Regularized Leader | [Scribe note (0401/) by Yao Zhao](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 21](notes/lec21_handwritten.pdf) | O 6.4, 5.1, 7.1 | | |
 | Apr 6  | Online gradient descent for strongly convex functions; kernel methods | [Scribe note (0406/) by Zisu Wang](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 22](notes/lec22_handwritten.pdf) | SSBD 14.4.4, 14.5.3, 15.5, 16.2, 16.3 | |
-| Apr 8  | Finish kernel methods; online Newton step for exp-concave functions  |  | [Note 23](notes/lec23_handwritten.pdf)  | SSBD 16.3, O 7.9 | |
+| Apr 8  | Finish kernel methods; online Newton step for exp-concave functions  | [Scribe note (0408/) by Robert Vacareanu](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 23](notes/lec23_handwritten.pdf)  | SSBD 16.3, O 7.9 | |
 | Apr 13  | Finish online Newton step; begin multi-armed bandits |  |  [Note 24](notes/lec24_handwritten.pdf) | LS Chap 4 |
 | Apr 15  |  |  |  |  | |
 | Apr 20  |  | linear bandits, MDPs | |  |  | |
