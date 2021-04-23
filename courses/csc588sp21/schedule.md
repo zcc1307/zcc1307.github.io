@@ -30,10 +30,10 @@
 | Apr 6  | Online gradient descent for strongly convex functions; kernel methods | [Scribe note (0406/) by Zisu Wang](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 22](notes/lec22_handwritten.pdf) | SSBD 14.4.4, 14.5.3, 15.5, 16.2, 16.3 | |
 | Apr 8  | Finish kernel methods; online Newton step for exp-concave functions  | [Scribe note (0408/) by Robert Vacareanu](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 23](notes/lec23_handwritten.pdf)  | SSBD 16.3, O 7.9 | |
 | Apr 13  | Finish online Newton step; begin multi-armed bandits (MAB) |  |  [Note 24](notes/lec24_handwritten.pdf) | LS Chap 4 |
-| Apr 15  | Explore-then-commit; Upper confidence bound (UCB) algorithm and analysis |  | [Note 25](notes/lec25_handwritten.pdf) | LS Chap 6,7  | |
-| Apr 20  | Finish UCB analysis; Adversarial MAB; EXP3 algorithm  |  | [Note 26](notes/lec26_handwritten.pdf) | LS Chap 11 | [HW4](hw/CSC_588_HW4.pdf) | |
-| Apr 22  | linear bandits, MDPs |  |  |  | |
-| Apr 27  |  |  |  |  | |
+| Apr 15  | Explore-then-commit; Upper confidence bound (UCB) algorithm and analysis | [Scribe note (0415/) by Jesse Friedbaum](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 25](notes/lec25_handwritten.pdf) | LS Chap 6,7  | |
+| Apr 20  | Finish UCB analysis; Adversarial MAB; EXP3 algorithm  | [Scribe note (0420/) by Bohan Li](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 26](notes/lec26_handwritten.pdf) | LS Chap 11 | [HW4](hw/CSC_588_HW4.pdf) | |
+| Apr 22  | Stochastic linear contextual bandits and the LinUCB/OFUL algorithm |  | [Note 27](notes/lec27_handwritten.pdf) | LS Chap 19, 20 | |
+| Apr 27  | Learning in episodic MDPs |  |  |  | |
 | Apr 29  | Project presentation I |  |  |  | |
 | May 4  | Project presentation II |  |  |  | |
 
