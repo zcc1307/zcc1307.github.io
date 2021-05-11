@@ -32,7 +32,7 @@
 | Apr 13  | Finish online Newton step; begin multi-armed bandits (MAB) |  |  [Note 24](notes/lec24_handwritten.pdf) | LS Chap 4 |
 | Apr 15  | Explore-then-commit; Upper confidence bound (UCB) algorithm and analysis | [Scribe note (0415/) by Jesse Friedbaum](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 25](notes/lec25_handwritten.pdf) | LS Chap 6,7  | |
 | Apr 20  | Finish UCB analysis; Adversarial MAB; EXP3 algorithm  | [Scribe note (0420/) by Bohan Li](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 26](notes/lec26_handwritten.pdf) | LS Chap 11 | [HW4](hw/CSC_588_HW4.pdf) | |
-| Apr 22  | Stochastic linear contextual bandits and the LinUCB/OFUL algorithm |  | [Note 27](notes/lec27_handwritten.pdf) | LS Chap 19, 20 | |
+| Apr 22  | Stochastic linear contextual bandits and the LinUCB/OFUL algorithm | [Scribe note (0422/) by Dan Li](https://www.overleaf.com/read/cjdpjbhwhpcx) | [Note 27](notes/lec27_handwritten.pdf) | LS Chap 19, 20 | |
 | Apr 27  | Episodic MDPs, Optimistic Q-learning (based on the original [Optimistic Q-Learning paper](https://arxiv.org/abs/1807.03765) and [Haipeng Luo's lecture note](https://haipeng-luo.net/courses/CSCI699_2019/lecture10.pdf))  |  | [Note 28](notes/lec28_handwritten.pdf) (page 7 onwards will not appear in the exam)  | [Chi Jin's RL theory course notes](https://sites.google.com/view/cjin/ele524?authuser=0) [RL theory book by Alekh Agarwal, Nan Jiang, Sham Kakade, and Wen Sun](https://rltheorybook.github.io/rltheorybook_AJKS.pdf) | |
 | Apr 29  | Project presentation I |  |  |  | |
 | May 4  | Project presentation II |  |  |  | |
