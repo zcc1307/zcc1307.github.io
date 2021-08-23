@@ -31,7 +31,7 @@ TuTh 9:30am-10:45am on Zoom (see D2L for meeting link)
 
 [Chicheng Zhang](https://zcc1307.github.io/)
 
-chichengz@cs.arizona.edu
+Gould-Simpson 720
 
 Office Hour: Mondays 1-2pm (see D2L for meeting link) or by email appointment
 
