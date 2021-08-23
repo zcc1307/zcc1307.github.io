@@ -4,7 +4,7 @@ Reinforcement learning (RL) has achieved great empirical success over the past f
 
 ### Logistics info
 
-Time and venue: TuTh 9:30am-10:45am, Cesar E. Chavez Building 305
+Time and venue: TuTh 3:30pm-4:45pm, Cesar E. Chavez Building 305
 
 [//]: # ([Gradescope](https://www.gradescope.com/courses/60240) entry code: GEPJNE)
 
