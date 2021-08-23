@@ -79,29 +79,61 @@
 <p>All registered students will be asked to give a 60-min in-class presentation on a RL theory paper of their choice. The paper should either come from the provided list of papers, or upon instructor approval. Before their presentation, a student is required to schedule a meeting with the instructor to discuss their presentation materials (slides, lecture notes, etc). Throughout the course, students are highly encouraged to meet with the instructors regularly on paper choices, reading progress, etc.</p>
 <p>Here are some useful guidelines for presentations: <a href="https://people.eecs.berkeley.edu/~jrs/speaking.html">Giving an Academic Talk</a> by Prof. Jonathan Shewchuk; <a href="https://cseweb.ucsd.edu//~elkan/254/speaking.html">Notes on Giving a Research Talk</a> by Prof. Charles Elkan.</p>
 <h3 id="paper-presentation-ideas-under-construction">Paper presentation ideas (under construction)</h3>
-<p>Below are a few example research directions in reinforcement learning theory, each with a few “seed papers”; you can use the related work section in these papers, or use the “cited by” functionality in e.g. <a href="https://scholar.google.com/">google scholar</a> to find more papers on the same topic. Please also refer to proceeding pages of recent machine learning / learning theory conferences and workshops for more project ideas, such as:</p>
+<p>Below are a few example research topics in reinforcement learning theory, each with a few “seed papers”; you can use the related work section in these papers, or use the “cited by” functionality in e.g. <a href="https://scholar.google.com/">google scholar</a> to find more papers on the same topic. Please also refer to proceeding pages of recent machine learning / learning theory conferences and workshops for more presentation ideas, such as:</p>
 <ul>
 <li><a href="http://proceedings.mlr.press/v97/">ICML</a>,</li>
 <li><a href="http://proceedings.mlr.press/v99/">COLT</a>,</li>
 <li><a href="https://papers.nips.cc/">NeurIPS</a> ,</li>
 <li><a href="http://proceedings.mlr.press/v108/">AISTATS</a>,</li>
 <li><a href="http://proceedings.mlr.press/v117/">ALT</a>,</li>
+<li><a href="https://wensun.github.io/rl_theory_workshop_2020_ICML.github.io/#papers">ICML 2020 workshop on theoretical foundations of RL</a></li>
+<li><a href="https://lyang36.github.io/icml2021_rltheory/">ICML 2021 workshop on RL theory</a></li>
 </ul>
-<p>RL theory courses in other institutions may also have interesting project ideas, for example:</p>
+<p>Courses / tutorials in the RL theory research community may also have interesting reference papers good for presentation, for example:</p>
 <ul>
-<li><a href="https://nanjiang.cs.illinois.edu/cs598project/">Statistical Reinforcement Learning by Nan Jiang</a></li>
-<li><a href="http://alekhagarwal.net/bandits_and_rl/#view3">Bandits and RL by Alekh Agarwal and Alex Slivkins</a></li>
+<li><a href="https://nanjiang.cs.illinois.edu/cs598project/">Statistical Reinforcement Learning</a> by Nan Jiang</li>
+<li><a href="http://alekhagarwal.net/bandits_and_rl/#view3">Bandits and RL</a> by Alekh Agarwal and Alex Slivkins</li>
+<li><a href="https://sites.google.com/view/rltheoryseminars/home">RL theory virtual seminars</a> by Gergely Neu, Ciara Pike-Burke, and Csaba Szepesvari</li>
+<li><a href="https://rltheorybook.github.io/colt21tutorial">COLT 2021 Tutorial: Statistical Foundations of Reinforcement Learning</a> by Akshay Krishnamurthy and Wen Sun</li>
+<li><a href="https://rlgammazero.github.io/">AAAI 2020 and ALT 2019 Tutorials: Exploration-Exploitation in Reinforcement Learning</a> by Ronan Fruit, Mohammad Ghavamzadeh, Alessandro Lazaric, and Matteo Pirotta</li>
+<li><a href="https://hunch.net/~tforl/">FOCS 2020 Tutorial: Theoretical Foundations of Reinforcement Learning</a> by Alekh Agarwal, Akshay Krishnamurthy, and John Langford</li>
 </ul>
-<h4 id="pac-reinforcement-learning">PAC Reinforcement Learning</h4>
+<h4 id="pac-rl">PAC RL</h4>
 <ul>
-<li>Michael Kearns and Satinder Singh. Near-Optimal Reinforcement Learning in Polynomial Time. Machine Learning, 2002.</li>
-<li>Ronen I. Brafman and Moshe Tennenholtz. R-max – A General Polynomial Time Algorithm forNear-Optimal Reinforcement Learning. JMLR 2002.</li>
-<li>Sham Kakade. On the sample complexity of reinforcement learning. University of College London, 2003.</li>
 <li>Lihong Li, Michael L. Littman, Thomas J. Walsh, Alexander L. Strehl. Knows what it knows: a framework for self-aware learning. Machine Learning, 2011.</li>
 <li>Nan Jiang. <a href="http://nanjiang.cs.illinois.edu/files/cs598/note7.pdf">Notes on Rmax exploration.</a></li>
+</ul>
+<h4 id="regret-minimization-in-rl">Regret minimization in RL</h4>
+<ul>
+<li>Thomas Jaksch, Ronald Ortner, Peter Auer. Near-optimal Regret Bounds for Reinforcement Learning. JMLR 2010.</li>
+<li>Mohammad Gheshlaghi Azar, Ian Osband, and Rémi Munos. Minimax regret bounds for reinforcement learning. ICML, 2017.</li>
 <li>Christoph Dann, Tor Lattimore, Emma Brunskill. Unifying PAC and Regret: Uniform PAC Bounds for Episodic Reinforcement Learning. NeurIPS 2017.</li>
-<li>Chi Jin, Zeyuan Allen-Zhu, Sebastien Bubeck, Michael I. Jordan. Is Q-learning Provably Efficient? NeurIPS 2018.</li>
 <li>Andrea Zanette, Emma Brunskill. Tighter Problem-Dependent Regret Bounds in Reinforcement Learning without Domain Knowledge using Value Function Bounds. ICML 2019.</li>
+<li>Max Simchowitz, Kevin Jamieson. Non-Asymptotic Gap-Dependent Regret Bounds for Tabular MDPs. NeurIPS 2019.</li>
+<li>Haike Xu, Tengyu Ma, Simon S. Du. Fine-Grained Gap-Dependent Bounds for Tabular MDPs via Adaptive Multi-Step Bootstrap. COLT 2021.</li>
+</ul>
+<h4 id="q-learning">Q-learning</h4>
+<ul>
+<li>Chi Jin, Zeyuan Allen-Zhu, Sebastien Bubeck, Michael I. Jordan. Is Q-learning Provably Efficient? NeurIPS 2018.</li>
+<li>Zihan Zhang, Yuan Zhou, Xiangyang Ji, Almost Optimal Model-Free Reinforcement Learning via Reference-Advantage Decomposition. NeurIPS 2020.</li>
+<li>Kunhe Yang, Lin F. Yang, Simon S. Du. Q-learning with Logarithmic Regret. AISTATS 2021.</li>
+</ul>
+<h4 id="function-approximation">Function approximation</h4>
+<ul>
+<li>Chi Jin, Zhuoran Yang, Zhaoran Wang, and Michael I. Jordan. Provably efficient reinforcement learning with linear function approximation. COLT 2020.</li>
+<li>Lin F. Yang and Mengdi Wang. Reinforcement Learning in feature space: Matrix bandit, kernels, and regret bound. ICML 2020.</li>
+<li>Andrea Zanette, Alessandro Lazaric, Mykel Kochenderfer, and Emma Brunskill. Learning near optimal policies with low inherent Bellman error. ICML 2020.</li>
+<li>Ruosong Wang, Ruslan Salakhutdinov, and Lin F. Yang. Reinforcement learning with general value function approximation: Provably efficient approach via bounded eluder dimension. NeurIPS 2020.</li>
+<li>Aditya Modi, Nan Jiang, Ambuj Tewari, Satinder Singh. Sample Complexity of Reinforcement Learning using Linearly Combined Model Ensembles. AISTATS 2020.</li>
+<li>Dongruo Zhou, Quanquan Gu, Csaba Szepesvari. Nearly minimax optimal reinforcement learning for linear mixture markov decision processes. COLT 2021.</li>
+</ul>
+<h4 id="nonparametric-rl">Nonparametric RL</h4>
+<ul>
+<li>Tongyi Cao, Akshay Krishnamurthy. Provably adaptive reinforcement learning in metric spaces. NeurIPS 2020.</li>
+<li>Sean R. Sinclair, Tianyu Wang, Gauri Jain, Siddhartha Banerjee, Christina Lee Yu. Adaptive Discretization for Model-Based Reinforcement Learning. NeurIPS 2020.</li>
+<li>Ahmed Touati, Adrien Ali Taiga, Marc G. Bellemare. Zooming for Efficient Model-Free Reinforcement Learning in Metric Spaces. 2020.</li>
+<li>Zhao Song, Wen Sun. Efficient Model-free Reinforcement Learning in Metric Spaces. 2019.</li>
+<li>Devavrat Shah, Qiaomin Xie. Q-Learning with Nearest Neighbors. NeurIPS 2018.</li>
 </ul>
 <h4 id="imitation-learning">Imitation learning</h4>
 <h5 id="interactive-imitation-learning">Interactive Imitation Learning</h5>
