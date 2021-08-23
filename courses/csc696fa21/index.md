@@ -101,3 +101,5 @@ Many RL theory courses offered at other institutions have good lecture materials
 [AAAI 2020 and ALT 2019 Tutorials: Exploration-Exploitation in Reinforcement Learning](https://rlgammazero.github.io/) by Ronan Fruit, Mohammad Ghavamzadeh, Alessandro Lazaric, and Matteo Pirotta
 
 [FOCS 2020 Tutorial: Theoretical Foundations of Reinforcement Learning](https://hunch.net/~tforl/) by Alekh Agarwal, Akshay Krishnamurthy, and John Langford
+
+[ICML 2018 Tutorial: Optimization Perspectives on Learning to Control](https://people.eecs.berkeley.edu/~brecht/l2c-icml2018/) by Ben Recht
