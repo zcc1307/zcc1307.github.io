@@ -94,3 +94,10 @@ Many RL theory courses offered at other institutions have good lecture materials
 
 [Reinforcement Learning](http://chercheurs.lille.inria.fr/~lazaric/Webpage/MVA-RL_Course16.html) by Alessandro Lazaric
 
+### Useful reinforcement learning theory tutorials
+
+[COLT 2021 Tutorial: Statistical Foundations of Reinforcement Learning](https://rltheorybook.github.io/colt21tutorial) by Akshay Krishnamurthy and Wen Sun
+
+[AAAI 2020 and ALT 2019 Tutorials: Exploration-Exploitation in Reinforcement Learning](https://rlgammazero.github.io/) by Ronan Fruit, Mohammad Ghavamzadeh, Alessandro Lazaric, and Matteo Pirotta
+
+[FOCS 2020 Tutorial: Theoretical Foundations of Reinforcement Learning](https://hunch.net/~tforl/) by Alekh Agarwal, Akshay Krishnamurthy, and John Langford
