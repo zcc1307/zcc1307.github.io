@@ -28,6 +28,7 @@ Courses / tutorials in the RL theory research community may also have interestin
 * [FOCS 2020 Tutorial: Theoretical Foundations of Reinforcement Learning](https://hunch.net/~tforl/) by Alekh Agarwal, Akshay Krishnamurthy, and John Langford
 
 #### PAC RL
+* Andrew Wagenmaker, Max Simchowitz, Kevin Jamieson. Beyond No Regret: Instance-Dependent PAC Reinforcement Learning. 2021.
 * Lihong Li, Michael L. Littman, Thomas J. Walsh, Alexander L. Strehl. Knows what it knows: a framework for self-aware learning. Machine Learning, 2011.
 * Nan Jiang. [Notes on Rmax exploration.](http://nanjiang.cs.illinois.edu/files/cs598/note7.pdf)
 
@@ -43,6 +44,7 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Chi Jin, Zeyuan Allen-Zhu, Sebastien Bubeck, Michael I. Jordan. Is Q-learning Provably Efficient? NeurIPS 2018.
 * Zihan Zhang, Yuan Zhou, Xiangyang Ji, Almost Optimal Model-Free Reinforcement Learning via Reference-Advantage Decomposition. NeurIPS 2020.
 * Kunhe Yang, Lin F. Yang, Simon S. Du. Q-learning with Logarithmic Regret. AISTATS 2021.
+* Kefan Dong, Yuanhao Wang, Xiaoyu Chen, Liwei Wang. Q-learning with UCB Exploration is Sample Efficient for Infinite-Horizon MDP. ICLR 2020. 
 
 #### Function approximation
 * Chi Jin, Zhuoran Yang, Zhaoran Wang, and Michael I. Jordan. Provably efficient reinforcement learning with linear function approximation. COLT 2020.
@@ -51,6 +53,8 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Ruosong Wang, Ruslan Salakhutdinov, and Lin F. Yang. Reinforcement learning with general value function approximation: Provably efficient approach via bounded eluder dimension. NeurIPS 2020.
 * Aditya Modi, Nan Jiang, Ambuj Tewari, Satinder Singh. Sample Complexity of Reinforcement Learning using Linearly Combined Model Ensembles. AISTATS 2020.
 * Dongruo Zhou, Quanquan Gu, Csaba Szepesvari. Nearly minimax optimal reinforcement learning for linear mixture markov decision processes. COLT 2021.
+* Dylan J. Foster, Alexander Rakhlin, David Simchi-Levi, Yunzong Xu. Instance-Dependent Complexity of Contextual Bandits and Reinforcement Learning: A Disagreement-Based Perspective.
+* Zhuoran Yang, Chi Jin, Zhaoran Wang, Mengdi Wang, Michael I. Jordan. On Function Approximation in Reinforcement Learning: Optimism in the Face of Large State Spaces. NeurIPS 2020.
 
 #### Nonparametric RL
 * Tongyi Cao, Akshay Krishnamurthy. Provably adaptive reinforcement learning in metric spaces. NeurIPS 2020.
@@ -58,6 +62,37 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Ahmed Touati, Adrien Ali Taiga, Marc G. Bellemare. Zooming for Efficient Model-Free Reinforcement Learning in Metric Spaces. 2020.
 * Zhao Song, Wen Sun. Efficient Model-free Reinforcement Learning in Metric Spaces. 2019.
 * Devavrat Shah, Qiaomin Xie. Q-Learning with Nearest Neighbors. NeurIPS 2018.
+
+#### Model selection in online RL
+* Jonathan N. Lee, Aldo Pacchiano, Vidya Muthukumar, Weihao Kong, Emma Brunskill. Online Model Selection for Reinforcement Learning with Function Approximation. AISTATS 2021.
+* Aldo Pacchiano, Christoph Dann, Claudio Gentile, Peter Bartlett. Regret Bound Balancing and Elimination for Model Selection in Bandits and RL. 2020. 
+* Ashok Cutkosky, Christoph Dann, Abhimanyu Das, Claudio Gentile, Aldo Pacchiano, Manish Purohit. Dynamic Balancing for Model Selection in Bandits and RL. ICML 2021.
+
+#### Multi-task RL
+* Jiachen Hu, Xiaoyu Chen, Chi Jin, Lihong Li, Liwei Wang. Near-optimal Representation Learning for Linear Bandits and Linear RL. ICML 2021. 
+* Rui Lu, Gao Huang, Simon S. Du. On the Power of Multitask Representation Learning in Linear MDP. 2021.
+
+#### RL with constraints
+* Sobhan Miryoosefi, Kianté Brantley, Hal Daumé III, Miroslav Dudik, Robert Schapire. Reinforcement Learning with Convex Constraints. NeurIPS 2019.
+* Kianté Brantley, Miroslav Dudik, Thodoris Lykouris, Sobhan Miryoosefi, Max Simchowitz, Aleksandrs Slivkins, Wen Sun. Constrained episodic reinforcement learning in concave-convex and knapsack settings. NeurIPS 2020.
+* Xiaoyu Chen, Jiachen Hu, Lihong Li, Liwei Wang. Efficient Reinforcement Learning in Factored MDPs with Application to Constrained RL. ICLR 2021. 
+
+#### Corruption-robust RL
+* Thodoris Lykouris, Max Simchowitz, Alex Slivkins, Wen Sun. Corruption-robust exploration in episodic reinforcement learning. COLT 2021.
+* Yifang Chen, Simon S. Du, Kevin Jamieson. Improved Corruption Robust Algorithms for Episodic Reinforcement Learning. ICML 2021. 
+* Tianhao Wu, Yunchang Yang, Simon Du, Liwei Wang. On Reinforcement Learning with Adversarial Corruption and Its Application to Block MDP. ICML 2021.
+* Xuezhou Zhang, Yiding Chen, Jerry Zhu, Wen Sun. Corruption-Robust Offline Reinforcement Learning. 2021. 
+* Tiancheng Jin, Longbo Huang, and Haipeng Luo. The Best of Both Worlds: Stochastic and Adversarial Episodic MDPs with Unknown Transition. 2021.
+
+#### Reward-free exploration
+* Chi Jin, Akshay Krishnamurthy, Max Simchowitz, Tiancheng Yu. Reward-Free Exploration for Reinforcement Learning. ICML 2020.
+* Emilie Kaufmann, Pierre Ménard, Omar Darwiche Domingues, Anders Jonsson, Edouard Leurent, Michal Valko. Adaptive Reward-Free Exploration. ALT 2021.
+* Ruosong Wang, Simon S. Du, Lin F. Yang, Ruslan Salakhutdinov. On Reward-Free Reinforcement Learning with Linear Function Approximation. NeurIPS 2020.
+
+#### RL in adversarial MDPs
+* Tiancheng Jin and Haipeng Luo. Simultaneously Learning Stochastic and Adversarial Episodic MDPs with Known Transition. NeurIPS 2020.
+* Chi Jin, Tiancheng Jin, Haipeng Luo, Suvrit Sra, and Tiancheng Yu. Learning Adversarial Markov Decision Processes with Bandit Feedback and Unknown Transition.
+
 
 
 #### Imitation learning
