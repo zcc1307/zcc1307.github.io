@@ -6,8 +6,8 @@ All registered students will be asked to give a 60-min in-class presentation on 
 
 Here are some useful guidelines for: 
 
-*reading papers: [How to read a paper](http://ccr.sigcomm.org/online/files/p83-keshavA.pdf) by Prof. Srinivasan Keshav; [Reading in Algorithms: Paper-Reading Survival Kit](https://cs.stanford.edu/~rishig/courses/ref/paper-reading-technical.pdf) by Prof. Tim Roughgarden.
-*presentations: [Giving an Academic Talk](https://people.eecs.berkeley.edu/~jrs/speaking.html) by Prof. Jonathan Shewchuk; [Notes on Giving a Research Talk](https://cseweb.ucsd.edu//~elkan/254/speaking.html) by Prof. Charles Elkan.
+* reading papers: [How to read a paper](http://ccr.sigcomm.org/online/files/p83-keshavA.pdf) by Prof. Srinivasan Keshav; [Reading in Algorithms: Paper-Reading Survival Kit](https://cs.stanford.edu/~rishig/courses/ref/paper-reading-technical.pdf) by Prof. Tim Roughgarden.
+* presentations: [Giving an Academic Talk](https://people.eecs.berkeley.edu/~jrs/speaking.html) by Prof. Jonathan Shewchuk; [Notes on Giving a Research Talk](https://cseweb.ucsd.edu//~elkan/254/speaking.html) by Prof. Charles Elkan.
 
 ### Paper presentation ideas (under construction)
 
