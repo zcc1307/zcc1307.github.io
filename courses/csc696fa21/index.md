@@ -22,7 +22,7 @@ Time and venue: TuTh 3:30pm-4:45pm, Cesar E. Chavez Building 305
 
 Office: Gould-Simpson 720
 
-Office Hours: TBA (or by email appointment)
+Office Hours: Thursdays 2-3pm, or by email appointment
 
 ### Textbook
 
@@ -43,6 +43,8 @@ Markov Decision Processes: Discrete Stochastic Dynamic Programming by Martin Put
 ### Review for prerequisites
 
 Here are some excellent notes for [probability review](http://cs229.stanford.edu/section/cs229-prob.pdf) and [linear algebra review](http://cs229.stanford.edu/section/cs229-linalg.pdf) from Stanford's CS 229 course.
+
+I also recommended watching the lecture [Street Fighting Mathematics](https://www.youtube.com/watch?v=qP4XEZ54eSc&list=PLm3J0oaFux3ZYpFLwwrlv_EHH9wtH6pnX&index=3) by Ryan O'Donnell for general introductions to approaching theory-ish problems.
 
 ### Scribing and LaTeX
 We will be using the following [scribe note LaTeX template file](notes/scribe_template.tex) and [style file](notes/definitions.sty). See also [Prof. Rob Schapire's suggestions on preparing scribe notes](https://www.cs.princeton.edu/courses/archive/spring19/cos511/scribeinfo.html). Please sign up for one scribing slot at the [sign up sheet](https://docs.google.com/spreadsheets/d/1rcYglBVxMDPwRKHS-H9AvYpfEZawrQYynfsuJp0Nv0U/edit?usp=sharing).
