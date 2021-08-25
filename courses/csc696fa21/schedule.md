@@ -4,8 +4,8 @@
 
 | Date  | Topics | Scribe notes | Handwritten notes | Additional readings  | Homework |
 |:-:|:------------:|:---:|:---:|:---:|:---:|
-|8/24	| Administrivia; Introduction to RL	|  |	 | AJKS Section 1.1-1.2 |  |
-|8/26		|			|			|			|			|			|
+|8/24	| Administrivia; Introduction to RL	| [slides](notes/CSC696H_intro.pptx) |	 | AJKS Section 1.1-1.2 |  |
+|8/26		|	Introduction to MDPs	|			|			|			|			|
 |8/31		|			|			|			|			|			|
 |9/2		|			|			|			|			|			|
 |9/7		|			|			|			|			|			|
