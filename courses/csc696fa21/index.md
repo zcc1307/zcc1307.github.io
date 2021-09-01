@@ -12,7 +12,7 @@ Time and venue: TuTh 3:30pm-4:45pm, Cesar E. Chavez Building 305
 
 [Syllabus](syllabus.pdf)
 
-We will be using Piazza to make important announcements and do Q&As. Please self-enroll [here](piazza.com/arizona/fall2021/csc696h002). Some general rules:
+We will be using Piazza to make important announcements and do Q&As. Please self-enroll [here](https://piazza.com/arizona/fall2021/csc696h002). Some general rules:
 
 * If you have technical questions, try posing your questions as general as possible, so that it can promote discussions among the class.
 * If you have private questions, unless necessary, please make a private Piazza post instead of sending me an email. This will help me process your requests much more efficiently.
