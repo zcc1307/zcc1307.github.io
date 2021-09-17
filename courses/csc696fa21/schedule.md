@@ -11,7 +11,7 @@
 |9/7		|	Planning: value iteration; begin policy iteration	|	[Scribe note 0907/ by Yangzi Lu](https://www.overleaf.com/read/ydtgyvxhrfqg)		|	 AJKS Section 1.4.1; 1.4.2	|			|		
 |9/9		|	Planning: finish policy iteration; linear programming	|		[Scribe note 0909/ by Yichen Li](https://www.overleaf.com/read/ydtgyvxhrfqg)	|	AJKS Section 1.4.2; 1.5	|			|		
 |9/14		|	Finite horizon episodic MDPs; RL with a generative model	|			|	 AJKS Section 1.2		|			|		
-|9/16		|	Sample-based value iteration and analysis		|			|		AJKS Section 2.1-2.2, [Chi Jin's lecture note 5,6](https://sites.google.com/view/cjin/ele524) (Optional) AJKS Section 2.3	|			|	
+|9/16		|	Sample-based value iteration and analysis		|			|		AJKS Section 2.1-2.2, [Chi Jin's lecture note 5,6](https://sites.google.com/view/cjin/ele524) (Optional) AJKS Section 2.3	|	[HW1](hw/CSC_696H_Homework_1.pdf)		|	
 |9/21		|			|			|			|			|		
 |9/23		|			|			|			|			|	
 |9/28		|			|			|			|			|		
