@@ -39,6 +39,8 @@ Courses / tutorials in the RL theory research community may also have interestin
 #### PAC RL
 * Andrew Wagenmaker, Max Simchowitz, Kevin Jamieson. Beyond No Regret: Instance-Dependent PAC Reinforcement Learning. 2021.
 * Lihong Li, Michael L. Littman, Thomas J. Walsh, Alexander L. Strehl. Knows what it knows: a framework for self-aware learning. Machine Learning, 2011.
+* Omar Darwiche Domingues, Pierre Ménard, Emilie Kaufmann, Michal Valko. Episodic Reinforcement Learning in Finite MDPs: Minimax Lower Bounds Revisited. ALT 2021.
+
 
 #### Regret minimization in RL
 * Thomas Jaksch, Ronald Ortner, Peter Auer. Near-optimal Regret Bounds for Reinforcement Learning. JMLR 2010.
@@ -92,13 +94,14 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Xuezhou Zhang, Yiding Chen, Jerry Zhu, Wen Sun. Corruption-Robust Offline Reinforcement Learning. 2021. 
 * Tiancheng Jin, Longbo Huang, and Haipeng Luo. The Best of Both Worlds: Stochastic and Adversarial Episodic MDPs with Unknown Transition. 2021.
 
-#### Reward-free exploration
+#### Reward-free exploration; Active learning
 * Chi Jin, Akshay Krishnamurthy, Max Simchowitz, Tiancheng Yu. Reward-Free Exploration for Reinforcement Learning. ICML 2020.
 * Emilie Kaufmann, Pierre Ménard, Omar Darwiche Domingues, Anders Jonsson, Edouard Leurent, Michal Valko. Adaptive Reward-Free Exploration. ALT 2021.
 * Ruosong Wang, Simon S. Du, Lin F. Yang, Ruslan Salakhutdinov. On Reward-Free Reinforcement Learning with Linear Function Approximation. NeurIPS 2020.
 * Pierre Ménard, Omar Darwiche Domingues, Emilie Kaufmann, Anders Jonsson, Edouard Leurent, Michal Valko. Fast active learning for pure exploration in reinforcement learning. ICML 2021.
 
 #### RL in adversarial MDPs
+* Eyal Even-Dar, Sham M Kakade, and Yishay Mansour. Online Markov decision processes. Mathematics of Operations Research, 2009.
 * Zimin, A. and Neu, G. Online learning in episodic markovian decision processes by relative entropy policy search. NeurIPS 2013.
 * Rosenberg, A. and Mansour, Y. Online convex optimization in adversarial markov decision processes. ICML 2019.
 * Tiancheng Jin and Haipeng Luo. Simultaneously Learning Stochastic and Adversarial Episodic MDPs with Known Transition. NeurIPS 2020.
@@ -111,6 +114,22 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Qinghua Liu, Tiancheng Yu, Yu Bai, and Chi Jin. A sharp analysis of model-based reinforcement learning with self-play. ICML 2021.
 * Yi Tian, Yuanhao Wang, Tiancheng Yu, Suvrit Sra. Online Learning in Unknown Markov Games. ICML 2021.
 
+#### RL and control
+* Naman Agarwal, Brian Bullins, Elad Hazan, Sham M Kakade, and Karan Singh. Online control with adversarial disturbances. ICML 2019.
+* Dylan J Foster and Max Simchowitz. Logarithmic Regret for Adversarial Online Control. ICML 2020.
+* Naman Agarwal, Elad Hazan, Karan Singh. Logarithmic regret for online control. NeurIPS 2019.
+* Gautam Goel and Babak Hassibi. The power of linear controllers in LQR control. 2020.
+* Yasin Abbasi-Yadkori and Csaba Szepesvari. Regret bounds for the adaptive control of linear quadratic systems. COLT 2011.
+* Alon Cohen, Tomer Koren, and Yishay Mansour. Learning linear-quadratic regulators efficiently with only sqrt(T) regret. ICML 2019.
+* Sarah Dean, Horia Mania, Nikolai Matni, Benjamin Recht, and Stephen Tu. Regret bounds for robust adaptive control of the linear quadratic regulator. NeurIPS 2018.
+
+#### Policy optimization
+* Alekh Agarwal, Sham M. Kakade, Jason D. Lee, and Gaurav Mahajan. On the theory of policy gradient methods: Optimality, approximation, and distribution shift. 2020.
+* Jincheng Mei, Chenjun Xiao, Csaba Szepesvari, and Dale Schuurmans. On the global convergence rates of softmax policy gradient methods, 2020.
+* Yasin Abbasi-Yadkori, Peter Bartlett, Kush Bhatia, Nevena Lazic, Csaba Szepesvari, and Gellert Weisz. POLITEX: Regret bounds for policy iteration using expert prediction. ICML 2019.
+* Boyi Liu, Qi Cai, Zhuoran Yang, and Zhaoran Wang. Neural proximal/trust region policy optimization attains globally optimal policy. 2019. 
+* Qi Cai, Zhuoran Yang, Chi Jin, Zhaoran Wang. Provably efficient exploration in policy optimization. ICML 2020.
+
 #### Imitation learning and Inverse Reinforcement Learning
 * Wen Sun, Arun Venkatraman, Geoffrey J. Gordon, Byron Boots, J. Andrew Bagnell. Deeply AggreVaTeD: differentiable imitation learning for sequential prediction. ICML 2017.
 * Ching-An Cheng and Byron Boots. Convergence of Value Aggregation for Imitation Learning. AISTATS 2018.
@@ -119,3 +138,6 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Umar Syed and Robert E. Schapire. A Game-Theoretic Approach to Apprenticeship Learning. NeurIPS 2007.
 * Alekh Agarwal, Ashwinkumar Badanidiyuru, Miroslav Dudik, Robert Schapire, Aleksandrs Slivkins. Robust Multi-objective Learning with Mentor Feedback. COLT 2014.
 * Kareem Amin, Nan Jiang, Satinder Singh. Repeated Inverse Reinforcement Learning. NeurIPS 2017.
+* Nived Rajaraman, Lin F. Yang, Jiantao Jiao, Kannan Ramachandran. Toward the Fundamental Limits of Imitation Learning. NeurIPS 2020.
+* Paria Rashidinejad, Banghua Zhu, Cong Ma, Jiantao Jiao, Stuart Russell. Bridging Offline Reinforcement Learning and Imitation Learning: A Tale of Pessimism. 2021.
+
