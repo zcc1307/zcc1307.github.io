@@ -30,10 +30,15 @@ Courses / tutorials in the RL theory research community may also have interestin
 * [AAAI 2020 and ALT 2019 Tutorials: Exploration-Exploitation in Reinforcement Learning](https://rlgammazero.github.io/) by Ronan Fruit, Mohammad Ghavamzadeh, Alessandro Lazaric, and Matteo Pirotta
 * [FOCS 2020 Tutorial: Theoretical Foundations of Reinforcement Learning](https://hunch.net/~tforl/) by Alekh Agarwal, Akshay Krishnamurthy, and John Langford
 
+#### RL with a generative model
+* Mohammad Gheshlaghi Azar, Remi Munos, and Hilbert J Kappen. Minimax pac bounds on the sample complexity of reinforcement learning with a generative model. Machine learning, 2013
+* Gen Li, Yuting Wei, Yuejie Chi, Yuantao Gu, Yuxin Chen. Breaking the Sample Size Barrier in Model-Based Reinforcement Learning with a Generative Model. NeurIPS 2020.
+* Aaron Sidford, Mengdi Wang, Xian Wu, Lin F. Yang, and Yinyu Ye. Near-optimal time and sample complexities for solving discounted markov decision process with a generative model. NeurIPS 2018.
+* Alekh Agarwal, Sham Kakade, and Lin F. Yang. Model-based reinforcement learning with a generative model is minimax optimal. COLT 2020.
+
 #### PAC RL
 * Andrew Wagenmaker, Max Simchowitz, Kevin Jamieson. Beyond No Regret: Instance-Dependent PAC Reinforcement Learning. 2021.
 * Lihong Li, Michael L. Littman, Thomas J. Walsh, Alexander L. Strehl. Knows what it knows: a framework for self-aware learning. Machine Learning, 2011.
-* Nan Jiang. [Notes on Rmax exploration.](http://nanjiang.cs.illinois.edu/files/cs598/note7.pdf)
 
 #### Regret minimization in RL
 * Thomas Jaksch, Ronald Ortner, Peter Auer. Near-optimal Regret Bounds for Reinforcement Learning. JMLR 2010.
@@ -91,36 +96,26 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Chi Jin, Akshay Krishnamurthy, Max Simchowitz, Tiancheng Yu. Reward-Free Exploration for Reinforcement Learning. ICML 2020.
 * Emilie Kaufmann, Pierre Ménard, Omar Darwiche Domingues, Anders Jonsson, Edouard Leurent, Michal Valko. Adaptive Reward-Free Exploration. ALT 2021.
 * Ruosong Wang, Simon S. Du, Lin F. Yang, Ruslan Salakhutdinov. On Reward-Free Reinforcement Learning with Linear Function Approximation. NeurIPS 2020.
+* Pierre Ménard, Omar Darwiche Domingues, Emilie Kaufmann, Anders Jonsson, Edouard Leurent, Michal Valko. Fast active learning for pure exploration in reinforcement learning. ICML 2021.
 
 #### RL in adversarial MDPs
+* Zimin, A. and Neu, G. Online learning in episodic markovian decision processes by relative entropy policy search. NeurIPS 2013.
+* Rosenberg, A. and Mansour, Y. Online convex optimization in adversarial markov decision processes. ICML 2019.
 * Tiancheng Jin and Haipeng Luo. Simultaneously Learning Stochastic and Adversarial Episodic MDPs with Known Transition. NeurIPS 2020.
 * Chi Jin, Tiancheng Jin, Haipeng Luo, Suvrit Sra, and Tiancheng Yu. Learning Adversarial Markov Decision Processes with Bandit Feedback and Unknown Transition.
 
+#### Stochastic games
+* Chen-Yu Wei, Yi-Te Hong, Chi-Jen Lu. Online Reinforcement Learning in Stochastic Games. NeurIPS 2017.
+* Yu Bai, Chi Jin, and Tiancheng Yu. Near-optimal reinforcement learning with self-play. NeurIPS 2020.
+* Qiaomin Xie, Yudong Chen, Zhaoran Wang, and Zhuoran Yang. Learning Zero-Sum Simultaneous Move Markov Games Using Function Approximation and Correlated Equilibrium. COLT 2020.
+* Qinghua Liu, Tiancheng Yu, Yu Bai, and Chi Jin. A sharp analysis of model-based reinforcement learning with self-play. ICML 2021.
+* Yi Tian, Yuanhao Wang, Tiancheng Yu, Suvrit Sra. Online Learning in Unknown Markov Games. ICML 2021.
 
-
-#### Imitation learning
-
-##### Interactive Imitation Learning
-
-* Hal Daumé III, John Langford, Daniel Marcu. Search-based Structured Prediction. Machine Learning Journal 2009.
-* Stephane Ross, Drew Bagnell. Efficient Reductions for Imitation Learning. AISTATS 2010.
-* Stephane Ross, Geoffrey J. Gordon, J. Andrew Bagnell. A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning. AISTATS 2011.
-* Stephane Ross, J. Andrew Bagnell. Reinforcement and Imitation Learning via Interactive No-Regret Learning. NeurIPS 2014.
+#### Imitation learning and Inverse Reinforcement Learning
 * Wen Sun, Arun Venkatraman, Geoffrey J. Gordon, Byron Boots, J. Andrew Bagnell. Deeply AggreVaTeD: differentiable imitation learning for sequential prediction. ICML 2017.
 * Ching-An Cheng and Byron Boots. Convergence of Value Aggregation for Imitation Learning. AISTATS 2018.
 * Wen Sun, Anirudh Vemula, Byron Boots, J. Andrew Bagnell. Provably Efficient Imitation Learning from Observation Alone. ICML 2019.
-
-##### Apprenticeship Learning and Inverse Reinforcement Learning
-
-* Pieter Abbeel and Andrew Y. Ng. Apprenticeship Learning via Inverse Reinforcement Learning. ICML 2004.
-* Brian D. Ziebart, Andrew Maas, J.Andrew Bagnell, Anind K. Dey. Maximum Entropy Inverse Reinforcement Learning. AAAI 2008.
-* Brian D. Ziebart, J.Andrew Bagnell, Anind K. Dey. Modeling Interaction via the Principle of Maximum Causal Entropy. ICML 2010.
+* Gokul Swamy, Sanjiban Choudhury, J Andrew Bagnell, Steven Wu. Of Moments and Matching: A Game-Theoretic Framework for Closing the Imitation Gap. ICML 2021.
 * Umar Syed and Robert E. Schapire. A Game-Theoretic Approach to Apprenticeship Learning. NeurIPS 2007.
-* Alekh Agarwal, Ashwinkumar Badanidiyuru, Miroslav Dudik, Robert Schapire, Aleksandrs Slivkins, Miro Dudík. Robust Multi-objective Learning with Mentor Feedback. COLT 2014.
-* Jonathan Ho, Stefano Ermon. Generative Adversarial Imitation Learning. NeurIPS 2016.
+* Alekh Agarwal, Ashwinkumar Badanidiyuru, Miroslav Dudik, Robert Schapire, Aleksandrs Slivkins. Robust Multi-objective Learning with Mentor Feedback. COLT 2014.
 * Kareem Amin, Nan Jiang, Satinder Singh. Repeated Inverse Reinforcement Learning. NeurIPS 2017.
-
-
-
-
-
