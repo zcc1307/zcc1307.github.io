@@ -14,7 +14,7 @@
 |9/16		|	Sample-based value iteration and analysis; simulation lemma	|	[Scribe note 0916/ by Zhiwu Guo](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Section 2.1-2.2, [Chi Jin's lecture notes 5,6](https://sites.google.com/view/cjin/ele524) (Optional) AJKS Section 2.3, [Proof of Hoeffding's Inequality](https://zcc1307.github.io/courses/csc588sp21/notes/lec4_handwritten.pdf)	|	[HW1](hw/CSC_696H_Homework_1.pdf)		|	
 |9/21		|	Q-learning for RL with a generative model	|			|		[Chi Jin's lecture notes 6,7](https://sites.google.com/view/cjin/ele524)	|			|		
 |9/23		|	Finish Q-learning; Begin online episodic RL; Multi-armed bandits (MAB); Explore-then-commit	|			|		AJKS Sections 7.1, 6.1	|			|	
-|9/28		|	MAB algorithms: epsilon-greedy, UCB; Failure of epsilon-greedy in online RL		|			|		AJKS Sections 6.1, [Optimistic Q-learning paper](https://arxiv.org/pdf/1807.03765.pdf) Appendix A |			|		
+|9/28		|	MAB algorithms: epsilon-greedy, UCB; Failure of epsilon-greedy in online episodic RL		|			|		AJKS Sections 6.1, [Optimistic Q-learning paper](https://arxiv.org/pdf/1807.03765.pdf) Appendix A |			|		
 |9/30		|			|			|			|			|		
 |10/5		|			|			|			|			|		
 |10/7		|			|			|			|			|		
