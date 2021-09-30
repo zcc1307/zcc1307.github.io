@@ -130,6 +130,12 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Boyi Liu, Qi Cai, Zhuoran Yang, and Zhaoran Wang. Neural proximal/trust region policy optimization attains globally optimal policy. 2019. 
 * Qi Cai, Zhuoran Yang, Chi Jin, Zhaoran Wang. Provably efficient exploration in policy optimization. ICML 2020.
 
+#### RL in rich-observation MDPs 
+* Christoph Dann, Nan Jiang, Akshay Krishnamurthy, Alekh Agarwal, John Langford, Robert E. Schapire. On Oracle-Efficient PAC RL with Rich Observations. NeurIPS 2018.
+* Simon S. Du, Akshay Krishnamurthy, Nan Jiang, Alekh Agarwal, Miroslav Dudík, John Langford. Provably efficient RL with Rich Observations via Latent State Decoding. ICML 2019.
+* Wen Sun, Nan Jiang, Akshay Krishnamurthy, Alekh Agarwal, John Langford. Model-based RL in Contextual Decision Processes: PAC bounds and Exponential Improvements over Model-free Approaches. COLT 2019.
+* Kefan Dong, Jian Peng, Yining Wang, Yuan Zhou. \sqrt{n}-Regret for Learning in Markov Decision Processes with Function Approximation and Low Bellman Rank. COLT 2020.
+
 #### Imitation learning and Inverse Reinforcement Learning
 * Wen Sun, Arun Venkatraman, Geoffrey J. Gordon, Byron Boots, J. Andrew Bagnell. Deeply AggreVaTeD: differentiable imitation learning for sequential prediction. ICML 2017.
 * Ching-An Cheng and Byron Boots. Convergence of Value Aggregation for Imitation Learning. AISTATS 2018.
