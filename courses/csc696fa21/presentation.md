@@ -138,12 +138,13 @@ Courses / tutorials in the RL theory research community may also have interestin
 
 #### Imitation learning and Inverse Reinforcement Learning
 * Wen Sun, Arun Venkatraman, Geoffrey J. Gordon, Byron Boots, J. Andrew Bagnell. Deeply AggreVaTeD: differentiable imitation learning for sequential prediction. ICML 2017.
-* Ching-An Cheng and Byron Boots. Convergence of Value Aggregation for Imitation Learning. AISTATS 2018.
-* Wen Sun, Anirudh Vemula, Byron Boots, J. Andrew Bagnell. Provably Efficient Imitation Learning from Observation Alone. ICML 2019.
 * Gokul Swamy, Sanjiban Choudhury, J Andrew Bagnell, Steven Wu. Of Moments and Matching: A Game-Theoretic Framework for Closing the Imitation Gap. ICML 2021.
 * Umar Syed and Robert E. Schapire. A Game-Theoretic Approach to Apprenticeship Learning. NeurIPS 2007.
 * Alekh Agarwal, Ashwinkumar Badanidiyuru, Miroslav Dudik, Robert Schapire, Aleksandrs Slivkins. Robust Multi-objective Learning with Mentor Feedback. COLT 2014.
 * Kareem Amin, Nan Jiang, Satinder Singh. Repeated Inverse Reinforcement Learning. NeurIPS 2017.
 * Nived Rajaraman, Lin F. Yang, Jiantao Jiao, Kannan Ramachandran. Toward the Fundamental Limits of Imitation Learning. NeurIPS 2020.
 * Paria Rashidinejad, Banghua Zhu, Cong Ma, Jiantao Jiao, Stuart Russell. Bridging Offline Reinforcement Learning and Imitation Learning: A Tale of Pessimism. 2021.
+
+[//]: # (* Ching-An Cheng and Byron Boots. Convergence of Value Aggregation for Imitation Learning. AISTATS 2018.
+* Wen Sun, Anirudh Vemula, Byron Boots, J. Andrew Bagnell. Provably Efficient Imitation Learning from Observation Alone. ICML 2019.)
 
