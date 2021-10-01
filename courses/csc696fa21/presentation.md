@@ -145,6 +145,5 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Nived Rajaraman, Lin F. Yang, Jiantao Jiao, Kannan Ramachandran. Toward the Fundamental Limits of Imitation Learning. NeurIPS 2020.
 * Paria Rashidinejad, Banghua Zhu, Cong Ma, Jiantao Jiao, Stuart Russell. Bridging Offline Reinforcement Learning and Imitation Learning: A Tale of Pessimism. 2021.
 
-[//]: # (* Ching-An Cheng and Byron Boots. Convergence of Value Aggregation for Imitation Learning. AISTATS 2018.
-* Wen Sun, Anirudh Vemula, Byron Boots, J. Andrew Bagnell. Provably Efficient Imitation Learning from Observation Alone. ICML 2019.)
+[//]: # (* Ching-An Cheng and Byron Boots. Convergence of Value Aggregation for Imitation Learning. AISTATS 2018.* Wen Sun, Anirudh Vemula, Byron Boots, J. Andrew Bagnell. Provably Efficient Imitation Learning from Observation Alone. ICML 2019.)
 
