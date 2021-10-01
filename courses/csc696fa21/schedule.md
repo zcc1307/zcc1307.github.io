@@ -15,7 +15,7 @@
 |9/21		|	Q-learning for RL with a generative model	|			|		[Chi Jin's lecture notes 6,7](https://sites.google.com/view/cjin/ele524)	|			|		
 |9/23		|	Finish Q-learning; Begin online episodic RL; Multi-armed bandits (MAB); Explore-then-commit	|			|		AJKS Sections 7.1, 6.1	|			|	
 |9/28		|	MAB algorithms: epsilon-greedy, UCB; Failure of epsilon-greedy in online episodic RL		|			|		AJKS Sections 6.1, [Optimistic Q-learning paper](https://arxiv.org/pdf/1807.03765.pdf) Appendix A |			|		
-|9/30		|			|			|			|			|		
+|9/30		|	The UCB-VI algorithm and its analysis		|	AJKS Sections 7.2-7.4	 |			|			|		
 |10/5		|			|			|			|			|		
 |10/7		|			|			|			|			|		
 |10/12		|			|			|			|			|		
