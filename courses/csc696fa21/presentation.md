@@ -131,6 +131,7 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Qi Cai, Zhuoran Yang, Chi Jin, Zhaoran Wang. Provably efficient exploration in policy optimization. ICML 2020.
 
 #### RL in rich-observation MDPs 
+* Nan Jiang, Akshay Krishnamurthy, Alekh Agarwal, John Langford, Robert E. Schapire. Contextual Decision Processes with Low Bellman Rank are PAC-Learnable. ICML 2017.
 * Christoph Dann, Nan Jiang, Akshay Krishnamurthy, Alekh Agarwal, John Langford, Robert E. Schapire. On Oracle-Efficient PAC RL with Rich Observations. NeurIPS 2018.
 * Simon S. Du, Akshay Krishnamurthy, Nan Jiang, Alekh Agarwal, Miroslav Dudík, John Langford. Provably efficient RL with Rich Observations via Latent State Decoding. ICML 2019.
 * Wen Sun, Nan Jiang, Akshay Krishnamurthy, Alekh Agarwal, John Langford. Model-based RL in Contextual Decision Processes: PAC bounds and Exponential Improvements over Model-free Approaches. COLT 2019.
