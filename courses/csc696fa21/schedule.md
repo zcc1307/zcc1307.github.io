@@ -3,7 +3,7 @@
 #### Tentative schedule
 
 | Date  | Topics | Notes / slides | Additional readings  | Homework |
-|:-:|:------------:|:---:|:---:|:---:|
+|:-:|:------------:|:---:|:-------:|:---:|
 |8/24	| Administrivia; Introduction to RL	| [slides](notes/CSC696H_intro.pptx) |	AJKS Section 1.1-1.2 |  |
 |8/26		|	MDP basics; Markov reward processes (MRPs); Bellman consistency equation 	|		[Scribe note 0826/ by Chicheng Zhang](https://www.overleaf.com/read/ydtgyvxhrfqg) |		AJKS Section 1.1.2	|			|		
 |8/31		|	Bellman consistency equation and its interpretation; Optimal value functions |	[Scribe note 0831/ by Yinan Li](https://www.overleaf.com/read/ydtgyvxhrfqg)		|	AJKS Section 1.1.3	|			|		
