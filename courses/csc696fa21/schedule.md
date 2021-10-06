@@ -15,7 +15,7 @@
 |9/21		|	Q-learning for RL with a generative model	|	[Scribe note 0921/ by Wenhan Zhang](https://www.overleaf.com/read/ydtgyvxhrfqg)		|		[Chi Jin's lecture notes 6,7](https://sites.google.com/view/cjin/ele524)	|			|		
 |9/23		|	Finish Q-learning; Begin online episodic RL; Multi-armed bandits (MAB); Explore-then-commit	|		[Scribe note 0923/ by Robert Ferrando](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Sections 7.1, 6.1	|			|	
 |9/28		|	MAB algorithms: epsilon-greedy, UCB; Failure of epsilon-greedy in online episodic RL		|		[Scribe note 0928/ by Ruoyao Wang](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Sections 6.1, [Optimistic Q-learning paper](https://arxiv.org/pdf/1807.03765.pdf) Appendix A |			|		
-|9/30		|	The UCB-VI algorithm and its analysis		|	 |	AJKS Sections 7.2-7.4; Bernstein's Inequality: [My notes](https://zcc1307.github.io/courses/csc588sp21/notes/lec4_handwritten.pdf), Theorem 2.8.4 of [Vershynin's book](https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-book.pdf) |			|		
+|9/30		|	The UCB-VI algorithm and its analysis		|	 |	AJKS Sections 7.2-7.4; Bernstein's Inequality: [My notes](https://zcc1307.github.io/courses/csc588sp21/notes/lec4_handwritten.pdf), Theorem 2.8.4 of [Vershynin's book](https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-book.pdf); See also the proofs of AJKS Lemmas 7.3 and 7.8 for alternative proofs of model concentration using Azuma-Hoeffding / Azuma-Bernstein |			|		
 |10/5		|	Finish UCB-VI analysis; Begin RL with function approximation	|			|		AJKS Sections 7.2-7.4; Chapter 3	|			|		
 |10/7		|			|			|			|			|		
 |10/12		|			|			|			|			|		
