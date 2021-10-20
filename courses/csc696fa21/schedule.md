@@ -26,15 +26,15 @@
 |10/28		|		Bohan Li: Near-optimal reinforcement learning with self-play	|			|			|			|		
 |11/2		|		Yichen Li: Toward the Fundamental Limits of Imitation Learning	|			|			|			|		
 |11/4		|		Zhengguang Zhang: On Reinforcement Learning with Adversarial Corruption and Its Application to Block MDP	|			|			|			|		
-|11/9		|		Ruoyao Wang	|			|			|			|		
+|11/9		|		Ruoyao Wang: TBD	|			|			|			|		
 |11/11		|	 Yao Zhao: Near-Optimal Representation Learning for Linear Bandits and Linear RL (pre-recorded)	|			|			|			|		
 |11/16		|		Yangzi Lu: Reward-Free Exploration for Reinforcement Learning	|			|			|			|			
-|11/18		|		Bao Do	|			|			|			|			
+|11/18		|		Bao Do: TBD	|			|			|			|			
 |11/23		|		Robert Ferrando: Adaptive Discretization for Model-Based Reinforcement Learning	|			|			|			|			
 |11/25		|	No class - thanksgiving		|			|			|			|			
 |11/30		|		Zhiwu Guo:  Online Learning in Unknown Markov Games	|			|			|			|			
 |12/2		|		Hao Qin : Nearly Minimax Optimal Reinfocement Learning for Linear Mixture Markov Decision Processes	|			|			|			|			
-|12/7		|		Amir Yazdani	|			|			|			|			
+|12/7		|		Amir Yazdani: TBD	|			|			|			|			
 
 
 
