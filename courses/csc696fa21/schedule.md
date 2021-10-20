@@ -20,7 +20,7 @@
 |10/7		|	The LSVI algorithm; Linear Bellman completeness; Experiment design / active learning		|			|		AJKS Sections 3.1-3.3.1	|			|		
 |10/12		|	Statistical guarantees of realizable linear regression; LSVI with G-optimal design		|			|		AJKS Lemma A.9, Theorem A.10, Sections 3.3.2-3.3.3	|			|		
 |10/14		|	Finish LSVI with G-optimal design; Performance difference lemma; begin online RL in linear MDPs	|			|		AJKS Section 1.5 (discounted setting), Section 3.3.3, Sections 8.1-8.2	|			|		
-|10/19		|	Online RL in linear MDPs: LSVI-UCB and its analysis	|			|		AJKS Sections 8.3-8.7, [my draft notes](notes/draft_note_linear_mdp.pdf), [proof of elliptic potential lemma (page 7 onwards)](https://zcc1307.github.io/courses/csc588sp21/notes/lec24_handwritten.pdf), [LSVI-UCB paper](https://proceedings.mlr.press/v125/jin20a.html)	|			|		
+|10/19		|	Online RL in linear MDPs: LSVI-UCB and its analysis	|			|		AJKS Sections 8.3-8.7, [my draft notes](notes/draft_note_linear_mdp.pdf), [proof of elliptic potential lemma (page 7 onwards)](https://zcc1307.github.io/courses/csc588sp21/notes/lec24_handwritten.pdf), [LSVI-UCB paper](https://proceedings.mlr.press/v125/jin20a.html)	|		[HW2](hw/CSC_696H_Homework_2.pdf)	|		
 |10/21		|		Wenhan Zhang: Deeply AggreVaTeD: Differentiable Imitation Learning for Sequential Prediction	|			|			|			|		
 |10/26		|			|			|			|			|		
 |10/28		|			|			|			|			|		
