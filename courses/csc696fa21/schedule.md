@@ -22,17 +22,30 @@
 |10/14		|	Finish LSVI with G-optimal design; Performance difference lemma; begin online RL in linear MDPs	|			|		AJKS Section 1.5 (discounted setting), Section 3.3.3, Sections 8.1-8.2	|			|		
 |10/19		|	Online RL in linear MDPs: LSVI-UCB and its analysis	|			|		AJKS Sections 8.3-8.7, [my draft notes](notes/draft_note_linear_mdp.pdf), [proof of elliptic potential lemma (page 7 onwards)](https://zcc1307.github.io/courses/csc588sp21/notes/lec24_handwritten.pdf), [LSVI-UCB paper](https://proceedings.mlr.press/v125/jin20a.html)	|		[HW2](hw/CSC_696H_Homework_2.pdf)	|		
 |10/21		|		Wenhan Zhang: Deeply AggreVaTeD: Differentiable Imitation Learning for Sequential Prediction	|			|			|			|		
-|10/26		|			|			|			|			|		
-|10/28		|			|			|			|			|		
-|11/2		|			|			|			|			|		
-|11/4		|			|			|			|			|		
-|11/9		|			|			|			|			|		
-|11/11		|			|			|			|			|		
-|11/16		|			|			|			|			|			
-|11/18		|			|			|			|			|			
-|11/23		|			|			|			|			|			
+|10/26		|		Yinan Li: Is Q-learning Provably Efficient?	|			|			|			|		
+|10/28		|		Bohan Li: Near-optimal reinforcement learning with self-play	|			|			|			|		
+|11/2		|		Yichen Li: Toward the Fundamental Limits of Imitation Learning	|			|			|			|		
+|11/4		|		Zhengguang Zhang: On Reinforcement Learning with Adversarial Corruption and Its Application to Block MDP	|			|			|			|		
+|11/9		|		Ruoyao Wang	|			|			|			|		
+|11/11		|	 Yao Zhao: Near-Optimal Representation Learning for Linear Bandits and Linear RL (pre-recorded)	|			|			|			|		
+|11/16		|		Yangzi Lu: Reward-Free Exploration for Reinforcement Learning	|			|			|			|			
+|11/18		|		Bao Do	|			|			|			|			
+|11/23		|		Robert Ferrando: Adaptive Discretization for Model-Based Reinforcement Learning	|			|			|			|			
 |11/25		|	No class - thanksgiving		|			|			|			|			
-|11/30		|			|			|			|			|			
-|12/2		|			|			|			|			|			
-|12/7		|			|			|			|			|			
+|11/30		|		Zhiwu Guo:  Online Learning in Unknown Markov Games	|			|			|			|			
+|12/2		|		Hao Qin : Nearly Minimax Optimal Reinfocement Learning for Linear Mixture Markov Decision Processes	|			|			|			|			
+|12/7		|		Amir Yazdani	|			|			|			|			
+
+
+
+
+
+
+
+
+
+
+
+
+
 
