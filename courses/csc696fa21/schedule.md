@@ -17,13 +17,13 @@
 |9/28		|	MAB algorithms: epsilon-greedy, UCB; Failure of epsilon-greedy in online episodic RL		|		[Scribe note 0928/ by Ruoyao Wang](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Sections 6.1, [Optimistic Q-learning paper](https://arxiv.org/pdf/1807.03765.pdf) Appendix A |			|		
 |9/30		|	The UCB-VI algorithm and its analysis		|	[Scribe note 0930/ by Zhengguang Zhang](https://www.overleaf.com/read/ydtgyvxhrfqg) |	AJKS Sections 7.2-7.4; Bernstein's Inequality: [My notes](https://zcc1307.github.io/courses/csc588sp21/notes/lec4_handwritten.pdf), Theorem 2.8.4 of [Vershynin's book](https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-book.pdf); See also the proofs of AJKS Lemmas 7.3 and 7.8 for alternative proofs of model concentration using Azuma-Hoeffding / Azuma-Bernstein |			|		
 |10/5		|	Finish UCB-VI analysis; Begin RL with function approximation	|		[Scribe note 1005/ by Hao Qin](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Sections 7.2-7.4; Chapter 3	|			|		
-|10/7		|	The LSVI algorithm; Linear Bellman completeness; Experiment design / active learning		|			|		AJKS Sections 3.1-3.3.1	|			|		
-|10/12		|	Statistical guarantees of realizable linear regression; LSVI with G-optimal design		|			|		AJKS Lemma A.9, Theorem A.10, Sections 3.3.2-3.3.3	|			|		
-|10/14		|	Finish LSVI with G-optimal design; Performance difference lemma; begin online RL in linear MDPs	|			|		AJKS Section 1.5 (discounted setting), Section 3.3.3, Sections 8.1-8.2	|			|		
+|10/7		|	The LSVI algorithm; Linear Bellman completeness; Experiment design / active learning		|	[Scribe note 1007/ by Bohan Li (draft)](https://www.overleaf.com/read/ydtgyvxhrfqg)		|		AJKS Sections 3.1-3.3.1	|			|		
+|10/12		|	Statistical guarantees of realizable linear regression; LSVI with G-optimal design		|		[Scribe note 1012/ by Bao Do](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Lemma A.9, Theorem A.10, Sections 3.3.2-3.3.3	|			|		
+|10/14		|	Finish LSVI with G-optimal design; Performance difference lemma; begin online RL in linear MDPs	|		[Scribe note 1014/ by Amir Yazdani](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Section 1.5 (discounted setting), Section 3.3.3, Sections 8.1-8.2	|			|		
 |10/19		|	Online RL in linear MDPs: LSVI-UCB and its analysis	|			|		AJKS Sections 8.3-8.7, [my draft notes](notes/draft_note_linear_mdp.pdf), [proof of elliptic potential lemma (page 7 onwards)](https://zcc1307.github.io/courses/csc588sp21/notes/lec24_handwritten.pdf), [LSVI-UCB paper](https://proceedings.mlr.press/v125/jin20a.html)	|		[HW2](hw/CSC_696H_Homework_2.pdf)	|		
 |10/21		|		Wenhan Zhang: Deeply AggreVaTeD: Differentiable Imitation Learning for Sequential Prediction	|		[slides](notes/Deeply_AggreVaTeD_Wenhan.pptx)	|			|			|		
-|10/26		|		Yinan Li: Is Q-learning Provably Efficient?	|			|			|			|		
-|10/28		|		Bohan Li: Near-optimal reinforcement learning with self-play	|			|			|			|		
+|10/26		|		Yinan Li: Is Q-learning Provably Efficient?	|		[slides](notes/oct_26_Q-learning_Yinan.pptx)	|			|			|		
+|10/28		|		Bohan Li: Near-optimal reinforcement learning with self-play	|		[slides](notes/oct_28_bohan.pdf)	|			|			|		
 |11/2		|		Yichen Li: Toward the Fundamental Limits of Imitation Learning	|			|			|			|		
 |11/4		|		Zhengguang Zhang: On Reinforcement Learning with Adversarial Corruption and Its Application to Block MDP	|			|			|			|		
 |11/9		|		Ruoyao Wang: TBD	|			|			|			|		
