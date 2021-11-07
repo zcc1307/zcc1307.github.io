@@ -24,9 +24,9 @@
 |10/21		|		Wenhan Zhang: Deeply AggreVaTeD: Differentiable Imitation Learning for Sequential Prediction	|		[slides](notes/Deeply_AggreVaTeD_Wenhan.pptx)	|			|			|		
 |10/26		|		Yinan Li: Is Q-learning Provably Efficient?	|		[slides](notes/oct_26_Q-learning_Yinan.pptx)	|			|			|		
 |10/28		|		Bohan Li: Near-optimal reinforcement learning with self-play	|		[slides](notes/oct_28_bohan.pdf)	|			|			|		
-|11/2		|		Yichen Li: Toward the Fundamental Limits of Imitation Learning	|			|			|			|		
-|11/4		|		Zhengguang Zhang: On Reinforcement Learning with Adversarial Corruption and Its Application to Block MDP	|			|			|			|		
-|11/9		|		Ruoyao Wang: TBD	|			|			|			|		
+|11/2		|		Yichen Li: Toward the Fundamental Limits of Imitation Learning	|		[slides](notes/nov_2_yichen.pptx)	|			|			|		
+|11/4		|		Zhengguang Zhang: On Reinforcement Learning with Adversarial Corruption and Its Application to Block MDP	|	[slides](notes/nov_4_zhengguang.pdf)		|			|			|		
+|11/9		|		Ruoyao Wang: Provably efficient RL with Rich Observations via Latent State Decoding	|			|			|			|		
 |11/11		|	 Yao Zhao: Near-Optimal Representation Learning for Linear Bandits and Linear RL (pre-recorded)	|			|			|			|		
 |11/16		|		Yangzi Lu: Reward-Free Exploration for Reinforcement Learning	|			|			|			|			
 |11/18		|		Bao Do: TBD	|			|			|			|			
