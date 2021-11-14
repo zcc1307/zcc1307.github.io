@@ -29,7 +29,7 @@
 |11/9		|		Ruoyao Wang: Provably efficient RL with Rich Observations via Latent State Decoding	|	[slides](notes/nov_9_ruoyao.pptx)		|			|			|		
 |11/11		|	 Yao Zhao: Near-Optimal Representation Learning for Linear Bandits and Linear RL (pre-recorded)	|	[slides](notes/nov_11_yao.pdf)		|			|			|		
 |11/16		|		Yangzi Lu: Reward-Free Exploration for Reinforcement Learning	|			|			|			|			
-|11/18		|		Bao Do: TBD	|			|			|			|			
+|11/18		|		Bao Do: Of Moments and Matching: A Game-Theoretic Framework for Closing the Imitation Gap	|			|			|			|			
 |11/23		|		Robert Ferrando: Adaptive Discretization for Model-Based Reinforcement Learning	|			|			|			|			
 |11/25		|	No class - thanksgiving		|			|			|			|			
 |11/30		|		Zhiwu Guo:  Online Learning in Unknown Markov Games	|			|			|			|			
