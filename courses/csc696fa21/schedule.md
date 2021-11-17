@@ -20,7 +20,7 @@
 |10/7		|	The LSVI algorithm; Linear Bellman completeness; Experiment design / active learning		|	[Scribe note 1007/ by Bohan Li (draft)](https://www.overleaf.com/read/ydtgyvxhrfqg)		|		AJKS Sections 3.1-3.3.1	|			|		
 |10/12		|	Statistical guarantees of realizable linear regression; LSVI with G-optimal design		|		[Scribe note 1012/ by Bao Do](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Lemma A.9, Theorem A.10, Sections 3.3.2-3.3.3	|			|		
 |10/14		|	Finish LSVI with G-optimal design; Performance difference lemma; begin online RL in linear MDPs	|		[Scribe note 1014/ by Amir Yazdani](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Section 1.5 (discounted setting), Section 3.3.3, Sections 8.1-8.2	|			|		
-|10/19		|	Online RL in linear MDPs: LSVI-UCB and its analysis	|			|		AJKS Sections 8.3-8.7, [my draft notes](notes/draft_note_linear_mdp.pdf), [proof of elliptic potential lemma (page 7 onwards)](https://zcc1307.github.io/courses/csc588sp21/notes/lec24_handwritten.pdf), [LSVI-UCB paper](https://proceedings.mlr.press/v125/jin20a.html)	|		[HW2](hw/CSC_696H_Homework_2.pdf)	|		
+|10/19		|	Online RL in linear MDPs: LSVI-UCB and its analysis	|		[Scribe note 1019/ by Yinan Li, Hao Qin, and Yichen Li](https://www.overleaf.com/read/ydtgyvxhrfqg)	|		AJKS Sections 8.3-8.7, [my draft notes](notes/draft_note_linear_mdp.pdf), [proof of elliptic potential lemma (page 7 onwards)](https://zcc1307.github.io/courses/csc588sp21/notes/lec24_handwritten.pdf), [LSVI-UCB paper](https://proceedings.mlr.press/v125/jin20a.html)	|		[HW2](hw/CSC_696H_Homework_2.pdf)	|		
 |10/21		|		Wenhan Zhang: Deeply AggreVaTeD: Differentiable Imitation Learning for Sequential Prediction	|		[slides](notes/Deeply_AggreVaTeD_Wenhan.pptx)	|			|			|		
 |10/26		|		Yinan Li: Is Q-learning Provably Efficient?	|		[slides](notes/oct_26_Q-learning_Yinan.pptx)	|			|			|		
 |10/28		|		Bohan Li: Near-optimal reinforcement learning with self-play	|		[slides](notes/oct_28_bohan.pdf)	|			|			|		
@@ -28,7 +28,7 @@
 |11/4		|		Zhengguang Zhang: On Reinforcement Learning with Adversarial Corruption and Its Application to Block MDP	|	[slides](notes/nov_4_zhengguang.pdf)		|			|			|		
 |11/9		|		Ruoyao Wang: Provably efficient RL with Rich Observations via Latent State Decoding	|	[slides](notes/nov_9_ruoyao.pptx)		|			|			|		
 |11/11		|	 Yao Zhao: Near-Optimal Representation Learning for Linear Bandits and Linear RL (pre-recorded)	|	[slides](notes/nov_11_yao.pdf)		|			|			|		
-|11/16		|		Yangzi Lu: Reward-Free Exploration for Reinforcement Learning	|			|			|			|			
+|11/16		|		Yangzi Lu: Reward-Free Exploration for Reinforcement Learning	|	[slides](notes/nov_16_yangzi_Reward-free-Exploration.pptx)		|			|			|			
 |11/18		|		Bao Do: Of Moments and Matching: A Game-Theoretic Framework for Closing the Imitation Gap	|			|			|			|			
 |11/23		|		Robert Ferrando: Adaptive Discretization for Model-Based Reinforcement Learning	|			|			|			|			
 |11/25		|	No class - thanksgiving		|			|			|			|			
