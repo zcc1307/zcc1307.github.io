@@ -32,9 +32,9 @@
 |11/18		|		Bao Do: Of Moments and Matching: A Game-Theoretic Framework for Closing the Imitation Gap	|		[slides](notes/nov_18_bao.pdf)	|			|			|			
 |11/23		|		Robert Ferrando: Adaptive Discretization for Model-Based Reinforcement Learning	|	[slides](notes/nov_23_ADAMB_Robert_Ferrando.pdf)	|			|			|			
 |11/25		|	No class - thanksgiving		|			|			|			|			
-|11/30		|		Zhiwu Guo:  Online Learning in Unknown Markov Games	|			|			|			|			
-|12/2		|		Hao Qin : Nearly Minimax Optimal Reinfocement Learning for Linear Mixture Markov Decision Processes	|			|			|			|			
-|12/7		|		Amir Yazdani: TBD	|			|			|			|			
+|11/30		|		Zhiwu Guo:  Online Learning in Unknown Markov Games	|		[slides](notes/nov_30_Zhiwu_v2.pptx)	|			|			|			
+|12/2		|		Hao Qin: Nearly Minimax Optimal Reinfocement Learning for Linear Mixture Markov Decision Processes	|			|			|			|			
+|12/7		|		Amir Yazdani: Reinforcement Learning in Reward-Mixing MDPs	|			|			|			|			
 
 
 
