@@ -34,7 +34,7 @@
 |11/25		|	No class - thanksgiving		|			|			|			|			
 |11/30		|		Zhiwu Guo:  Online Learning in Unknown Markov Games	|		[slides](notes/nov_30_Zhiwu_v2.pptx)	|			|			|			
 |12/2		|		Hao Qin: Nearly Minimax Optimal Reinfocement Learning for Linear Mixture Markov Decision Processes	|		[slides](notes/dec_2_hao_qin.pdf)	|			|			|			
-|12/7		|		Amir Yazdani: Reinforcement Learning in Reward-Mixing MDPs	|			|			|			|			
+|12/7		|		Amir Yazdani: Reinforcement Learning in Reward-Mixing MDPs	|	[slides](notes/dec_7_amir_rewardmixingRL.pptx)		|			|			|			
 
 
 
