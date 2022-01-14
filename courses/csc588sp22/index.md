@@ -15,8 +15,11 @@ developing new algorithms for large-scale, data-driven applications.
 TuTh 9:30am-10:45am, Gould-Simpson 701
 
 [Syllabus](syllabus.pdf)
+
 [Piazza link](https://piazza.com/arizona/spring2022/csc588) access code: mltheory
+
 [Gradescope](https://www.gradescope.com/courses/354837) entry code: WYENZ3
+
 [D2L course webpage](https://d2l.arizona.edu/d2l/home/1136821): lecture video recordings are at "UA Tools" -> "Zoom"
 
 
