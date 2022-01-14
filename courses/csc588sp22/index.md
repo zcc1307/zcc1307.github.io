@@ -15,6 +15,10 @@ developing new algorithms for large-scale, data-driven applications.
 TuTh 9:30am-10:45am, Gould-Simpson 701
 
 [Syllabus](syllabus.pdf)
+[Piazza link](https://piazza.com/arizona/spring2022/csc588) access code: mltheory
+[Gradescope](https://www.gradescope.com/courses/354837) entry code: WYENZ3
+[D2L course webpage](https://d2l.arizona.edu/d2l/home/1136821): lecture video recordings are at "UA Tools" -> "Zoom"
+
 
 We will be using Piazza to make important announcements and do Q&As. Some general rules:
 
@@ -23,9 +27,7 @@ We will be using Piazza to make important announcements and do Q&As. Some genera
 
 [//]: # (
 [Piazza link](https://piazza.com/arizona/fall2019/csc665) access code: CSC665-2
-[Gradescope](https://www.gradescope.com/courses/60240) entry code: GEPJNE
 [D2L course webpage](https://d2l.arizona.edu/d2l/home/1012955): lecture video recordings can be found at "UA Tools" -> "Panopto"
-[Piazza link](https://piazza.com/arizona/spring2021/csc588) access code: generalization
 )
 
 
@@ -44,8 +46,7 @@ Mondays 1-2pm (see D2L for meeting link) or by email appointment
 
 ### Textbook
 
-There is no designated textbook for this course. Much of the course
-materials will be based on the following books::
+There is no designated textbook for this course. Much of the course materials will be based on these books:
 
 [Understanding machine learning: from theory to algorithms](https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/) by Shai Shalev-Shwartz and Shai Ben-David (SSBD)
 
@@ -55,7 +56,7 @@ materials will be based on the following books::
 
 [Reinforcement Learning: Theory and Algorithms](https://rltheorybook.github.io/rltheorybook_AJKS.pdf) by Alekh Agarwal, Nan Jiang, Sham Kakade, and Wen Sun (AJKS)
 
-The following surveys and books also provide a good coverage of relevant materials:
+The following monographs and books also provide good coverage of relevant materials:
 
 [Introduction to online optimization](https://ocobook.cs.princeton.edu/OCObook.pdf) by Elad Hazan
 
@@ -75,7 +76,7 @@ This course has a theoretical / mathematical nature, so a large part of this cou
 
 ### Scribing and LaTeX
 
-We will be using the following [scribe note LaTeX template file](notes/scribe_template.tex) and [style file](notes/definitions.sty). See also [Prof. Rob Schapire's suggestions on preparing scribe notes](https://www.cs.princeton.edu/courses/archive/spring19/cos511/scribeinfo.html). Please sign up for one slot at the sign up sheet.
+We will be using the following [scribe note LaTeX template file](notes/scribe_template.tex) and [style file](notes/definitions.sty). See also [Prof. Rob Schapire's suggestions on preparing scribe notes](https://www.cs.princeton.edu/courses/archive/spring19/cos511/scribeinfo.html). Please sign up for one slot at the [signup sheet](https://docs.google.com/spreadsheets/d/1TT58oWjmrK673IrsYscz0my9bOn5A2fxUk1DqdZHGSk/edit?usp=sharing).
 
 Useful LaTeX resources: [Learn LaTeX in 30 minutes by Overleaf](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes#Adding_math_to_LaTeX); [Introduction to LATEX by MIT Research Science Institute](http://web.mit.edu/rsi/www/pdfs/new-latex.pdf)
 
