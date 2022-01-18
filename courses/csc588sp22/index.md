@@ -16,7 +16,7 @@ TuTh 9:30am-10:45am, Gould-Simpson 701
 
 [Syllabus](syllabus.pdf)
 
-[Piazza link](https://piazza.com/arizona/spring2022/csc588) access code: mltheory
+[Piazza link](https://piazza.com/arizona/spring2022/csc588); please self-enroll. 
 
 [Gradescope](https://www.gradescope.com/courses/354837) entry code: WYENZ3
 
