@@ -73,6 +73,8 @@ The following monographs and books also provide good coverage of relevant materi
 
 Here are some excellent notes for [probability review](http://cs229.stanford.edu/section/cs229-prob.pdf) and [linear algebra review](http://cs229.stanford.edu/section/cs229-linalg.pdf) from Stanford's CS 229 course.
 
+See also [The matrix cookbook](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf), [The Probability and Statistics Cookbook](http://statistics.zone/), and [Calculus cheatsheet](https://tutorial.math.lamar.edu/pdf/calculus_cheat_sheet_all.pdf) (recommended by Prof. Kwang-Sung Jun).
+
 This course has a theoretical / mathematical nature, so a large part of this course will be proof-based. For formal proof reading and writing, I recommend the book "How to Read and Do Proofs" by Daniel Solow. I also recommended watching the lecture [Street Fighting Mathematics](https://www.youtube.com/watch?v=qP4XEZ54eSc&list=PLm3J0oaFux3ZYpFLwwrlv_EHH9wtH6pnX&index=3) by Prof. Ryan O'Donnell for general introductions to approaching theory-ish problems.
 
 
