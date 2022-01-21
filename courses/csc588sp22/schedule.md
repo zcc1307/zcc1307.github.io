@@ -2,10 +2,13 @@
 
 #### Tentative schedule
 
+We will be following a schedule similar to [last year's](../csc588sp21/schedule.html); you can refer to the scribe / handwritten notes therein, if you would like to review / read in advance.
+
 |Date  | Topics | Notes | Additional readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|
 | Jan 13 | Introduction, motivation, course mechanics | [slides](notes/csc588_intro.pptx) | SSBD App B.1 and B.2 | [HW1 (calibration)](hw/CSC_588_HW_1.pdf) |
-| Jan 18  | Supervised learning pipeline; The PAC learning framework |  |  |  | 
+| Jan 18  | The supervised learning pipeline; The PAC learning framework | [Handwritten note 1](../csc588sp21/notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  | 
+| Jan 20  | The consistency algorithm and its analysis; Agnostic PAC learning | [Handwritten note 2](../csc588sp21/notes/lec3_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  | 
 
 [//]: # (
 | Jan 19  | The PAC learning framework; the consistency algorithm | [Scribe note (0119/)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | [Note 2](notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
