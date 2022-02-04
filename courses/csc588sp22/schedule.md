@@ -12,7 +12,7 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Jan 25  | Agnostic PAC Learning;  ERM analysis; begin Hoeffding's Inequality. | [Handwritten note 3](../csc588sp21/notes/lec4_handwritten.pdf) | SSBD Chap 4, Sec B.4  |  | 
 | Jan 27  | Finish Hoeffding's Inequality; Bernstein's Inequality; ERM analysis with finite hypothesis class | [Handwritten note 4](../csc588sp21/notes/lec5_handwritten.pdf) | SSBD Chap 4, Sec B.5  |  | 
 | Feb 1  | finish ERM analysis with finite hypothesis classes; PAC Learning with infinite hypothesis classes; learning rectangles | [Handwritten note 4](../csc588sp21/notes/lec5_handwritten.pdf) | SSBD Sec 6.1, Exercise 2.3  |  | 
-| Feb 3  | Begin VC theory: basic definitions and examples |  | SSBD Sec 6.2, 6.3  | [Handwritten note 5](../csc588sp21/notes/lec6_handwritten.pdf)  | 
+| Feb 3  | Begin VC theory: basic definitions and examples |  | SSBD Sec 6.2, 6.3  | [Handwritten note 5](../csc588sp21/notes/lec6_handwritten.pdf)  | [HW2](hw/CSC_588_HW_2.pdf)
 | Feb 8  | Sauer's Lemma; VC dimension of composite hypothesis classes |  | SSBD Sec 6.5  |  | 
 
 
