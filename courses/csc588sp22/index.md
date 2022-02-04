@@ -41,7 +41,7 @@ We will be using Piazza to make important announcements and do Q&As. Some genera
 
 Gould-Simpson 720
 
-Office Hour: TBD
+Office Hour: Wednesdays 10-11am on Zoom (link in D2L page)
 
 [//]: # (
 Mondays 1-2pm (see D2L for meeting link) or by email appointment
