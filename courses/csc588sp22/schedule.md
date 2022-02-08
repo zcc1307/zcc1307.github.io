@@ -9,10 +9,10 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Jan 13 | Introduction, motivation, course mechanics | [slides](notes/csc588_intro.pptx) | SSBD App B.1 and B.2 | [HW1 (calibration)](hw/CSC_588_HW_1.pdf) |
 | Jan 18  | The supervised learning pipeline; The PAC learning framework | [Handwritten note 1](../csc588sp21/notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  | 
 | Jan 20  | The consistency algorithm and its analysis; Agnostic PAC learning | [Handwritten note 2](../csc588sp21/notes/lec3_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  | 
-| Jan 25  | Agnostic PAC Learning;  ERM analysis; begin Hoeffding's Inequality. | [Handwritten note 3](../csc588sp21/notes/lec4_handwritten.pdf) | SSBD Chap 4, Sec B.4  |  | 
-| Jan 27  | Finish Hoeffding's Inequality; Bernstein's Inequality; ERM analysis with finite hypothesis class | [Handwritten note 4](../csc588sp21/notes/lec5_handwritten.pdf) | SSBD Chap 4, Sec B.5  |  | 
+| Jan 25  | Agnostic PAC Learning;  ERM analysis; begin Hoeffding's Inequality. | [Handwritten note 3](../csc588sp21/notes/lec4_handwritten.pdf), [Scribe note by Renee Zhang](notes/scribe_note_4_renee.pdf) | SSBD Chap 4, Sec B.4  |  | 
+| Jan 27  | Finish Hoeffding's Inequality; Bernstein's Inequality; ERM analysis with finite hypothesis class | [Handwritten note 4](../csc588sp21/notes/lec5_handwritten.pdf), [Scribe note by Yanan Wang](notes/scribe_note_5_yanan.pdf) | SSBD Chap 4, Sec B.5  |  | 
 | Feb 1  | finish ERM analysis with finite hypothesis classes; PAC Learning with infinite hypothesis classes; learning rectangles | [Handwritten note 4](../csc588sp21/notes/lec5_handwritten.pdf) | SSBD Sec 6.1, Exercise 2.3  |  | 
-| Feb 3  | Begin VC theory: basic definitions and examples | [Handwritten note 5](../csc588sp21/notes/lec6_handwritten.pdf)  | SSBD Sec 6.2, 6.3   | [HW2](hw/CSC_588_HW_2.pdf)
+| Feb 3  | Begin VC theory: definitions and examples | [Handwritten note 5](../csc588sp21/notes/lec6_handwritten.pdf)  | SSBD Sec 6.2, 6.3   | [HW2](hw/CSC_588_HW_2.pdf)
 | Feb 8  | Sauer's Lemma; VC dimension of composite hypothesis classes |  | SSBD Sec 6.5  |  | 
 
 
