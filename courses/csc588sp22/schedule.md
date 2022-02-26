@@ -16,7 +16,7 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Feb 8  | VC dimension of homogeneous linear classifiers; Sauer's Lemma | [Handwritten note 6](../csc588sp21/notes/lec7_handwritten.pdf), | SSBD Sec 6.5  |  | 
 | Feb 10  | Finish Sauer's Lemma; VC dimension of composite hypothesis classes; back to uniform convergence |  | SSBD Sec 6.6  |  | 
 | Feb 15  | Application: Gilvenko-Cantelli Theorem; Proof of uniform convergence for VC classes; Rademacher complexity; Massart's Lemma |[Handwritten note 7](../csc588sp21/notes/lec8_handwritten.pdf)  | SSBD Sec 6.5.2, 26.1, 28.1   |  | 
-| Feb 17  | Proof of uniform convergence for VC classes cont'd: McDiarmid's Inequality, Symmetrization Lemma |  | SSBD Sec 6.5.2, 26.1, 28.1 | [Handwritten note 8](../csc588sp21/notes/lec9_handwritten.pdf) | 
+| Feb 17  | Proof of uniform convergence for VC classes cont'd: McDiarmid's Inequality, Symmetrization Lemma |  [Handwritten note 8](../csc588sp21/notes/lec9_handwritten.pdf) | SSBD Sec 6.5.2, 26.1, 28.1 | | 
 | Feb 22  | Finish symmetrization lemma; Fundamental Theorem of Statistical Learning; Lower bounds for PAC learning | [Handwritten note 9](../csc588sp21/notes/lec10_handwritten.pdf)  |  SSBD Sec 5.1  |   | 
 | Feb 24  | Finish lower bounds for PAC learning; Algorithm / Model selection in supervised learning | [Handwritten note 10](../csc588sp21/notes/lec11_handwritten.pdf) | SSBD Chap 7 | [HW3](hw/CSC_588_HW_3.pdf)  | 
 
