@@ -14,12 +14,17 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Feb 1  | finish ERM analysis with finite hypothesis classes; PAC Learning with infinite hypothesis classes; learning rectangles |   [Scribe note by Ryan Murphy](notes/scribe_note_6_ryan.pdf) | SSBD Sec 6.1, Exercise 2.3  |  | 
 | Feb 3  | Begin VC theory: definitions and examples | [Handwritten note 5](../csc588sp21/notes/lec6_handwritten.pdf)  | SSBD Sec 6.2, 6.3   | [HW2](hw/CSC_588_HW_2.pdf)
 | Feb 8  | VC dimension of homogeneous linear classifiers; Sauer's Lemma | [Handwritten note 6](../csc588sp21/notes/lec7_handwritten.pdf), | SSBD Sec 6.5  |  | 
-| Feb 10  | Finish Sauer's Lemma; VC dimension of composite hypothesis classes; back to uniform convergence |  | SSBD Sec 6.6  |  | 
-| Feb 15  | Application: Gilvenko-Cantelli Theorem; Proof of uniform convergence for VC classes; Rademacher complexity; Massart's Lemma |[Handwritten note 7](../csc588sp21/notes/lec8_handwritten.pdf)  | SSBD Sec 6.5.2, 26.1, 28.1   |  | 
-| Feb 17  | Proof of uniform convergence for VC classes cont'd: McDiarmid's Inequality, Symmetrization Lemma |  [Handwritten note 8](../csc588sp21/notes/lec9_handwritten.pdf) | SSBD Sec 6.5.2, 26.1, 28.1 | | 
+| Feb 10  | Finish Sauer's Lemma; VC dimension of composite hypothesis classes; back to uniform convergence | [Scribe note by Jing Wu](notes/scribe_note_9_jing.pdf) | SSBD Sec 6.6  |  | 
+| Feb 15  | Application: Gilvenko-Cantelli Theorem; Proof of uniform convergence for VC classes; Rademacher complexity; Massart's Lemma |[Handwritten note 7](../csc588sp21/notes/lec8_handwritten.pdf) [Scribe note by Yuanyuan Sun](notes/scribe_note_10_yuanyuan.pdf)  | SSBD Sec 6.5.2, 26.1, 28.1   |  | 
+| Feb 17  | Proof of uniform convergence for VC classes cont'd: McDiarmid's Inequality, Symmetrization Lemma |  [Handwritten note 8](../csc588sp21/notes/lec9_handwritten.pdf) [Scribe note by Minhang Zhou](notes/scribe_note_11_minhang.pdf) | SSBD Sec 6.5.2, 26.1, 28.1 | | 
 | Feb 22  | Finish symmetrization lemma; Fundamental Theorem of Statistical Learning; Lower bounds for PAC learning | [Handwritten note 9](../csc588sp21/notes/lec10_handwritten.pdf)  |  SSBD Sec 5.1  |   | 
 | Feb 24  | Finish lower bounds for PAC learning; Algorithm / Model selection in supervised learning | [Handwritten note 10](../csc588sp21/notes/lec11_handwritten.pdf) | SSBD Chap 7 | [HW3](hw/CSC_588_HW_3.pdf)  | 
-
+| Mar 1  | Bias-Complexity Tradeoff; Model selection in supervised learning: validation and SRM |  | SSBD Chap 7 | | 
+| Mar 3  | Finish SRM analysis; AdaBoost and its training error analysis |  | SSBD Chap 10 |  | 
+| Mar 8  | Spring Recess |  |  |  | 
+| Mar 10  | Spring Recess |  |  |  | 
+| Mar 15  | Supervised learning beyond classification; Rademacher complexity analysis |  |  |  | 
+| Mar 17  | Surrogate loss minimization for classification: consistency results |  |  |  | 
 
 [//]: # (
 | Jan 19  | The PAC learning framework; the consistency algorithm | [Scribe note (0119/)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | [Note 2](notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
