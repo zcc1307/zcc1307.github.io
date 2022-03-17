@@ -20,11 +20,14 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Feb 22  | Finish symmetrization lemma; Fundamental Theorem of Statistical Learning; Lower bounds for PAC learning | [Handwritten note 9](../csc588sp21/notes/lec10_handwritten.pdf)  |  SSBD Sec 5.1  |   | 
 | Feb 24  | Finish lower bounds for PAC learning; Algorithm / Model selection in supervised learning | [Handwritten note 10](../csc588sp21/notes/lec11_handwritten.pdf) | SSBD Chap 7 | [HW3](hw/CSC_588_HW_3.pdf)  | 
 | Mar 1  | Bias-Complexity Tradeoff; Model selection in supervised learning: validation and SRM |  | SSBD Chap 7 | | 
-| Mar 3  | Finish SRM analysis; AdaBoost and its training error analysis |  | SSBD Chap 10 |  | 
+| Mar 3  | Finish SRM analysis; AdaBoost and its training error analysis | [slides](notes/boosting.pdf) [Rob Schapire's boosting tutorial](http://rob.schapire.net/talks/nips-tutorial.pdf) [Handwritten note 11](../csc588sp21/notes/lec12_handwritten.pdf) | SSBD Chap 10 |  | 
 | Mar 8  | Spring Recess |  |  |  | 
 | Mar 10  | Spring Recess |  |  |  | 
-| Mar 15  | Supervised learning beyond classification; Rademacher complexity analysis |  |  |  | 
-| Mar 17  | Surrogate loss minimization for classification: consistency results |  |  |  | 
+| Mar 15  | Finish boosting; Statistical learning with general losses: Rademacher complexity analysis | [slides](notes/loss_minimization.pdf) | SSBD 26.1, 26.2, 26.4 |  | 
+| Mar 17  | Finish the proof of contraction inequality; Begin margin-based generalization error bounds  | [slides](notes/margins.pdf) [Handwritten note 12](../csc588sp21/notes/lec13_handwritten.pdf) [Handwritten note 13](../csc588sp21/notes/lec14_handwritten.pdf) [Handwritten note 14](../csc588sp21/notes/lec15_handwritten.pdf) | SSBD 26.3, 15.1 |  | 
+| Mar 22  | Finish margin bound; Background on convex functions; Stability and generalization |  |  |  | 
+| Mar 24  |  |  |  |  | 
+
 
 [//]: # (
 | Jan 19  | The PAC learning framework; the consistency algorithm | [Scribe note (0119/)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | [Note 2](notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
