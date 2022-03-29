@@ -24,9 +24,9 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Mar 8  | Spring Recess |  |  |  | 
 | Mar 10  | Spring Recess |  |  |  | 
 | Mar 15  | Finish boosting; Statistical learning with general losses: Rademacher complexity analysis | [slides](notes/loss_minimization.pdf) | SSBD 26.1, 26.2, 26.4 |  | 
-| Mar 17  | Finish the proof of contraction inequality; Begin margin-based generalization error bounds  | [slides](notes/margins.pdf) [Handwritten note 12](../csc588sp21/notes/lec13_handwritten.pdf) [Handwritten note 13](../csc588sp21/notes/lec14_handwritten.pdf) [Handwritten note 14](../csc588sp21/notes/lec15_handwritten.pdf) | SSBD 26.3, 15.1 |  | 
-| Mar 22  | Finish margin bound; Background on convex functions; Stability and generalization |  |  |  | 
-| Mar 24  |  |  |  |  | 
+| Mar 17  | Finish the proof of contraction inequality; Begin margin-based generalization error bounds  | [slides](notes/margins.pdf) [Handwritten note 12](../csc588sp21/notes/lec13_handwritten.pdf) [Handwritten note 13](../csc588sp21/notes/lec14_handwritten.pdf)  | SSBD 26.3, 15.1 |  | 
+| Mar 22  | Finish margin bound; Regularized loss minization formulations | [Handwritten note 14](../csc588sp21/notes/lec15_handwritten.pdf)  |  |  | 
+| Mar 24  | Johnson-Lindenstrauss lemma and margins; Stability and generalization | [slides](notes/stability_handout.pdf) [Handwritten note 15](../csc588sp21/notes/lec16_handwritten.pdf) |  |  | 
 
 
 [//]: # (
