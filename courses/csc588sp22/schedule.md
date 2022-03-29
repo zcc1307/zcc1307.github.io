@@ -26,7 +26,9 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Mar 15  | Finish boosting; Statistical learning with general losses: Rademacher complexity analysis | [slides](notes/loss_minimization.pdf) | SSBD 26.1, 26.2, 26.4 |  | 
 | Mar 17  | Finish the proof of contraction inequality; Begin margin-based generalization error bounds  | [slides](notes/margins.pdf) [Handwritten note 12](../csc588sp21/notes/lec13_handwritten.pdf) [Handwritten note 13](../csc588sp21/notes/lec14_handwritten.pdf)  | SSBD 26.3, 15.1 |  | 
 | Mar 22  | Finish margin bound; Regularized loss minization formulations | [Handwritten note 14](../csc588sp21/notes/lec15_handwritten.pdf)  |  |  | 
-| Mar 24  | Johnson-Lindenstrauss lemma and margins; Stability and generalization | [slides](notes/stability_handout.pdf) [Handwritten note 15](../csc588sp21/notes/lec16_handwritten.pdf) |  |  | 
+| Mar 24  | Johnson-Lindenstrauss lemma and margins; Stability and generalization | [slides](notes/stability_handout.pdf) [Handwritten note 15](../csc588sp21/notes/lec16_handwritten.pdf)  |  SSBD Chap 13, [J-L Notes by Sham Kakade and Greg Shakhnarovich](https://home.ttic.edu/~gregory/courses/LargeScaleLearning/lectures/jl.pdf) |  | 
+| Mar 29  | Online learning: definitions and examples; online to batch conversion |  | O Chap 1, [Haipeng Luo's online learning lecture notes 1](https://haipeng-luo.net/courses/CSCI699/)  |  | 
+| Mar 31  | Online gradient descent and its regret analysis |  | O Chap 3, Chap 2 |  | 
 
 
 [//]: # (
