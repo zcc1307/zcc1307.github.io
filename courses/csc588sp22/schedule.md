@@ -27,9 +27,10 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Mar 17  | Finish the proof of contraction inequality; Begin margin-based generalization error bounds  | [slides](notes/margins.pdf) [Handwritten note 12](../csc588sp21/notes/lec13_handwritten.pdf) [Handwritten note 13](../csc588sp21/notes/lec14_handwritten.pdf)  | SSBD 26.3, 15.1 |  | 
 | Mar 22  | Finish margin bound; Regularized loss minization formulations | [Handwritten note 14](../csc588sp21/notes/lec15_handwritten.pdf)  |  |  | 
 | Mar 24  | Johnson-Lindenstrauss lemma and margins; Stability and generalization | [slides](notes/stability_handout.pdf) [Handwritten note 15](../csc588sp21/notes/lec16_handwritten.pdf)  |  SSBD Chap 13, [J-L Notes by Sham Kakade and Greg Shakhnarovich](https://home.ttic.edu/~gregory/courses/LargeScaleLearning/lectures/jl.pdf) |  | 
-| Mar 29  | Online learning: definitions and examples; online to batch conversion |  | O Chap 1, [Haipeng Luo's online learning lecture notes 1](https://haipeng-luo.net/courses/CSCI699/)  |  | 
-| Mar 31  | Online gradient descent and its regret analysis |  | O Chap 3, Chap 2 |  | 
-
+| Mar 29  | Finish Stability; Online learning: definitions and examples | [Handwritten note 16](../csc588sp21/notes/lec17_handwritten.pdf) | O Chap 1, [Haipeng Luo's online learning lecture notes 1](https://haipeng-luo.net/courses/CSCI699/)  |  | 
+| Mar 31  | Online to batch conversion; Azuma's inequality |  [Handwritten note 17](../csc588sp21/notes/lec18_handwritten.pdf) | O Chap 3 |  | 
+| Apr 5  | Finish Azuma's inequality; Online gradient descent; subgradients |  | O Chap 2 |  | 
+| Apr 7  | Online gradient descent and its regret analysis | [Handwritten note 18](../csc588sp21/notes/lec19_handwritten.pdf) | O Chap 2 | [HW4](hw/CSC_588_HW_4.pdf) | 
 
 [//]: # (
 | Jan 19  | The PAC learning framework; the consistency algorithm | [Scribe note (0119/)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | [Note 2](notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
