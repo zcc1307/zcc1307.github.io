@@ -31,6 +31,10 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Mar 31  | Online to batch conversion; Azuma's inequality |  [Handwritten note 17](../csc588sp21/notes/lec18_handwritten.pdf) | O Chap 3 |  | 
 | Apr 5  | Finish Azuma's inequality; Online gradient descent; subgradients |  | O Chap 2 |  | 
 | Apr 7  | Online gradient descent and its regret analysis | [Handwritten note 18](../csc588sp21/notes/lec19_handwritten.pdf) | O Chap 2 | [HW4](hw/CSC_588_HW_4.pdf) | 
+| Apr 12  | Online mirror descent; Fenchel conjugate | [Handwritten note 19](../csc588sp21/notes/lec20_handwritten.pdf) | O Thm 2.19, 5.2.1, 6.1-6.3 | | 
+| Apr 14  | Online mirror descent examples: p-norm, exponentiated gradient; regret analysis | [Handwritten note 20](../csc588sp21/notes/lec21_handwritten.pdf) | O  6.4.1, 6.6, 6.7, 6.4  | | 
+| Apr 19  | Weather forecasting (expert problem) revisited; unknown horizon; lower bounds; Efficient empirical loss minimization | [Handwritten note 21](../csc588sp21/notes/lec22_handwritten.pdf) | O 6.8, 5.1, SSBD 14.5.1 | | 
+| Apr 21 | Efficient empirical loss minimization cont'd; OCO with strongly-convex functions; Multi-armed bandits | [Handwritten note 21](../csc588sp21/notes/lec22_handwritten.pdf) | SSBD 14.4.4, 14.5.3, LS Chap 7 | | 
 
 [//]: # (
 | Jan 19  | The PAC learning framework; the consistency algorithm | [Scribe note (0119/)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | [Note 2](notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
