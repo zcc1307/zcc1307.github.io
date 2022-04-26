@@ -29,9 +29,9 @@ If you need help with choosing a project, please schedule an appointment with me
   * For implementation projects, give a list of algorithms that you have already implemented, and provide experimental results (if you have some). How do the results answer the questions you asked in the proposal?
   * For research projects, provide a list of trials you have made to attack your research problem, regardless of whether they are successful.
 
-* __Final Presentation.__ The presentation will be on __Apr 28__ and __May 3__, in class. The actual lengths of the presentations will depend on the number of groups in the class. Please send me a copy of your slides after your presentation.
+* __Final Presentation.__ The presentation will be on __May 3__, in class. The actual lengths of the presentations will depend on the number of groups in the class. Please send me a copy of your slides after your presentation.
 
-* __Final Report.__ A 4-page summary of the project is due __Apr 28__ (for presentations on May 3) and __May 3__ (for presentations on Apr 28) on gradescope. The report will be judged on both clarity and quality. The report needs to be typeset by LaTeX.
+* __Final Report.__ A 4-page summary of the project is due __May 4__ on gradescope. The report will be judged on both clarity and quality. The report needs to be typeset by LaTeX.
 
   * For literature survey, provide a critical summary of the papers you have read; discuss the connections among these papers, and their impacts to broader field.
   * For implementation projects, present your experimental results, and check whether the experimental results agree with theory.
