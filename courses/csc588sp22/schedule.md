@@ -37,7 +37,7 @@ We will be following a schedule similar to [last year's](../csc588sp21/schedule.
 | Apr 21 | Efficient empirical loss minimization cont'd; OCO with strongly-convex functions; Begin multi-armed bandits | [Handwritten note 22](../csc588sp21/notes/lec25_handwritten.pdf) | SSBD 14.4.4, 14.5.3, AJKS Chap 6.1, LS Chap 7 | | 
 | Apr 26 | Multi-armed bandits and the UCB algorithm | [Handwritten note 23](https://zcc1307.github.io/courses/csc588sp21/notes/lec25_handwritten.pdf) | AJKS Chap 6.1, LS Chap 7 | | 
 | Apr 28 | Episodic RL; the optimism approach to RL | [Handwritten note 24](https://zcc1307.github.io/courses/csc588sp21/notes/lec28_handwritten.pdf) | AJKS Chap 7.1-7.3 | | 
-| May 3 | Project presentations: Jing Wu: An empirical evaluation on stochastic optimization algorithms - SGD and SDCA; Minhang Zhou: Pure exploration in multi-armed bandit problems; Ryan Murphy: model-free online learning in episodic MDPs; Yanan Wang: Fairness accuracy analysis in fair machine learning; Yuanyuan Sun: compressed sensing with RIP |   | | | 
+| May 3 | Project presentations: <br> Jing Wu: An empirical evaluation on stochastic optimization algorithms - SGD and SDCA <br> Minhang Zhou: Pure exploration in multi-armed bandit problems <br> Ryan Murphy: Model-free online learning in episodic MDPs <br> Yanan Wang: Fairness accuracy analysis in fair machine learning <br> Yuanyuan Sun: Compressed sensing with RIP |   |   |   | 
 
 [//]: # (
 | Jan 19  | The PAC learning framework; the consistency algorithm | [Scribe note (0119/)](https://www.overleaf.com/read/cjdpjbhwhpcx) (Please feel free to make a copy of this as a starting point when scribing) | [Note 2](notes/lec2_handwritten.pdf) | SSBD Chap 2, Sec 3.1  |  |
