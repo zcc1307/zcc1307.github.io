@@ -40,10 +40,6 @@ Gould-Simpson 720
 
 Office Hour: Tuesdays 4-5pm at my office or by appointment
 
-[//]: # (
-Mondays 1-2pm (see D2L for meeting link) or by email appointment
-)
-
 ### Textbook
 
 The required textbook is Hal Daumé’s [A Course in Machine Learning](http://ciml.info/), freely available online.
