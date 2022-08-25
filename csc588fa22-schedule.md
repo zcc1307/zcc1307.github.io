@@ -4,6 +4,13 @@ title: CSC 580 Fall 2022
 permalink: /courses/csc580fa22/schedule
 ---
 
+<!--
+<style>
+    table {
+        width: 100%;
+    }
+</style>
+-->
 
 ### CSC 580: Principles of Machine Learning - Fall 2022
 
@@ -15,7 +22,7 @@ permalink: /courses/csc580fa22/schedule
 |Aug 24 | Supervised learning paradigm; decision trees | [slides](22_lec01_final.pdf) | CIML Chap. 2 |  |
 |Aug 29 | Finish decision trees; limits of learning; practical issues in supervised learning |  |  | HW0 due |
 |Aug 31 |  |  |  |  |
-|Sep 5 |  |  |  |  |
+|Sep 5 | Labor day holiday |  |  |  |
 |Sep 7 |  |  |  |  |
 |Sep 12 |  |  |  |  |
 |Sep 14 |  |  |  |  |
