@@ -12,8 +12,8 @@ permalink: /courses/csc580fa22/schedule
 |Date  | Topics | Notes | Readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|
 |Aug 22 | Introduction, motivation, course mechanics | [slides](22_lec00_final.pdf) | CIML Chap. 1 | [HW0](CSC_580_HW0.pdf) |
-|Aug 24 | Supervised learning paradigm, Decision trees |  |  |  |
-|Aug 29 |  |  |  | HW0 due |
+|Aug 24 | Supervised learning paradigm; decision trees | [slides](22_lec01_final.pdf) | CIML Chap. 2 |  |
+|Aug 29 | Finish decision trees; limits of learning; practical issues in supervised learning |  |  | HW0 due |
 |Aug 31 |  |  |  |  |
 |Sep 5 |  |  |  |  |
 |Sep 7 |  |  |  |  |
