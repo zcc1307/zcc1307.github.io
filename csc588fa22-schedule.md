@@ -21,9 +21,9 @@ permalink: /courses/csc580fa22/schedule
 |Aug 22 | Introduction, motivation, course mechanics | [slides](22_lec00_final.pdf) | CIML Chap. 1 | [HW0](CSC_580_HW0.pdf) |
 |Aug 24 | Supervised learning paradigm; decision trees | [slides](22_lec01_final.pdf) | CIML Chap. 2 |  |
 |Aug 29 | Finish decision trees; limits of learning; practical issues in supervised learning | [slides](22_lec02_final.pdf) | CIML Chap. 3 | HW0 due |
-|Aug 31 | Hyperparameter selection; cross-validation; nearest neighbors  | [slides](22_lec03_final.pdf) | CIML Chap. 2 | [HW1](CSC_580_HW1.pdf) |
+|Aug 31 | Hyperparameter selection; cross-validation; nearest neighbors  | [slides](22_lec03_final.pdf) | CIML Chap. 4 | [HW1](CSC_580_HW1.pdf) |
 |Sep 5 | Labor day holiday |  |  |  |
-|Sep 7 |  |  |  |  |
+|Sep 7 | Linear classifiers; Perceptron |  |  |  |
 |Sep 12 |  |  |  |  |
 |Sep 14 |  |  |  |  |
 |Sep 19 |  |  |  |  |
