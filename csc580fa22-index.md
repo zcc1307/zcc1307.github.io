@@ -38,7 +38,7 @@ We will be using Piazza to make important announcements and do Q&As. Some genera
 
 Gould-Simpson 720
 
-Office Hour: ~~Tuesdays 4-5pm~~ Wednesdays 11am-12pm at my office or by appointment
+Office Hour: ~~Tuesdays 4-5pm~~ ~~Wednesdays 11am-12pm~~ Mondays 5-6pm at my office or by appointment
 
 ### Textbook
 

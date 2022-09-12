@@ -23,8 +23,8 @@ permalink: /courses/csc580fa22/schedule
 |Aug 29 | Finish decision trees; limits of learning; practical issues in supervised learning | [slides](22_lec02_final.pdf) | CIML Chap. 3 | HW0 due |
 |Aug 31 | Hyperparameter selection; cross-validation; nearest neighbors  | [slides](22_lec03_final.pdf) | CIML Chap. 4 | [HW1](CSC_580_HW1.pdf) |
 |Sep 5 | Labor day holiday |  |  |  |
-|Sep 7 | Linear classifiers; Perceptron |  |  |  |
-|Sep 12 |  |  |  |  |
+|Sep 7 | Linear classifiers; Perceptron |  [slides](22_lec04_final.pdf) | CIML 5.1-5.6 |  |
+|Sep 12 | Practical considerations: features; performance metric beyond error |  | CIML 5.7, 7.1-7.3 |  |
 |Sep 14 |  |  |  |  |
 |Sep 19 |  |  |  |  |
 |Sep 21 |  |  |  |  |
