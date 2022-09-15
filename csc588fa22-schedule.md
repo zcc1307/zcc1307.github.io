@@ -25,7 +25,7 @@ permalink: /courses/csc580fa22/schedule
 |Sep 5 | Labor day holiday |  |  |  |
 |Sep 7 | Linear classifiers; Perceptron |  [slides](22_lec04_final.pdf) | CIML 5.1-5.6 |  |
 |Sep 12 | Practical considerations: features; performance metric beyond error; ROC curves |  | CIML 5.7, 7.1-7.3 |  |
-|Sep 14 | Precision-recall curves; confidence intervals and hypotheiss testing | [slides](22_lec04_final.pdf) | CIML 7.4-7.6 |  |
+|Sep 14 | Precision-recall curves; confidence intervals and hypothesis testing | [slides](22_lec05_final.pdf) | CIML 7.4-7.6 |  |
 |Sep 19 |  |  |  |  |
 |Sep 21 |  |  |  |  |
 |Sep 26  |  |  |  |  |
