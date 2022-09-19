@@ -50,6 +50,8 @@ Shai Shalev-Shwartz and Shai Ben-David, [Understanding machine learning: from th
 
 Moritz Hardt and Benjamin Recht, [Patterns, predictions, and actions: Foundations of machine learning](https://mlstory.org/)
 
+Ian Goodfellow, Yoshua Bengio, and Aaron Courville, [Deep Learning](https://www.deeplearningbook.org/)
+
 Trevor Hastie, Robert Tibshirani, and Jerome Friedman, The elements of statistical learning (2nd edition).
 
 Tom Mitchell, Machine Learning.
