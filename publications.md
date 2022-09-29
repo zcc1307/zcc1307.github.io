@@ -26,6 +26,7 @@ permalink: /publications
 <span class="title">On Efficient Online Imitation Learning via Classification.</span> <br>
 <span class="author">Yichen Li and Chicheng Zhang.</span> <br>
 <span class="venue">NeurIPS 2022 (to appear). </span> <br>
+<span class="link"><a href="https://arxiv.org/abs/2209.12868">[arXiv]</a> </span>
 </li>
 </ul>
 
