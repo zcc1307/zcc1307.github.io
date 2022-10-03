@@ -16,6 +16,9 @@ permalink: /courses/csc580fa22/schedule
 
 #### Tentative schedule
 
+Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, which in turn builds upon Daniel Hsu, Francesco Orabona, and Xiaojin (Jerry) Zhu's teaching materials. 
+
+
 |Date  | Topics | Notes | Readings  | Homework |
 |:---:|:------------:|:---:|:---:|:---:|
 |Aug 22 | Introduction, motivation, course mechanics | [slides](22_lec00_final.pdf) | CIML Chap. 1 | [HW0](CSC_580_HW0.pdf) |
@@ -26,8 +29,8 @@ permalink: /courses/csc580fa22/schedule
 |Sep 7 | Linear classifiers; Perceptron |  [slides](22_lec04_final.pdf) | CIML 5.1-5.6 |  |
 |Sep 12 | Practical considerations: features; performance metric beyond error; ROC curves |  | CIML 5.7, 7.1-7.3 |  |
 |Sep 14 | Precision-recall curves; confidence intervals and hypothesis testing | [slides](22_lec05_final.pdf) | CIML 7.4-7.6 |  |
-|Sep 19 |  |  |  |  |
-|Sep 21 |  |  |  |  |
+|Sep 19 | Finish hypothesis testing; Linear models for regression | [slides](22_lec06_final.pdf) | CIML 7.7 |  |
+|Sep 21 | Introduction to convex optimization; Linear models for classification | [draft slides](22_lec07_final.pdf) | CIML 11.1-11.2 |  |
 |Sep 26  |  |  |  |  |
 |Sep 28  |  |  |  |  |
 |Oct 3  |  |  |  |  |
