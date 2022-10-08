@@ -30,10 +30,10 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Sep 12 | Practical considerations: features; performance metric beyond error; ROC curves |  | CIML 5.7, 7.1-7.3 |  |
 |Sep 14 | Precision-recall curves; confidence intervals and hypothesis testing | [slides](22_lec05_final.pdf) | CIML 7.4-7.6 |  |
 |Sep 19 | Finish hypothesis testing; Linear models for regression | [slides](22_lec06_final.pdf) | CIML 7.7 |  |
-|Sep 21 | Introduction to convex optimization; Linear models for classification | [draft slides](22_lec07_final.pdf) | CIML 11.1-11.2 |  |
-|Sep 26  |  |  |  |  |
-|Sep 28  |  |  |  |  |
-|Oct 3  |  |  |  |  |
+|Sep 21 | Introduction to convex optimization; Linear models for classification |  | CIML 11.1-11.2 |  |
+|Sep 26  | SVM; stochastic gradient descent; dual formulations | [slides](22_lec07_final.pdf) | CIML 11.4, 11.5 |  |
+|Sep 28  | Finish SVM dual formulation; geometric interpretation; begin kernel methods | [slides](22_lec08_final.pdf) | CIML 3.4, 11.3 |  |
+|Oct 3  | Finish kernel methods: kernel Perceptron; kernel ridge regression; begin unsupervised learning: clustering and k-means |  | CIML Chap 15 | [HW2](CSC_580_HW2.pdf) |
 |Oct 5 |  |  |  |  |
 |Oct 10 |  |  |  |  |
 |Oct 12 |  |  |  |  |
