@@ -34,8 +34,8 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Sep 26  | SVM; stochastic gradient descent; dual formulations | [slides](22_lec07_final.pdf) | CIML 11.4, 11.5 |  |
 |Sep 28  | Finish SVM dual formulation; geometric interpretation; begin kernel methods | [slides](22_lec08_final.pdf) | CIML 3.4, 11.3 |  |
 |Oct 3  | Finish kernel methods: kernel Perceptron; kernel ridge regression; begin unsupervised learning: clustering and k-means |  | CIML Chap 15 | [HW2](CSC_580_HW2.pdf) |
-|Oct 5 |  |  |  |  |
-|Oct 10 |  |  |  |  |
+|Oct 5 | Class canceled |  |  |  |
+|Oct 10 | Finish clustering; Principal component analysis (PCA) | CIML 9.1-9.3 | [slides](22_lec09_final.pdf) |  |
 |Oct 12 |  |  |  |  |
 |Oct 17 |  |  |  |  |
 |Oct 19 |  |  |  |  |
