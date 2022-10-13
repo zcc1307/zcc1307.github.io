@@ -34,11 +34,11 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Sep 26  | SVM; stochastic gradient descent; dual formulations | [slides](22_lec07_final.pdf) | CIML 11.4, 11.5 |  |
 |Sep 28  | Finish SVM dual formulation; geometric interpretation; begin kernel methods | [slides](22_lec08_final.pdf) | CIML 3.4, 11.3 |  |
 |Oct 3  | Finish kernel methods: kernel Perceptron; kernel ridge regression; begin unsupervised learning: clustering and k-means |  | CIML Chap 15 | [HW2](CSC_580_HW2.pdf) |
-|Oct 5 | Class canceled |  | [My old notes on SVM and kernels](https://zcc1307.github.io/courses/csc665fa19/notes/svm.pdf) |  |
-|Oct 10 | Finish clustering; Principal component analysis (PCA) | [draft slides](22_lec09_final.pdf) | CIML 9.1-9.3 |  |
-|Oct 12 |  |  |  |  |
-|Oct 17 |  |  |  |  |
-|Oct 19 |  |  |  |  |
+|Oct 5 | Class canceled (please review your HW1 & soln guide) |  | [My old notes on SVM and kernels](https://zcc1307.github.io/courses/csc665fa19/notes/svm.pdf);  |  |
+|Oct 10 | Finish clustering; Principal component analysis (PCA) | [slides](22_lec09_final.pdf) | CIML 9.1-9.3 |  |
+|Oct 12 | Finish PCA; begin probabilistic graphical models | [draft slides](22_lec10_final.pdf) | CIML 9.4-9.7 |  |
+|Oct 17 | Finish Naive Bayes; Midterm review |  |  |  |
+|Oct 19 | Midterm exam |  |  |  |
 |Oct 24 |  |  |  |  |
 |Oct 26 |  |  |  |  |
 |Oct 31 |  |  |  |  |
