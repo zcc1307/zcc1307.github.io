@@ -39,8 +39,8 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Oct 12 | Finish PCA; begin probabilistic graphical models |  | CIML 9.4-9.7 |  |
 |Oct 17 | Finish Naive Bayes; Midterm review | [slides](22_lec10_final.pdf) | CIML 16.1-16.2 |  |
 |Oct 19 | Midterm exam |  |  |  |
-|Oct 24 | Expectation-maximization and Gaussian mixture models |  |  |  |
-|Oct 26 |  |  |  | Project proposal due |
+|Oct 24 | Expectation-maximization and Gaussian mixture modelss | [slides](22_lec11_final.pdf) | CIML 16.3 |  |
+|Oct 26 | Finish GMM; A closer look at Bayes Nets and Conditional Independence |  [draft slides](22_lec12_final.pdf) | [Jason Pacheco's PGM note](https://www2.cs.arizona.edu/~pachecoj/courses/csc535_fall20/lectures/pgms.pdf) | Project proposal due |
 |Oct 31 |  |  |  |  |
 |Nov 2 |  |  |  |  |
 |Nov 7 |  |  |  |  |
