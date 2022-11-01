@@ -41,8 +41,8 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Oct 19 | Midterm exam |  |  |  |
 |Oct 24 | Expectation-maximization and Gaussian mixture modelss | [slides](22_lec11_final.pdf) | CIML 16.3 |  |
 |Oct 26 | Finish GMM; A closer look at Bayes Nets and Conditional Independence |  [draft slides](22_lec12_final.pdf) | [Jason Pacheco's PGM note](https://www2.cs.arizona.edu/~pachecoj/courses/csc535_fall20/lectures/pgms.pdf) | Project proposal due |
-|Oct 31 |  |  |  |  |
-|Nov 2 |  |  |  |  |
+|Oct 31 | d-separation; Begin HMMs: the forward algorithm |  | [Jason Pacheco's Dynamical Systems note](https://www2.cs.arizona.edu/~pachecoj/courses/csc535_fall20/lectures/dynamicalsys.pdf) |  |
+|Nov 2 | Finish HMMs: Viterbi algorithm for decoding and EM algorithm for learning |  | CIML 10.1-10.2 | [HW3](CSC_580_HW3.pdf) |
 |Nov 7 |  |  |  |  |
 |Nov 9 |  |  |  |  |
 |Nov 14 |  |  |  |  |
