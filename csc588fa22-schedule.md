@@ -43,9 +43,9 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Oct 26 | Finish GMM; A closer look at Bayes Nets and Conditional Independence |   | [Jason Pacheco's PGM note](https://www2.cs.arizona.edu/~pachecoj/courses/csc535_fall20/lectures/pgms.pdf) | Project proposal due |
 |Oct 31 | d-separation; Begin HMMs: the forward algorithm |  | [Jason Pacheco's Dynamical Systems note](https://www2.cs.arizona.edu/~pachecoj/courses/csc535_fall20/lectures/dynamicalsys.pdf) |  |
 |Nov 2 | Finish HMMs: Viterbi algorithm for decoding and EM algorithm for learning | [slides](22_lec12_final.pdf) | CIML 10.1-10.2 | [HW3](CSC_580_HW3.pdf) |
-|Nov 7 | Neural Networks and backpropagation |  |  |  |
-|Nov 9 |  |  |  |  |
-|Nov 14 |  |  |  |  |
+|Nov 7 | Neural Networks; begin backpropagation |  | CIML 10.3-10.6 |  |
+|Nov 9 | Finish backpropagation; tips for training neural networks | [slides](22_lec13_final.pdf) | Berkeley CS 285 PyTorch tutorial (see links in slides) |  |
+|Nov 14 | Convolutional neural networks |  |  |  |
 |Nov 16 |  |  |  |  |
 |Nov 21 |  |  |  |  |
 |Nov 23 |  |  |  |  |
