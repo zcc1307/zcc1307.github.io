@@ -35,6 +35,7 @@ permalink: /publications
 <span class="title">PopArt: Efficient Sparse Regression and Experimental Design for Optimal Sparse Linear Bandits.</span> <br>
 <span class="author">Kyoungseok Jang, Chicheng Zhang, Kwang-Sung Jun.</span> <br>
 <span class="venue">NeurIPS 2022 (to appear). </span> <br>
+<span class="link"><a href="https://arxiv.org/abs/2210.15345">[arXiv]</a> </span>
 </li>
 </ul>
 
