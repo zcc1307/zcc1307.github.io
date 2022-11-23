@@ -45,10 +45,10 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Nov 2 | Finish HMMs: Viterbi algorithm for decoding and EM algorithm for learning | [slides](22_lec12_final.pdf) | CIML 10.1-10.2 | [HW3](CSC_580_HW3.pdf) |
 |Nov 7 | Neural Networks; begin backpropagation |  | CIML 10.3-10.6 |  |
 |Nov 9 | Finish backpropagation; tips for training neural networks | [slides](22_lec13_final.pdf) | Berkeley CS 285 PyTorch tutorial (see links in slides) |  |
-|Nov 14 | Convolutional neural networks |  |  |  |
-|Nov 16 |  |  |  |  |
-|Nov 21 |  |  |  |  |
-|Nov 23 |  |  |  |  |
+|Nov 14 | Convolutional neural networks (CNNs) | [slides](22_lec14_final.pdf) | [Stanford CS 231n notes on CNNs](https://cs231n.github.io/convolutional-networks/) |  |
+|Nov 16 | CNNs cont'd; begin generative models: autoencoders  |  |  |  |
+|Nov 21 | Generative models: VAEs |  | [Jaan Altosaar's VAE tutorial](https://jaan.io/what-is-variational-autoencoder-vae-tutorial/) |  |
+|Nov 23 | Generative models: GANs |  [slides](22_lec15_final.pdf) | [The original GAN paper](https://arxiv.org/pdf/1406.2661.pdf) | [HW4](CSC_580_HW4.pdf) |
 |Nov 28 |  |  |  |  |
 |Nov 30 |  |  |  |  |
 |Dec 5 |  |  |  |  |
