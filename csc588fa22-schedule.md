@@ -49,7 +49,7 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Nov 16 | CNNs cont'd; begin generative models: autoencoders  |  |  |  |
 |Nov 21 | Generative models: VAEs |  | [Jaan Altosaar's VAE tutorial](https://jaan.io/what-is-variational-autoencoder-vae-tutorial/) |  |
 |Nov 23 | Generative models: GANs |  [slides](22_lec15_final.pdf) | [The original GAN paper](https://arxiv.org/pdf/1406.2661.pdf) | [HW4](CSC_580_HW4.pdf) |
-|Nov 28 |  |  |  |  |
-|Nov 30 |  |  |  |  |
-|Dec 5 |  |  |  |  |
-|Dec 7 |  |  |  |  |
+|Nov 28 | Reinforcement learning: policy evaluation and planning |  |  |  |
+|Nov 30 | Reinforcement learning: learning in MDPs | [slides](22_lec16_final.pdf) | [Andrej Karpathy's blogpost on Deep RL](http://karpathy.github.io/2016/05/31/rl/) |  |
+|Dec 5 | Learning Theory: the PAC model |  |  |  |
+|Dec 7 | Finish learning theory; Final review |  |  |  |
