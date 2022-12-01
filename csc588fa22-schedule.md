@@ -39,7 +39,7 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Oct 12 | Finish PCA; begin probabilistic graphical models |  | CIML 9.4-9.7 |  |
 |Oct 17 | Finish Naive Bayes; Midterm review | [slides](22_lec10_final.pdf) | CIML 16.1-16.2 |  |
 |Oct 19 | Midterm exam |  |  |  |
-|Oct 24 | Expectation-maximization and Gaussian mixture modelss | [slides](22_lec11_final.pdf) | CIML 16.3 |  |
+|Oct 24 | Expectation-maximization and Gaussian mixture models (GMMs) | [slides](22_lec11_final.pdf) | CIML 16.3 |  |
 |Oct 26 | Finish GMM; A closer look at Bayes Nets and Conditional Independence |   | [Jason Pacheco's PGM note](https://www2.cs.arizona.edu/~pachecoj/courses/csc535_fall20/lectures/pgms.pdf) | Project proposal due |
 |Oct 31 | d-separation; Begin HMMs: the forward algorithm |  | [Jason Pacheco's Dynamical Systems note](https://www2.cs.arizona.edu/~pachecoj/courses/csc535_fall20/lectures/dynamicalsys.pdf) |  |
 |Nov 2 | Finish HMMs: Viterbi algorithm for decoding and EM algorithm for learning | [slides](22_lec12_final.pdf) | CIML 10.1-10.2 | [HW3](CSC_580_HW3.pdf) |
@@ -49,7 +49,7 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Nov 16 | CNNs cont'd; begin generative models: autoencoders  |  |  |  |
 |Nov 21 | Generative models: VAEs |  | [Jaan Altosaar's VAE tutorial](https://jaan.io/what-is-variational-autoencoder-vae-tutorial/) |  |
 |Nov 23 | Generative models: GANs |  [slides](22_lec15_final.pdf) | [The original GAN paper](https://arxiv.org/pdf/1406.2661.pdf) | [HW4](CSC_580_HW4.pdf) |
-|Nov 28 | Reinforcement learning: policy evaluation and planning |  |  |  |
+|Nov 28 | Reinforcement learning: policy evaluation and planning in MDPs |  |  |  |
 |Nov 30 | Reinforcement learning: learning in MDPs | [slides](22_lec16_final.pdf) | [Andrej Karpathy's blogpost on Deep RL](http://karpathy.github.io/2016/05/31/rl/) |  |
-|Dec 5 | Learning Theory: the PAC model |  |  |  |
+|Dec 5 | Learning Theory: the PAC framework |  |  |  |
 |Dec 7 | Finish learning theory; Final review |  |  |  |
