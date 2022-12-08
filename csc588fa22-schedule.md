@@ -51,5 +51,5 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Nov 23 | Generative models: GANs |  [slides](22_lec15_final.pdf) | [The original GAN paper](https://arxiv.org/pdf/1406.2661.pdf) | [HW4](CSC_580_HW4.pdf) |
 |Nov 28 | Reinforcement learning: policy evaluation and planning in MDPs |  |  |  |
 |Nov 30 | Reinforcement learning: learning in MDPs | [slides](22_lec16_final.pdf) | [Andrej Karpathy's blogpost on Deep RL](http://karpathy.github.io/2016/05/31/rl/) |  |
-|Dec 5 | Learning Theory: the PAC framework |  |  |  |
-|Dec 7 | Finish learning theory; Final review |  |  |  |
+|Dec 5 | Learning Theory: the PAC and agnostic PAC framework |  |  |  |
+|Dec 7 | Learning theory: uniform convergence and structural risk minimization; Final review | [slides](22_lec17_final.pdf) |  |  |
