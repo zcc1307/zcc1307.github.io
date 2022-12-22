@@ -52,4 +52,4 @@ Slides credit: built upon CSC 580 Fall 2021 lecture slides by Kwang-Sung Jun, wh
 |Nov 28 | Reinforcement learning: policy evaluation and planning in MDPs |  |  |  |
 |Nov 30 | Reinforcement learning: learning in MDPs | [slides](22_lec16_final.pdf) | [Andrej Karpathy's blogpost on Deep RL](http://karpathy.github.io/2016/05/31/rl/) |  |
 |Dec 5 | Learning Theory: the PAC and agnostic PAC framework |  |  |  |
-|Dec 7 | Learning theory: uniform convergence and structural risk minimization; Final review | [slides](22_lec17_final.pdf) |  |  |
+|Dec 7 | Learning theory: uniform convergence and structural risk minimization; Final review | [slides](22_lec17_final.pdf) | [``Deep double descent'' paper by Nakkiran et al](https://openreview.net/forum?id=B1g5sA4twr) |  |
