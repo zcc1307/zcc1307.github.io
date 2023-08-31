@@ -44,11 +44,15 @@ Office Hours: TBD
 
 Main references:
 
-[Reinforcement Learning: Theory and Algorithms](https://rltheorybook.github.io/rltheorybook_AJKS.pdf), by Alekh Agarwal, Nan Jiang, Sham Kakade, and Wen Sun. 
+[Reinforcement Learning: Theory and Algorithms](https://rltheorybook.github.io/rltheorybook_AJKS.pdf), by Alekh Agarwal, Nan Jiang, Sham Kakade, and Wen Sun (AJKS);
 
-[Bandit algorithms](https://tor-lattimore.com/downloads/book/book.pdf), by Tor Lattimore and Csaba Szepesvari
+[Bandit algorithms](https://tor-lattimore.com/downloads/book/book.pdf), by Tor Lattimore and Csaba Szepesvari (LS);
 
-[Mathematical Analysis of Learning Algorithms](https://tongzhang-ml.org/lt-book.html) by Tong Zhang
+[Mathematical Analysis of Learning Algorithms](https://tongzhang-ml.org/lt-book.html) by Tong Zhang (TZ); 
+
+[Bandits and RL](https://people.cs.umass.edu/~akshay/courses/coms6998-11/index.html) by Akshay Krishnamurthy (AK);
+
+[Statistical Reinforcement Learning and Decision Making](https://www.mit.edu/~rakhlin/course-decision-making.html) by Dylan Foster and Sasha Rakhlin (FR)
 
 Additional references:
 
@@ -94,13 +98,9 @@ Many courses offered at other institutions have good (and vastly diverse) lectur
 
 [Reinforcement Learning](http://chercheurs.lille.inria.fr/~lazaric/Webpage/MVA-RL_Course16.html) by Alessandro Lazaric
 
-[Bandits and RL](https://people.cs.umass.edu/~akshay/courses/coms6998-11/index.html) by Akshay Krishnamurthy
-
 [Foundations of Reinforcement Learning](https://sites.google.com/view/cjin/ele524) by Chi Jin
 
 [Theoretical Foundations of Reinforcement Learning](https://rltheory.github.io/pages/lectures/) by Csaba Szepesvari
-
-[Statistical Reinforcement Learning and Decision Making](https://www.mit.edu/~rakhlin/course-decision-making.html) by Dylan Foster and Sasha Rakhlin
 
 [Statistical Reinforcement Learning](https://nanjiang.cs.illinois.edu/cs598/) by Nan Jiang
 
