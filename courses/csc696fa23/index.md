@@ -38,7 +38,7 @@ We will be using Piazza to make important announcements and do Q&As. Please self
 
 Office: Gould-Simpson 720
 
-Office Hours: TBD
+Office Hours: Thursdays 2-3pm
 
 ### Textbook
 
