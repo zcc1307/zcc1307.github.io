@@ -37,49 +37,49 @@ Courses / tutorials in the Bandit / RL theory research community may also have i
 * [FOCS 2020 Tutorial: Theoretical Foundations of Reinforcement Learning](https://hunch.net/~tforl/) by Alekh Agarwal, Akshay Krishnamurthy, and John Langford
 
 #### Oracle-Efficient Bandit Algorithms 
-David Simchi-Levi , Yunzong Xu. Bypassing the Monster: A Faster and Simpler Optimal Algorithm for Contextual Bandits Under Realizability. 2020.
-Dylan J. Foster, Akshay Krishnamurthy. Efficient First-Order Contextual Bandits: Prediction, Allocation, and Triangular Discrimination. 2021.
-Dylan J. Foster, Claudio Gentile, Mehryar Mohri, Julian Zimmert. Adapting to Misspecification in Contextual Bandits. 2020.
-Sanath Kumar Krishnamurthy, Vitor Hadad, Susan Athey. Adapting to misspecification in contextual bandits with offline regression oracles. 2021.
-Yunbei Xu, Assaf Zeevi. Upper Counterfactual Confidence Bounds: a New Optimism Principle for Contextual Bandits. 2020.
+* David Simchi-Levi , Yunzong Xu. Bypassing the Monster: A Faster and Simpler Optimal Algorithm for Contextual Bandits Under Realizability. 2020.
+* Dylan J. Foster, Akshay Krishnamurthy. Efficient First-Order Contextual Bandits: Prediction, Allocation, and Triangular Discrimination. 2021.
+* Dylan J. Foster, Claudio Gentile, Mehryar Mohri, Julian Zimmert. Adapting to Misspecification in Contextual Bandits. 2020.
+* Sanath Kumar Krishnamurthy, Vitor Hadad, Susan Athey. Adapting to misspecification in contextual bandits with offline regression oracles. 2021.
+* Yunbei Xu, Assaf Zeevi. Upper Counterfactual Confidence Bounds: a New Optimism Principle for Contextual Bandits. 2020.
 
 
 #### Bandits with model misspecification
-Yusha Liu, Aarti Singh. Adaptation to Misspecified Kernel Regularity in Kernelised Bandits. 2023.
-Ilija Bogunovic, Andreas Krause. Misspecified Gaussian Process Bandit Optimization. 2021.
+* Yusha Liu, Aarti Singh. Adaptation to Misspecified Kernel Regularity in Kernelised Bandits. 2023.
+* Ilija Bogunovic, Andreas Krause. Misspecified Gaussian Process Bandit Optimization. 2021.
 
 #### Bandits and high-dimensional statistics
-Botao Hao, Tor Lattimore, Mengdi Wang. High-dimensional sparse linear bandits. 2020.
-Kwang-Sung Jun, Rebecca Willett, Stephen Wright, Robert Nowak. Bilinear Bandits with Low-rank Structure. 2019.
-Jie Zhou, Botao Hao, Zheng Wen, Jingfei Zhang, Will Wei Sun. Stochastic Low-rank Tensor Bandits for Multi-dimensional Online Decision Making. 2020.
-Soumyabrata Pal, Prateek Jain. Online Low Rank Matrix Completion. ICLR 2023.
+* Botao Hao, Tor Lattimore, Mengdi Wang. High-dimensional sparse linear bandits. 2020.
+* Kwang-Sung Jun, Rebecca Willett, Stephen Wright, Robert Nowak. Bilinear Bandits with Low-rank Structure. 2019.
+* Jie Zhou, Botao Hao, Zheng Wen, Jingfei Zhang, Will Wei Sun. Stochastic Low-rank Tensor Bandits for Multi-dimensional Online Decision Making. 2020.
+* Soumyabrata Pal, Prateek Jain. Online Low Rank Matrix Completion. ICLR 2023.
 
 #### Bandits with large action spaces
-Yinglun Zhu, Dylan Foster, John Langford, Paul Mineiro. Contextual Bandits with Large Action Spaces: Made Practical. ICML 2022.
-Yinglun Zhu, Paul Mineiro. Contextual bandits with smooth regret: Efficient learning in continuous action spaces. ICML 2022
-Rajat Sen, Alexander Rakhlin, Lexing Ying, Rahul Kidambi, Dean Foster, Daniel N Hill, Inderjit S. Dhillon. Top-k eXtreme Contextual Bandits with Arm Hierarchy. ICML 2021.
+* Yinglun Zhu, Dylan Foster, John Langford, Paul Mineiro. Contextual Bandits with Large Action Spaces: Made Practical. ICML 2022.
+* Yinglun Zhu, Paul Mineiro. Contextual bandits with smooth regret: Efficient learning in continuous action spaces. ICML 2022
+* Rajat Sen, Alexander Rakhlin, Lexing Ying, Rahul Kidambi, Dean Foster, Daniel N Hill, Inderjit S. Dhillon. Top-k eXtreme Contextual Bandits with Arm Hierarchy. ICML 2021.
 
 #### Other models of bandits and interactive learning
-Aadirupa Saha and Akshay Krishnamurthy. Efficient and optimal algorithms for contextual dueling bandits under realizability. ALT 2022.
-Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Contextual Bandits and Imitation Learning via Preference-Based Active Queries. 2023.
-Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Selective Sampling and Imitation Learning via Online Regression. 2023.
-Mengxiao Zhang, Yuheng Zhang, Olga Vrousgou, Haipeng Luo, Paul Mineiro. Practical Contextual Bandits with Feedback Graphs. 2023.
-Shuai Li, Baoxiang Wang, Shengyu Zhang, Wei Chen. Contextual Combinatorial Cascading Bandits. 2016.
+* Aadirupa Saha and Akshay Krishnamurthy. Efficient and optimal algorithms for contextual dueling bandits under realizability. ALT 2022.
+* Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Contextual Bandits and Imitation Learning via Preference-Based Active Queries. 2023.
+* Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Selective Sampling and Imitation Learning via Online Regression. 2023.
+* Mengxiao Zhang, Yuheng Zhang, Olga Vrousgou, Haipeng Luo, Paul Mineiro. Practical Contextual Bandits with Feedback Graphs. 2023.
+* Shuai Li, Baoxiang Wang, Shengyu Zhang, Wei Chen. Contextual Combinatorial Cascading Bandits. 2016.
 
 
 #### Model selection in bandits
-Dylan J. Foster, Akshay Krishnamurthy, Haipeng Luo. Model Selection for Contextual Bandits. 2019.
-Teodor Vanislavov Marinov, Julian Zimmert. The Pareto Frontier of model selection for general Contextual Bandits. 2021.
-Aldo Pacchiano, My Phan, Yasin Abbasi Yadkori, Anup Rao, Julian Zimmert, Tor Lattimore, Csaba Szepesvari. Model Selection in Contextual Stochastic Bandit Problems. 2020.
-Sanath Kumar Krishnamurthy, Susan Athey. Optimal model selection in contextual bandits with many classes via offline oracles. 2021.
-Alekh Agarwal, Haipeng Luo, Behnam Neyshabur, Robert E. Schapire. Corralling a Band of Bandit Algorithms. 2017.
-Aldo Pacchiano, Christoph Dann, Claudio Gentile, Peter Bartlett. Regret Bound Balancing and Elimination for Model Selection in Bandits and RL, 2020.
+* Dylan J. Foster, Akshay Krishnamurthy, Haipeng Luo. Model Selection for Contextual Bandits. 2019.
+* Teodor Vanislavov Marinov, Julian Zimmert. The Pareto Frontier of model selection for general Contextual Bandits. 2021.
+* Aldo Pacchiano, My Phan, Yasin Abbasi Yadkori, Anup Rao, Julian Zimmert, Tor Lattimore, Csaba Szepesvari. Model Selection in Contextual Stochastic Bandit Problems. 2020.
+* Sanath Kumar Krishnamurthy, Susan Athey. Optimal model selection in contextual bandits with many classes via offline oracles. 2021.
+* Alekh Agarwal, Haipeng Luo, Behnam Neyshabur, Robert E. Schapire. Corralling a Band of Bandit Algorithms. 2017.
+* Aldo Pacchiano, Christoph Dann, Claudio Gentile, Peter Bartlett. Regret Bound Balancing and Elimination for Model Selection in Bandits and RL, 2020.
 
 #### Offline contextual bandits
-Yu-Xiang Wang, Alekh Agarwal, Miroslav Dudı́k. Optimal and Adaptive Off-policy Evaluation in Contextual Bandits. 2017.
-Lequn Wang, Akshay Krishnamurthy, Alex Slivkins. Oracle-Efficient Pessimism: Offline Policy Optimization in Contextual Bandits. 2023.
-Maria Dimakopoulou, Zhengyuan Zhou, Susan Athey, Guido Imbens. Estimation Considerations in Contextual Bandits. 2017.
-Yi Su, Maria Dimakopoulou, Akshay Krishnamurthy, Miroslav Dudik. Doubly robust off-policy evaluation with shrinkage. 2020.
+* Yu-Xiang Wang, Alekh Agarwal, Miroslav Dudı́k. Optimal and Adaptive Off-policy Evaluation in Contextual Bandits. 2017.
+* Lequn Wang, Akshay Krishnamurthy, Alex Slivkins. Oracle-Efficient Pessimism: Offline Policy Optimization in Contextual Bandits. 2023.
+* Maria Dimakopoulou, Zhengyuan Zhou, Susan Athey, Guido Imbens. Estimation Considerations in Contextual Bandits. 2017.
+* Yi Su, Maria Dimakopoulou, Akshay Krishnamurthy, Miroslav Dudik. Doubly robust off-policy evaluation with shrinkage. 2020.
 
 
 #### RL with a generative model
