@@ -43,8 +43,7 @@ permalink: /courses/csc696fa23/schedule.html
 |Nov 30 |                                |                              |                                                                                                                                 |                        |
 |Dec 5 |                                |                              |                                                                                                                                 |                        |
 |Dec 7 |                                |                              |                                                                                                                                 |                        |
-
-
+{:.table-striped}
 
 
 
