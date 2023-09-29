@@ -15,9 +15,9 @@ Here are some useful guidelines for:
 * reading papers: [How to read a paper](http://ccr.sigcomm.org/online/files/p83-keshavA.pdf) by Prof. Srinivasan Keshav; [Reading in Algorithms: Paper-Reading Survival Kit](https://cs.stanford.edu/~rishig/courses/ref/paper-reading-technical.pdf) by Prof. Tim Roughgarden.
 * presentations: [Giving an Academic Talk](https://people.eecs.berkeley.edu/~jrs/speaking.html) by Prof. Jonathan Shewchuk; [Notes on Giving a Research Talk](https://cseweb.ucsd.edu//~elkan/254/speaking.html) by Prof. Charles Elkan.
 
-### Paper presentation ideas (under construction)
+### Paper presentation ideas
 
-Below are a few example research topics in reinforcement learning theory, each with a few "seed papers"; you can use the related work section in these papers, or use the "cited by" functionality in e.g. [google scholar](https://scholar.google.com/) to find more papers on the same topic. Please also refer to proceeding pages of recent machine learning / learning theory conferences and workshops for more presentation ideas, such as:
+Below are a few example research topics in bandits and reinforcement learning theory, each with a few "seed papers"; you can use the related work section in these papers, or use the "cited by" functionality in e.g. [google scholar](https://scholar.google.com/) to find more papers on the same topic. Please also refer to proceeding pages of recent machine learning / learning theory conferences and workshops for more presentation ideas, such as:
 
 * [ICML](http://proceedings.mlr.press/v97/),
 * [COLT](http://proceedings.mlr.press/v99/),
@@ -27,7 +27,7 @@ Below are a few example research topics in reinforcement learning theory, each w
 * [ICML 2020 workshop on theoretical foundations of RL](https://wensun.github.io/rl_theory_workshop_2020_ICML.github.io/#papers)
 * [ICML 2021 workshop on RL theory](https://lyang36.github.io/icml2021_rltheory/)
 
-Courses / tutorials in the RL theory research community may also have interesting reference papers good for presentation, for example:
+Courses / tutorials in the Bandit / RL theory research community may also have interesting reference papers good for presentation, for example:
 
 * [Statistical Reinforcement Learning](https://nanjiang.cs.illinois.edu/cs598project/) by Nan Jiang
 * [Bandits and RL](http://alekhagarwal.net/bandits_and_rl/#view3) by Alekh Agarwal and Alex Slivkins
@@ -35,6 +35,52 @@ Courses / tutorials in the RL theory research community may also have interestin
 * [COLT 2021 Tutorial: Statistical Foundations of Reinforcement Learning](https://rltheorybook.github.io/colt21tutorial) by Akshay Krishnamurthy and Wen Sun
 * [AAAI 2020 and ALT 2019 Tutorials: Exploration-Exploitation in Reinforcement Learning](https://rlgammazero.github.io/) by Ronan Fruit, Mohammad Ghavamzadeh, Alessandro Lazaric, and Matteo Pirotta
 * [FOCS 2020 Tutorial: Theoretical Foundations of Reinforcement Learning](https://hunch.net/~tforl/) by Alekh Agarwal, Akshay Krishnamurthy, and John Langford
+
+#### Oracle-Efficient Bandit Algorithms 
+David Simchi-Levi , Yunzong Xu. Bypassing the Monster: A Faster and Simpler Optimal Algorithm for Contextual Bandits Under Realizability. 2020.
+Dylan J. Foster, Akshay Krishnamurthy. Efficient First-Order Contextual Bandits: Prediction, Allocation, and Triangular Discrimination. 2021.
+Dylan J. Foster, Claudio Gentile, Mehryar Mohri, Julian Zimmert. Adapting to Misspecification in Contextual Bandits. 2020.
+Sanath Kumar Krishnamurthy, Vitor Hadad, Susan Athey. Adapting to misspecification in contextual bandits with offline regression oracles. 2021.
+Yunbei Xu, Assaf Zeevi. Upper Counterfactual Confidence Bounds: a New Optimism Principle for Contextual Bandits. 2020.
+
+
+#### Bandits with model misspecification
+Yusha Liu, Aarti Singh. Adaptation to Misspecified Kernel Regularity in Kernelised Bandits. 2023.
+Ilija Bogunovic, Andreas Krause. Misspecified Gaussian Process Bandit Optimization. 2021.
+
+#### Bandits and high-dimensional statistics
+Botao Hao, Tor Lattimore, Mengdi Wang. High-dimensional sparse linear bandits. 2020.
+Kwang-Sung Jun, Rebecca Willett, Stephen Wright, Robert Nowak. Bilinear Bandits with Low-rank Structure. 2019.
+Jie Zhou, Botao Hao, Zheng Wen, Jingfei Zhang, Will Wei Sun. Stochastic Low-rank Tensor Bandits for Multi-dimensional Online Decision Making. 2020.
+Soumyabrata Pal, Prateek Jain. Online Low Rank Matrix Completion. ICLR 2023.
+
+#### Bandits with large action spaces
+Yinglun Zhu, Dylan Foster, John Langford, Paul Mineiro. Contextual Bandits with Large Action Spaces: Made Practical. ICML 2022.
+Yinglun Zhu, Paul Mineiro. Contextual bandits with smooth regret: Efficient learning in continuous action spaces. ICML 2022
+Rajat Sen, Alexander Rakhlin, Lexing Ying, Rahul Kidambi, Dean Foster, Daniel N Hill, Inderjit S. Dhillon. Top-k eXtreme Contextual Bandits with Arm Hierarchy. ICML 2021.
+
+#### Other models of bandits and interactive learning
+Aadirupa Saha and Akshay Krishnamurthy. Efficient and optimal algorithms for contextual dueling bandits under realizability. ALT 2022.
+Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Contextual Bandits and Imitation Learning via Preference-Based Active Queries. 2023.
+Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Selective Sampling and Imitation Learning via Online Regression. 2023.
+Mengxiao Zhang, Yuheng Zhang, Olga Vrousgou, Haipeng Luo, Paul Mineiro. Practical Contextual Bandits with Feedback Graphs. 2023.
+Shuai Li, Baoxiang Wang, Shengyu Zhang, Wei Chen. Contextual Combinatorial Cascading Bandits. 2016.
+
+
+#### Model selection in bandits
+Dylan J. Foster, Akshay Krishnamurthy, Haipeng Luo. Model Selection for Contextual Bandits. 2019.
+Teodor Vanislavov Marinov, Julian Zimmert. The Pareto Frontier of model selection for general Contextual Bandits. 2021.
+Aldo Pacchiano, My Phan, Yasin Abbasi Yadkori, Anup Rao, Julian Zimmert, Tor Lattimore, Csaba Szepesvari. Model Selection in Contextual Stochastic Bandit Problems. 2020.
+Sanath Kumar Krishnamurthy, Susan Athey. Optimal model selection in contextual bandits with many classes via offline oracles. 2021.
+Alekh Agarwal, Haipeng Luo, Behnam Neyshabur, Robert E. Schapire. Corralling a Band of Bandit Algorithms. 2017.
+Aldo Pacchiano, Christoph Dann, Claudio Gentile, Peter Bartlett. Regret Bound Balancing and Elimination for Model Selection in Bandits and RL, 2020.
+
+#### Offline contextual bandits
+Yu-Xiang Wang, Alekh Agarwal, Miroslav Dudı́k. Optimal and Adaptive Off-policy Evaluation in Contextual Bandits. 2017.
+Lequn Wang, Akshay Krishnamurthy, Alex Slivkins. Oracle-Efficient Pessimism: Offline Policy Optimization in Contextual Bandits. 2023.
+Maria Dimakopoulou, Zhengyuan Zhou, Susan Athey, Guido Imbens. Estimation Considerations in Contextual Bandits. 2017.
+Yi Su, Maria Dimakopoulou, Akshay Krishnamurthy, Miroslav Dudik. Doubly robust off-policy evaluation with shrinkage. 2020.
+
 
 #### RL with a generative model
 * Mohammad Gheshlaghi Azar, Remi Munos, and Hilbert J Kappen. Minimax pac bounds on the sample complexity of reinforcement learning with a generative model. Machine learning, 2013
@@ -144,11 +190,8 @@ Courses / tutorials in the RL theory research community may also have interestin
 * Kefan Dong, Jian Peng, Yining Wang, Yuan Zhou. \sqrt{n}-Regret for Learning in Markov Decision Processes with Function Approximation and Low Bellman Rank. COLT 2020.
 
 #### Imitation learning and Inverse Reinforcement Learning
-* Wen Sun, Arun Venkatraman, Geoffrey J. Gordon, Byron Boots, J. Andrew Bagnell. Deeply AggreVaTeD: differentiable imitation learning for sequential prediction. ICML 2017.
-* Gokul Swamy, Sanjiban Choudhury, J Andrew Bagnell, Steven Wu. Of Moments and Matching: A Game-Theoretic Framework for Closing the Imitation Gap. ICML 2021.
-* Umar Syed and Robert E. Schapire. A Game-Theoretic Approach to Apprenticeship Learning. NeurIPS 2007.
-* Alekh Agarwal, Ashwinkumar Badanidiyuru, Miroslav Dudik, Robert Schapire, Aleksandrs Slivkins. Robust Multi-objective Learning with Mentor Feedback. COLT 2014.
-* Kareem Amin, Nan Jiang, Satinder Singh. Repeated Inverse Reinforcement Learning. NeurIPS 2017.
+* Nived Rajaraman, Yanjun Han, Lin Yang, Jingbo Liu, Jiantao Jiao, Kannan Ramchandran. On the value of interaction and function approximation in imitation learning. NeurIPS 2021.
+* Gokul Swamy, Nived Rajaraman, Matt Peng, Sanjiban Choudhury, J. Bagnell, Steven Z. Wu, Jiantao Jiao, Kannan Ramchandran. Minimax Optimal Online Imitation Learning via Replay Estimation. NeurIPS 2022. 
 * Nived Rajaraman, Lin F. Yang, Jiantao Jiao, Kannan Ramachandran. Toward the Fundamental Limits of Imitation Learning. NeurIPS 2020.
 * Paria Rashidinejad, Banghua Zhu, Cong Ma, Jiantao Jiao, Stuart Russell. Bridging Offline Reinforcement Learning and Imitation Learning: A Tale of Pessimism. 2021.
 
