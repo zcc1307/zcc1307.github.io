@@ -6,15 +6,6 @@ permalink: /publications
 
 <h2>Publications</h2>
 
-<h3>Preprints</h3>  
-<ul>
-<li>
-<span class="title">Kullback-Leibler Maillard Sampling for Multi-armed Bandits with Bounded Rewards.</span> <br>
-<span class="author">Hao Qin, Kwang-Sung Jun, Chicheng Zhang.</span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2304.14989">[arXiv]</a> </span>
-</li>
-</ul>
-
 
 <!--  
 <h3>Preprints</h3>  
@@ -29,6 +20,16 @@ permalink: /publications
   
   
 <h3>Conferences</h3>
+
+<ul>
+<li>
+<span class="title">Kullback-Leibler Maillard Sampling for Multi-armed Bandits with Bounded Rewards.</span> <br>
+<span class="author">Hao Qin, Kwang-Sung Jun, Chicheng Zhang.</span> <br>
+<span class="venue">NeurIPS 2023 (to appear). </span> <br>
+<span class="link"><a href="https://arxiv.org/abs/2304.14989">[arXiv]</a> </span>
+</li>
+</ul>
+
 
 <ul>
 <li>
