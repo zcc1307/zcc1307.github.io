@@ -41,7 +41,7 @@ permalink: /courses/csc696fa23/schedule.html
 |Nov 23 |      Thanksgiving recess       |                              |                                                                                                                                 |                        |
 |Nov 28 |      Student presentation by Yanan Wang: Oracle-Efficient Pessimism: Offline Policy Optimization in Contextual Bandits                          |        [slides](1128.pptx)                      |                                                                                                                                 |                        |
 |Nov 30 |      Student presentation: Arush Sharma                          |           [slides](1130.pptx)                   |                                                                                                                                 |                        |
-|Dec 5 |      Student presentation: Sopan Sarkar                        |                              |                                                                                                                                 |                        |
+|Dec 5 |      Student presentation: Sopan Sarkar                        |               [slides](1205.pptx)                 |                                                                                                                                 |                        |
 |Dec 7 |      Student presentation: Sadaf Raoufi                         |          [slides](1207.pdf)                    |                                                                                                                                 |                        |
 {:.table-striped}
 
