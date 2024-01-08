@@ -52,10 +52,10 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Apr 23 | Reinforcement learning: learning in MDPs |  | [Andrej Karpathy's blogpost on Deep RL](http://karpathy.github.io/2016/05/31/rl/) |  |
 | Apr 25 | Learning Theory: the PAC and agnostic PAC framework |  |  |  |
 | Apr 30 | Learning theory: uniform convergence and structural risk minimization; Final review |  | [``Deep double descent'' paper by Nakkiran et al](https://openreview.net/forum?id=B1g5sA4twr) |  |
+{:.table-striped}
 
 
-[//]: # (
-| Jan 11 | Introduction, motivation, course mechanics | [slides](22_lec00_final.pdf) | CIML Chap. 1 | [HW0](CSC_580_HW0.pdf) |
+[//]: # ( | Jan 11 | Introduction, motivation, course mechanics | [slides](22_lec00_final.pdf) | CIML Chap. 1 | [HW0](CSC_580_HW0.pdf) |
 | Jan 16 | Supervised learning paradigm; decision trees | [slides](22_lec01_final.pdf) | CIML Chap. 2 |  |
 | Jan 18 | Finish decision trees; limits of learning; practical issues in supervised learning | [slides](22_lec02_final.pdf) | CIML Chap. 3 | HW0 due |
 | Jan 23 | Hyperparameter selection; cross-validation; nearest neighbors  | [slides](22_lec03_final.pdf) | CIML Chap. 4 | [HW1](CSC_580_HW1.pdf) |
