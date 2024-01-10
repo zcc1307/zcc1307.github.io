@@ -56,6 +56,9 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 {:.table-striped}
 
 
+
+[//]: # ( Note: markdown comment format does not allow round parentheses in the comment text; square parentheses seem fine [] )
+
 [//]: # ( | Jan 11 | Introduction, motivation, course mechanics |  | CIML Chap. 1 | HW0 |
 | Jan 16 | Supervised learning paradigm; decision trees |   | CIML Chap. 2 |  |
 | Jan 18 | Finish decision trees; limits of learning; practical issues in supervised learning |  | CIML Chap. 3 | HW0 due |
