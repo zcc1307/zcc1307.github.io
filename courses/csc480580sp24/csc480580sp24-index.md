@@ -19,7 +19,7 @@ They will also learn both advantages and unique risks that this approach offers.
 
 Time and venue: TuTh 9:30am-10:45am, Gould-Simpson 906
 
-[Syllabus]
+[Syllabus](syllabus.pdf)
 
 [Piazza link](https://piazza.com/arizona/spring2024/csc480580); Access Code: 285esihd06d 
 
