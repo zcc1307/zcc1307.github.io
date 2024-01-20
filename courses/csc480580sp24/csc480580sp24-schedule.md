@@ -22,7 +22,7 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 |:------:|:------------:|:---------------------------:|:---:|:--------------------:|
 | Jan 11 | Introduction, motivation, course mechanics | [slides](24_lec0_final.pdf) | CIML Chap. 1 |    [HW0](hw0.pdf)     |
 | Jan 16 | Supervised learning paradigm; decision trees |  [slides](24_lec1_final.pdf)                           | CIML Chap. 2 |                      |
-| Jan 18 | Finish decision trees; limits of learning; practical issues in supervised learning |                             | CIML Chap. 3 |       HW0 due        |
+| Jan 18 | Finish decision trees; limits of learning; practical issues in supervised learning |      [slides](24_lec2_final.pdf)                       | CIML Chap. 3 |       HW0 due        |
 | Jan 23 | Hyperparameter selection; cross-validation; nearest neighbors |                             |  |         HW1          |
 | Jan 25 |  |                             |  |                      |
 | Jan 30 | Linear models  |                             |  |                      |
