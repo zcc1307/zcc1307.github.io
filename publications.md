@@ -23,9 +23,27 @@ permalink: /publications
 
 <ul>
 <li>
+<span class="title">The Human-AI Substitution game: active learning from a strategic labeler.</span> <br>
+<span class="author">Tom Yan and Chicheng Zhang.</span> <br>
+<span class="venue">ICLR 2024 (to appear). </span> <br>
+</li>
+</ul>
+
+<ul>
+<li>
+<span class="title">Efficient Active Learning Halfspaces with Tsybakov Noise: A Non-convex Optimization Approach.</span> <br>
+<span class="author">Yinan Li and Chicheng Zhang.</span> <br>
+<span class="venue">AISTATS 2024 (to appear). </span> <br>
+<span class="link"><a href="https://arxiv.org/abs/2310.15411">[arXiv]</a> </span>
+</li>
+</ul>
+
+
+<ul>
+<li>
 <span class="title">Kullback-Leibler Maillard Sampling for Multi-armed Bandits with Bounded Rewards.</span> <br>
 <span class="author">Hao Qin, Kwang-Sung Jun, Chicheng Zhang.</span> <br>
-<span class="venue">NeurIPS 2023 (to appear). </span> <br>
+<span class="venue">NeurIPS 2023. </span> <br>
 <span class="link"><a href="https://arxiv.org/abs/2304.14989">[arXiv]</a> </span>
 </li>
 </ul>
