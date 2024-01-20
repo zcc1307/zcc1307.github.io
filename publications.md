@@ -17,7 +17,16 @@ permalink: /publications
 </li>
 </ul>
 -->
-  
+
+<h3>Preprints</h3>  
+<ul>
+<li>
+<span class="title">Ensemble-based Interactive Imitation Learning.</span> <br>
+<span class="author">Yichen Li and Chicheng Zhang.</span> <br>
+<span class="link"><a href="https://arxiv.org/abs/2312.16860">[arXiv]</a> </span>
+</li>
+</ul>
+	
   
 <h3>Conferences</h3>
 
