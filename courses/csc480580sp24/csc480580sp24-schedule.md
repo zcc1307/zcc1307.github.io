@@ -24,7 +24,7 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Jan 16 | Supervised learning paradigm; decision trees |  [slides](24_lec1_final.pdf)                           | CIML Chap. 2 |                      |
 | Jan 18 | Finish decision trees; Bayes classifier and its error |                             | CIML Chap. 3 |       HW0 due        |
 | Jan 23 | Overfitting: detection and mitigation; Hyperparameter selection |        [slides](24_lec2_final.pdf)                     |  |                   |
-| Jan 25 | Geometry & Nearest neighbors |                             |  |         [HW1](hw1.pdf)             |
+| Jan 25 | Geometry & Nearest neighbors |          [slides](24_lec3_final.pdf)                   |  |         [HW1](hw1.pdf)             |
 | Jan 30 | K-means clustering; Linear models  |                             |  |                      |
 | Feb 1  |   |                             |  |                      |
 | Feb 6  |   |                             |  |                      |
