@@ -25,10 +25,10 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Jan 18 | Finish decision trees; Bayes classifier and its error |                             | CIML Chap. 3 |       HW0 due        |
 | Jan 23 | Overfitting: detection and mitigation; Hyperparameter selection |        [slides](24_lec2_final.pdf)                     |  |                   |
 | Jan 25 | Geometry & Nearest neighbors |          [slides](24_lec3_final.pdf)                   | CIML Chap. 3 |         [HW1](hw1.pdf)             |
-| Jan 30 | K-means clustering; Probability & HW0 review |                             |  |                      |
-| Feb 1  | Linear models  |                             |  |                      |
-| Feb 6  |   |                             |  |                      |
-| Feb 8  |   |                             |  |                      |
+| Jan 30 | K-means clustering; Probability review |     [slides](24_lec_prob_review.pdf)                        |  |                      |
+| Feb 1  | HW0 review; Begin linear models  |                             | CIML Chap. 4 |                      |
+| Feb 6  | Linear models; the Perceptron algorithm  |      [slides](24_lec4_final.pdf)                        | CIML Chap. 5  |                      |
+| Feb 8  | Practical considerations  |                             |  |                      |
 | Feb 13 |   |                             |  |                      |
 | Feb 15 |   |                             |  |                      |
 | Feb 20 | Kernel methods  |                             |  |                      |
