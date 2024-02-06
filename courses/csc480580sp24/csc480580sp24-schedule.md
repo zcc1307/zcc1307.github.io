@@ -30,7 +30,7 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Feb 6  | Linear models; the Perceptron algorithm  |      [slides](24_lec4_final.pdf)                        | CIML Chap. 5  |                      |
 | Feb 8  | Practical considerations  |                             |  |                      |
 | Feb 13 |   |                             |  |                      |
-| Feb 15 |   |                             |  |                      |
+| Feb 15 |   |                             |  |        HW1 due              |
 | Feb 20 | Kernel methods  |                             |  |                      |
 | Feb 22 |   |                             |  |         HW2          |
 | Feb 27 | Unsupervised learning basics: clustering and PCA  |                             |  |                      |
