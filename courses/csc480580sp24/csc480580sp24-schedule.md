@@ -30,7 +30,7 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Feb 6  | Linear models; the Perceptron algorithm  |      [slides](24_lec4_final.pdf)                        | CIML Chap. 5  |                      |
 | Feb 8  | Practical considerations I: features in supervised learning  |                             |  |                      |
 | Feb 13 | Practical considerations II: performance measure beyond error rates |                             |  |                      |
-| Feb 15 | Practical considerations III: confidence intervals, hypothesis testing, debugging ML algorithms, bias-variance tradeoff  |                             |  |        HW1 due              |
+| Feb 15 | Practical considerations III: confidence intervals, hypothesis testing, debugging ML algorithms, bias-variance tradeoff  |                             | [slides](24_lec5_final.pdf)  |        HW1 due              |
 | Feb 20 | Linear models revisited  |                             |  |                      |
 | Feb 22 | Kernel methods  |                             |  |         HW2          |
 | Feb 27 | Unsupervised learning basics: clustering and PCA  |                             |  |                      |
