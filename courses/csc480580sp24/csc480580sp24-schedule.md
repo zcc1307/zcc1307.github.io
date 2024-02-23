@@ -30,16 +30,16 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Feb 6  | Linear models; the Perceptron algorithm  |      [slides](24_lec4_final.pdf)                        | CIML Chap. 5  |                      |
 | Feb 8  | Practical considerations I: features in supervised learning  |                             |  |                      |
 | Feb 13 | Practical considerations II: performance measure beyond error rates |                             |  |                      |
-| Feb 15 | Practical considerations III: confidence intervals, hypothesis testing, debugging ML algorithms, bias-variance tradeoff  |                             | [slides](24_lec5_final.pdf)  |        HW1 due              |
-| Feb 20 | Linear models revisited  |                             |  |                      |
-| Feb 22 | Kernel methods  |                             |  |         HW2          |
-| Feb 27 | Unsupervised learning basics: clustering and PCA  |                             |  |                      |
+| Feb 15 | Practical considerations III: confidence intervals, hypothesis testing, debugging ML algorithms, bias-variance tradeoff  |                 [slides](24_lec5_final.pdf)            |   |        HW1 due              |
+| Feb 20 | Linear models for regression I: least squares, maximum likelihood  |                             |  |                      |
+| Feb 22 | Linear models for regression II: regularization  |                [slides](24_lec6_final.pdf)             |  |         HW2          |
+| Feb 27 | Linear models for classification: logistic regression, SVM  |                             |  |                      |
 | Feb 29 |   |                             |  |                      |
 | Mar 5  | Spring Recess |                             |  |                      |
 | Mar 7  | Spring Recess |                             |  |                      |
 | Mar 12 | Midterm exam |                             |  |                      |
 | Mar 14 | Probabilistic ML  |                             |  |                      |
-| Mar 19 |   |                             |  | Project proposal due |
+| Mar 19 | Unsupervised learning basics: clustering and PCA  |                             |  | Project proposal due |
 | Mar 21 |   |                             |  |                      |
 | Mar 26 |   |                             |  |         HW3          |
 | Mar 28 | Neural networks  |                             |  |                      |
