@@ -40,8 +40,8 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Mar 12 | Midterm exam |                             |  |                      |
 | Mar 14 | Nonlinear models: basis functions; begin kernels  |             [slides](24_lec7_final.pdf)                |  |                      |
 | Mar 19 | Finish kernels  |                             |  |  |
-| Mar 21 | Probabilistic ML  |                             |  |       Project proposal due Mar 22               |
-| Mar 26 | Unsupervised learning basics: clustering and PCA  |                             |  |         HW3          |
+| Mar 21 | Unsupervised learning basics: clustering and PCA  |                             |  |       Project proposal due Mar 22               |
+| Mar 26 | Probabilistic ML  |                             |  |         HW3          |
 | Mar 28 | Neural networks  |                             |  |                      |
 | Apr 2  |   |                             |  |                      |
 | Apr 4  |   |                             |  |                      |
