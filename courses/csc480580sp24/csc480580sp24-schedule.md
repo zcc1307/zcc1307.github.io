@@ -38,14 +38,14 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Mar 5  | Spring Recess |                             |  |                      |
 | Mar 7  | Spring Recess |                             |  |                      |
 | Mar 12 | Midterm exam |                             |  |                      |
-| Mar 14 | Nonlinear models: basis functions; begin kernels  |             [slides](24_lec7_final.pdf)                |  |                      |
+| Mar 14 | Nonlinear models: basis functions; begin kernels  |             [slides](24_lec7_final.pdf)                | CIML Chap. 11 |                      |
 | Mar 19 | Finish kernels  |                             |  |  |
-| Mar 21 | Unsupervised learning basics: clustering and PCA  |                             |  |       Project proposal due Mar 22               |
-| Mar 26 | Probabilistic ML  |                             |  |         HW3          |
-| Mar 28 | Neural networks  |                             |  |                      |
+| Mar 21 | Unsupervised learning basics: clustering  |                             | CIML Chap. 15 |       Project proposal due Mar 22               |
+| Mar 26 | Unsupervised learning: PCA  |             [slides](24_lec8_final.pdf)                | CIML Chap. 9 |                  |
+| Mar 28 | Finish PCA; Begin Probabilistic ML  |                             |  |       HW3                |
 | Apr 2  |   |                             |  |                      |
 | Apr 4  |   |                             |  |                      |
-| Apr 9  |   |                             |  |                      |
+| Apr 9  | Neural networks  |                             |  |                      |
 | Apr 11 |   |                             |  |                      |
 | Apr 16 |   |                             |  |         HW4          |
 | Apr 18 | Reinforcement learning |                             |  |                      |
