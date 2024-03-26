@@ -31,7 +31,7 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Feb 8  | Practical considerations I: features in supervised learning  |                             |  |                      |
 | Feb 13 | Practical considerations II: performance measure beyond error rates |                             |  |                      |
 | Feb 15 | Practical considerations III: confidence intervals, hypothesis testing, debugging ML algorithms, bias-variance tradeoff  |                 [slides](24_lec5_final.pdf)            |   |        HW1 due              |
-| Feb 20 | Linear models for regression I: least squares, maximum likelihood  |                             |  |                      |
+| Feb 20 | Linear models for regression I: least squares, maximum likelihood  |                             | CIML Chap. 7 |                      |
 | Feb 22 | Linear models for regression II: regularization  |                [slides](24_lec6_final.pdf)             |  |         [HW2](hw2.pdf)          |
 | Feb 27 | Linear models for classification: logistic regression  |                             |  |                      |
 | Feb 29 | Linear models for classification: SVM; midterm review |        [slides](24_lec_midterm.pdf)                     |  |                      |
