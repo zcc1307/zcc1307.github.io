@@ -31,21 +31,21 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Feb 8  | Practical considerations I: features in supervised learning  |                             |  |                      |
 | Feb 13 | Practical considerations II: performance measure beyond error rates |                             |  |                      |
 | Feb 15 | Practical considerations III: confidence intervals, hypothesis testing, debugging ML algorithms, bias-variance tradeoff  |                 [slides](24_lec5_final.pdf)            |   |        HW1 due              |
-| Feb 20 | Linear models for regression I: least squares, maximum likelihood  |                             |  |                      |
+| Feb 20 | Linear models for regression I: least squares, maximum likelihood  |                             | CIML Chap. 7 |                      |
 | Feb 22 | Linear models for regression II: regularization  |                [slides](24_lec6_final.pdf)             |  |         [HW2](hw2.pdf)          |
 | Feb 27 | Linear models for classification: logistic regression  |                             |  |                      |
 | Feb 29 | Linear models for classification: SVM; midterm review |        [slides](24_lec_midterm.pdf)                     |  |                      |
 | Mar 5  | Spring Recess |                             |  |                      |
 | Mar 7  | Spring Recess |                             |  |                      |
 | Mar 12 | Midterm exam |                             |  |                      |
-| Mar 14 | Nonlinear models: basis functions; begin kernels  |             [slides](24_lec7_final.pdf)                |  |                      |
+| Mar 14 | Nonlinear models: basis functions; begin kernels  |             [slides](24_lec7_final.pdf)                | CIML Chap. 11 |                      |
 | Mar 19 | Finish kernels  |                             |  |  |
-| Mar 21 | Unsupervised learning basics: clustering and PCA  |                             |  |       Project proposal due Mar 22               |
-| Mar 26 | Probabilistic ML  |                             |  |         HW3          |
-| Mar 28 | Neural networks  |                             |  |                      |
+| Mar 21 | Unsupervised learning basics: clustering  |                             | CIML Chap. 15 |       Project proposal due Mar 22               |
+| Mar 26 | Unsupervised learning: PCA  |             [slides](24_lec8_final.pdf)                | CIML Chap. 9 |                  |
+| Mar 28 | Finish PCA; Begin Probabilistic ML  |                             |  |       HW3                |
 | Apr 2  |   |                             |  |                      |
 | Apr 4  |   |                             |  |                      |
-| Apr 9  |   |                             |  |                      |
+| Apr 9  | Neural networks  |                             |  |                      |
 | Apr 11 |   |                             |  |                      |
 | Apr 16 |   |                             |  |         HW4          |
 | Apr 18 | Reinforcement learning |                             |  |                      |
