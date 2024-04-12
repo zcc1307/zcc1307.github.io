@@ -26,6 +26,14 @@ permalink: /publications
 <span class="link"><a href="https://arxiv.org/abs/2312.16860">[arXiv]</a> </span>
 </li>
 </ul>
+
+<ul>
+<li>
+<span class="title">Efficient Low-Rank Matrix Estimation, Experimental Design, and Arm-Set-Dependent Low-Rank Bandits.</span> <br>
+<span class="author">Kyoungseok Jang, Chicheng Zhang, Kwang-Sung Jun.</span> <br>
+<span class="link"><a href="https://arxiv.org/abs/2402.11156">[arXiv]</a> </span>
+</li>
+</ul>
 	
   
 <h3>Conferences</h3>
