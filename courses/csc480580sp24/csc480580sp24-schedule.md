@@ -41,12 +41,12 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Mar 14 | Nonlinear models: basis functions; begin kernels  |             [slides](24_lec7_final.pdf)                | CIML Chap. 11 |                      |
 | Mar 19 | Finish kernels  |                             |  |  |
 | Mar 21 | Unsupervised learning basics: clustering  |                             | CIML Chap. 15 |       Project proposal due Mar 22               |
-| Mar 26 | Unsupervised learning: PCA  |             [slides](24_lec8_final.pdf)                | CIML Chap. 9 |                  |
+| Mar 26 | Unsupervised learning: PCA  |             [slides](24_lec8_final.pdf)                |  |                  |
 | Mar 28 | Finish PCA; Begin Probabilistic ML  |                             |  |       [HW3](hw3.pdf) Data: [three.txt](three.txt)  [eight.txt](eight.txt)               |
-| Apr 2  | Probabilistic ML: Bayes nets; Basic examples   |         [slides](24_lec9_final.pdf)                    |  |                      |
-| Apr 4  | Probabilistic ML: Naive Bayes  |                             |  |                      |
+| Apr 2  | Probabilistic ML: Bayes nets; Basic examples   |         [slides](24_lec9_final.pdf)                    |  CIML Chap. 9 |                      |
+| Apr 4  | Probabilistic ML: Naive Bayes  |                             | CIML Chap. 16 |                      |
 | Apr 9  | Finish Naive Bayes; EM; Gaussian Mixture Models  |         [slides](24_lec10_final.pdf)                     |  |                      |
-| Apr 11 | Finish EM for Gaussian Mixture Models; begin Neural Networks   |         [slides](24_lec11_final.pdf)                    |  |                      |
+| Apr 11 | Finish EM for Gaussian Mixture Models; begin Neural Networks   |         [slides](24_lec11_final.pdf)                    | [Stanford CS231n note: optimization](https://cs231n.github.io/optimization-1/) |                      |
 | Apr 16 |   |                             |  |         HW4          |
 | Apr 18 | Reinforcement learning |                             |  |                      |
 | Apr 23 |   |                             |  |                      |
