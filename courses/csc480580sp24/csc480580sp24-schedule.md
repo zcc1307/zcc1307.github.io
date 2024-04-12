@@ -42,11 +42,11 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Mar 19 | Finish kernels  |                             |  |  |
 | Mar 21 | Unsupervised learning basics: clustering  |                             | CIML Chap. 15 |       Project proposal due Mar 22               |
 | Mar 26 | Unsupervised learning: PCA  |             [slides](24_lec8_final.pdf)                | CIML Chap. 9 |                  |
-| Mar 28 | Finish PCA; Begin Probabilistic ML  |     [slides](24_lec9_final.pdf)                        |  |       [HW3](hw3.pdf) Data: [three.txt](three.txt)  [eight.txt](eight.txt)               |
-| Apr 2  |   |                             |  |                      |
-| Apr 4  |   |                             |  |                      |
-| Apr 9  | Neural networks  |                             |  |                      |
-| Apr 11 |   |                             |  |                      |
+| Mar 28 | Finish PCA; Begin Probabilistic ML  |                             |  |       [HW3](hw3.pdf) Data: [three.txt](three.txt)  [eight.txt](eight.txt)               |
+| Apr 2  | Probabilistic ML: Bayes nets; Basic examples   |         [slides](24_lec9_final.pdf)                    |  |                      |
+| Apr 4  | Probabilistic ML: Naive Bayes  |                             |  |                      |
+| Apr 9  | Finish Naive Bayes; EM; Gaussian Mixture Models  |         [slides](24_lec10_final.pdf)                     |  |                      |
+| Apr 11 | Finish EM for Gaussian Mixture Models; begin Neural Networks   |         [slides](24_lec11_final.pdf)                    |  |                      |
 | Apr 16 |   |                             |  |         HW4          |
 | Apr 18 | Reinforcement learning |                             |  |                      |
 | Apr 23 |   |                             |  |                      |
