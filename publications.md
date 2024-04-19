@@ -194,7 +194,7 @@ permalink: /publications
 <span class="title">Efficient Contextual Bandits with Continuous Actions.</span> <br>
 <span class="author">Maryam Majzoubi, Chicheng Zhang, Rajan Chari, Akshay Krishnamurthy, John Langford, and Aleksandrs Slivkins.</span> <br>
 <span class="venue">NeurIPS 2020. </span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2006.06040">[arXiv]</a>  <a href="../docs/CATS-Poster.pdf">[poster]</a> <a href="  https://slideslive.com/38930598/efficient-continuousaction-contextual-bandits-via-extreme-classification?ref=speaker-17647-latest">[Long talk]</a> </span>
+<span class="link"><a href="https://arxiv.org/abs/2006.06040">[arXiv]</a>  <a href="../docs/CATS-Poster.pdf">[poster]</a> <a href="https://slideslive.com/38930598/efficient-continuousaction-contextual-bandits-via-extreme-classification?ref=speaker-17647-latest">[Long talk]</a> </span>
 </li>
 </ul>
 
