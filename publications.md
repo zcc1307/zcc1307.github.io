@@ -71,6 +71,7 @@ permalink: /publications
 <span class="title">Fair coexistence of heterogeneous networks: A novel probabilistic multi-armed bandit approach.</span> <br>
 <span class="author">Zhiwu Guo, Chicheng Zhang, Ming Li, and Marwan Krunz.</span> <br>
 <span class="venue">WiOpt 2023. </span> <br>
+<span class="link"><a href="https://ieeexplore.ieee.org/document/10349867">[link]</a> </span> 
 </li>
 </ul>
 
@@ -89,7 +90,7 @@ permalink: /publications
 <span class="title">On Efficient Online Imitation Learning via Classification.</span> <br>
 <span class="author">Yichen Li and Chicheng Zhang.</span> <br>
 <span class="venue">NeurIPS 2022. </span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2209.12868">[arXiv]</a> </span>
+<span class="link"><a href="https://arxiv.org/abs/2209.12868">[arXiv]</a> <a href="../docs/IL_classification_talk.pdf">[Talk Slides]</a> </span>
 </li>
 </ul>
 
@@ -98,7 +99,7 @@ permalink: /publications
 <span class="title">PopArt: Efficient Sparse Regression and Experimental Design for Optimal Sparse Linear Bandits.</span> <br>
 <span class="author">Kyoungseok Jang, Chicheng Zhang, Kwang-Sung Jun.</span> <br>
 <span class="venue">NeurIPS 2022. </span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2210.15345">[arXiv]</a> </span>
+<span class="link"><a href="https://arxiv.org/abs/2210.15345">[arXiv]</a> <a href="../docs/PopART_INFORMS.pdf">[Talk Slides]</a> </span>
 </li>
 </ul>
 
@@ -108,7 +109,7 @@ permalink: /publications
 <span class="title">Active Fairness Auditing.</span> <br>
 <span class="author">Tom Yan and Chicheng Zhang.</span> <br>
 <span class="venue">ICML 2022 (outstanding paper runner-up). </span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2206.08450">[arXiv]</a> </span>
+<span class="link"><a href="https://arxiv.org/abs/2206.08450">[arXiv]</a> <a href="../docs/auditing_icml_slides.pdf">[Slides]</a> </span>
 </li>
 </ul>
 	
@@ -117,7 +118,7 @@ permalink: /publications
 <span class="title">Thompson Sampling for Robust Transfer in Multi-Task Bandits.</span> <br>
 <span class="author">Zhi Wang, Chicheng Zhang, and Kamalika Chaudhuri.</span> <br>
 <span class="venue">ICML 2022. </span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2206.08556">[arXiv]</a> </span>
+<span class="link"><a href="https://arxiv.org/abs/2206.08556">[arXiv]</a> <a href="../docs/mtil_ua_talk.pdf">[Related Talk Slides]</a> </span>
 </li>
 </ul>
 		   
