@@ -71,6 +71,7 @@ permalink: /publications
 <span class="title">Fair coexistence of heterogeneous networks: A novel probabilistic multi-armed bandit approach.</span> <br>
 <span class="author">Zhiwu Guo, Chicheng Zhang, Ming Li, and Marwan Krunz.</span> <br>
 <span class="venue">WiOpt 2023. </span> <br>
+<span class="link"><a href="https://ieeexplore.ieee.org/document/10349867">[link]</a> </span> 
 </li>
 </ul>
 
