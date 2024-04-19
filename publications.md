@@ -4,9 +4,6 @@ title: Publications
 permalink: /publications
 ---
 
-<h2>Publications</h2>
-
-
 <!--  
 <h3>Preprints</h3>  
 <ul>
