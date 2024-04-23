@@ -4,9 +4,6 @@ title: Publications
 permalink: /publications
 ---
 
-<h2>Publications</h2>
-
-
 <!--  
 <h3>Preprints</h3>  
 <ul>
@@ -118,7 +115,7 @@ permalink: /publications
 <span class="title">Thompson Sampling for Robust Transfer in Multi-Task Bandits.</span> <br>
 <span class="author">Zhi Wang, Chicheng Zhang, and Kamalika Chaudhuri.</span> <br>
 <span class="venue">ICML 2022. </span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2206.08556">[arXiv]</a> <a href="../docs/mtil_ua_talk.pdf">[Related Talk Slides]</a> </span>
+<span class="link"><a href="https://arxiv.org/abs/2206.08556">[arXiv]</a> <a href="../docs/multitask_ts_poster.pdf">[Poster]</a> <a href="../docs/mtil_ua_talk.pdf">[Related Talk Slides]</a> </span>
 </li>
 </ul>
 		   
@@ -138,7 +135,7 @@ permalink: /publications
 <span class="title">Provably Efficient Multi-Task Reinforcement Learning with Model Transfer.</span> <br>
 <span class="author">Chicheng Zhang and Zhi Wang.</span> <br>
 <span class="venue">NeurIPS 2021. </span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2107.08622">[arXiv]</a>  <a href="../docs/multitask_rl_neurips21.pptx">[slides]</a> </span>
+<span class="link"><a href="https://arxiv.org/abs/2107.08622">[arXiv]</a> <a href="../docs/multitask_rl_neurips21_poster.pdf">[Poster]</a> <a href="../docs/multitask_rl_neurips21.pdf">[slides]</a> </span>
 </li>
 </ul>
   
@@ -147,7 +144,7 @@ permalink: /publications
 <span class="title">Improved Algorithms for Efficient Active Learning Halfspaces with Massart and Tsybakov noise.</span> <br>
 <span class="author">Chicheng Zhang and Yinan Li.</span> <br>
 <span class="venue">COLT 2021. </span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2102.05312">[arXiv]</a> <a href="../docs/ae_al_colt_2021.pptx">[slides]</a> <a href="../docs/colt2021_poster.pdf">[poster]</a>  </span>
+<span class="link"><a href="https://arxiv.org/abs/2102.05312">[arXiv]</a> <a href="../docs/ae_al_colt_2021.pdf">[slides]</a> <a href="../docs/colt2021_poster.pdf">[poster]</a>  </span>
 </li>
 </ul>
 
@@ -194,7 +191,7 @@ permalink: /publications
 <span class="title">Efficient Contextual Bandits with Continuous Actions.</span> <br>
 <span class="author">Maryam Majzoubi, Chicheng Zhang, Rajan Chari, Akshay Krishnamurthy, John Langford, and Aleksandrs Slivkins.</span> <br>
 <span class="venue">NeurIPS 2020. </span> <br>
-<span class="link"><a href="https://arxiv.org/abs/2006.06040">[arXiv]</a>  <a href="../docs/CATS-Poster.pdf">[poster]</a> <a href="  https://slideslive.com/38930598/efficient-continuousaction-contextual-bandits-via-extreme-classification?ref=speaker-17647-latest">[Long talk]</a> </span>
+<span class="link"><a href="https://arxiv.org/abs/2006.06040">[arXiv]</a>  <a href="../docs/CATS-Poster.pdf">[poster]</a> <a href="https://slideslive.com/38930598/efficient-continuousaction-contextual-bandits-via-extreme-classification?ref=speaker-17647-latest">[Long talk]</a> </span>
 </li>
 </ul>
 
