@@ -47,8 +47,8 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Apr 4  | Probabilistic ML: Naive Bayes  |                             | CIML Chap. 16 |                      |
 | Apr 9  | Finish Naive Bayes; EM; Gaussian Mixture Models  |         [slides](24_lec10_final.pdf)                     |  |                      |
 | Apr 11 | Finish EM for Gaussian Mixture Models; begin Neural Networks   |         [slides](24_lec11_final.pdf)                    | [Stanford CS231n note: optimization](https://cs231n.github.io/optimization-1/) |                      |
-| Apr 16 | Neural networks: backpropagations; consideration in architecture design  |                             |  |                   |
-| Apr 18 | Neural networks: batch normalization; Begin convolutional neural networks |                             |  |           [HW4](hw4.pdf)           |
+| Apr 16 | Neural networks: backpropagations; consideration in architecture design  |      [Stanford CS231n note: backprop](https://cs231n.github.io/optimization-2/)                       |  |                   |
+| Apr 18 | Neural networks: batch normalization; Begin convolutional neural networks |     [Stanford CS231n note: convnets](https://cs231n.github.io/convolutional-networks/)                        |  |           [HW4](hw4.pdf)           |
 | Apr 23 | Finish convolutional neural networks; Autoencoders  |                             |  |                      |
 | Apr 25 | Reinforcement learning |                             |  |                      |
 | Apr 30 |   |                             |  |                      |
