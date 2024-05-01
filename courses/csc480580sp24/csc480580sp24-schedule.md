@@ -51,7 +51,7 @@ Please refer to this course's [Fall 2022 version](https://zcc1307.github.io/cour
 | Apr 18 | Neural networks: batch normalization; Begin convolutional neural networks |                             | [Stanford CS231n note: convnets](https://cs231n.github.io/convolutional-networks/) |           [HW4](hw4.pdf)           |
 | Apr 23 | Finish convolutional neural networks; Autoencoders  |                             | [NanoGPT tutorial by Andrej Karpathy](https://www.youtube.com/watch?v=kCc8FmEb1nY) |                      |
 | Apr 25 | Reinforcement learning: MDP; policy evaluation |                             | [Deep RL: Pong from pixels by Andrej Karpathy](http://karpathy.github.io/2016/05/31/rl/) |                      |
-| Apr 30 | Reinforcement learning: planning and learning  |        [slides](24_lec12_final.pdf)                     |  |                      |
+| Apr 30 | Project feedback session; Final review |        [slides](24_lec12_final.pdf)                     |  |                      |
 | May 7 | Final exam at 8:00 – 10:00am |                             |  |                      |
 {:.table-striped}
 
