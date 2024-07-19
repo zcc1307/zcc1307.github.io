@@ -54,6 +54,7 @@ permalink: /publications
 <span class="title">The Human-AI Substitution game: active learning from a strategic labeler.</span> <br>
 <span class="author">Tom Yan and Chicheng Zhang.</span> <br>
 <span class="venue">ICLR 2024. </span> <br>
+<span class="link"><a href="https://openreview.net/forum?id=s5hSp7EdL3">[OpenReview]</a> </span>
 </li>
 </ul>
 
