@@ -323,6 +323,29 @@ permalink: /publications
 </li>
 </ul>
 
+<h3>Journals</h3>
+
+<ul>
+<li>
+<span class="title">Fair Probabilistic Multi-Armed Bandit with Applications to Network Optimization.</span> <br>
+<span class="author">Zhiwu Guo, Chicheng Zhang, Ming Li, Marwan Krunz.</span> <br>
+<span class="venue">IEEE Transactions on Machine Learning in Communications and Networking (TMLCN) 2024. </span> <br>
+<span class="link"><a href="https://ieeexplore.ieee.org/document/10579843?source=authoralert">[IEEE Xplore]</a> </span>
+</li>
+</ul>
+
+<ul>
+<li>
+<span class="title">Contextual Bandits with Continuous Actions: Smoothing, Zooming, and Adapting.</span> <br>
+<span class="author">Akshay Krishnamurthy, John Langford, Aleksandrs Slivkins and Chicheng Zhang.</span> <br>
+<span class="venue">JMLR 2019.</span> <br>
+<span class="link"><a href="https://jmlr.org/papers/v21/19-650.html">[JMLR]</a> </span>
+</li>
+</ul>
+
+
+
+
 <h3>Workshop Contributions</h3>
 
 <ul>
