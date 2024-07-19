@@ -13,6 +13,17 @@ permalink: /publications
 <span class="link"><a href="https://arxiv.org/abs/1802.02498">[arXiv]</a> </span>
 </li>
 </ul>
+
+<ul>
+<li>
+<span class="title">Efficient Online Learning Algorithms for Joint Path and Beam Selection in Multihop Mmwave Networks.</span> <br>
+<span class="author">Tianchi Zhao, Chicheng Zhang, Ming Li, Jingcheng Li, and Zhiwu Guo.</span> <br>
+<span class="venue">IEEE MASS 2024 (To appear). </span> <br>
+<span class="link"><a href="http://wiser.arizona.edu/papers/zhao-mass2024-tech-report.pdf">[Technical Report]</a> </span>
+</li>
+</ul>
+	
+
 -->
 
 	
@@ -328,7 +339,7 @@ permalink: /publications
 <ul>
 <li>
 <span class="title">Fair Probabilistic Multi-Armed Bandit with Applications to Network Optimization.</span> <br>
-<span class="author">Zhiwu Guo, Chicheng Zhang, Ming Li, Marwan Krunz.</span> <br>
+<span class="author">Zhiwu Guo, Chicheng Zhang, Ming Li, and Marwan Krunz.</span> <br>
 <span class="venue">IEEE Transactions on Machine Learning in Communications and Networking (TMLCN) 2024. </span> <br>
 <span class="link"><a href="https://ieeexplore.ieee.org/document/10579843?source=authoralert">[IEEE Xplore]</a> </span>
 </li>
