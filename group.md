@@ -4,8 +4,6 @@ title: Group
 permalink: /group
 ---
 
-## Group
-
 ### Current Students
 Thang Nhat Duong (PhD Student)
 
