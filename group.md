@@ -5,11 +5,11 @@ permalink: /group
 ---
 
 ### Current Students
-Thang Nhat Duong (PhD Student)
+[Thang Nhat Duong](https://www.cs.arizona.edu/person/thang-nhat-duong) (PhD Student)
 
 Yichen Li (PhD Student) 
 
-Hao Qin (PhD Student)
+[Hao Qin](https://mjolnirt.github.io/) (PhD Student)
 
 ### Alumni 
 Carson Davis Barningham (Masters Student)
