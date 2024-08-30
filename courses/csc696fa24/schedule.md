@@ -29,8 +29,7 @@ permalink: /courses/csc696fa24/schedule.html
 {:.table-striped}
 
 
-[//]: # (
-|Aug 24 | Basic probability tools: concentration of measure; Hoeffding's inequality                              |                             |              AK lec. 1/24,  [My 588 lecture note](https://zcc1307.github.io/courses/csc588sp21/notes/lec4_handwritten.pdf)                                                                                                                   |                        |
+[//]: # (|Aug 24 | Basic probability tools: concentration of measure; Hoeffding's inequality                              |                             |              AK lec. 1/24,  [My 588 lecture note](https://zcc1307.github.io/courses/csc588sp21/notes/lec4_handwritten.pdf)                                                                                                                   |                        |
 |Aug 29 | Bernstein's inequality; Generalization in supervised learning; analysis of ERM                              |           [Note 1](https://notability.com/n/2qg5F5yVG2BPMy3ydndCNc)                  |             AK lec. 1/24                                                                                                                    |                        |
 |Aug 31 | Online learning basics; online to batch conversion                               |                              |                 [FR](https://www.mit.edu/~rakhlin/course-decision-making.html) Sec. 1.6-1.6.1                                                                                                                |                        |
 |Sep 5 |  Azuma's inequality; Online learning algorithms: exponential weights                          |                              |                FR Sec. 1.6.2                                                                                                                 |                        |
@@ -60,8 +59,7 @@ permalink: /courses/csc696fa24/schedule.html
 |Nov 28 |      Student presentation by Yanan Wang: Oracle-Efficient Pessimism: Offline Policy Optimization in Contextual Bandits                          |        [slides](1128.pptx)                      |                                                                                                                                 |                        |
 |Nov 30 |      Student presentation: Arush Sharma                          |           [slides](1130.pptx)                   |                                                                                                                                 |                        |
 |Dec 5 |      Student presentation: Sopan Sarkar                        |               [slides](1205.pptx)                 |                                                                                                                                 |                        |
-|Dec 7 |      Student presentation: Sadaf Raoufi                         |          [slides](1207.pdf)                    |                                                                                                                                 |                        |
-)
+|Dec 7 |      Student presentation: Sadaf Raoufi                         |          [slides](1207.pdf)                    |                                                                                                                                 |                        |)
 
 
 
