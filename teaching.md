@@ -6,14 +6,14 @@ permalink: /teaching
 
 ## Courses
 
+### CSC 696H: Topics in Bandits and Reinforcement Learning Theory.
+[Fall 2024](courses/csc696fa24/index.html), [Fall 2023](courses/csc696fa23/index.html)
+
 ### CSC 480/580: Principles of Machine Learning.
 [Spring 2024](courses/csc480580sp24/index.html)
 
 ### CSC 580: Principles of Machine Learning.
 [Fall 2022](courses/csc580fa22/index.html)
-
-### CSC 696H: Topics in Bandits and Reinforcement Learning Theory.
-[Fall 2023](courses/csc696fa23/index.html)
 
 ### CSC 696H: Topics in Reinforcement Learning Theory.
 [Fall 2021](courses/csc696fa21/index.html)
