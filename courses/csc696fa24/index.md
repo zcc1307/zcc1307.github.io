@@ -27,10 +27,10 @@ Time and venue: Fridays 1:30-4:10pm, Gould-Simpson 701
 
 [Syllabus](syllabus.pdf)
 
-We will be using Piazza to make important announcements and do Q&As. Please self-enroll [here](https://piazza.com/arizona/fall2023/csc696h). Note:
+We will be using Piazza to make important announcements and do Q&As. Please self-enroll [here](https://piazza.com/arizona/fall2024/csc696h). Note:
 
 * If you have technical questions, try posing your questions as general as possible to promote discussions.
-* If you have private questions, unless necessary, please make a private Piazza post instead of sending me an email. 
+* If you have private questions, try making a private Piazza post (sending me an email may delay my responses). 
 
 ### Instructor
 
