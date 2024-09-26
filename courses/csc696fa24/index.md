@@ -25,6 +25,8 @@ Time and venue: Fridays 1:30-4:10pm, Gould-Simpson 701
 
 [D2L course webpage](https://d2l.arizona.edu/d2l/home/1510624): lecture video recordings can be found at "UA Tools" -> "Panopto"
 
+[Gradscope page](https://www.gradescope.com/courses/881969): enroll code: YRZR4Z
+
 [Syllabus](syllabus.pdf)
 
 We will be using Piazza to make important announcements and do Q&As. Please self-enroll [here](https://piazza.com/arizona/fall2024/csc696h). Note:
