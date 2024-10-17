@@ -36,8 +36,35 @@ Courses / tutorials in the Bandit / RL theory research community may also have i
 * [AAAI 2020 and ALT 2019 Tutorials: Exploration-Exploitation in Reinforcement Learning](https://rlgammazero.github.io/) by Ronan Fruit, Mohammad Ghavamzadeh, Alessandro Lazaric, and Matteo Pirotta
 * [FOCS 2020 Tutorial: Theoretical Foundations of Reinforcement Learning](https://hunch.net/~tforl/) by Alekh Agarwal, Akshay Krishnamurthy, and John Langford
 
+#### RL from Human Feedback
+* Yuanhao Wang, Qinghua Liu, Chi Jin. Is RLHF More Difficult than Standard RL? 2023.
+* Runzhe Wu, Wen Sun. Making RL with Preference-based Feedback Efficient via Randomization. 2023.
+* Gokul Swamy, Christoph Dann, Rahul Kidambi, Zhiwei Steven Wu, Alekh Agarwal. A Minimaximalist Approach to Reinforcement Learning from Human Feedback. 2024.
+* Corby Rosset, Ching-An Cheng, Arindam Mitra, Michael Santacroce, Ahmed Awadallah, Tengyang Xie. Direct Nash Optimization: Teaching Language Models to Self-Improve with General Preferences. 2024.
+* Remi Munos et al. Nash Learning from Human Feedback. 2024.
+
+#### Distributional RL
+* Marc G Bellemare, Will Dabney, and Rémi Munos. A distributional perspective on reinforcement learning. ICML 2017.
+* Kaiwen Wang, Owen Oertell, Alekh Agarwal, Nathan Kallus, Wen Sun. More Benefits of Being Distributional: Second-Order Bounds for Reinforcement Learning. 2023.
+* Kaiwen Wang, Kevin Zhou, Runzhe Wu, Nathan Kallus, and Wen Sun. The benefits of being distributional: Small-loss bounds for reinforcement learning. 2023.
+
+#### Offline RL
+* Ying Jin, Zhuoran Yang, Zhaoran Wang. Is Pessimism Provably Efficient for Offline RL? 2020.
+* Tengyang Xie, Ching-An Cheng, Nan Jiang, Paul Mineiro, Alekh Agarwal. Bellman-consistent Pessimism for Offline Reinforcement Learning. NeurIPS 2021.
+* Tengyang Xie, Nan Jiang. Batch Value-function Approximation with Only Realizability. 2020. 
+* Wenhao Zhan, Baihe Huang, Audrey Huang, Nan Jiang, Jason D. Lee. Offline Reinforcement Learning with Realizability
+and Single-policy Concentrability. COLT 2022. 
+
+
+#### Inverse Reinforcement Learning
+* Alberto Maria Metelli, Filippo Lazzati, Marcello Restelli. Towards Theoretical Understanding of Inverse Reinforcement Learning. 2023.
+* Filippo Lazzati, Mirco Mutti, Alberto Maria Metelli. How does Inverse RL Scale to Large State Spaces? A Provably Efficient Approach. 2024. 
+* Gokul Swamy, Sanjiban Choudhury, J. Andrew Bagnell, Zhiwei Steven Wu. Inverse Reinforcement Learning without Reinforcement Learning.
+* Siliang Zeng, Chenliang Li, Alfredo Garcia, Mingyi Hong. Maximum-Likelihood Inverse Reinforcement Learning with Finite-Time Guarantees.
+* Siliang Zeng, Chenliang Li, Alfredo Garcia, Mingyi Hong. When Demonstrations Meet Generative World Models: A Maximum Likelihood Framework for Offline Inverse Reinforcement Learning.
+
 #### Oracle-Efficient Bandit Algorithms 
-* David Simchi-Levi , Yunzong Xu. Bypassing the Monster: A Faster and Simpler Optimal Algorithm for Contextual Bandits Under Realizability. 2020.
+* David Simchi-Levi, Yunzong Xu. Bypassing the Monster: A Faster and Simpler Optimal Algorithm for Contextual Bandits Under Realizability. 2020.
 * Dylan J. Foster, Akshay Krishnamurthy. Efficient First-Order Contextual Bandits: Prediction, Allocation, and Triangular Discrimination. 2021.
 * Dylan J. Foster, Claudio Gentile, Mehryar Mohri, Julian Zimmert. Adapting to Misspecification in Contextual Bandits. 2020.
 * Sanath Kumar Krishnamurthy, Vitor Hadad, Susan Athey. Adapting to misspecification in contextual bandits with offline regression oracles. 2021.
@@ -55,14 +82,14 @@ Courses / tutorials in the Bandit / RL theory research community may also have i
 * Soumyabrata Pal, Prateek Jain. Online Low Rank Matrix Completion. ICLR 2023.
 
 #### Bandits with large action spaces
+* Mark Rucker, Yinglun Zhu, Paul Mineiro. Infinite Action Contextual Bandits with Reusable Data Exhaust. ICML 2023.
 * Yinglun Zhu, Dylan Foster, John Langford, Paul Mineiro. Contextual Bandits with Large Action Spaces: Made Practical. ICML 2022.
 * Yinglun Zhu, Paul Mineiro. Contextual bandits with smooth regret: Efficient learning in continuous action spaces. ICML 2022
 * Rajat Sen, Alexander Rakhlin, Lexing Ying, Rahul Kidambi, Dean Foster, Daniel N Hill, Inderjit S. Dhillon. Top-k eXtreme Contextual Bandits with Arm Hierarchy. ICML 2021.
 
 #### Other models of bandits and interactive learning
+* Tengyang Xie, John Langford, Paul Mineiro, Ida Momennejad. Interaction-Grounded Learning. ICML 2021.
 * Aadirupa Saha and Akshay Krishnamurthy. Efficient and optimal algorithms for contextual dueling bandits under realizability. ALT 2022.
-* Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Contextual Bandits and Imitation Learning via Preference-Based Active Queries. 2023.
-* Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Selective Sampling and Imitation Learning via Online Regression. 2023.
 * Mengxiao Zhang, Yuheng Zhang, Olga Vrousgou, Haipeng Luo, Paul Mineiro. Practical Contextual Bandits with Feedback Graphs. 2023.
 * Shuai Li, Baoxiang Wang, Shengyu Zhang, Wei Chen. Contextual Combinatorial Cascading Bandits. 2016.
 
@@ -135,6 +162,7 @@ Courses / tutorials in the Bandit / RL theory research community may also have i
 * Rui Lu, Gao Huang, Simon S. Du. On the Power of Multitask Representation Learning in Linear MDP. 2021.
 
 #### RL with constraints
+* Yonathan Efroni, Shie Mannor, Matteo Pirotta. Exploration-Exploitation in Constrained MDPs. 2020. 
 * Sobhan Miryoosefi, Kianté Brantley, Hal Daumé III, Miroslav Dudik, Robert Schapire. Reinforcement Learning with Convex Constraints. NeurIPS 2019.
 * Kianté Brantley, Miroslav Dudik, Thodoris Lykouris, Sobhan Miryoosefi, Max Simchowitz, Aleksandrs Slivkins, Wen Sun. Constrained episodic reinforcement learning in concave-convex and knapsack settings. NeurIPS 2020.
 * Xiaoyu Chen, Jiachen Hu, Lihong Li, Liwei Wang. Efficient Reinforcement Learning in Factored MDPs with Application to Constrained RL. ICLR 2021. 
@@ -159,14 +187,14 @@ Courses / tutorials in the Bandit / RL theory research community may also have i
 * Tiancheng Jin and Haipeng Luo. Simultaneously Learning Stochastic and Adversarial Episodic MDPs with Known Transition. NeurIPS 2020.
 * Chi Jin, Tiancheng Jin, Haipeng Luo, Suvrit Sra, and Tiancheng Yu. Learning Adversarial Markov Decision Processes with Bandit Feedback and Unknown Transition.
 
-#### Stochastic games
+#### Markov Games
 * Chen-Yu Wei, Yi-Te Hong, Chi-Jen Lu. Online Reinforcement Learning in Stochastic Games. NeurIPS 2017.
 * Yu Bai, Chi Jin, and Tiancheng Yu. Near-optimal reinforcement learning with self-play. NeurIPS 2020.
 * Qiaomin Xie, Yudong Chen, Zhaoran Wang, and Zhuoran Yang. Learning Zero-Sum Simultaneous Move Markov Games Using Function Approximation and Correlated Equilibrium. COLT 2020.
 * Qinghua Liu, Tiancheng Yu, Yu Bai, and Chi Jin. A sharp analysis of model-based reinforcement learning with self-play. ICML 2021.
 * Yi Tian, Yuanhao Wang, Tiancheng Yu, Suvrit Sra. Online Learning in Unknown Markov Games. ICML 2021.
 
-#### RL and control
+#### RL and Control
 * Naman Agarwal, Brian Bullins, Elad Hazan, Sham M Kakade, and Karan Singh. Online control with adversarial disturbances. ICML 2019.
 * Dylan J Foster and Max Simchowitz. Logarithmic Regret for Adversarial Online Control. ICML 2020.
 * Naman Agarwal, Elad Hazan, Karan Singh. Logarithmic regret for online control. NeurIPS 2019.
@@ -189,11 +217,12 @@ Courses / tutorials in the Bandit / RL theory research community may also have i
 * Wen Sun, Nan Jiang, Akshay Krishnamurthy, Alekh Agarwal, John Langford. Model-based RL in Contextual Decision Processes: PAC bounds and Exponential Improvements over Model-free Approaches. COLT 2019.
 * Kefan Dong, Jian Peng, Yining Wang, Yuan Zhou. \sqrt{n}-Regret for Learning in Markov Decision Processes with Function Approximation and Low Bellman Rank. COLT 2020.
 
-#### Imitation learning and Inverse Reinforcement Learning
+#### Imitation learning
 * Nived Rajaraman, Yanjun Han, Lin Yang, Jingbo Liu, Jiantao Jiao, Kannan Ramchandran. On the value of interaction and function approximation in imitation learning. NeurIPS 2021.
 * Gokul Swamy, Nived Rajaraman, Matt Peng, Sanjiban Choudhury, J. Bagnell, Steven Z. Wu, Jiantao Jiao, Kannan Ramchandran. Minimax Optimal Online Imitation Learning via Replay Estimation. NeurIPS 2022. 
 * Nived Rajaraman, Lin F. Yang, Jiantao Jiao, Kannan Ramachandran. Toward the Fundamental Limits of Imitation Learning. NeurIPS 2020.
-* Paria Rashidinejad, Banghua Zhu, Cong Ma, Jiantao Jiao, Stuart Russell. Bridging Offline Reinforcement Learning and Imitation Learning: A Tale of Pessimism. 2021.
+* Paria Rashidinejad, Banghua Zhu, Cong Ma, Jiantao Jiao, Stuart Russell. Bridging Offline Reinforcement Learning and Imitation Learning: A Tale of Pessimism. 2021.* Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Contextual Bandits and Imitation Learning via Preference-Based Active Queries. 2023.
+* Ayush Sekhari, Karthik Sridharan, Wen Sun, Runzhe Wu. Selective Sampling and Imitation Learning via Online Regression. 2023.
 
 [//]: # (* Ching-An Cheng and Byron Boots. Convergence of Value Aggregation for Imitation Learning. AISTATS 2018.* Wen Sun, Anirudh Vemula, Byron Boots, J. Andrew Bagnell. Provably Efficient Imitation Learning from Observation Alone. ICML 2019.)
 
