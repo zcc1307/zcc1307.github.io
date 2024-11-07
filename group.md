@@ -5,7 +5,7 @@ permalink: /group
 ---
 
 ### Current Students
-[Thang Nhat Duong](duongnhatthang.github.io) (PhD Student)
+[Thang Nhat Duong](https://duongnhatthang.github.io) (PhD Student)
 
 Yichen Li (PhD Student) 
 
