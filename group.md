@@ -5,7 +5,7 @@ permalink: /group
 ---
 
 ### Current Students
-[Thang Nhat Duong](https://www.cs.arizona.edu/person/thang-nhat-duong) (PhD Student)
+[Thang Nhat Duong](duongnhatthang.github.io) (PhD Student)
 
 Yichen Li (PhD Student) 
 
