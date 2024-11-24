@@ -32,7 +32,7 @@ Many modern ML pipelines are data-hungry; although in many applications of ML, u
 
 ### Multi-task and Transfer Learning
 
-Real-world learning agents are not just trained and tested on one task; they usually learn and act in many different tasks at the same time, borrowing the insights they learn from one task for better learning in other ones. This is especially relevant in the modern foundation model era, where the ``pretrain-then-finetune'' paradigm becomes standard. My research tries to quantify when and how one can utilize auxiliary source of data to provably benefit learning and decision making, tailored to settings such as [active learning](https://arxiv.org/abs/1510.02847), [contextual bandits](https://arxiv.org/abs/1901.00301), [multi-task](https://arxiv.org/abs/2206.08556) and [meta-learning]((https://openreview.net/forum?id=2kZMtdjzSV)).  
+Real-world learning agents are not just trained and tested on one task; they usually learn and act in many different tasks at the same time, borrowing the insights they learn from one task for better learning in other ones. This is especially relevant in the modern foundation model era, where the ``pretrain-then-finetune'' paradigm becomes standard. My research tries to quantify when and how one can utilize auxiliary source of data to provably benefit learning and decision making, tailored to settings such as [active learning](https://arxiv.org/abs/1510.02847), [contextual bandits](https://arxiv.org/abs/1901.00301), [multi-task](https://arxiv.org/abs/2206.08556) and [meta-learning](https://openreview.net/forum?id=2kZMtdjzSV).  
 
 
 ### Interdisciplinary Collaboration
