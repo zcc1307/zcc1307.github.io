@@ -14,6 +14,13 @@ Imitation learning (IL), or Learning from Demonstrations, models the setting whe
 of exploration. Such paradigm has been successfully deployed in e.g. robotics and autonomous driving. My research in imitation learning has been focused on understanding the power of interactive expert demonstrations: if we have an expert that can provide real-time, interactive action demonstration (cf. offline IL with expert demonstration trajectories readily available), how can we best utilize it to save its effort? My recent papers ([LZ22](https://arxiv.org/abs/2209.12868), [LZ24](https://arxiv.org/abs/2312.16860)) tries to address such questions, but we believe there are still many questions the remains open. 
 
 
+<p float="left">
+  <img src="images/IL_RB.png" width="200" />
+  <img src="images/Walker_bc_1_tsne.png" width="300" /> 
+  <img src="images/Walker_logger_25_tsne.png" width="300" /> 
+</p>
+
+
 ### Exploration in Bandits and Reinforcement Learning Settings
 
 A wide range of sequential decision making problems require learning agents to perform exploration to learn about relevant parts of the environment. E.g., a robot needs to traverse a part of the maze before it finds way to its goal; a product recommendation system might want to gather information about a user's interest by trying to suggest users products they may 
