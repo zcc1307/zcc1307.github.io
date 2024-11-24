@@ -9,7 +9,7 @@ My research is on interactive machine learning (ML), where learning agents activ
 ### Imitation Learning
 
 Imitation learning (IL), or Learning from Demonstrations, models the setting where a learning agent learns from a demonstrating expert to obtain intelligent sequential decision making behavior. Compared with reinforcement learning, imitation learning has the advantages that: (1) it gets around the reward misspecification problem and (2) it can mitigate the challenge 
-of exploration. Such paradigm has been successfully deployed in e.g. robotics and autonomous driving. My research in imitation learning has been focused on understanding the power of interactive expert demonstrations: if we have an expert that can provide real-time, interactive action demonstration (cf. offline IL with expert demonstration trajectories readily available), how can we best utilize it and save its effort? [My](https://arxiv.org/abs/2312.16860) [works](https://arxiv.org/abs/2209.12868) make attempts in answering such questions.
+of exploration. Such paradigm has been successfully deployed in e.g. robotics and autonomous driving. My research in imitation learning has been focused on understanding the power of interactive expert demonstrations: if we have an expert that can provide real-time, interactive action demonstration (cf. offline IL with expert demonstration trajectories readily available), how can we best utilize it and save its effort? [My](https://arxiv.org/abs/2312.16860) [works](https://arxiv.org/abs/2209.12868) attempts to answer such questions.
 
 <p float="left">
   <img src="images/IL_RB.png" width="200" />
@@ -36,6 +36,8 @@ Although in many applications of ML, unlabeled examples are abundant and easy to
 
 
 ### Multi-task and Transfer Learning
+
+<img align="left" width=380 height=200 src="images/multitask.png" alt="multitask">
 
 Real-world learning agents are not just trained and tested on one task; they usually learn and act in many different tasks at the same time, borrowing the insights they learn from one task for better learning in other ones. This is especially relevant in the modern foundation model era, where the ``pretrain-then-finetune'' paradigm becomes standard. My research tries to quantify when and how one can utilize auxiliary source of data to provably benefit learning and decision making, tailored to settings such as [active learning](https://arxiv.org/abs/1510.02847), [contextual bandits](https://arxiv.org/abs/1901.00301), [multi-task](https://arxiv.org/abs/2206.08556) and [meta-learning](https://openreview.net/forum?id=2kZMtdjzSV).  
 
