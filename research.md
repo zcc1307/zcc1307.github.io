@@ -4,8 +4,6 @@ title: Research
 permalink: /research
 ---
 
-## Research
-
 My research is on interactive machine learning (ML), where learning agents actively engage in data collection to make decisions or gain useful insights. Such interactive nature of learning processes enables learning agents to focus on collecting data from the relevant parts of the environment, thus allowing to save data collection effort (which oftentimes translates to onerous human labor or experimental cost). My reserach goal is to understand and establish principled ways to design interactive machine learning algorithms with efficiency guarantees (e.g. sample efficiency, computational efficiency), and evaluate them experimentally in simulated and real-world datasets and environments. Here are some research topics I have been working on: 
 
 ### Imitation Learning
@@ -22,12 +20,19 @@ of exploration. Such paradigm has been successfully deployed in e.g. robotics an
 
 ### Exploration in Bandits and Reinforcement Learning
 
+<img align="left" src="images/cb_illustration.png" alt="CB">
+
 A wide range of sequential decision making problems require learning agents to perform exploration to learn about relevant parts of the environment. E.g., a robot needs to traverse a part of the maze before it finds way to its goal; a product recommendation system might want to gather information about a user's interest by trying to suggest users products they may 
 like and see their reactions. My research in this area has been on understanding how to perform efficient exploration in structured environments, e.g., in the presence of [large](https://arxiv.org/abs/1902.01520) [action](https://arxiv.org/abs/2006.06040) [spaces](https://link.springer.com/chapter/10.1007/978-3-031-26412-2_17), [multi-task](https://arxiv.org/abs/2010.15390) [settings](https://arxiv.org/abs/2107.08622), [structured reward distributions](https://arxiv.org/abs/2304.14989), and environments with [sparsity](https://arxiv.org/abs/2210.15345) and [low-rank](https://arxiv.org/abs/2402.11156) properties. 
 
+<br>
+
 ### Active Learning
 
-Many modern ML pipelines are data-hungry; although in many applications of ML, unlabeled examples are abundant and easy to obtain, obtaining label annotations can be very time- and labor-consuming. Active learning aims at using interaction to reduce label annotation efforts: by adaptively making label queries to experts, the learning agent can avoid making queries on examples whose labels they are confident about and thus focus on querying informative examples. My research aims at designing principled approaches for active learning with label requirements approaching fundamental information-theoretic limits, ensuring [computational efficiency](https://arxiv.org/abs/2102.05312) [and noise tolerance](https://arxiv.org/abs/2002.04840), as well as [practical heuristics](https://arxiv.org/abs/1906.03671). I am also interested in the interplay of active learning with other fields, such as [uncertainty](papers/easydata_crp.pdf) [quantification](https://arxiv.org/abs/1407.2657), [fairness estimation](https://arxiv.org/abs/2206.08450), and [game theory](https://openreview.net/forum?id=s5hSp7EdL3). 
+<img align="left" src="images/AL.png" alt="AL">
+
+Although in many applications of ML, unlabeled examples are abundant and easy to obtain, obtaining label annotations can be very time- and labor-consuming. Active learning aims at using interaction to reduce label annotation efforts: by adaptively making label queries to experts, the learning agent can avoid making queries on examples whose labels they are confident about and thus focus on querying informative examples. My research aims at designing principled approaches for active learning with label requirements approaching fundamental information-theoretic limits, ensuring [computational efficiency](https://arxiv.org/abs/2102.05312) [and noise tolerance](https://arxiv.org/abs/2002.04840), as well as [practical heuristics](https://arxiv.org/abs/1906.03671). I am also interested in the interplay of active learning with other fields, such as [uncertainty](papers/easydata_crp.pdf) [quantification](https://arxiv.org/abs/1407.2657), [fairness estimation](https://arxiv.org/abs/2206.08450), and [game theory](https://openreview.net/forum?id=s5hSp7EdL3). 
+
 
 
 ### Multi-task and Transfer Learning
