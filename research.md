@@ -4,7 +4,7 @@ title: Research
 permalink: /research
 ---
 
-My research is on interactive machine learning (ML), where learning agents actively engage in data collection to make decisions or gain useful insights. Such interactive nature of learning processes enables learning agents to focus on collecting data from the relevant parts of the environment, thus allowing to save data collection effort (which oftentimes translates to onerous human labor or experimental cost). My reserach goal is to understand and establish principled ways to design interactive machine learning algorithms with efficiency guarantees (e.g. sample efficiency, computational efficiency), and evaluate them experimentally in simulated and real-world datasets and environments. Here are some research topics I have been working on: 
+My research is on interactive machine learning (ML), where learning agents actively engage in data collection to make decisions or gain useful insights. Such interactive nature of learning processes enables learning agents to focus on collecting data from the relevant parts of the environment, thus allowing to save data collection effort (which oftentimes translates to [onerous human labor](https://www.noemamag.com/the-exploited-labor-behind-artificial-intelligence/) or [experimental cost](https://realworldml.github.io/)). My reserach goal is to understand and establish principled ways to design interactive machine learning algorithms with efficiency guarantees (e.g. sample efficiency, computational efficiency), and evaluate them experimentally in simulated and real-world datasets and environments. Here are some research topics I have been working on: 
 
 ### Imitation Learning
 
