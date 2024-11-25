@@ -20,9 +20,11 @@ of exploration. Such paradigm has been successfully deployed in e.g. robotics an
     </div>
     <!-- Second Column -->
     <div class="column">
-        <img src="images/IL_RB.png" alt="Image 3">
-        <br>
-        <img src="images/offline_IL.png" alt="Image 4">
+        <img src="images/Walker_bc_1_tsne.png" alt="Image 3">
+    </div>
+    <!-- Third Column -->
+    <div class="column">
+        <img src="images/Walker_logger_25_tsne.png" alt="Image 3">
     </div>
 </div>
 
