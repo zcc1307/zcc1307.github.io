@@ -9,13 +9,7 @@ My research is on interactive machine learning (ML), where learning agents activ
 ### Imitation Learning
 
 Imitation learning (IL), or Learning from Demonstrations, models the setting where a learning agent learns from a demonstrating expert to obtain intelligent sequential decision making behavior. Compared with reinforcement learning, imitation learning has the advantages that: (1) it gets around the reward misspecification problem and (2) it can mitigate the challenge 
-of exploration. Such paradigm has been successfully deployed in e.g. robotics and autonomous driving. My research in imitation learning has been focused on understanding the power of interactive expert demonstrations: if we have an expert that can provide real-time, interactive action demonstration (cf. offline IL with expert demonstration trajectories readily available), how can we best utilize it and save its effort? [My](https://arxiv.org/abs/2312.16860) [works](https://arxiv.org/abs/2209.12868) attempts to answer such questions.
-
-<p float="left">
-  <img src="images/IL_RB.png" width="200" />
-  <img src="images/Walker_bc_1_tsne.png" width="300" /> 
-  <img src="images/Walker_logger_25_tsne.png" width="300" /> 
-</p>
+of exploration. Such paradigm has been successfully deployed in e.g. robotics and autonomous driving. [My research](https://arxiv.org/abs/2312.16860) [in imitation learning](https://arxiv.org/abs/2209.12868) has been focused on understanding the power of interactive expert demonstrations: if we have an expert that can provide real-time, interactive action demonstration (cf. offline IL with expert demonstration trajectories readily available), how can we best utilize it and save its effort? 
 
 
 ### Exploration in Bandits and Reinforcement Learning
@@ -42,6 +36,12 @@ Although in many applications of ML, unlabeled examples are abundant and easy to
 Real-world learning agents are not just trained and tested on one task; they usually learn and act in many different tasks at the same time, borrowing the insights they learn from one task for better learning in other ones. This is especially relevant in the modern foundation model era, where the ``pretrain-then-finetune'' paradigm becomes standard. My research tries to quantify when and how one can utilize auxiliary source of data to provably benefit learning and decision making, tailored to settings such as [active learning](https://arxiv.org/abs/1510.02847), [contextual bandits](https://arxiv.org/abs/1901.00301), [multi-task](https://arxiv.org/abs/2206.08556) and [meta-learning](https://openreview.net/forum?id=2kZMtdjzSV).  
 
 
-### Interdisciplinary Collaboration
+### Interdisciplinary Collaborations
 
-Besides machine learning methodology research, I am also interested in working with domain experts on practical evaluation of developed methods. This includes the efforts of: developing large-action-space bandit algorithms for [beam and]((https://link.springer.com/chapter/10.1007/978-3-031-26412-2_17)) [path selection](http://wiser.arizona.edu/papers/zhao-mass2024-tech-report.pdf) in wireless communication; designing [fairness aware bandits algorithms for network coexistence](https://ieeexplore.ieee.org/abstract/document/10579843/); interpretable classification for [oracle cancer detection](https://www.mdpi.com/2072-6694/15/5/1421), and [lens design starting point generation using LLMs](https://repository.arizona.edu/handle/10150/675276?show=full). 
+Besides machine learning methodology research, I am also interested in working with domain experts on tailoring general methods to practical applications. This includes the efforts of: developing large-action-space bandit algorithms for [beam and](https://link.springer.com/chapter/10.1007/978-3-031-26412-2_17) [path selection](http://wiser.arizona.edu/papers/zhao-mass2024-tech-report.pdf) in wireless communication; designing [fairness-aware bandit algorithms for network coexistence](https://ieeexplore.ieee.org/abstract/document/10579843/); interpretable classification for [oracle cancer detection](https://www.mdpi.com/2072-6694/15/5/1421), and [lens design starting point generation using LLMs](https://repository.arizona.edu/handle/10150/675276?show=full). 
+
+
+<p float="left">
+  <img src="images/beam_selection.jpg" width=400 />
+  <img src="images/lens_design.png" width=500 /> 
+</p>
