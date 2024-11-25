@@ -11,6 +11,21 @@ My research is on interactive machine learning (ML), where learning agents activ
 Imitation learning (IL), or Learning from Demonstrations, models the setting where a learning agent learns from a demonstrating expert to obtain intelligent sequential decision making behavior. Compared with reinforcement learning, imitation learning has the advantages that: (1) it gets around the reward misspecification problem and (2) it can mitigate the challenge 
 of exploration. Such paradigm has been successfully deployed in e.g. robotics and autonomous driving. [My research](https://arxiv.org/abs/2312.16860) [in imitation learning](https://arxiv.org/abs/2209.12868) has been focused on understanding the power of interactive expert demonstrations: if we have an expert that can provide real-time, interactive action demonstration (cf. offline IL with expert demonstration trajectories readily available), how can we best utilize it and save its effort? 
 
+<div class="grid-container">
+    <!-- First Column -->
+    <div class="column">
+        <img src="images/IL_RB.png" alt="Image 1">
+        <br>
+        <img src="images/offline_IL.png" alt="Image 2">
+    </div>
+    <!-- Second Column -->
+    <div class="column">
+        <img src="images/IL_RB.png" alt="Image 3">
+        <br>
+        <img src="images/offline_IL.png" alt="Image 4">
+    </div>
+</div>
+
 
 ### Exploration in Bandits and Reinforcement Learning
 
