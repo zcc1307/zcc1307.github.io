@@ -29,12 +29,16 @@ of exploration. Such paradigm has been successfully deployed in e.g. robotics an
 
 ### Exploration in Bandits and Reinforcement Learning
 
-<img align="left" src="images/cb_illustration.png" alt="CB">
-
-A wide range of sequential decision making problems require learning agents to perform exploration to learn about relevant parts of the environment. E.g., a robot needs to traverse a part of the maze before it finds way to its goal; a product recommendation system might want to gather information about a user's interest by trying to suggest users products they may 
-like and see their reactions. My research in this area has been on understanding how to perform efficient exploration in structured environments, e.g., in the presence of [large](https://arxiv.org/abs/1902.01520) [action](https://arxiv.org/abs/2006.06040) [spaces](https://link.springer.com/chapter/10.1007/978-3-031-26412-2_17), [multi-task](https://arxiv.org/abs/2010.15390) [settings](https://arxiv.org/abs/2107.08622), [structured reward distributions](https://arxiv.org/abs/2304.14989), and environments with [sparsity](https://arxiv.org/abs/2210.15345) and [low-rank](https://arxiv.org/abs/2402.11156) properties. 
-
-<br>
+<div class="grid-container">
+    <!-- First Column -->
+    <div class="column" width=300>
+    <img src="images/cb_illustration.png" alt="CB">
+    </div>
+    <div class="column">
+    A wide range of sequential decision making problems require learning agents to perform exploration to learn about relevant parts of the environment. E.g., a robot needs to traverse a part of the maze before it finds way to its goal; a product recommendation system might want to gather information about a user's interest by trying to suggest users products they may 
+    like and see their reactions. My research in this area has been on understanding how to perform efficient exploration in structured environments, e.g., in the presence of [large](https://arxiv.org/abs/1902.01520) [action](https://arxiv.org/abs/2006.06040) [spaces](https://link.springer.com/chapter/10.1007/978-3-031-26412-2_17), [multi-task](https://arxiv.org/abs/2010.15390) [settings](https://arxiv.org/abs/2107.08622), [structured reward distributions](https://arxiv.org/abs/2304.14989), and environments with [sparsity](https://arxiv.org/abs/2210.15345) and [low-rank](https://arxiv.org/abs/2402.11156) properties. 
+    </div>
+</div>
 
 ### Active Learning
 
