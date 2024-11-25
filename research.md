@@ -13,10 +13,8 @@ of exploration. Such paradigm has been successfully deployed in e.g. robotics an
 
 <div class="grid-container">
     <!-- First Column -->
-    <div class="column" width=200>
+    <div class="column">
         <img src="images/IL_RB.png" alt="Image 1">
-        <br>
-        <img src="images/offline_IL.png" alt="Image 2">
     </div>
     <!-- Second Column -->
     <div class="column">
@@ -27,6 +25,8 @@ of exploration. Such paradigm has been successfully deployed in e.g. robotics an
         <img src="images/Walker_logger_25_tsne.png" alt="Image 3">
     </div>
 </div>
+
+*Left: in interactive IL, experts can provide demonstrations retroactively based on learner's policy rollout (Picture Credit: Stéphane Ross). Middle and Right: t-SNE Visualization of states seen by offline IL and interactive IL, in an simulated control environment.*
 
 
 ### Exploration in Bandits and Reinforcement Learning
@@ -46,7 +46,7 @@ like and see their reactions. My research in this area has been on understanding
 <div class="grid-container" width=300 align="left">
     <!-- First Column -->
     <div class="column">
-    <img src="images/images/AL.png" alt="AL">
+    <img src="images/AL.png" alt="AL">
     </div>
 </div>
 
