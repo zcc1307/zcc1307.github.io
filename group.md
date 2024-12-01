@@ -11,6 +11,8 @@ Yichen Li (PhD Student)
 
 [Hao Qin](https://mjolnirt.github.io/) (PhD Student)
 
+Josh Samadder (Undergrduate Student)
+
 ### Alumni 
 [Carson Davis Barningham](https://kahrsen.github.io/) (Masters Student, currently at Amazon)
 
