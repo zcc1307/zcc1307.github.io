@@ -32,9 +32,19 @@ permalink: /publications
 
 <ul>
 <li>
+<span class="title">Beyond task diversity: provable representation transfer for sequential multitask linear bandits.</span> <br>
+<span class="author">Thang Duong, Zhi Wang, and Chicheng Zhang.</span> <br>
+<span class="venue">NeurIPS 2024 (to appear). </span> <br>
+<span class="link"><a href="https://arxiv.org/abs/2312.16860">[OpenReview]</a> </span>
+</li>
+</ul>
+
+
+<ul>
+<li>
 <span class="title">Agnostic Interactive Imitation Learning: New Theory and Practical Algorithms.</span> <br>
 <span class="author">Yichen Li and Chicheng Zhang.</span> <br>
-<span class="venue">ICML 2024 (To appear). </span> <br>
+<span class="venue">ICML 2024. </span> <br>
 <span class="link"><a href="https://arxiv.org/abs/2312.16860">[arXiv]</a> </span>
 </li>
 </ul>
@@ -43,7 +53,7 @@ permalink: /publications
 <li>
 <span class="title">Efficient Low-Rank Matrix Estimation, Experimental Design, and Arm-Set-Dependent Low-Rank Bandits.</span> <br>
 <span class="author">Kyoungseok Jang, Chicheng Zhang, Kwang-Sung Jun.</span> <br>
-<span class="venue">ICML 2024 (To appear). </span> <br>
+<span class="venue">ICML 2024. </span> <br>
 <span class="link"><a href="https://arxiv.org/abs/2402.11156">[arXiv]</a> </span>
 </li>
 </ul>
