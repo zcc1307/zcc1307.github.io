@@ -26,7 +26,7 @@ For a preview of lecture notes & upcoming topics, see [last year's schedule page
 | Nov 15 |   [Junfeng Xu: unknown Markov games](junfeng.pptx) [Baoying Feng: Safe Learning from demonstrations for Constrained MDP](baoying.pptx)                                                                                               |       |                                                                          |          |
 | Nov 22 |   [Sathvik Reddy Nookala: Constrained RL](sathvik.pptx)    [Rethvick Yugendra Babu: distributional RL](rethvick.pptx)                                                                                          |       |                                                                          |          |
 | Nov 29 |                                        Thanksgiving recess                                        |       |                                                                          |          |
-| Dec 6  |   Aryan Pathare: optimal model-free RL  Chenyi Wang: reward centering                                                                                                |       |                                                                          |          |
+| Dec 6  |   [Chenyi Wang: reward centering](chenyi.pptx)  [Aryan Pathare: optimal model-free RL](aryan.pptx)                                                                                                  |       |                                                                          |          |
 {:.table-striped}
 
 
