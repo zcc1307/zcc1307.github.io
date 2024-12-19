@@ -24,7 +24,7 @@ Aditya Ramchandra Jadhav (Undergraduate Student)
 
 *A photo of some group members hiking @ Tumamoc Hill, Feb 2024*
 
-<div class="grid-container" width=400 align="left">
+<div class="grid-container" width=800 align="left">
     <!-- First Column -->
     <div class="column">
     <img src="group_photo_2024_02.png" alt="hiking feb 2024">
